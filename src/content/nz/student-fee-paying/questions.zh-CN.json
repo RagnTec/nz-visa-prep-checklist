@@ -1,0 +1,280 @@
+{
+  "title": "生成你的新西兰学签准备清单",
+  "showProgressBar": "top",
+  "progressBarType": "pages",
+  "showQuestionNumbers": "off",
+  "completeText": "生成清单",
+  "clearInvisibleValues": "onHidden",
+  "pages": [
+    {
+      "name": "scope",
+      "title": "使用边界",
+      "elements": [
+        {
+          "type": "html",
+          "html": "<p>本工具面向已经自行选择申请新西兰 Fee Paying Student Visa 的成年人，用于整理申请前的材料准备事项。它不会判断你是否适合或有资格申请该签证，也不会推荐签证类型。如果你尚未确定签证类型，请先查阅 INZ 官方信息或咨询持牌专业人士。</p>"
+        }
+      ]
+    },
+    {
+      "name": "study",
+      "title": "课程与学费",
+      "elements": [
+        {
+          "type": "boolean",
+          "name": "study.hasOffer",
+          "title": "你是否已经取得 Offer of Place？",
+          "description": "包括正式或附带条件的 Offer。清单会提示你核对 Offer 的当前状态、课程信息和仍需满足的条件。",
+          "isRequired": true
+        },
+        {
+          "type": "boolean",
+          "name": "study.tuitionPaid",
+          "title": "你是否已经支付学费并取得教育机构出具的付款证明？",
+          "description": "请选择当前实际状态。尚未付款不代表本工具对申请资格作出判断。",
+          "isRequired": true
+        },
+        { "type": "text", "inputType": "date", "name": "study.courseStart", "title": "课程开始日期" },
+        { "type": "text", "inputType": "date", "name": "study.courseEnd", "title": "课程结束日期" },
+        {
+          "type": "radiogroup",
+          "name": "study.courseStatus",
+          "title": "以下哪项最接近这门课程目前的状态？",
+          "description": "请按当前实际情况选择；本工具不会仅根据课程日期推断课程状态。",
+          "choices": [
+            { "value": "not_started", "text": "课程尚未开始" },
+            { "value": "already_started", "text": "课程已经开始" },
+            { "value": "deferred_or_changed", "text": "课程已延期，或课程/日期已发生变化" },
+            { "value": "unclear", "text": "我暂不确定，需要核对" }
+          ],
+          "isRequired": true
+        }
+      ]
+    },
+    {
+      "name": "travel",
+      "title": "所在地与申请时间",
+      "elements": [
+        {
+          "type": "radiogroup",
+          "name": "travel.locationContext",
+          "title": "你目前位于哪里？",
+          "description": "仅用于调整预计出行和申请时间提示，不判断申请资格，也不建议你应在哪里提交申请。",
+          "choices": [
+            { "value": "offshore", "text": "新西兰境外" },
+            { "value": "onshore", "text": "新西兰境内" },
+            { "value": "unclear", "text": "暂不确定" }
+          ],
+          "isRequired": true
+        },
+        {
+          "type": "text",
+          "inputType": "date",
+          "name": "travel.intendedArrivalDate",
+          "title": "如果你预计从境外前往新西兰，计划抵达日期是什么时候？",
+          "description": "仅用于时间规划提示；如暂时没有计划日期，可以留空。",
+          "visibleIf": "{travel.locationContext} = 'offshore'"
+        },
+        {
+          "type": "radiogroup",
+          "name": "application.stage",
+          "title": "你的学生签证申请目前处于哪个阶段？",
+          "description": "仅用于调整时间提示，不预测处理时间或申请结果。",
+          "choices": [
+            { "value": "not_submitted", "text": "尚未提交" },
+            { "value": "submitted", "text": "已经提交" },
+            { "value": "unclear", "text": "暂不确定" }
+          ],
+          "isRequired": true
+        }
+      ]
+    },
+    {
+      "name": "funding",
+      "title": "资金安排",
+      "elements": [
+        {
+          "type": "radiogroup",
+          "name": "funding.arrangementType",
+          "title": "以下哪项最接近你的主要资金安排？",
+          "description": "请选择最接近主要安排的一项。该分类只用于调整准备提示，不判断资金是否充分、真实或可接受。",
+          "choices": [
+            { "value": "own_funds", "text": "主要使用本人持有或可支配的资金" },
+            { "value": "overseas_third_party", "text": "父母、家人或其他新西兰境外人士提供资金支持（如父母出资承担学费或生活费）" },
+            { "value": "nz_sponsorship", "text": "由新西兰的个人或机构提供 Sponsorship" },
+            { "value": "scholarship", "text": "主要使用奖学金" },
+            { "value": "education_loan", "text": "主要使用教育贷款" },
+            { "value": "mixed", "text": "同时使用两种或以上资金方式" },
+            { "value": "other_or_unclear", "text": "以上都不完全符合，或暂不确定" }
+          ],
+          "isRequired": true
+        },
+        { "type": "boolean", "name": "funding.largeRecentDeposit", "title": "近期是否有需要说明来源的大额入账？" }
+      ]
+    },
+    {
+      "name": "background",
+      "title": "教育与工作背景",
+      "elements": [
+        {
+          "type": "radiogroup",
+          "name": "background.applicantType",
+          "title": "以下哪项最接近你目前的教育与工作背景？",
+          "description": "工作经历包括受雇、自雇、自由职业或经营活动。请选择最接近自己主要背景的一项。“近期毕业”由你自行判断，本工具不会根据毕业日期推断。这里的分类只用于调整准备提示，不是 INZ 的申请人分类。",
+          "choices": [
+            { "value": "recent_graduate_no_formal_work", "text": "我近期完成学业，目前没有工作经历" },
+            { "value": "employed_or_previously_employed", "text": "我目前或过去有工作经历" },
+            { "value": "non_recent_graduate_no_formal_work", "text": "我并非近期毕业，目前没有工作经历" },
+            { "value": "other_or_unclear", "text": "以上都不完全符合，或我不确定如何归类" }
+          ],
+          "isRequired": true
+        },
+        {
+          "type": "radiogroup",
+          "name": "background.studyRelation",
+          "title": "本次课程与过往教育、工作或项目经历的关系，更接近哪一种？",
+          "description": "请按实际情况选择最接近的一项；不需要为了匹配某个选项而强行建立联系。",
+          "choices": [
+            { "value": "continuation", "text": "基本延续" },
+            { "value": "adjacent_capability", "text": "相邻拓展" },
+            { "value": "significant_transition", "text": "明显转向" },
+            { "value": "unclear", "text": "暂不明确" }
+          ],
+          "isRequired": true
+        },
+        { "type": "boolean", "name": "background.hasGap", "title": "教育或工作时间线中是否有较长空档？" }
+      ]
+    },
+    {
+      "name": "material-background",
+      "title": "材料背景",
+      "elements": [
+        {
+          "type": "checkbox",
+          "name": "education.recordContexts",
+          "title": "以下哪些情况符合你的教育记录？",
+          "description": "用于调整学术记录整理提示，不判断学历是否满足院校或签证要求。",
+          "choices": [
+            { "value": "completed_qualification", "text": "已完成一项或多项学历、课程或培训" },
+            { "value": "currently_enrolled", "text": "目前仍在学习" },
+            { "value": "incomplete_or_withdrawn", "text": "曾有未完成、中断或退出的学习" },
+            { "value": "other_or_unclear", "text": "其他情况，或暂不明确", "isExclusive": true }
+          ],
+          "isRequired": true
+        },
+        {
+          "type": "radiogroup",
+          "name": "english.providerEvidenceStatus",
+          "title": "你目前掌握的课程英语要求和证明状态是哪一种？",
+          "description": "仅记录教育机构当前状态，不判断英语能力或签证结果。",
+          "choices": [
+            { "value": "available", "text": "已有可用于核对院校英语要求的证明" },
+            { "value": "pending_or_conditional", "text": "Offer 或院校记录中仍有待满足的英语条件" },
+            { "value": "provider_confirmed_not_required", "text": "教育机构已确认当前申请不需要额外英语证明" },
+            { "value": "other_or_unclear", "text": "其他情况，或暂不明确" }
+          ],
+          "isRequired": true
+        },
+        {
+          "type": "radiogroup",
+          "name": "documents.originContext",
+          "title": "你准备使用的身份、教育或关系材料主要由哪里出具？",
+          "description": "仅用于调整材料名称、翻译和信息核对提示，不判断国籍、居住权或申请资格。",
+          "choices": [
+            { "value": "mainland_china", "text": "主要由中国大陆机构出具" },
+            { "value": "other", "text": "主要由其他国家或地区机构出具" },
+            { "value": "mixed", "text": "来自两个或以上国家或地区" },
+            { "value": "unclear", "text": "暂不确定" }
+          ],
+          "isRequired": true
+        },
+        {
+          "type": "radiogroup",
+          "name": "family.linkedApplicationContext",
+          "title": "是否有伴侣或子女的签证申请需要与你的本次学习安排关联核对？",
+          "description": "只用于提示关系和申请信息核对，不判断对方是否符合任何签证条件。",
+          "choices": [
+            { "value": "none", "text": "没有" },
+            { "value": "partner", "text": "有伴侣相关申请" },
+            { "value": "dependent_child", "text": "有子女相关申请" },
+            { "value": "partner_and_child", "text": "同时有伴侣和子女相关申请" },
+            { "value": "unclear", "text": "暂不确定" }
+          ],
+          "isRequired": true
+        },
+        {
+          "type": "html",
+          "visibleIf": "{family.linkedApplicationContext} = 'partner' or {family.linkedApplicationContext} = 'partner_and_child'",
+          "html": "<section class='route-comparison'><h3>伴侣签证路线对比</h3><p>以下仅比较当前 INZ 页面列出的主要差异，不是完整资格评估，也不替你选择路线。</p><table><thead><tr><th>核对项</th><th>Partner of a Student Work Visa</th><th>Partner of a Student Visitor Visa</th></tr></thead><tbody><tr><td>主要用途</td><td>与学生伴侣在新西兰团聚并在新西兰工作</td><td>以访客身份与学生伴侣在新西兰团聚</td></tr><tr><td>普通新西兰工作</td><td>可工作，仍以实际签证条件为准</td><td>访客签证不允许普通新西兰工作</td></tr><tr><td>学习</td><td>每 12 个月最多学习 3 个月</td><td>最多学习 3 个月</td></tr><tr><td>一般期限</td><td>通常与支持方的学生签证期限相同</td><td>通常与支持方的学生签证期限相同</td></tr><tr><td>支持方学习条件</td><td>支持方的学习需符合当前 INZ 页面列出的 level 7/8 或 level 9/10 条件</td><td>当前 INZ 总览说明，学习任何 qualification 的学生可支持该 visitor route</td></tr><tr><td>伴侣关系</td><td>需核对 partnership 和共同生活要求</td><td>需核对 partnership 和共同生活要求</td></tr><tr><td>同一申请中包含子女</td><td>不能在该 work visa 申请中包含 dependent children</td><td>可按当前页面条件在该 visitor visa 申请中包含 19 岁或以下的 dependent children</td></tr></tbody></table><p><a href='https://www.immigration.govt.nz/process-to-apply/once-you-have-a-visa/bringing-family-to-new-zealand/bringing-family-on-a-student-visa/' target='_blank' rel='noreferrer'>INZ：Bringing family if you have a student visa</a></p></section>"
+        },
+        {
+          "type": "radiogroup",
+          "name": "family.partnerVisaRoute",
+          "title": "你目前计划为伴侣申请哪一类签证？",
+          "description": "请选择实际计划核对的签证类别。本工具不判断资格，也不推荐签证路线。",
+          "visibleIf": "{family.linkedApplicationContext} = 'partner' or {family.linkedApplicationContext} = 'partner_and_child'",
+          "clearIfInvisible": "onHidden",
+          "choices": [
+            { "value": "partner_student_work", "text": "Partner of a Student Work Visa" },
+            { "value": "partner_student_visitor", "text": "Partner of a Student Visitor Visa" },
+            { "value": "undecided", "text": "尚未选定，需要继续核对" }
+          ],
+          "isRequired": true
+        },
+        {
+          "type": "html",
+          "visibleIf": "{family.linkedApplicationContext} = 'dependent_child' or {family.linkedApplicationContext} = 'partner_and_child'",
+          "html": "<section class='route-comparison'><h3>子女签证路线对比</h3><p>以下仅比较当前 INZ 页面列出的主要差异，不是完整资格评估，也不替你选择路线。</p><table><thead><tr><th>核对项</th><th>Dependent Child Student Visa</th><th>Child of a Student Visitor Visa</th></tr></thead><tbody><tr><td>主要用途</td><td>让 dependent child 在新西兰的小学或中学学习</td><td>让 dependent child 以访客身份团聚</td></tr><tr><td>学校或学习</td><td>可在新西兰小学或中学学习；高等教育需核对其他学生签证</td><td>在当前 visitor route 下最多学习 3 个月</td></tr><tr><td>年龄与 dependency</td><td>核对 19 岁或以下及财务依赖等当前条件</td><td>核对 19 岁或以下、单身及对支持方的财务依赖等当前条件</td></tr><tr><td>支持父母的签证或学习</td><td>需有适用的父母签证；学生签证支持情形取决于当前 INZ 页面列出的学习或奖学金情境</td><td>当前 INZ 总览说明，学习任何 qualification 的学生可支持该 visitor route</td></tr><tr><td>关系材料</td><td>核对亲子或适用法律关系证明</td><td>核对亲子关系证明</td></tr><tr><td>监护或带子女离境权</td><td>核对实际情况下的法律权利及适用证明</td><td>部分家庭情况下可能需要另行核对，不是本工具的默认推断</td></tr><tr><td>一般期限</td><td>通常与支持父母的签证期限相同</td><td>通常与支持父母的学生签证期限相同</td></tr></tbody></table><p><a href='https://www.immigration.govt.nz/process-to-apply/once-you-have-a-visa/bringing-family-to-new-zealand/bringing-family-on-a-student-visa/' target='_blank' rel='noreferrer'>INZ：Bringing family if you have a student visa</a></p></section>"
+        },
+        {
+          "type": "radiogroup",
+          "name": "family.childVisaRoute",
+          "title": "你目前计划为子女申请哪一类签证？",
+          "description": "请选择实际计划核对的签证类别。本工具不根据年龄、课程、伴侣路线或其他信息推断该选择。",
+          "visibleIf": "{family.linkedApplicationContext} = 'dependent_child' or {family.linkedApplicationContext} = 'partner_and_child'",
+          "clearIfInvisible": "onHidden",
+          "choices": [
+            { "value": "dependent_child_student", "text": "Dependent Child Student Visa" },
+            { "value": "child_student_visitor", "text": "Child of a Student Visitor Visa" },
+            { "value": "undecided", "text": "尚未选定，需要继续核对" }
+          ],
+          "isRequired": true
+        },
+        {
+          "type": "radiogroup",
+          "name": "documents.nonEnglishEvidenceStatus",
+          "title": "你准备使用的材料中是否包含非英文文件？",
+          "description": "用于生成翻译核对提示；具体要求以当前 INZ 和教育机构指引为准。",
+          "choices": [
+            { "value": "none_known", "text": "目前没有已知的非英文材料" },
+            { "value": "includes_non_english", "text": "包含非英文材料" },
+            { "value": "unclear", "text": "暂不确定" }
+          ],
+          "isRequired": true
+        }
+      ]
+    },
+    {
+      "name": "identity-health",
+      "title": "身份与基础检查",
+      "elements": [
+        { "type": "boolean", "name": "identity.passportValid", "title": "你的护照预计在离开新西兰后仍至少有效3个月吗？", "isRequired": true },
+        { "type": "boolean", "name": "identity.hasOtherNames", "title": "你是否使用过其他姓名或存在姓名拼写差异？" },
+        {
+          "type": "radiogroup",
+          "name": "health.evidenceStatus",
+          "title": "你目前的 X 光或体检信息处于什么状态？",
+          "description": "是否需要提供以及既往信息能否使用，取决于当前 INZ 要求和你的具体情况。尚未提供不代表本工具判断申请不能提交；INZ 在处理期间也可能要求补充或重新检查。",
+          "choices": [
+            { "value": "not_provided", "text": "提交本次申请前尚未准备或提交" },
+            { "value": "previously_submitted", "text": "以前曾向 INZ 提交过相关信息" },
+            { "value": "new_exam_completed", "text": "近期已完成新的 X 光或体检" },
+            { "value": "unclear", "text": "暂不确定" }
+          ],
+          "isRequired": true
+        },
+        { "type": "boolean", "name": "history.hasVisaRefusal", "title": "你是否有过签证拒签或需要额外说明的申请历史？" }
+      ]
+    }
+  ]
+}

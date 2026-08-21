@@ -1,0 +1,90 @@
+:root {
+  --font-family: Arial, "PingFang SC", "Microsoft YaHei", system-ui, sans-serif;
+  --sjs-font-family: var(--font-family);
+  --sjs-default-font-family: var(--font-family);
+  font-family: var(--font-family);
+  color: #1f2933;
+  background: #f4f7f8;
+  font-synthesis: none;
+}
+* { box-sizing: border-box; }
+body { margin: 0; }
+button, select { font: inherit; }
+button { border: 0; border-radius: 10px; padding: .75rem 1rem; background: #176b68; color: white; cursor: pointer; }
+button.secondary { background: white; color: #25434a; border: 1px solid #b9c8cc; }
+a { color: #12615f; }
+.app-shell { width: min(920px, calc(100% - 2rem)); margin: 0 auto; padding: 2rem 0 4rem; }
+.hero { padding: 2.25rem; background: white; border: 1px solid #d9e3e6; border-radius: 22px; margin-bottom: 1.25rem; }
+.hero.compact { padding: 1.75rem; }
+.hero h1 { margin: .25rem 0 .75rem; font-size: clamp(2rem, 6vw, 3.4rem); line-height: 1.05; }
+.hero p { max-width: 720px; color: #4b6269; }
+.eyebrow { margin: 0; color: #176b68 !important; font-weight: 700; letter-spacing: .04em; }
+.trial-disclosure { margin-bottom: 1rem; border: 1px solid #c8d8dc; border-left: 4px solid #176b68; border-radius: 12px; background: #eef7f6; color: #294a50; padding: .8rem 1rem; font-size: .9rem; line-height: 1.55; }
+.survey-card, .checklist-section, .checklist-toolbar { background: white; border: 1px solid #d9e3e6; border-radius: 18px; padding: 1.25rem; margin-bottom: 1rem; }
+.checklist-toolbar { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 1rem; }
+.filter-group { display: flex; flex-wrap: wrap; gap: 1rem; align-items: center; }
+.filter-group label { display: flex; align-items: center; gap: .5rem; font-size: .9rem; font-weight: 700; color: #344b52; }
+.filter-group select { padding: .45rem .75rem; border: 1px solid #b9c8cc; border-radius: 8px; background: white; font-size: .85rem; }
+.toolbar-actions { display: flex; flex-wrap: wrap; align-items: center; gap: .65rem; }
+.result-count { font-size: .85rem; color: #52666d; font-weight: 600; margin-right: .35rem; }
+.small-btn { padding: .45rem .75rem; font-size: .85rem; border-radius: 8px; }
+.empty-state { text-align: center; padding: 2.5rem 1rem; color: #52666d; }
+.empty-state p { margin-bottom: 1rem; }
+
+.checklist-section h2 { margin-top: 0; }
+.checklist-item { border-top: 1px solid #e2eaec; margin: .35rem 0; border-radius: 8px; transition: background .15s ease; }
+.checklist-item:first-of-type { border-top: 1px solid #e2eaec; }
+.checklist-item summary { display: flex; justify-content: space-between; align-items: center; gap: 1rem; padding: .85rem .75rem; cursor: pointer; font-weight: 700; }
+.item-title { flex: 1; min-width: 0; word-break: break-word; }
+
+/* Visual Hierarchy for Checklist Cards */
+.checklist-item.card-core { border-left: 4px solid #1565c0; background: #fbfdff; }
+.checklist-item.card-conditional { border-left: 3.5px solid #607d8b; background: #fafbfc; }
+.checklist-item.card-guidance { border-left: 2.5px solid #cfd8dc; background: #ffffff; }
+
+.detail-body { padding: 0 .75rem 1.25rem; color: #344b52; }
+.detail-body h3 { font-size: 1rem; margin-bottom: .35rem; }
+.status-chip { white-space: nowrap; font-size: .8rem; background: #f0f4f5; color: #52666d; padding: .25rem .55rem; border-radius: 999px; font-weight: 500; }
+.item-labels { display: flex; flex-wrap: wrap; justify-content: flex-end; align-items: center; gap: .45rem; }
+
+/* Primary Requirement Label Chips */
+.primary-label-chip { white-space: nowrap; font-size: .8rem; padding: .25rem .6rem; border-radius: 999px; font-weight: 700; }
+.primary-label-chip.chip-core { background: #e3f2fd; color: #0d47a1; border: 1px solid #90caf9; }
+.primary-label-chip.chip-conditional { background: #eceff1; color: #37474f; border: 1px solid #b0bec5; }
+.primary-label-chip.chip-guidance { background: #f5f5f5; color: #616161; border: 1px solid #e0e0e0; }
+
+.item-nature { margin: 0 0 .75rem; font-size: .9rem; color: #455a64; background: #f8fafb; padding: .4rem .75rem; border-radius: 8px; border-left: 3px solid #90a4ae; }
+.compatibility-card { background: white; border: 1px solid #d9e3e6; border-radius: 18px; padding: 1.5rem; }
+.status-select { display: grid; gap: .35rem; max-width: 240px; margin-top: 1rem; font-weight: 700; }
+.status-select select { padding: .65rem; border: 1px solid #b9c8cc; border-radius: 10px; background: white; }
+.warning { border-left: 4px solid #b77315; background: #fff7e8; padding: .65rem 1rem; margin: 1rem 0; }
+.warning p { margin: .25rem 0; }
+.sources { display: grid; gap: .35rem; margin-top: 1rem; font-size: .9rem; }
+.source-url { display: block; overflow-wrap: anywhere; font-size: .82em; color: #4b6269; }
+.actions { display: flex; flex-wrap: wrap; gap: .65rem; margin-top: 1.25rem; }
+.progress { height: 10px; background: #dce7e8; border-radius: 999px; overflow: hidden; }
+.progress span { display: block; height: 100%; background: #176b68; }
+footer { color: #61767c; font-size: .9rem; padding: 1rem; }
+.loading { padding: 3rem; text-align: center; }
+@media (max-width: 560px) {
+  .app-shell { width: min(100% - 1rem, 920px); padding-top: .5rem; }
+  .hero { padding: 1.3rem; border-radius: 15px; }
+  .trial-disclosure { padding: .7rem .8rem; }
+  .survey-card, .checklist-section, .checklist-toolbar { padding: .8rem; border-radius: 14px; }
+  .filter-group { width: 100%; flex-direction: column; align-items: stretch; gap: .6rem; }
+  .filter-group label { justify-content: space-between; }
+  .toolbar-actions { width: 100%; justify-content: space-between; }
+  .checklist-item summary { flex-direction: column; align-items: flex-start; gap: .5rem; }
+  .item-labels { width: 100%; justify-content: flex-start; }
+}
+@media print {
+  body { background: white; }
+  .app-shell { width: 100%; padding: 0; }
+  .hero, .checklist-section { border: 0; break-inside: auto; }
+  .no-print { display: none !important; }
+  .checklist-item { break-inside: avoid; border-left: none !important; }
+  .checklist-item > .detail-body { display: block !important; }
+  .checklist-item summary { cursor: default; list-style: none; }
+  .checklist-item summary::-webkit-details-marker { display: none; }
+  .sources a { color: #1f2933; text-decoration: none; }
+}

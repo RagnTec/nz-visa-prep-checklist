@@ -1,0 +1,932 @@
+[
+  {
+    "id": "identity.passport",
+    "category": "身份与照片",
+    "title": "护照个人信息页",
+    "requirementType": "usually_required",
+    "evidenceLayer": "inz_visa",
+    "why": "用于确认你的身份、国籍、护照号码和有效期。",
+    "steps": ["准备包含照片和个人信息的完整页面", "核对姓名拼写与后续所有材料一致"],
+    "requiredFields": ["姓名", "出生日期", "护照号码", "签发与到期日期"],
+    "preferredFormat": "清晰彩色扫描件或完整照片",
+    "commonMistakes": ["页面边缘被裁切", "反光遮挡文字", "使用过期护照信息"],
+    "sourceIds": ["inz.fee-paying-student"] ,
+    "defaultIncluded": true
+  },
+  {
+    "id": "study.offer",
+    "category": "课程与学费",
+    "title": "Offer of Place",
+    "requirementType": "usually_required",
+    "evidenceLayer": "inz_visa",
+    "why": "用于说明你已被获批教育机构的课程录取。对于新西兰境外申请人，附带条件的录取（Conditional Offer）可用于申请评估和原则批准（AIP），但在签证最终获批前必须向 INZ 提供正式无条件的 Offer of Place。",
+    "steps": ["准备学校出具的完整Offer", "确认课程名称、时长、学习方式和日期"],
+    "requiredFields": ["课程名称", "课程时长", "全日制或非全日制", "课程日期"],
+    "preferredFormat": "学校出具的完整PDF",
+    "commonMistakes": ["只提供第一页", "课程日期与申请表不一致"],
+    "conditionalGuidanceBlocks": [
+      {
+        "id": "study.offer.statusReview",
+        "when": { "field": "study.hasOffer", "operator": "equals", "value": true },
+        "title": "核对 Offer 当前状态",
+        "steps": ["核对当前 Offer 是正式还是附带条件，并记录课程、教育机构、开始日期、结束日期及仍需满足的条件。"]
+      }
+    ],
+    "sourceIds": ["inz.fee-paying-student"]
+  },
+  {
+    "id": "study.offer.pending",
+    "category": "课程与学费",
+    "title": "先取得 Offer of Place",
+    "requirementType": "answer_dependent",
+    "evidenceLayer": "inz_visa",
+    "why": "你目前尚未确认已有 Offer of Place。在新西兰境外申请自费学生签证，递交和评估需要至少持有符合条件的 Offer（包括附带条件的录取），最终签发签证前需取得正式无条件录取。",
+    "steps": ["向学校确认Offer状态并尽早取得", "收到后核对课程、日期与录取条件信息"],
+    "sourceIds": ["inz.fee-paying-student"]
+  },
+  {
+    "id": "study.tuitionReceipt",
+    "category": "课程与学费",
+    "title": "学费收据或缴费能力证明",
+    "requirementType": "answer_dependent",
+    "evidenceLayer": "inz_visa",
+    "why": "用于说明你已支付学费、有能力支付，或符合免缴安排。对于符合条件的境外原则批准（AIP）途径，学费收据可在获得 AIP 后缴纳并补交，但在签证最终签发前必须提供正式付款证明。",
+    "steps": ["准备学校正式收据或付款能力证明", "确认金额、支付日期和覆盖的学习期间"],
+    "requiredFields": ["申请人姓名", "金额", "支付日期", "覆盖的学习期间"],
+    "preferredFormat": "学校正式PDF或学校系统下载文件",
+    "commonMistakes": ["只有转账截图，没有学校确认", "收据未显示覆盖期间"],
+    "sourceIds": ["inz.fee-paying-student"]
+  },
+  {
+    "id": "study.tuitionPlan",
+    "category": "课程与学费",
+    "title": "整理学费支付安排",
+    "requirementType": "product_organisation_guidance",
+    "evidenceLayer": "product_guidance",
+    "why": "你尚未确认已缴学费，需要说明如何支付或等待何种条件。",
+    "steps": ["确认学校缴费要求", "准备可用于支付的资金证据", "记录付款计划或AIP安排"],
+    "sourceIds": ["inz.fee-paying-student"]
+  },
+  {
+    "id": "study.courseTimeline",
+    "category": "课程与学费",
+    "title": "核对课程日期与当前状态",
+    "requirementType": "product_organisation_guidance",
+    "evidenceLayer": "product_guidance",
+    "why": "帮助你核对课程日期、当前状态和教育机构记录是否一致。",
+    "steps": ["记录课程名称、教育机构、开始日期、结束日期和当前状态", "以教育机构当前记录核对日期和状态"],
+    "sourceIds": ["inz.fee-paying-student"]
+  },
+  {
+    "id": "study.courseStartPast",
+    "category": "课程与学费",
+    "title": "核对已过去的课程开始日期",
+    "requirementType": "product_organisation_guidance",
+    "evidenceLayer": "product_guidance",
+    "why": "课程开始日期在过去不一定表示填写错误，需要结合当前课程状态核对事实。",
+    "steps": ["对照 Offer、延期通知、在读记录或教育机构最新信息核对课程状态"],
+    "conditionalGuidanceBlocks": [
+      {
+        "id": "study.courseStartPast.notStarted",
+        "when": { "field": "study.courseStatus", "operator": "equals", "value": "not_started" },
+        "title": "课程尚未开始",
+        "steps": ["你填写的课程开始日期已经过去，但你选择了“课程尚未开始”。请核对 Offer、延期通知或教育机构记录中的当前课程日期。"]
+      },
+      {
+        "id": "study.courseStartPast.alreadyStarted",
+        "when": { "field": "study.courseStatus", "operator": "equals", "value": "already_started" },
+        "title": "课程已经开始",
+        "steps": ["课程已经开始。请按事实核对实际开始日期、当前注册或在读状态，以及不同材料中的课程信息是否一致。"]
+      },
+      {
+        "id": "study.courseStartPast.deferredOrChanged",
+        "when": { "field": "study.courseStatus", "operator": "equals", "value": "deferred_or_changed" },
+        "title": "课程已延期或发生变化",
+        "steps": ["课程已延期或发生变化。请核对教育机构最新记录中的课程名称、开始日期、结束日期和当前状态。"]
+      },
+      {
+        "id": "study.courseStartPast.unclear",
+        "when": { "field": "study.courseStatus", "operator": "equals", "value": "unclear" },
+        "title": "当前状态暂不明确",
+        "steps": ["课程开始日期已经过去，但当前状态暂不明确。请先向教育机构核对课程和日期事实，不要仅根据旧日期作结论。"]
+      }
+    ],
+    "sourceIds": ["inz.fee-paying-student"]
+  },
+  {
+    "id": "application.timingReview",
+    "category": "申请时间",
+    "title": "核对预计出行前的申请时间",
+    "requirementType": "product_organisation_guidance",
+    "evidenceLayer": "product_guidance",
+    "why": "你目前在新西兰境外、尚未提交学生签证申请，且预计在 3 个月内出行。INZ 目前强烈建议尽可能在预计出行日期至少 3 个月前申请，并说明学生签证处理时间不受保证。这是时间规划提示，不是申请截止日期、签证资格判断或结果保证。请查看当前学生签证等待时间；如担心无法赶上课程开始日期，可与教育机构核对可行的课程安排。",
+    "steps": ["查看当前学生签证等待时间", "核对预计出行日期和当前申请阶段"],
+    "sourceIds": ["inz.student-visa-apply-early", "inz.student-visas-overview"]
+  },
+  {
+    "id": "education.completionEvidence",
+    "category": "教育与学术记录",
+    "title": "核对已完成学业的毕业或结业证明",
+    "requirementType": "product_organisation_guidance",
+    "evidenceLayer": "product_guidance",
+    "why": "帮助你对照所申请教育机构的录取通知书（Offer of Place）及相关指示，核对是否需要整理已完成学习对应的毕业或结业证明。",
+    "steps": [
+      "查看录取通知书（Offer of Place）和教育机构指示中是否对前置学历材料有明确要求",
+      "核对现有毕业证书或结业证明上的教育机构、专业或项目名称、完成日期和姓名",
+      "仅整理与你实际申请及院校要求相关的文件，不预设每种证书都必须提供"
+    ],
+    "warnings": [
+      "这是协助核对院校材料的产品整理提示，不是通用 INZ 签证法定义务，也不判断材料是否充分。"
+    ],
+    "sourceIds": ["inz.offering-place-student"]
+  },
+  {
+    "id": "education.transcripts",
+    "category": "教育与学术记录",
+    "title": "核对学术成绩单",
+    "requirementType": "product_organisation_guidance",
+    "evidenceLayer": "product_guidance",
+    "why": "帮助你对照所申请教育机构的录取通知书（Offer of Place）及指示，核对是否需要整理历年学术成绩单。",
+    "steps": [
+      "对照教育机构当前指示核对与已完成学历对应的学术成绩单",
+      "核对成绩单上的教育机构名称、姓名、课程或科目、成绩以及学习期间",
+      "查看录取通知书（Offer of Place）是否对成绩单有进一步要求（如官方原件或密封件）"
+    ],
+    "warnings": [
+      "本项为产品整理建议，不代表所有院校或签证申请均必须提供成绩单，也不判断成绩单是否充分。"
+    ],
+    "sourceIds": ["inz.offering-place-student"]
+  },
+  {
+    "id": "education.gradingScale",
+    "category": "教育与学术记录",
+    "title": "核对成绩单评分说明（如适用）",
+    "requirementType": "product_organisation_guidance",
+    "evidenceLayer": "product_guidance",
+    "why": "帮助你核对成绩单中是否包含评分标准或等级说明（Grading Scale）。",
+    "steps": [
+      "查看成绩单或毕业院校材料中是否已自带评分标准、及格线或等级体系说明",
+      "仅在录取通知书（Offer of Place）或教育机构明确要求提供评分体系说明时跟进准备",
+      "若你的成绩单已包含清晰说明或院校未作要求，可将本项视为已满足或不适用"
+    ],
+    "warnings": [
+      "这是产品整理提示，并非所有新西兰院校或签证申请都强制要求独立的评分标准说明；本工具不判断评分标准是否可接受。"
+    ],
+    "sourceIds": ["inz.offering-place-student"]
+  },
+  {
+    "id": "education.mainlandDocumentNaming",
+    "category": "教育与学术记录",
+    "title": "核对中国大陆学历材料名称",
+    "requirementType": "product_organisation_guidance",
+    "evidenceLayer": "product_guidance",
+    "why": "中国大陆高校出具的教育材料通常包含毕业证书、学位证书及学术成绩单等不同文件。本项帮助你按自身实际持有情况梳理文件名称，不预设这些文件全部适用。",
+    "steps": [
+      "记录每份已完成学历文件的实际中文名称、出具机构和对应学习项目",
+      "对照录取通知书（Offer of Place）和教育机构指示，核对哪些文件对应成绩单、学历证明或学位要求",
+      "如果无法确定具体名称对应关系，保留为待向教育机构确认事项，不盲目补办不必要的材料",
+      "若你的已完成学历材料由中国大陆机构出具，再使用本项核对相应文件"
+    ],
+    "warnings": [
+      "这是面向中国大陆材料的产品整理提示，不表示毕业证、学位证和成绩单必须全部交齐，也不构成 INZ 签证法定要求。"
+    ],
+    "sourceIds": ["inz.offering-place-student"]
+  },
+  {
+    "id": "education.providerRequirementReview",
+    "category": "教育与学术记录",
+    "title": "核对教育机构当前学历材料要求",
+    "requirementType": "answer_dependent",
+    "evidenceLayer": "product_guidance",
+    "why": "你的教育记录暂未归入本工具的具体类别，建议回到所申请教育机构的要求核对适用的学历材料。",
+    "steps": [
+      "查看所申请教育机构的国际学生入学指引页面",
+      "核对录取通知书（Offer of Place）中与你当前申请相关的材料提示",
+      "记录仍需向学校确认的学历材料类型，不预设必须准备哪些文件"
+    ],
+    "warnings": [
+      "本项不推断你的教育状态，也不判断任何材料是否充分或会被接受。"
+    ],
+    "sourceIds": ["inz.offering-place-student"]
+  },
+  {
+    "id": "english.providerEvidence",
+    "category": "英语与院校条件",
+    "title": "核对院校英语能力证明要求",
+    "requirementType": "answer_dependent",
+    "evidenceLayer": "product_guidance",
+    "why": "用于对照所申请教育机构的英语能力要求，核对你掌握的证明与录取通知书（Offer of Place）状态。",
+    "steps": [
+      "查看所申请教育机构当前的英语能力要求及与你课程相关的信息",
+      "核对录取通知书（Offer of Place）中记录的英语条件状态",
+      "按教育机构指示整理或提供相关证明，不自行推断适用路径"
+    ],
+    "conditionalGuidanceBlocks": [
+      {
+        "id": "english.providerEvidence.available",
+        "when": {
+          "field": "english.providerEvidenceStatus",
+          "operator": "equals",
+          "value": "available"
+        },
+        "title": "已有英语能力证明",
+        "steps": [
+          "对照教育机构要求核对已有证明的类型、成绩和有效期",
+          "查看录取通知书（Offer of Place）是否仍显示待满足条件",
+          "不要仅因持有证明就判断相关条件已经满足"
+        ]
+      },
+      {
+        "id": "english.providerEvidence.otherOrUnclear",
+        "when": {
+          "field": "english.providerEvidenceStatus",
+          "operator": "equals",
+          "value": "other_or_unclear"
+        },
+        "title": "当前证明路径暂不明确",
+        "steps": [
+          "查看教育机构当前英语能力要求和录取通知书状态",
+          "记录仍需向院校核对的证明路径或替代方案",
+          "不要根据本工具推断哪一种证明方式适用"
+        ]
+      }
+    ],
+    "sourceIds": ["inz.offering-place-student"]
+  },
+  {
+    "id": "english.pendingCondition",
+    "category": "英语与院校条件",
+    "title": "跟进录取通知书中的英语条件",
+    "requirementType": "answer_dependent",
+    "evidenceLayer": "product_guidance",
+    "why": "你的录取通知书（Offer of Place）中仍有待处理的英语条件。如果该条件使 Offer 处于条件录取状态，你需要按教育机构要求跟进满足并换发无条件录取（Unconditional Offer），以满足最终签证批准要求；INZ 本身不直接强制特定英语考试成绩。",
+    "steps": [
+      "核对录取通知书（Offer of Place）中记录的英语条件和截止时间",
+      "按教育机构指示的途径提交合格的英语能力证明",
+      "提交后继续关注教育机构的状态更新或换取无条件录取（Unconditional Offer）"
+    ],
+    "warnings": [
+      "本工具不判断该条件是否已经或将会被教育机构认定为满足。"
+    ],
+    "sourceIds": ["inz.offering-place-student"]
+  },
+  {
+    "id": "funds.bankStatements",
+    "category": "生活资金",
+    "title": "本人持有或可支配资金的银行记录",
+    "requirementType": "answer_dependent",
+    "evidenceLayer": "inz_visa",
+    "why": "用于说明在新西兰学习期间可使用的生活资金及其真实来源。",
+    "steps": ["准备连续银行流水", "保留账户姓名、交易、日期和余额", "检查是否存在需要解释的大额入账"],
+    "requiredFields": ["账户姓名", "银行名称", "交易日期", "交易明细", "余额"],
+    "preferredFormat": "银行导出的完整PDF",
+    "commonMistakes": ["只截余额", "缺少账户姓名", "页面或月份不连续"],
+    "sourceIds": ["inz.fee-paying-student"]
+  },
+  {
+    "id": "funds.ownFunds",
+    "category": "生活资金",
+    "title": "核对本人资金安排",
+    "requirementType": "answer_dependent",
+    "evidenceLayer": "inz_visa",
+    "why": "帮助你核对本人持有或可支配资金的账户、时间和事实来源。",
+    "steps": ["记录资金所在账户及账户持有人", "核对资金形成和可使用状态的事实记录"],
+    "sourceIds": ["inz.student-fund-requirements"]
+  },
+  {
+    "id": "funds.overseasThirdParty",
+    "category": "生活资金",
+    "title": "核对父母、家人或其他境外人士资金支持",
+    "requirementType": "answer_dependent",
+    "evidenceLayer": "inz_visa",
+    "why": "用于按当前 INZ 资金指引核对父母、家人或其他境外人士出资支持安排（例如父母承担学费或生活费；这与新西兰 Sponsorship 是不同的资金支持方式）。",
+    "steps": ["确认当前安排属于境外人士出资支持而非新西兰 sponsorship", "核对资金持有人、支持路径和实际安排"],
+    "sourceIds": ["inz.student-fund-requirements"]
+  },
+  {
+    "id": "funds.nzSponsorship",
+    "category": "生活资金",
+    "title": "核对新西兰 sponsorship 安排",
+    "requirementType": "answer_dependent",
+    "evidenceLayer": "inz_visa",
+    "why": "帮助你区分新西兰 sponsorship 与其他第三方资金安排。",
+    "steps": ["记录 sponsor 的个人或机构信息", "核对当前 sponsorship 安排及相关官方流程"],
+    "sourceIds": ["inz.student-fund-requirements"]
+  },
+  {
+    "id": "funds.scholarship",
+    "category": "生活资金",
+    "title": "核对奖学金安排",
+    "requirementType": "answer_dependent",
+    "evidenceLayer": "inz_visa",
+    "why": "帮助你核对奖学金提供方、覆盖范围和有效期间。",
+    "steps": ["记录奖学金名称和提供方", "核对覆盖的费用、金额或期间"],
+    "sourceIds": ["inz.student-fund-requirements"]
+  },
+  {
+    "id": "funds.educationLoan",
+    "category": "生活资金",
+    "title": "核对教育贷款安排",
+    "requirementType": "answer_dependent",
+    "evidenceLayer": "inz_visa",
+    "why": "帮助你区分教育贷款与本人存款或第三方支持。",
+    "steps": ["记录贷款机构和当前状态", "核对贷款用途、可使用时间和相关记录"],
+    "sourceIds": ["inz.student-fund-requirements"]
+  },
+  {
+    "id": "funds.mixed",
+    "category": "生活资金",
+    "title": "拆分核对多种资金来源",
+    "requirementType": "product_organisation_guidance",
+    "evidenceLayer": "product_guidance",
+    "why": "帮助你把不同资金方式分开记录，避免混淆持有人、来源和用途。",
+    "steps": ["列出每种资金方式及对应持有人", "分别核对金额、时间、用途和事实来源"],
+    "sourceIds": ["inz.student-fund-requirements"]
+  },
+  {
+    "id": "funds.otherOrUnclear",
+    "category": "生活资金",
+    "title": "核对尚未归类的资金安排",
+    "requirementType": "product_organisation_guidance",
+    "evidenceLayer": "product_guidance",
+    "why": "帮助你先记录实际资金安排，再核对它属于哪种官方资金机制。",
+    "steps": ["记录已知的资金持有人、来源和用途", "标记仍不明确的安排并对照当前 INZ 指引核对"],
+    "sourceIds": ["inz.student-fund-requirements"]
+  },
+  {
+    "id": "funds.supporter",
+    "category": "生活资金",
+    "title": "核对资金支持方身份、关系与支持安排",
+    "requirementType": "answer_dependent",
+    "evidenceLayer": "inz_visa",
+    "why": "用于按实际资金机制核对是否涉及支持方，以及支持方身份、与你的关系和支持安排。不同资金机制不能合并理解。",
+    "steps": [
+      "确认当前资金安排属于境外第三方支持、新西兰 sponsorship，还是包含多种资金方式。",
+      "先确认该资金组合是否实际涉及第三方支持者或 sponsor。",
+      "仅对实际涉及支持方的部分，核对支持方身份、与你的关系及相关资金安排。",
+      "对照当前 INZ 对相应资金机制的指引核对，不把不同机制视为相同。"
+    ],
+    "guidanceDisclaimer": "以下内容用于区分不同资金支持机制，不判断支持安排或资金是否充分、真实、可接受，也不预测签证结果。",
+    "conditionalGuidanceBlocks": [
+      {
+        "id": "funds.supporter.overseasThirdParty",
+        "when": { "field": "funding.arrangementType", "operator": "equals", "value": "overseas_third_party" },
+        "title": "父母、家人或其他境外人士资金支持",
+        "steps": [
+          "核对实际出资人（如父母或亲属）的身份、与你的关系及资金账户持有人。",
+          "对照当前 INZ 资金指引核对适用的支持路径，不套用新西兰 sponsorship 的安排。"
+        ]
+      },
+      {
+        "id": "funds.supporter.nzSponsorship",
+        "when": { "field": "funding.arrangementType", "operator": "equals", "value": "nz_sponsorship" },
+        "title": "新西兰 sponsorship",
+        "steps": [
+          "核对 sponsor 是个人还是机构，并记录实际 sponsorship 安排。",
+          "对照当前 INZ sponsorship 相关要求核对适用流程，不把它视为普通境外第三方资金支持。"
+        ]
+      },
+      {
+        "id": "funds.supporter.mixed",
+        "when": { "field": "funding.arrangementType", "operator": "equals", "value": "mixed" },
+        "title": "多种资金方式并存",
+        "steps": [
+          "分别识别本人资金、奖学金、贷款、第三方支持、sponsorship 或其他实际存在的组成。",
+          "先判断其中是否真正存在第三方支持者或 sponsor。",
+          "只对实际涉及支持方的部分核对身份、关系和支持安排。",
+          "如果实际组合没有第三方支持者或 sponsor，不应把支持方相关要求套用到其他资金部分。"
+        ]
+      }
+    ],
+    "sourceIds": ["inz.student-fund-requirements"]
+  },
+  {
+    "id": "funds.largeDeposit",
+    "category": "生活资金",
+    "title": "大额入账来源说明",
+    "requirementType": "may_be_requested",
+    "evidenceLayer": "inz_visa",
+    "why": "帮助你按事实核对近期较大入账与其他财务记录是否一致。",
+    "steps": ["列明入账日期和金额", "记录资金的实际来源和转移路径", "核对可支持这些事实的现有记录"],
+    "warnings": ["只说明真实情况，不要补造理由"],
+    "sourceIds": ["inz.student-fund-requirements"]
+  },
+  {
+    "id": "background.recentGraduateChronology",
+    "category": "教育与个人背景",
+    "title": "整理近期教育与活动时间线",
+    "requirementType": "product_organisation_guidance",
+    "evidenceLayer": "product_guidance",
+    "why": "帮助你按事实记录近期教育、项目和其他主要活动，并核对日期与当前状态。",
+    "steps": [
+      "按年月记录最近完成的学历、课程和培训，以及目前仍在进行的学习活动。",
+      "记录同期参与的项目或其他主要活动",
+      "为每段经历记录名称、起止时间和当前状态",
+      "标记仍不确定的日期、名称或状态，并回到原始材料核对",
+      "检查不同记录中的日期和状态是否一致"
+    ],
+    "warnings": ["“近期毕业”由你自行选择，本工具不会根据毕业日期推断。"],
+    "sourceIds": ["inz.genuine-intentions-study"]
+  },
+  {
+    "id": "background.workChronology",
+    "category": "教育与个人背景",
+    "title": "整理教育与工作活动时间线",
+    "requirementType": "product_organisation_guidance",
+    "evidenceLayer": "product_guidance",
+    "why": "帮助你按事实记录教育、工作、项目和其他主要活动，并核对时间线的一致性。",
+    "steps": [
+      "按年月记录主要教育经历",
+      "记录受雇、自雇、自由职业或经营活动的起止时间和当前状态",
+      "记录同期参与的项目或其他主要活动",
+      "为每段经历记录机构、单位、角色或活动名称",
+      "标记仍不确定的日期、名称或状态，并回到原始材料核对",
+      "检查不同记录中的日期、单位、角色和当前状态是否一致"
+    ],
+    "warnings": ["只记录实际经历，不扩大职责或改变经历性质。"],
+    "sourceIds": ["inz.genuine-intentions-study"]
+  },
+  {
+    "id": "background.nonRecentNoWorkChronology",
+    "category": "教育与个人背景",
+    "title": "整理毕业后的主要活动时间线",
+    "requirementType": "product_organisation_guidance",
+    "evidenceLayer": "product_guidance",
+    "why": "帮助你按事实记录完成学业后的项目和其他主要活动，并核对日期与当前状态。",
+    "steps": [
+      "记录完成主要学业的时间和当时状态",
+      "按年月记录此后的课程、培训、项目或其他主要活动",
+      "为每段活动记录名称、起止时间和当前状态",
+      "标记仍不确定的日期、名称或状态，并回到原始材料核对",
+      "检查不同记录中的日期和状态是否一致"
+    ],
+    "warnings": ["本任务只帮助整理事实，不判断哪些经历需要提交或如何披露。"],
+    "sourceIds": ["inz.genuine-intentions-study"]
+  },
+  {
+    "id": "background.otherChronology",
+    "category": "教育与个人背景",
+    "title": "整理个人经历时间线",
+    "requirementType": "product_organisation_guidance",
+    "evidenceLayer": "product_guidance",
+    "why": "帮助你根据实际情况记录主要经历，并标记仍需核对的信息。",
+    "steps": [
+      "按年月记录主要教育经历",
+      "记录工作、项目或其他主要活动",
+      "为每段经历记录名称、起止时间和当前状态",
+      "标记仍不确定的日期、名称、经历性质或状态",
+      "回到原始材料核对不确定的信息",
+      "检查不同记录中的事实是否一致"
+    ],
+    "warnings": ["不需要为了符合某一类别而改变或简化真实经历。"],
+    "sourceIds": ["inz.genuine-intentions-study"]
+  },
+  {
+    "id": "background.studyConnection",
+    "category": "教育与学习计划",
+    "title": "整理本次课程选择与过往经历的联系",
+    "requirementType": "genuine_intentions_support",
+    "evidenceLayer": "product_guidance",
+    "why": "帮助你按事实整理为什么现在选择本次课程、课程与过往经历的关系、希望发展的能力以及完成学习后的实际运用方向。",
+    "steps": [
+      "记录本次课程、教育机构和主要学习内容",
+      "记录为什么在当前阶段选择这项学习，以及作出选择时考虑的实际情况",
+      "对照过往教育、工作或项目经历，记录本次课程属于延续、拓展还是方向变化",
+      "列出希望发展的具体知识或能力，并对应到课程内容",
+      "记录完成课程后希望如何实际运用所学",
+      "核对课程、经历、日期和计划在不同材料中的表述是否一致"
+    ],
+    "warnings": ["不要编造经历、夸大课程作用，或承诺特定职位、收入、签证或其他结果。"],
+    "guidanceDisclaimer": "以下内容用于帮助你整理事实和核对信息，不代表 INZ 要求单独提交特定文件，也不判断材料是否充分或申请结果。",
+    "conditionalGuidanceBlocks": [
+      {
+        "id": "background.studyConnection.continuation",
+        "when": { "field": "background.studyRelation", "operator": "equals", "value": "continuation" },
+        "title": "基本延续：在已有方向上继续学习",
+        "steps": [
+          "列出与本次课程直接相关的过往教育、工作或项目经历",
+          "记录已有基础与本次课程内容之间的具体联系",
+          "记录为什么在当前阶段继续这一方向",
+          "列出希望进一步深化的知识或能力",
+          "记录完成课程后希望如何在原有方向中运用所学"
+        ]
+      },
+      {
+        "id": "background.studyConnection.adjacentCapability",
+        "when": { "field": "background.studyRelation", "operator": "equals", "value": "adjacent_capability" },
+        "title": "相邻拓展：在相关基础上发展新能力",
+        "steps": [
+          "列出可以作为本次学习基础的过往知识、能力或经历",
+          "记录本次课程与原有方向的联系和区别",
+          "记录为什么在当前阶段拓展这些能力",
+          "对照课程内容，列出希望新增或加强的具体能力",
+          "记录完成课程后希望如何把新能力与原有经验结合使用"
+        ]
+      },
+      {
+        "id": "background.studyConnection.significantTransition",
+        "when": { "field": "background.studyRelation", "operator": "equals", "value": "significant_transition" },
+        "title": "明显转向：进入不同的学习方向",
+        "steps": [
+          "客观记录过往教育、工作或项目方向",
+          "记录本次课程代表的新学习方向",
+          "整理促成当前学习选择的真实经历或考虑",
+          "对照课程内容，列出希望建立的知识和能力",
+          "记录完成课程后希望如何实际运用所学，不承诺特定职位、收入或其他结果"
+        ]
+      },
+      {
+        "id": "background.studyConnection.unclear",
+        "when": { "field": "background.studyRelation", "operator": "equals", "value": "unclear" },
+        "title": "暂不明确：先核对事实再归类",
+        "steps": [
+          "分别列出过往教育、工作、项目经历和本次课程的主要内容",
+          "标记其中直接相关、部分相关或暂时看不出联系的部分",
+          "记录选择本次课程时已经明确的实际考虑",
+          "标记仍需核对的课程内容、经历、日期或计划",
+          "如核对后仍无法归类，保留客观事实，不强行形成单一叙述"
+        ]
+      }
+    ],
+    "sourceIds": ["inz.genuine-intentions-study"]
+  },
+  {
+    "id": "background.gap",
+    "category": "教育与个人背景",
+    "title": "整理空档时间线",
+    "requirementType": "product_organisation_guidance",
+    "evidenceLayer": "product_guidance",
+    "why": "帮助你按事实核对教育、工作、项目和其他主要活动之间的时间线。",
+    "steps": [
+      "记录空档的起止月份",
+      "客观记录期间的项目或其他主要活动及当前状态",
+      "标记仍不确定的日期或事实，并回到原始材料核对",
+      "检查相关日期与其他材料是否一致"
+    ],
+    "warnings": ["只记录真实情况，不需要为了填补时间线而编造活动。"],
+    "sourceIds": ["inz.genuine-intentions-study"]
+  },
+  {
+    "id": "identity.passportValidityReview",
+    "category": "身份与照片",
+    "title": "核对护照有效期并安排更新",
+    "requirementType": "answer_dependent",
+    "evidenceLayer": "inz_visa",
+    "why": "你表示护照预计在离开新西兰后不足 3 个月有效期，需要核对当前证件和预计离境日期。",
+    "steps": ["核对护照到期日期和预计离开新西兰的日期", "查看当前 INZ 护照有效期要求", "如需更新护照，记录办理进度并在后续材料中使用一致的护照信息"],
+    "sourceIds": ["inz.fee-paying-student"]
+  },
+  {
+    "id": "identity.otherNames",
+    "category": "身份与照片",
+    "title": "姓名差异或曾用名说明",
+    "requirementType": "answer_dependent",
+    "evidenceLayer": "product_guidance",
+    "why": "用于保持护照、学历、工作和财务材料中的身份信息一致。",
+    "steps": ["列出不同姓名或拼写", "说明出现在哪些文件", "准备支持差异的官方文件"],
+    "sourceIds": ["inz.fee-paying-student"]
+  },
+  {
+    "id": "family.partnerRelationship",
+    "category": "身份与关系",
+    "title": "整理伴侣关系事实与相关证明",
+    "requirementType": "answer_dependent",
+    "evidenceLayer": "inz_visa",
+    "why": "你已选择一项具体的学生伴侣签证路线。本项用于按实际情况整理伴侣关系及共同生活事实，供你对照当前 INZ 伴侣指引核对。它不判断关系是否真实、稳定或材料是否充分。",
+    "steps": [
+      "核对已选择的伴侣签证路线，并核对申请人与伴侣的基本身份信息是否一致。",
+      "按实际情况整理关系持续时间、共同生活时间和居住安排等事实。",
+      "按实际情况归类能够反映共同财务、共同责任、共同活动或沟通，以及其他人知晓该关系的材料。",
+      "记录每项材料对应的时间范围和它能够说明的事实；只整理与实际情况相符的类别。",
+      "对照当前 INZ partnership 指引和你已选择的签证页面核对仍需确认的事项，不预设固定材料组合。"
+    ],
+    "requiredFields": [
+      "双方姓名或可识别信息",
+      "材料覆盖的日期或时间范围",
+      "材料所对应的关系事实"
+    ],
+    "commonMistakes": [
+      "只列出婚姻登记文件，却没有按实际情况整理共同生活及其他相关事实。",
+      "把所有示例都当作每个申请人必须提供的固定材料组合。"
+    ],
+    "warnings": [
+      "婚姻登记或任何单一文件本身不代表材料充分；本工具不判断关系是否真实、稳定或符合签证条件。",
+      "仅整理与实际情况相符的事实和材料，不推断或补写不存在的关系经历。"
+    ],
+    "sourceIds": ["inz.partnership-proof"]
+  },
+  {
+    "id": "family.partnerRouteReview",
+    "category": "身份与关系",
+    "title": "核对伴侣签证路线",
+    "requirementType": "product_organisation_guidance",
+    "evidenceLayer": "product_guidance",
+    "why": "你已明确选择‘尚未选定’。本项帮助你回到路线对比和当前 INZ 页面继续核对，不替你选择签证。",
+    "steps": [
+      "回到材料背景页的伴侣签证路线对比，核对工作、学习、期限、支持方学习条件和子女包含方式。",
+      "分别查看当前 Partner of a Student Work Visa 和 Partner of a Student Visitor Visa 页面。",
+      "记录仍需核对的实际计划和官方条件，不从本清单推断资格或路线。",
+      "确定实际计划后，重新回答伴侣签证路线问题。"
+    ],
+    "warnings": ["当前信息不足以确认伴侣签证路线；本项不是完整资格评估或申请建议。"],
+    "sourceIds": [
+      "inz.bringing-family-student-visa",
+      "inz.partner-student-work-visa",
+      "inz.partner-student-visitor-visa"
+    ]
+  },
+  {
+    "id": "family.childRelationship",
+    "category": "身份与关系",
+    "title": "整理亲子或适用法律关系材料",
+    "requirementType": "answer_dependent",
+    "evidenceLayer": "inz_visa",
+    "why": "你已选择一项具体的学生子女签证路线。本项用于整理可确认亲子关系或适用法律关系的材料，并提示对照当前 INZ 子女指引核对。它不判断关系、监护或法律权限。",
+    "steps": [
+      "核对已选择的子女签证路线，并核对相关人员的基本身份信息。",
+      "按实际情况整理确认亲子或适用法律关系的文件，例如出生证明、收养文件或其他能够确认关系的记录。",
+      "核对文件中的姓名、出生信息、出具机构和日期是否与其他申请信息一致。",
+      "查看当前 INZ Bringing children 指引和你已选择的签证页面，确认实际家庭情况是否还需另行核对监护或带子女离境权相关材料；不要从本问卷答案自行推断其适用性。",
+      "把仍需向 INZ 指引或适当专业人士确认的事项标记为待核对。"
+    ],
+    "requiredFields": [
+      "相关人员姓名或可识别信息",
+      "文件所确认的亲子或适用法律关系",
+      "文件出具机构和日期"
+    ],
+    "commonMistakes": [
+      "把出生证明、收养文件或其他单一文件视为自动证明材料充分。",
+      "没有先核对实际家庭情况，就把监护或带子女离境权材料当作所有人的默认要求。"
+    ],
+    "warnings": [
+      "监护或带子女离境权材料只在部分家庭情况下可能需要另行核对；本项不将其设为默认要求。",
+      "本工具不推断分居、离婚、单独监护、同意要求、监护人或收养情况，也不判断任何人的法律权限。"
+    ],
+    "sourceIds": ["inz.bringing-children"]
+  },
+  {
+    "id": "family.childRouteReview",
+    "category": "身份与关系",
+    "title": "核对子女签证路线",
+    "requirementType": "product_organisation_guidance",
+    "evidenceLayer": "product_guidance",
+    "why": "你已明确选择‘尚未选定’。本项帮助你回到路线对比和当前 INZ 页面继续核对，不替你选择签证。",
+    "steps": [
+      "回到材料背景页的子女签证路线对比，核对学习范围、年龄和 dependency、支持父母情境、关系材料及一般期限。",
+      "分别查看当前 Dependent Child Student Visa 和 Child of a Student Visitor Visa 页面。",
+      "记录仍需核对的实际计划、支持父母情境和官方条件，不从本清单推断资格或路线。",
+      "确定实际计划后，重新回答子女签证路线问题。"
+    ],
+    "warnings": ["当前信息不足以确认子女签证路线；本项不是完整资格评估或申请建议。"],
+    "sourceIds": [
+      "inz.bringing-family-student-visa",
+      "inz.dependent-child-student-visa",
+      "inz.child-student-visitor-visa",
+      "inz.bringing-children"
+    ]
+  },
+  {
+    "id": "family.partnerStudentWorkRouteMaterials",
+    "category": "身份与关系",
+    "title": "整理学生伴侣工作签证路线材料",
+    "requirementType": "answer_dependent",
+    "evidenceLayer": "inz_visa",
+    "why": "你已选择 Partner of a Student Work Visa。本项只整理该路线特有的支持方学习、支持表格和生活资金核对事项，不判断支持方的课程是否符合当前路线条件。",
+    "steps": [
+      "记录支持方当前学生签证或同时递交的学生签证申请状态，以及可用于核对的签证或申请信息。",
+      "按当前官方记录整理支持方的教育机构、课程名称、qualification level、课程开始与结束日期，并逐项对照当前 INZ 路线页面；不要由本工具判断课程是否符合条件。",
+      "由支持方核对并填写 Form for Partners Supporting Partnership-Based Temporary Entry Applications（INZ 1146），记录表格版本和签署状态。",
+      "按当前路线页面整理适用的生活资金记录，例如近期银行或信用卡记录及已预付住宿信息。",
+      "把仍需从当前 INZ 页面或申请界面确认的路线事项标记为待核对。"
+    ],
+    "requiredFields": [
+      "支持方学生签证或申请状态",
+      "课程、教育机构和 qualification level",
+      "INZ 1146 版本和签署状态",
+      "生活资金记录的持有人、日期和金额"
+    ],
+    "commonMistakes": [
+      "仅凭课程名称或 qualification level 就认定支持方符合当前路线条件。",
+      "把通用伴侣关系材料与本项路线特定材料重复整理。"
+    ],
+    "warnings": [
+      "本项不判断支持方的课程、签证或个人情况是否符合该路线条件。",
+      "资金示例用于整理当前页面所述材料，不代表本工具判断资金充分或可接受。"
+    ],
+    "sourceIds": [
+      "inz.partner-student-work-visa",
+      "inz.bringing-family-student-visa"
+    ]
+  },
+  {
+    "id": "family.partnerStudentVisitorRouteMaterials",
+    "category": "身份与关系",
+    "title": "整理学生伴侣访客签证路线材料",
+    "requirementType": "answer_dependent",
+    "evidenceLayer": "inz_visa",
+    "why": "你已选择 Partner of a Student Visitor Visa。本项用于整理该路线特有的支持方签证、支持表格、资金或 sponsorship，以及离境安排。",
+    "steps": [
+      "记录支持方当前学生签证或同时递交的学生签证申请状态，以及可用于核对的签证或申请信息。",
+      "由支持方核对并填写 Form for Partners Supporting Partnership-Based Temporary Entry Applications（INZ 1146），记录表格版本和签署状态。",
+      "按实际安排整理本人生活资金或 acceptable sponsorship，并记录已预付住宿和相关支持材料。",
+      "整理离开新西兰的机票、购票资金或 sponsor 承担 onward travel 的实际安排。",
+      "核对 visitor route 的工作和学习边界，并记录与当前行程或学习计划有关的待确认事项。"
+    ],
+    "requiredFields": [
+      "支持方学生签证或申请状态",
+      "INZ 1146 版本和签署状态",
+      "资金或 sponsorship 安排",
+      "离境机票、购票资金或 sponsor 安排"
+    ],
+    "commonMistakes": [
+      "没有区分生活资金与离境交通所需的资金或安排。",
+      "把 visitor route 的短期学习范围当作长期学习许可。"
+    ],
+    "warnings": [
+      "本项不判断资金、sponsorship 或离境安排是否充分或可接受。",
+      "实际工作和学习条件以当前 INZ 页面及最终签证条件为准。"
+    ],
+    "conditionalGuidanceBlocks": [
+      {
+        "id": "family.partnerStudentVisitorRouteMaterials.childInclusionReview",
+        "when": { "field": "family.linkedApplicationContext", "operator": "equals", "value": "partner_and_child" },
+        "title": "同时涉及子女的申请安排",
+        "steps": [
+          "根据实际计划核对当前 INZ 页面：符合页面条件的 dependent children 可能包含在伴侣 visitor application 中，也可以另行申请。",
+          "记录当前计划是包含在同一申请还是另行申请，并核对各自需要的申请信息。",
+          "本提示不判断子女是否符合包含条件，也不替代或隐藏你已选择的独立子女签证路线。"
+        ]
+      }
+    ],
+    "sourceIds": [
+      "inz.partner-student-visitor-visa",
+      "inz.bringing-family-student-visa"
+    ]
+  },
+  {
+    "id": "family.dependentChildStudentRouteMaterials",
+    "category": "身份与关系",
+    "title": "整理受抚养子女学生签证路线材料",
+    "requirementType": "answer_dependent",
+    "evidenceLayer": "inz_visa",
+    "why": "你已选择 Dependent Child Student Visa。本项用于记录实际 supporting parent、该人的签证或申请背景，以及该路线特有的学习、dependency、资金和离境核对事项。",
+    "steps": [
+      "记录实际 supporting parent，并记录该人当前持有或正在申请的签证类别；不要从学生、伴侣或子女答案推断支持方。",
+      "把该 supporting parent 的实际签证或申请背景与当前 INZ 路线页面允许支持此路线的情形逐项比较，不把学生签证或工作签证视为默认有效路径。",
+      "记录子女拟就读的小学或中学、学习阶段和预计学习日期；不要由本工具判断学校或学习资格。",
+      "按实际年龄和情况核对 financial dependency 是否需要相关记录，尤其是 18 或 19 岁的 dependent child。",
+      "按实际安排整理生活资金、acceptable sponsor 或 guarantor 信息，以及适用的当前表格。",
+      "整理子女离开新西兰的机票、购票资金或 sponsor/guarantor 安排。",
+      "核对实际 supporting parent 对子女离开其居住国所需的法律权利；再根据实际家庭情况，对照当前 INZ 页面确认是否需要 custody、另一方同意或其他相关证明。本工具不推断任何具体家庭或法律事实。"
+    ],
+    "requiredFields": [
+      "实际 supporting parent 及其签证或申请类别",
+      "小学或中学学习安排",
+      "适用的 dependency 事实",
+      "资金、sponsor 或 guarantor 安排",
+      "离境安排"
+    ],
+    "commonMistakes": [
+      "把学生签证持有人或 work-visa partner 自动视为能够支持该路线。",
+      "未核对实际年龄和家庭情况就默认要求 dependency、custody 或 guardianship 材料。",
+      "把小学或中学学习安排与 tertiary study 混为同一路线。"
+    ],
+    "warnings": [
+      "本项不判断 supporting parent 的签证背景是否符合该路线，也不推断子女年龄、学校资格或 dependency。",
+      "具体用于证明相关法律权利的材料取决于实际家庭情况；本工具不判断 custody、guardianship、同意要求或任何人的法律权限。"
+    ],
+    "sourceIds": [
+      "inz.dependent-child-student-visa",
+      "inz.bringing-family-student-visa",
+      "inz.bringing-children"
+    ]
+  },
+  {
+    "id": "family.childOfStudentVisitorRouteMaterials",
+    "category": "身份与关系",
+    "title": "整理学生子女访客签证路线材料",
+    "requirementType": "answer_dependent",
+    "evidenceLayer": "inz_visa",
+    "why": "你已选择 Child of a Student Visitor Visa。本项用于整理该 visitor route 特有的支持方学生签证、dependency、资金或 sponsorship、onward travel 和短期学习核对事项。",
+    "steps": [
+      "记录支持方当前学生签证或同时递交的学生签证申请状态，以及可用于核对的签证或申请信息。",
+      "按实际年龄和情况整理 dependency 事实；对于 18 或 19 岁的子女，核对当前页面列出的 financial dependency 记录类型。",
+      "按实际安排整理子女在新西兰期间的资金或 acceptable sponsorship，以及已预付住宿信息。",
+      "整理每名子女的 onward travel 机票、购票资金或 sponsor 安排。",
+      "记录预计学习时长，并对照当前 visitor route 的短期学习范围；如计划超过该范围，标记为需要另行核对签证路线，不由本工具作出结论。"
+    ],
+    "requiredFields": [
+      "支持方学生签证或申请状态",
+      "适用的 dependency 事实",
+      "资金或 sponsorship 安排",
+      "每名子女的 onward travel 安排",
+      "预计学习时长"
+    ],
+    "commonMistakes": [
+      "把 visitor route 的短期学习范围当作长期学校或 student-visa 准备路径。",
+      "未按实际年龄核对 dependency 材料是否相关。"
+    ],
+    "warnings": [
+      "本项不判断子女是否符合 dependency、资金、sponsorship 或签证条件。",
+      "不要把 Dependent Child Student Visa 的 supporting-parent 或长期学校材料套用到本项。"
+    ],
+    "sourceIds": [
+      "inz.child-student-visitor-visa",
+      "inz.bringing-family-student-visa",
+      "inz.bringing-children"
+    ]
+  },
+  {
+    "id": "health.review",
+    "category": "健康与品行",
+    "title": "核对X光或体检要求",
+    "requirementType": "may_be_requested",
+    "evidenceLayer": "inz_visa",
+    "why": "是否需要 X 光、体检或两者取决于当前 INZ 指引和个人事实。",
+    "steps": ["核对预计停留时间和当前健康要求", "以当前 INZ 指引和在线申请提示为准"],
+    "conditionalGuidanceBlocks": [
+      {
+        "id": "health.review.notProvided",
+        "when": { "field": "health.evidenceStatus", "operator": "equals", "value": "not_provided" },
+        "title": "尚未准备或提交健康信息",
+        "steps": ["查看当前在线申请中的健康问题和证据提示", "如果 INZ 在处理期间要求健康证据，按该要求核对并准备", "不要仅因尚未提供健康证据就把本工具中的申请准备标记为无法继续"]
+      },
+      {
+        "id": "health.review.previouslySubmitted",
+        "when": { "field": "health.evidenceStatus", "operator": "equals", "value": "previously_submitted" },
+        "title": "过去曾提交健康信息",
+        "steps": ["核对过去提交日期，以及可用的申请编号或 eMedical reference number", "按当前 INZ 指引和在线申请提示核对是否需要新证据；不要假定过去的信息一定可以复用"]
+      },
+      {
+        "id": "health.review.newExamCompleted",
+        "when": { "field": "health.evidenceStatus", "operator": "equals", "value": "new_exam_completed" },
+        "title": "近期已完成新的检查",
+        "steps": ["核对检查日期和 eMedical reference number 或其他参考信息", "按当前 INZ 指引和在线申请提示核对本次需要的信息；不要假定新检查必然满足本次申请"]
+      },
+      {
+        "id": "health.review.unclear",
+        "when": { "field": "health.evidenceStatus", "operator": "equals", "value": "unclear" },
+        "title": "当前状态暂不确定",
+        "steps": ["核对过去的申请、检查和 eMedical 记录", "查看当前在线申请中的健康问题和证据提示"]
+      }
+    ],
+    "sourceIds": ["inz.health-xray-medical"],
+    "defaultIncluded": true
+  },
+  {
+    "id": "character.policeReview",
+    "category": "健康与品行",
+    "title": "核对无犯罪记录证明要求",
+    "requirementType": "may_be_requested",
+    "evidenceLayer": "inz_visa",
+    "why": "是否需要提供无犯罪记录证明取决于年龄、在新西兰的总停留时间、居住经历以及当前 INZ 指引。如果当前 INZ 条件表明本次申请需要提供无犯罪记录证明，请核对在提交申请时一并提供；不要假定 INZ 会在审理中对缺失的必需证明予以补交通知。",
+    "steps": [
+      "核对申请人年龄是否为 17 岁或以上；若未满 17 岁，通常无需提供。",
+      "核算在新西兰的所有访问及停留总时间（包含既往新西兰停留历史与本次计划停留时间）；若总计达到 24 个月或更长，通常需要准备无犯罪记录证明。",
+      "核对需要出具证明的国家或地区：包括你的国籍国，以及自年满 17 岁后累计居住超过 5 年的任何其他国家或地区。",
+      "核对证明出具日期：在向 INZ 提交签证申请时，无犯罪记录证明通常需在出具后 6 个月内。",
+      "对照当前 Fee Paying Student Visa 页面核对可能无需提供新证明的情形，例如在以往签证申请中提供过且在当前复用时限内的证明，或当前针对 20 岁以下且连续持有学生签证或 Interim Visa（附学习条件）等特殊情形；本工具不推断你是否符合例外。",
+      "如果证明原件非英文，核对是否随附证明原件的经认证的英文翻译（certified English translation），并核对译者是否符合当前 INZ 的翻译要求。"
+    ],
+    "requiredFields": [
+      "证明原件及开具人姓名与身份信息",
+      "出具机构与签发日期",
+      "覆盖的无犯罪记录结论或说明",
+      "如为非英文证明，对应的经认证的英文翻译（certified English translation）"
+    ],
+    "commonMistakes": [
+      "只按本次课程时长计算，忽略了既往在新西兰的历史停留时间累加。",
+      "误以为只要出具国籍国证明即可，遗漏了 17 岁后居住超过 5 年的其他国家或地区。",
+      "使用出具已超过 6 个月的过期证明，或未随附符合 INZ 要求的英文翻译件与证明原件。",
+      "假定递交时可以先不附带必需的无犯罪记录证明、等待移民局通知补交。"
+    ],
+    "warnings": [
+      "本工具不判断个人品行、不评估申请人是否必须提供无犯罪证明，也不保证已有证明是否充分或必然被接受。",
+      "具体要求和例外情形以提交申请时 INZ 官方页面及在线申请系统的最新提示为准。"
+    ],
+    "sourceIds": ["inz.police-certificates", "inz.fee-paying-student"],
+    "defaultIncluded": true
+  },
+  {
+    "id": "history.refusal",
+    "category": "教育与个人背景",
+    "title": "整理既往拒签或特殊申请历史",
+    "requirementType": "genuine_intentions_support",
+    "evidenceLayer": "product_guidance",
+    "why": "帮助你准确整理既往签证申请和官方决定记录。",
+    "steps": ["记录涉及的国家或地区", "记录签证类型和决定日期", "核对并保存官方决定记录", "标记仍需从官方记录核对的事实"],
+    "warnings": ["本工具不判断披露策略或拒签风险"],
+    "sourceIds": ["inz.fee-paying-student"]
+  },
+  {
+    "id": "submission.finalReview",
+    "category": "提交整理工具",
+    "title": "提交前统一核对",
+    "requirementType": "product_organisation_guidance",
+    "evidenceLayer": "product_guidance",
+    "why": "确保姓名、日期、金额和课程信息在所有文件中保持一致。",
+    "steps": ["按护照核对姓名", "对照Offer核对课程日期", "对照收据核对金额", "检查所有文件可打开且页码完整"],
+    "sourceIds": ["inz.fee-paying-student"],
+    "defaultIncluded": true
+  }
+]
