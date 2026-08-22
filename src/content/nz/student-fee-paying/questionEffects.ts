@@ -22,6 +22,8 @@ export const arrivalAfterCourseEndMessage =
   '预计抵达日期晚于课程结束日期。请核对课程日期、预计抵达日期或课程当前状态。';
 export const applicationTimingWarningMessage =
   '你目前在新西兰境外、尚未提交学生签证申请，且预计在 3 个月内出行。INZ 目前强烈建议尽可能在预计出行日期至少 3 个月前申请，并说明学生签证处理时间不受保证。这是时间规划提示，不是申请截止日期、签证资格判断或结果保证。';
+export const childVisitorLongTermStudyWarning =
+  '你目前选择的是子女访客类安排，同时填写了计划学习超过 3 个月。INZ 当前说明，相关访客签证下的学习通常最多为 3 个月；如计划学习超过 3 个月，请核对相应的学生签证安排和当前官方要求。本提示仅用于发现当前填写信息之间需要进一步核对的地方。';
 export const questionEffectFields = [
   'study.courseStart',
   'study.courseEnd',
@@ -35,6 +37,9 @@ export const questionEffectFields = [
   'documents.originContext',
   'family.linkedApplicationContext',
   'family.partnerVisaRoute',
+  'family.childStudyPlan',
+  'family.childApplicationArrangement',
+  'family.childSupportBasis',
   'family.childVisaRoute',
   'documents.nonEnglishEvidenceStatus'
 ] as const;
@@ -76,9 +81,25 @@ const partnerVisaRoutes = new Set([
   'partner_student_visitor',
   'undecided'
 ]);
+const childStudyPlans = new Set([
+  'no_long_term_study',
+  'more_than_3_months',
+  'undecided'
+]);
+const childApplicationArrangements = new Set([
+  'included_with_partner_student_visitor',
+  'separate_child_application',
+  'undecided'
+]);
+const childSupportBases = new Set([
+  'student_parent',
+  'work_visa_parent',
+  'undecided'
+]);
 const childVisaRoutes = new Set([
   'dependent_child_student',
   'child_student_visitor',
+  'child_worker_visitor',
   'undecided'
 ]);
 const nonEnglishEvidenceStatuses = new Set([
@@ -140,16 +161,152 @@ export function removeHiddenFamilyRouteAnswers(
   const cleanedFamily = { ...family };
   let changed = false;
 
-  if (!includesPartner(family.linkedApplicationContext) && 'partnerVisaRoute' in cleanedFamily) {
-    delete cleanedFamily.partnerVisaRoute;
-    changed = true;
+  if (!includesPartner(family.linkedApplicationContext)) {
+    if ('partnerVisaRoute' in cleanedFamily) {
+      delete cleanedFamily.partnerVisaRoute;
+      changed = true;
+    }
+    if ('childApplicationArrangement' in cleanedFamily) {
+      delete cleanedFamily.childApplicationArrangement;
+      changed = true;
+    }
   }
-  if (!includesChild(family.linkedApplicationContext) && 'childVisaRoute' in cleanedFamily) {
-    delete cleanedFamily.childVisaRoute;
-    changed = true;
+
+  if (!includesChild(family.linkedApplicationContext)) {
+    if ('childStudyPlan' in cleanedFamily) {
+      delete cleanedFamily.childStudyPlan;
+      changed = true;
+    }
+    if ('childApplicationArrangement' in cleanedFamily) {
+      delete cleanedFamily.childApplicationArrangement;
+      changed = true;
+    }
+    if ('childSupportBasis' in cleanedFamily) {
+      delete cleanedFamily.childSupportBasis;
+      changed = true;
+    }
+    if ('childVisaRoute' in cleanedFamily) {
+      delete cleanedFamily.childVisaRoute;
+      changed = true;
+    }
+  } else {
+    const isPartnerAndChild = family.linkedApplicationContext === 'partner_and_child';
+
+    if (!isPartnerAndChild && 'childApplicationArrangement' in cleanedFamily) {
+      delete cleanedFamily.childApplicationArrangement;
+      changed = true;
+    }
+
+    if (isPartnerAndChild) {
+      if (family.partnerVisaRoute !== 'partner_student_visitor' && 'childApplicationArrangement' in cleanedFamily) {
+        delete cleanedFamily.childApplicationArrangement;
+        changed = true;
+      }
+      if (family.partnerVisaRoute !== 'partner_student_work' && family.partnerVisaRoute !== 'partner_student_visitor') {
+        if ('childApplicationArrangement' in cleanedFamily) {
+          delete cleanedFamily.childApplicationArrangement;
+          changed = true;
+        }
+        if ('childSupportBasis' in cleanedFamily) {
+          delete cleanedFamily.childSupportBasis;
+          changed = true;
+        }
+        if ('childVisaRoute' in cleanedFamily) {
+          delete cleanedFamily.childVisaRoute;
+          changed = true;
+        }
+      } else if (
+        family.partnerVisaRoute === 'partner_student_visitor'
+        && family.childApplicationArrangement !== 'separate_child_application'
+      ) {
+        if ('childSupportBasis' in cleanedFamily) {
+          delete cleanedFamily.childSupportBasis;
+          changed = true;
+        }
+        if ('childVisaRoute' in cleanedFamily) {
+          delete cleanedFamily.childVisaRoute;
+          changed = true;
+        }
+      }
+    }
+
+    if (cleanedFamily.childSupportBasis === 'undecided' && 'childVisaRoute' in cleanedFamily) {
+      delete cleanedFamily.childVisaRoute;
+      changed = true;
+    }
+
+    const supportBasis = cleanedFamily.childSupportBasis;
+    const childRoute = cleanedFamily.childVisaRoute;
+
+    if (supportBasis === 'student_parent' && childRoute === 'child_worker_visitor') {
+      delete cleanedFamily.childVisaRoute;
+      changed = true;
+    } else if (supportBasis === 'work_visa_parent' && childRoute === 'child_student_visitor') {
+      delete cleanedFamily.childVisaRoute;
+      changed = true;
+    }
   }
 
   return changed ? { ...answers, family: cleanedFamily } : answers;
+}
+
+function isChildProfileComplete(family: Record<string, unknown>): boolean {
+  if (!includesChild(family.linkedApplicationContext)) return true;
+
+  if (!isAllowedString(family.childStudyPlan, childStudyPlans)) return false;
+
+  const isPartnerAndChild = family.linkedApplicationContext === 'partner_and_child';
+
+  if (isPartnerAndChild) {
+    if (!isAllowedString(family.partnerVisaRoute, partnerVisaRoutes)) return false;
+
+    if (family.partnerVisaRoute === 'partner_student_visitor') {
+      if (!isAllowedString(family.childApplicationArrangement, childApplicationArrangements)) {
+        return false;
+      }
+      if (
+        family.childApplicationArrangement === 'included_with_partner_student_visitor'
+        || family.childApplicationArrangement === 'undecided'
+      ) {
+        return true;
+      }
+    } else if (family.partnerVisaRoute === 'undecided') {
+      return true;
+    }
+  }
+
+  if (!isAllowedString(family.childSupportBasis, childSupportBases)) return false;
+  if (!isAllowedString(family.childVisaRoute, childVisaRoutes)) return false;
+
+  if (family.childSupportBasis === 'student_parent') {
+    return ['dependent_child_student', 'child_student_visitor', 'undecided'].includes(
+      family.childVisaRoute as string
+    );
+  }
+  if (family.childSupportBasis === 'work_visa_parent') {
+    return ['dependent_child_student', 'child_worker_visitor', 'undecided'].includes(
+      family.childVisaRoute as string
+    );
+  }
+  return ['dependent_child_student', 'child_student_visitor', 'child_worker_visitor', 'undecided'].includes(
+    family.childVisaRoute as string
+  );
+}
+
+export function isChildVisitorStudyConflict(family: Record<string, unknown> | undefined): boolean {
+  if (!family || typeof family !== 'object') return false;
+  if (family.childStudyPlan !== 'more_than_3_months') return false;
+
+  const isIncludedWithPartnerVisitor =
+    family.linkedApplicationContext === 'partner_and_child'
+    && family.partnerVisaRoute === 'partner_student_visitor'
+    && family.childApplicationArrangement === 'included_with_partner_student_visitor';
+
+  const isChildVisitorRoute =
+    (family.linkedApplicationContext === 'dependent_child' || family.linkedApplicationContext === 'partner_and_child')
+    && (family.childVisaRoute === 'child_student_visitor' || family.childVisaRoute === 'child_worker_visitor');
+
+  return isIncludedWithPartnerVisitor || isChildVisitorRoute;
 }
 
 export function evaluateQuestionEffects(
@@ -235,6 +392,14 @@ export function evaluateQuestionEffects(
   if (applicationTimingSoon) {
     warnings['application.stage'] = applicationTimingWarningMessage;
   }
+  if (isChildVisitorStudyConflict(family)) {
+    if (family.childApplicationArrangement === 'included_with_partner_student_visitor') {
+      warnings['family.childApplicationArrangement'] = childVisitorLongTermStudyWarning;
+    }
+    if (family.childVisaRoute === 'child_student_visitor' || family.childVisaRoute === 'child_worker_visitor') {
+      warnings['family.childVisaRoute'] = childVisitorLongTermStudyWarning;
+    }
+  }
 
   const materialProfileIncomplete = !(
     hasValidEducationContexts(education.recordContexts)
@@ -245,10 +410,7 @@ export function evaluateQuestionEffects(
       !includesPartner(family.linkedApplicationContext)
       || isAllowedString(family.partnerVisaRoute, partnerVisaRoutes)
     )
-    && (
-      !includesChild(family.linkedApplicationContext)
-      || isAllowedString(family.childVisaRoute, childVisaRoutes)
-    )
+    && isChildProfileComplete(family)
     && isAllowedString(documents.nonEnglishEvidenceStatus, nonEnglishEvidenceStatuses)
   );
   const studyRationaleSupport = (
@@ -276,6 +438,7 @@ export function evaluateQuestionEffects(
   ].includes(typeof family.linkedApplicationContext === 'string'
     ? family.linkedApplicationContext
     : '');
+  const childVisitorStudyConflict = isChildVisitorStudyConflict(family);
   const translationReview = [
     'includes_non_english',
     'unclear'
@@ -295,6 +458,7 @@ export function evaluateQuestionEffects(
         supporterRelationshipReview,
         partnerRelationshipReview,
         childRelationshipReview,
+        childVisitorStudyConflict,
         translationReview,
         documentIndex: options.checklistGenerated === true
       }

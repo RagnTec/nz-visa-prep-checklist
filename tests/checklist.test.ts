@@ -243,24 +243,132 @@ describe('V6 family-route checklist branches', () => {
       ['family.partnerRouteReview']
     ],
     [
-      { linkedApplicationContext: 'dependent_child', childVisaRoute: 'dependent_child_student' },
+      {
+        linkedApplicationContext: 'dependent_child',
+        childStudyPlan: 'more_than_3_months',
+        childSupportBasis: 'student_parent',
+        childVisaRoute: 'dependent_child_student'
+      },
       ['family.childRelationship']
     ],
     [
-      { linkedApplicationContext: 'dependent_child', childVisaRoute: 'child_student_visitor' },
+      {
+        linkedApplicationContext: 'dependent_child',
+        childStudyPlan: 'no_long_term_study',
+        childSupportBasis: 'student_parent',
+        childVisaRoute: 'child_student_visitor'
+      },
       ['family.childRelationship']
     ],
     [
-      { linkedApplicationContext: 'dependent_child', childVisaRoute: 'undecided' },
+      {
+        linkedApplicationContext: 'dependent_child',
+        childStudyPlan: 'more_than_3_months',
+        childSupportBasis: 'work_visa_parent',
+        childVisaRoute: 'dependent_child_student'
+      },
+      ['family.childRelationship']
+    ],
+    [
+      {
+        linkedApplicationContext: 'dependent_child',
+        childStudyPlan: 'no_long_term_study',
+        childSupportBasis: 'work_visa_parent',
+        childVisaRoute: 'child_worker_visitor'
+      },
+      ['family.childRelationship']
+    ],
+    [
+      {
+        linkedApplicationContext: 'dependent_child',
+        childStudyPlan: 'undecided',
+        childSupportBasis: 'student_parent',
+        childVisaRoute: 'dependent_child_student'
+      },
+      ['family.childRelationship', 'family.childRouteReview']
+    ],
+    [
+      {
+        linkedApplicationContext: 'dependent_child',
+        childStudyPlan: 'more_than_3_months',
+        childSupportBasis: 'undecided',
+        childVisaRoute: 'undecided'
+      },
+      ['family.childRouteReview']
+    ],
+    [
+      {
+        linkedApplicationContext: 'dependent_child',
+        childStudyPlan: 'more_than_3_months',
+        childSupportBasis: 'student_parent',
+        childVisaRoute: 'undecided'
+      },
       ['family.childRouteReview']
     ],
     [
       {
         linkedApplicationContext: 'partner_and_child',
-        partnerVisaRoute: 'partner_student_work',
-        childVisaRoute: 'child_student_visitor'
+        partnerVisaRoute: 'partner_student_visitor',
+        childStudyPlan: 'no_long_term_study',
+        childApplicationArrangement: 'included_with_partner_student_visitor'
       },
       ['family.partnerRelationship', 'family.childRelationship']
+    ],
+    [
+      {
+        linkedApplicationContext: 'partner_and_child',
+        partnerVisaRoute: 'partner_student_visitor',
+        childStudyPlan: 'more_than_3_months',
+        childApplicationArrangement: 'separate_child_application',
+        childSupportBasis: 'student_parent',
+        childVisaRoute: 'dependent_child_student'
+      },
+      ['family.partnerRelationship', 'family.childRelationship']
+    ],
+    [
+      {
+        linkedApplicationContext: 'dependent_child',
+        childStudyPlan: 'more_than_3_months',
+        childSupportBasis: 'student_parent',
+        childVisaRoute: 'child_student_visitor'
+      },
+      ['family.childRelationship', 'family.childRouteReview']
+    ],
+    [
+      {
+        linkedApplicationContext: 'dependent_child',
+        childStudyPlan: 'more_than_3_months',
+        childSupportBasis: 'work_visa_parent',
+        childVisaRoute: 'child_worker_visitor'
+      },
+      ['family.childRelationship', 'family.childRouteReview']
+    ],
+    [
+      {
+        linkedApplicationContext: 'partner_and_child',
+        partnerVisaRoute: 'partner_student_visitor',
+        childStudyPlan: 'more_than_3_months',
+        childApplicationArrangement: 'included_with_partner_student_visitor'
+      },
+      ['family.partnerRelationship', 'family.childRelationship', 'family.childRouteReview']
+    ],
+    [
+      {
+        linkedApplicationContext: 'partner_and_child',
+        partnerVisaRoute: 'partner_student_work',
+        childStudyPlan: 'no_long_term_study',
+        childSupportBasis: 'work_visa_parent',
+        childVisaRoute: 'child_worker_visitor'
+      },
+      ['family.partnerRelationship', 'family.childRelationship']
+    ],
+    [
+      {
+        linkedApplicationContext: 'partner_and_child',
+        partnerVisaRoute: 'undecided',
+        childStudyPlan: 'more_than_3_months'
+      },
+      ['family.partnerRouteReview']
     ],
     [{ linkedApplicationContext: 'none' }, []],
     [{ linkedApplicationContext: 'unclear' }, []],
@@ -269,6 +377,7 @@ describe('V6 family-route checklist branches', () => {
       {
         linkedApplicationContext: 'none',
         partnerVisaRoute: 'partner_student_work',
+        childSupportBasis: 'student_parent',
         childVisaRoute: 'dependent_child_student'
       },
       []
@@ -287,7 +396,8 @@ describe('route-specific material branches', () => {
     'family.partnerStudentWorkRouteMaterials',
     'family.partnerStudentVisitorRouteMaterials',
     'family.dependentChildStudentRouteMaterials',
-    'family.childOfStudentVisitorRouteMaterials'
+    'family.childOfStudentVisitorRouteMaterials',
+    'family.childOfWorkerVisitorRouteMaterials'
   ];
 
   function selectedFamilyItems(family: Record<string, unknown>) {
@@ -305,36 +415,121 @@ describe('route-specific material branches', () => {
       ['family.partnerStudentVisitorRouteMaterials']
     ],
     [
-      { linkedApplicationContext: 'dependent_child', childVisaRoute: 'dependent_child_student' },
+      {
+        linkedApplicationContext: 'dependent_child',
+        childStudyPlan: 'more_than_3_months',
+        childSupportBasis: 'student_parent',
+        childVisaRoute: 'dependent_child_student'
+      },
       ['family.dependentChildStudentRouteMaterials']
     ],
     [
-      { linkedApplicationContext: 'dependent_child', childVisaRoute: 'child_student_visitor' },
+      {
+        linkedApplicationContext: 'dependent_child',
+        childStudyPlan: 'no_long_term_study',
+        childSupportBasis: 'student_parent',
+        childVisaRoute: 'child_student_visitor'
+      },
       ['family.childOfStudentVisitorRouteMaterials']
+    ],
+    [
+      {
+        linkedApplicationContext: 'dependent_child',
+        childStudyPlan: 'more_than_3_months',
+        childSupportBasis: 'student_parent',
+        childVisaRoute: 'child_student_visitor'
+      },
+      ['family.childOfStudentVisitorRouteMaterials']
+    ],
+    [
+      {
+        linkedApplicationContext: 'dependent_child',
+        childStudyPlan: 'more_than_3_months',
+        childSupportBasis: 'work_visa_parent',
+        childVisaRoute: 'dependent_child_student'
+      },
+      ['family.dependentChildStudentRouteMaterials']
+    ],
+    [
+      {
+        linkedApplicationContext: 'dependent_child',
+        childStudyPlan: 'no_long_term_study',
+        childSupportBasis: 'work_visa_parent',
+        childVisaRoute: 'child_worker_visitor'
+      },
+      ['family.childOfWorkerVisitorRouteMaterials']
+    ],
+    [
+      {
+        linkedApplicationContext: 'dependent_child',
+        childStudyPlan: 'more_than_3_months',
+        childSupportBasis: 'work_visa_parent',
+        childVisaRoute: 'child_worker_visitor'
+      },
+      ['family.childOfWorkerVisitorRouteMaterials']
+    ],
+    [
+      {
+        linkedApplicationContext: 'partner_and_child',
+        partnerVisaRoute: 'partner_student_visitor',
+        childStudyPlan: 'no_long_term_study',
+        childApplicationArrangement: 'included_with_partner_student_visitor'
+      },
+      ['family.partnerStudentVisitorRouteMaterials']
     ],
     [
       {
         linkedApplicationContext: 'partner_and_child',
         partnerVisaRoute: 'partner_student_work',
-        childVisaRoute: 'child_student_visitor'
+        childStudyPlan: 'no_long_term_study',
+        childSupportBasis: 'work_visa_parent',
+        childVisaRoute: 'child_worker_visitor'
       },
       [
         'family.partnerStudentWorkRouteMaterials',
-        'family.childOfStudentVisitorRouteMaterials'
+        'family.childOfWorkerVisitorRouteMaterials'
       ]
     ],
     [
       {
         linkedApplicationContext: 'partner_and_child',
         partnerVisaRoute: 'undecided',
+        childStudyPlan: 'undecided',
+        childSupportBasis: 'undecided',
         childVisaRoute: 'undecided'
       },
       []
     ],
     [
       {
+        linkedApplicationContext: 'partner_and_child',
+        partnerVisaRoute: 'undecided',
+        childStudyPlan: 'more_than_3_months'
+      },
+      []
+    ],
+    [
+      {
+        linkedApplicationContext: 'dependent_child',
+        childStudyPlan: 'more_than_3_months',
+        childSupportBasis: 'undecided'
+      },
+      []
+    ],
+    [
+      {
+        linkedApplicationContext: 'partner_and_child',
+        partnerVisaRoute: 'partner_student_visitor',
+        childStudyPlan: 'more_than_3_months',
+        childApplicationArrangement: 'included_with_partner_student_visitor'
+      },
+      ['family.partnerStudentVisitorRouteMaterials']
+    ],
+    [
+      {
         linkedApplicationContext: 'none',
         partnerVisaRoute: 'partner_student_work',
+        childSupportBasis: 'work_visa_parent',
         childVisaRoute: 'dependent_child_student'
       },
       []
@@ -343,11 +538,52 @@ describe('route-specific material branches', () => {
     expect(selectedFamilyItems(family).map((item) => item.id)).toEqual(expectedIds);
   });
 
+  it('renders student-parent vs work-visa-parent conditional guidance on dependent child student item', () => {
+    const studentParentItem = selectedFamilyItems({
+      linkedApplicationContext: 'dependent_child',
+      childSupportBasis: 'student_parent',
+      childVisaRoute: 'dependent_child_student'
+    }).find((item) => item.id === 'family.dependentChildStudentRouteMaterials');
+
+    const workVisaParentItem = selectedFamilyItems({
+      linkedApplicationContext: 'dependent_child',
+      childSupportBasis: 'work_visa_parent',
+      childVisaRoute: 'dependent_child_student'
+    }).find((item) => item.id === 'family.dependentChildStudentRouteMaterials');
+
+    expect(studentParentItem?.guidanceBlocks?.map((b) => b.id))
+      .toEqual(['family.dependentChildStudentRouteMaterials.studentParentBasis']);
+    expect(workVisaParentItem?.guidanceBlocks?.map((b) => b.id))
+      .toEqual(['family.dependentChildStudentRouteMaterials.workVisaParentBasis']);
+  });
+
+  it('renders childInclusionReview conditional guidance block on partner visitor item when child is included', () => {
+    const includedChildItem = selectedFamilyItems({
+      linkedApplicationContext: 'partner_and_child',
+      partnerVisaRoute: 'partner_student_visitor',
+      childStudyPlan: 'no_long_term_study',
+      childApplicationArrangement: 'included_with_partner_student_visitor'
+    }).find((item) => item.id === 'family.partnerStudentVisitorRouteMaterials');
+
+    const separateChildItem = selectedFamilyItems({
+      linkedApplicationContext: 'partner_and_child',
+      partnerVisaRoute: 'partner_student_visitor',
+      childStudyPlan: 'no_long_term_study',
+      childApplicationArrangement: 'separate_child_application'
+    }).find((item) => item.id === 'family.partnerStudentVisitorRouteMaterials');
+
+    expect(includedChildItem?.guidanceBlocks?.map((b) => b.id))
+      .toEqual(['family.partnerStudentVisitorRouteMaterials.childInclusionReview']);
+    expect(separateChildItem?.guidanceBlocks?.map((b) => b.id) ?? []).toEqual([]);
+  });
+
   it('keeps B2a undecided review output without adding B2b materials', () => {
     const result = generateChecklist({
       family: {
         linkedApplicationContext: 'partner_and_child',
         partnerVisaRoute: 'undecided',
+        childStudyPlan: 'undecided',
+        childSupportBasis: 'undecided',
         childVisaRoute: 'undecided'
       }
     }, items, rules);
@@ -358,20 +594,30 @@ describe('route-specific material branches', () => {
     expect(ids.some((id) => b2bItemIds.includes(id))).toBe(false);
   });
 
-  it('shows child-inclusion guidance only for partner visitor with child context', () => {
+  it('shows child-inclusion guidance only for partner visitor when child is included in application', () => {
     const partnerOnly = selectedFamilyItems({
       linkedApplicationContext: 'partner',
       partnerVisaRoute: 'partner_student_visitor'
     })[0];
-    const withChild = selectedFamilyItems({
+    const withIncludedChild = selectedFamilyItems({
       linkedApplicationContext: 'partner_and_child',
       partnerVisaRoute: 'partner_student_visitor',
-      childVisaRoute: 'child_student_visitor'
+      childStudyPlan: 'no_long_term_study',
+      childApplicationArrangement: 'included_with_partner_student_visitor'
+    }).find((item) => item.id === 'family.partnerStudentVisitorRouteMaterials');
+    const withSeparateChild = selectedFamilyItems({
+      linkedApplicationContext: 'partner_and_child',
+      partnerVisaRoute: 'partner_student_visitor',
+      childStudyPlan: 'more_than_3_months',
+      childApplicationArrangement: 'separate_child_application',
+      childSupportBasis: 'student_parent',
+      childVisaRoute: 'dependent_child_student'
     }).find((item) => item.id === 'family.partnerStudentVisitorRouteMaterials');
 
     expect(partnerOnly?.guidanceBlocks).toBeUndefined();
-    expect(withChild?.guidanceBlocks?.map((block) => block.id))
+    expect(withIncludedChild?.guidanceBlocks?.map((block) => block.id))
       .toEqual(['family.partnerStudentVisitorRouteMaterials.childInclusionReview']);
+    expect(withSeparateChild?.guidanceBlocks).toBeUndefined();
   });
 });
 

@@ -156,10 +156,44 @@ describe('ChecklistView guidance rendering', () => {
     expect(screen.getByText('Synthetic base step.')).toBeInTheDocument();
     expect(screen.getByText('https://example.invalid/synthetic')).toBeInTheDocument();
     expect(screen.getByText('需要复查', { selector: '.status-chip' })).toBeInTheDocument();
+    expect(screen.getByText('需要复查', { selector: '.status-chip' })).toHaveClass('status-needs-review');
     expect(screen.getByRole('button', { name: '打印或保存PDF' })).toHaveClass('secondary');
     expect(screen.getByRole('button', { name: '打印或保存PDF' }).parentElement)
       .toHaveClass('no-print');
     expect(screen.getByText('当前状态').closest('label')).toHaveClass('no-print');
+  });
+
+  describe('Status chip visual class mapping', () => {
+    it.each([
+      ['not_started', '未开始', 'status-not-started'],
+      ['in_progress', '准备中', 'status-in-progress'],
+      ['needs_review', '需要复查', 'status-needs-review'],
+      ['prepared', '已准备', 'status-prepared'],
+      ['not_applicable', '不适用', 'status-not-applicable']
+    ] as const)('renders status %s with label %s and class %s', (statusValue, expectedText, expectedClass) => {
+      render(
+        <ChecklistView
+          items={[item]}
+          statuses={{ 'background.studyConnection': statusValue }}
+          sources={[source]}
+          onStatusChange={vi.fn()}
+          onRestart={vi.fn()}
+          onExport={vi.fn()}
+        />
+      );
+
+      const statusChip = screen.getByText(expectedText, { selector: '.status-chip' });
+      expect(statusChip).toBeInTheDocument();
+      expect(statusChip).toHaveClass(expectedClass);
+      expect(statusChip).toHaveClass('status-chip');
+      expect(statusChip).not.toHaveClass('chip-core');
+      expect(statusChip).not.toHaveClass('chip-conditional');
+      expect(statusChip).not.toHaveClass('chip-guidance');
+
+      const primaryChip = screen.getByText('建议核对', { selector: '.primary-label-chip' });
+      expect(primaryChip).toHaveClass('chip-guidance');
+      expect(primaryChip).not.toHaveClass(expectedClass);
+    });
   });
 
   describe('Checklist filtering and expand/collapse controls', () => {

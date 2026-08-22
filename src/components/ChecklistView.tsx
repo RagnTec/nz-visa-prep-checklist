@@ -68,6 +68,21 @@ function getChipVisualClass(primaryLabel: PrimaryRequirementLabel): string {
   }
 }
 
+export function getStatusVisualClass(status: ChecklistStatus): string {
+  switch (status) {
+    case 'not_started':
+      return 'status-not-started';
+    case 'in_progress':
+      return 'status-in-progress';
+    case 'needs_review':
+      return 'status-needs-review';
+    case 'prepared':
+      return 'status-prepared';
+    case 'not_applicable':
+      return 'status-not-applicable';
+  }
+}
+
 interface Props {
   items: ChecklistItem[];
   statuses: Record<string, ChecklistStatus>;
@@ -311,6 +326,8 @@ export function ChecklistView({
               const primaryLabel = getPrimaryRequirementLabel(item);
               const cardClass = getCardVisualClass(primaryLabel);
               const chipClass = getChipVisualClass(primaryLabel);
+              const itemStatus = statuses[item.id] ?? 'not_started';
+              const statusClass = getStatusVisualClass(itemStatus);
 
               return (
                 <details key={item.id} className={`checklist-item ${cardClass}`}>
@@ -318,7 +335,7 @@ export function ChecklistView({
                     <span className="item-title">{item.title}</span>
                     <span className="item-labels">
                       <span className={`primary-label-chip ${chipClass}`}>{primaryLabel}</span>
-                      <span className="status-chip">{statusLabels[statuses[item.id] ?? 'not_started']}</span>
+                      <span className={`status-chip ${statusClass}`}>{statusLabels[itemStatus]}</span>
                     </span>
                   </summary>
                   <div className="detail-body">

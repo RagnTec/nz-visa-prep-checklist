@@ -53,35 +53,42 @@
     "title": "Partner of a Student Work Visa",
     "publisher": "Immigration New Zealand",
     "url": "https://www.immigration.govt.nz/visas/partner-of-a-student-work-visa/",
-    "checkedAt": "2026-08-18"
+    "checkedAt": "2026-08-21"
   },
   {
     "id": "inz.dependent-child-student-visa",
     "title": "Dependent Child Student Visa",
     "publisher": "Immigration New Zealand",
     "url": "https://www.immigration.govt.nz/visas/dependent-child-student-visa/",
-    "checkedAt": "2026-08-18"
+    "checkedAt": "2026-08-21"
   },
   {
     "id": "inz.bringing-family-student-visa",
     "title": "Bringing family if you have a student visa",
     "publisher": "Immigration New Zealand",
     "url": "https://www.immigration.govt.nz/process-to-apply/once-you-have-a-visa/bringing-family-to-new-zealand/bringing-family-on-a-student-visa/",
-    "checkedAt": "2026-08-18"
+    "checkedAt": "2026-08-21"
   },
   {
     "id": "inz.partner-student-visitor-visa",
     "title": "Partner of a Student Visitor Visa",
     "publisher": "Immigration New Zealand",
     "url": "https://www.immigration.govt.nz/visas/partner-of-a-student-visitor-visa/",
-    "checkedAt": "2026-08-18"
+    "checkedAt": "2026-08-21"
   },
   {
     "id": "inz.child-student-visitor-visa",
     "title": "Child of a Student Visitor Visa",
     "publisher": "Immigration New Zealand",
     "url": "https://www.immigration.govt.nz/visas/child-of-a-student-visitor-visa/",
-    "checkedAt": "2026-08-18"
+    "checkedAt": "2026-08-21"
+  },
+  {
+    "id": "inz.child-worker-visitor-visa",
+    "title": "Child of a Worker Visitor Visa",
+    "publisher": "Immigration New Zealand",
+    "url": "https://www.immigration.govt.nz/visas/child-of-a-worker-visitor-visa/",
+    "checkedAt": "2026-08-21"
   },
   {
     "id": "inz.partnership-proof",
@@ -95,7 +102,14 @@
     "title": "Bringing children",
     "publisher": "Immigration New Zealand",
     "url": "https://www.immigration.govt.nz/process-to-apply/once-you-have-a-visa/bringing-family-to-new-zealand/bringing-children/",
-    "checkedAt": "2026-08-18"
+    "checkedAt": "2026-08-21"
+  },
+  {
+    "id": "inz.bringing-family-work-visa",
+    "title": "Bringing family if you have a work visa",
+    "publisher": "Immigration New Zealand",
+    "url": "https://www.immigration.govt.nz/process-to-apply/once-you-have-a-visa/bringing-family-to-new-zealand/bringing-family-on-a-work-visa/",
+    "checkedAt": "2026-08-21"
   },
   {
     "id": "inz.offering-place-student",

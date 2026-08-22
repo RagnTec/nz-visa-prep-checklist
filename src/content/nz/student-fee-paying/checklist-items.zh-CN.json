@@ -670,18 +670,20 @@
     "title": "核对子女签证路线",
     "requirementType": "product_organisation_guidance",
     "evidenceLayer": "product_guidance",
-    "why": "你已明确选择‘尚未选定’。本项帮助你回到路线对比和当前 INZ 页面继续核对，不替你选择签证。",
+    "why": "你已选择“尚未选定”或相关安排暂未确定。本项帮助你对照子女学习计划、申请形式以及支持家长的签证背景继续核对适用的子女签证路线，不替你做出选择。",
     "steps": [
-      "回到材料背景页的子女签证路线对比，核对学习范围、年龄和 dependency、支持父母情境、关系材料及一般期限。",
-      "分别查看当前 Dependent Child Student Visa 和 Child of a Student Visitor Visa 页面。",
-      "记录仍需核对的实际计划、支持父母情境和官方条件，不从本清单推断资格或路线。",
-      "确定实际计划后，重新回答子女签证路线问题。"
+      "回到材料背景页查看子女学习计划（是否超过 3 个月）、申请形式（随伴侣访客签证一并申请或单独申请）以及以学生签证家长或持有工签的另一位家长为支持方时的路线差异。",
+      "分别查看当前 Dependent Child Student Visa、Child of a Student Visitor Visa 以及 Child of a Worker Visitor Visa 页面。",
+      "记录仍需核对的实际支持家长背景（如学生签证家长是否符合特定支持情形、另一家长的适用工签类别及附加条件）与子女学习计划，不从本清单推断适用路线。",
+      "确定实际计划后，重新回答子女学习计划、申请形式、支持依据或签证路线问题。"
     ],
     "warnings": ["当前信息不足以确认子女签证路线；本项不是完整资格评估或申请建议。"],
     "sourceIds": [
       "inz.bringing-family-student-visa",
+      "inz.bringing-family-work-visa",
       "inz.dependent-child-student-visa",
       "inz.child-student-visitor-visa",
+      "inz.child-worker-visitor-visa",
       "inz.bringing-children"
     ]
   },
@@ -697,6 +699,7 @@
       "按当前官方记录整理支持方的教育机构、课程名称、qualification level、课程开始与结束日期，并逐项对照当前 INZ 路线页面；不要由本工具判断课程是否符合条件。",
       "由支持方核对并填写 Form for Partners Supporting Partnership-Based Temporary Entry Applications（INZ 1146），记录表格版本和签署状态。",
       "按当前路线页面整理适用的生活资金记录，例如近期银行或信用卡记录及已预付住宿信息。",
+      "注意配偶工作签证申请中不能直接包含子女；如子女同行需为子女单独规划并递交适用的签证申请。",
       "把仍需从当前 INZ 页面或申请界面确认的路线事项标记为待核对。"
     ],
     "requiredFields": [
@@ -707,7 +710,8 @@
     ],
     "commonMistakes": [
       "仅凭课程名称或 qualification level 就认定支持方符合当前路线条件。",
-      "把通用伴侣关系材料与本项路线特定材料重复整理。"
+      "把通用伴侣关系材料与本项路线特定材料重复整理。",
+      "误以为配偶工作签证申请中可以直接包含子女。"
     ],
     "warnings": [
       "本项不判断支持方的课程、签证或个人情况是否符合该路线条件。",
@@ -749,12 +753,13 @@
     "conditionalGuidanceBlocks": [
       {
         "id": "family.partnerStudentVisitorRouteMaterials.childInclusionReview",
-        "when": { "field": "family.linkedApplicationContext", "operator": "equals", "value": "partner_and_child" },
-        "title": "同时涉及子女的申请安排",
+        "when": { "field": "family.childApplicationArrangement", "operator": "equals", "value": "included_with_partner_student_visitor" },
+        "title": "随伴侣访客签证一并申请子女",
         "steps": [
-          "根据实际计划核对当前 INZ 页面：符合页面条件的 dependent children 可能包含在伴侣 visitor application 中，也可以另行申请。",
-          "记录当前计划是包含在同一申请还是另行申请，并核对各自需要的申请信息。",
-          "本提示不判断子女是否符合包含条件，也不替代或隐藏你已选择的独立子女签证路线。"
+          "在伴侣的 Partner of a Student Visitor Visa 申请中加入 19 岁或以下的受抚养子女信息。",
+          "整理每位随行子女的身份信息、亲子关系证明以及离境安排。",
+          "核对访客签证的学习限制（每名子女在新西兰停留期间通常最多学习 3 个月）；如计划超过 3 个月，需另行核对学生签证路线。",
+          "本提示不判断子女是否符合包含条件，也不替代任何单独申请核对。"
         ]
       }
     ],
@@ -769,9 +774,9 @@
     "title": "整理受抚养子女学生签证路线材料",
     "requirementType": "answer_dependent",
     "evidenceLayer": "inz_visa",
-    "why": "你已选择 Dependent Child Student Visa。本项用于记录实际 supporting parent、该人的签证或申请背景，以及该路线特有的学习、dependency、资金和离境核对事项。",
+    "why": "你已选择 Dependent Child Student Visa。本项用于记录实际 supporting parent（学生签证家长或工签家长）、该人的签证或申请背景，以及该路线特有的学习、dependency、资金和离境核对事项。",
     "steps": [
-      "记录实际 supporting parent，并记录该人当前持有或正在申请的签证类别；不要从学生、伴侣或子女答案推断支持方。",
+      "记录实际 supporting parent（学生签证家长或持有/计划取得工签的家长），并记录该人当前持有或正在申请的签证类别；不要从学生、伴侣或子女答案凭空推断支持方。",
       "把该 supporting parent 的实际签证或申请背景与当前 INZ 路线页面允许支持此路线的情形逐项比较，不把学生签证或工作签证视为默认有效路径。",
       "记录子女拟就读的小学或中学、学习阶段和预计学习日期；不要由本工具判断学校或学习资格。",
       "按实际年龄和情况核对 financial dependency 是否需要相关记录，尤其是 18 或 19 岁的 dependent child。",
@@ -795,9 +800,30 @@
       "本项不判断 supporting parent 的签证背景是否符合该路线，也不推断子女年龄、学校资格或 dependency。",
       "具体用于证明相关法律权利的材料取决于实际家庭情况；本工具不判断 custody、guardianship、同意要求或任何人的法律权限。"
     ],
+    "conditionalGuidanceBlocks": [
+      {
+        "id": "family.dependentChildStudentRouteMaterials.studentParentBasis",
+        "when": { "field": "family.childSupportBasis", "operator": "equals", "value": "student_parent" },
+        "title": "以学生签证家长为支持方",
+        "steps": [
+          "对照当前 INZ 页面核对学生签证家长是否属于可直接支持子女学生签证的特定情形（例如攻读新西兰大学博士学位 PhD、参加新西兰政府批准的官方交换项目、或获得 Manaaki 新西兰奖学金等）。",
+          "记录学生签证申请状态或已获批签证信息，作为子女申请的关联材料。"
+        ]
+      },
+      {
+        "id": "family.dependentChildStudentRouteMaterials.workVisaParentBasis",
+        "when": { "field": "family.childSupportBasis", "operator": "equals", "value": "work_visa_parent" },
+        "title": "以工签家长为支持方",
+        "steps": [
+          "需核对支持家长实际持有的工作签证是否属于可支持该子女签证的适用工签；部分工作签证还可能有收入、职业或其他附加条件。",
+          "记录该工签家长的签证或申请状态，作为子女申请的关联材料；注意配偶工签申请中不能直接包含子女，子女需单独申请。"
+        ]
+      }
+    ],
     "sourceIds": [
       "inz.dependent-child-student-visa",
       "inz.bringing-family-student-visa",
+      "inz.bringing-family-work-visa",
       "inz.bringing-children"
     ]
   },
@@ -810,10 +836,10 @@
     "why": "你已选择 Child of a Student Visitor Visa。本项用于整理该 visitor route 特有的支持方学生签证、dependency、资金或 sponsorship、onward travel 和短期学习核对事项。",
     "steps": [
       "记录支持方当前学生签证或同时递交的学生签证申请状态，以及可用于核对的签证或申请信息。",
-      "按实际年龄和情况整理 dependency 事实；对于 18 或 19 岁的子女，核对当前页面列出的 financial dependency 记录类型。",
+      "按实际年龄和情况整理 dependency事实；对于 18 或 19 岁的子女，核对当前页面列出的 financial dependency 记录类型。",
       "按实际安排整理子女在新西兰期间的资金或 acceptable sponsorship，以及已预付住宿信息。",
       "整理每名子女的 onward travel 机票、购票资金或 sponsor 安排。",
-      "记录预计学习时长，并对照当前 visitor route 的短期学习范围；如计划超过该范围，标记为需要另行核对签证路线，不由本工具作出结论。"
+      "记录预计学习时长，并对照当前 visitor route 的短期学习范围（通常最多 3 个月）；如计划超过该范围，标记为需要另行核对签证路线，不由本工具作出结论。"
     ],
     "requiredFields": [
       "支持方学生签证或申请状态",
@@ -833,6 +859,43 @@
     "sourceIds": [
       "inz.child-student-visitor-visa",
       "inz.bringing-family-student-visa",
+      "inz.bringing-children"
+    ]
+  },
+  {
+    "id": "family.childOfWorkerVisitorRouteMaterials",
+    "category": "身份与关系",
+    "title": "整理工签持有人子女访客签证路线材料",
+    "requirementType": "answer_dependent",
+    "evidenceLayer": "inz_visa",
+    "why": "你已选择 Child of a Worker Visitor Visa。本项用于整理以持有工作签证的家长为支持方时的访客签证特有核对事项，包括支持方工签状态、dependency、生活资金或担保、离境安排及短期学习限制。",
+    "steps": [
+      "记录支持方当前工作签证或同时递交的工作签证申请状态，以及可用于核对的签证或申请信息。",
+      "需核对支持家长实际持有的工作签证是否属于可支持该子女签证的适用工签；部分工作签证还可能有收入、职业或其他附加条件。",
+      "按实际年龄和情况整理 dependency 事实；对于 18 或 19 岁的子女，核对当前页面列出的 financial dependency 记录类型。",
+      "按实际安排整理子女在新西兰期间的生活资金或 acceptable sponsorship/guarantee，以及已预付住宿信息。",
+      "整理每名子女的 onward travel 机票、购票资金或 sponsor 安排。",
+      "记录预计停留与短期学习时长，对照当前 visitor route 的学习范围（通常最多 3 个月）；如计划在中小学长期就读，标记为需另行核对学生签证路线。"
+    ],
+    "requiredFields": [
+      "支持方工作签证或申请状态",
+      "适用的 dependency 事实",
+      "资金或 sponsorship/guarantee 安排",
+      "每名子女的 onward travel 安排",
+      "预计停留与学习时长"
+    ],
+    "commonMistakes": [
+      "把 visitor route 的短期学习范围当作长期中小学就读路径。",
+      "未按实际年龄核对 dependency 材料是否相关。",
+      "误以为工签家长的配偶工签申请可以直接包含子女。"
+    ],
+    "warnings": [
+      "本项不判断支持方工签是否必然获批或符合担保条件，亦不判断子女是否符合签证要求。",
+      "子女需根据支持方实际情况单独准备并递交申请，不可作为配偶工签的随附申请人。"
+    ],
+    "sourceIds": [
+      "inz.child-worker-visitor-visa",
+      "inz.bringing-family-work-visa",
       "inz.bringing-children"
     ]
   },

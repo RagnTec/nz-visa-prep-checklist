@@ -222,21 +222,94 @@
           "isRequired": true
         },
         {
-          "type": "html",
+          "type": "radiogroup",
+          "name": "family.childStudyPlan",
+          "title": "子女在新西兰期间是否计划学习超过 3 个月？",
+          "description": "当前 INZ 访客签证通常允许学习最多 3 个月；如计划学习超过 3 个月，需核对学生签证路线。本项只用于提示相关路线，不自动替你选择签证。",
           "visibleIf": "{family.linkedApplicationContext} = 'dependent_child' or {family.linkedApplicationContext} = 'partner_and_child'",
-          "html": "<section class='route-comparison'><h3>子女签证路线对比</h3><p>以下仅比较当前 INZ 页面列出的主要差异，不是完整资格评估，也不替你选择路线。</p><table><thead><tr><th>核对项</th><th>Dependent Child Student Visa</th><th>Child of a Student Visitor Visa</th></tr></thead><tbody><tr><td>主要用途</td><td>让 dependent child 在新西兰的小学或中学学习</td><td>让 dependent child 以访客身份团聚</td></tr><tr><td>学校或学习</td><td>可在新西兰小学或中学学习；高等教育需核对其他学生签证</td><td>在当前 visitor route 下最多学习 3 个月</td></tr><tr><td>年龄与 dependency</td><td>核对 19 岁或以下及财务依赖等当前条件</td><td>核对 19 岁或以下、单身及对支持方的财务依赖等当前条件</td></tr><tr><td>支持父母的签证或学习</td><td>需有适用的父母签证；学生签证支持情形取决于当前 INZ 页面列出的学习或奖学金情境</td><td>当前 INZ 总览说明，学习任何 qualification 的学生可支持该 visitor route</td></tr><tr><td>关系材料</td><td>核对亲子或适用法律关系证明</td><td>核对亲子关系证明</td></tr><tr><td>监护或带子女离境权</td><td>核对实际情况下的法律权利及适用证明</td><td>部分家庭情况下可能需要另行核对，不是本工具的默认推断</td></tr><tr><td>一般期限</td><td>通常与支持父母的签证期限相同</td><td>通常与支持父母的学生签证期限相同</td></tr></tbody></table><p><a href='https://www.immigration.govt.nz/process-to-apply/once-you-have-a-visa/bringing-family-to-new-zealand/bringing-family-on-a-student-visa/' target='_blank' rel='noreferrer'>INZ：Bringing family if you have a student visa</a></p></section>"
+          "clearIfInvisible": "onHidden",
+          "choices": [
+            { "value": "no_long_term_study", "text": "目前没有超过 3 个月的学习计划" },
+            { "value": "more_than_3_months", "text": "计划学习超过 3 个月" },
+            { "value": "undecided", "text": "尚未确定，需要继续核对" }
+          ],
+          "isRequired": true
+        },
+        {
+          "type": "radiogroup",
+          "name": "family.childApplicationArrangement",
+          "title": "子女目前的申请形式计划是什么？",
+          "description": "Partner of a Student Visitor Visa 可按当前 INZ 规定在同一申请中包含 19 岁或以下的受抚养子女，也可以为子女单独递交申请。",
+          "visibleIf": "{family.linkedApplicationContext} = 'partner_and_child' and {family.partnerVisaRoute} = 'partner_student_visitor'",
+          "clearIfInvisible": "onHidden",
+          "choices": [
+            { "value": "included_with_partner_student_visitor", "text": "计划随伴侣的 Partner of a Student Visitor Visa 一并申请" },
+            { "value": "separate_child_application", "text": "计划为子女单独申请签证" },
+            { "value": "undecided", "text": "尚未确定，需要继续核对" }
+          ],
+          "isRequired": true
+        },
+        {
+          "type": "html",
+          "visibleIf": "{family.linkedApplicationContext} = 'partner_and_child' and {family.partnerVisaRoute} = 'partner_student_work'",
+          "html": "<section class='route-comparison'><h3>子女单独申请提示</h3><p>当前 INZ 规定：Partner of a Student Work Visa 申请中<strong>不能直接包含子女</strong>。如子女计划一同前往新西兰，需为子女单独规划并递交适用的签证申请。</p></section>"
+        },
+        {
+          "type": "radiogroup",
+          "name": "family.childSupportBasis",
+          "title": "如果为子女单独申请，目前预计以哪位家长的签证作为支持依据？",
+          "description": "只用于提示适用的子女签证路线与材料核对，不判断哪位家长更合适，也不推断签证申请资格。",
+          "visibleIf": "{family.linkedApplicationContext} = 'dependent_child' or ({family.linkedApplicationContext} = 'partner_and_child' and ({family.partnerVisaRoute} = 'partner_student_work' or {family.childApplicationArrangement} = 'separate_child_application'))",
+          "clearIfInvisible": "onHidden",
+          "choices": [
+            { "value": "student_parent", "text": "持学生签证的家长" },
+            { "value": "work_visa_parent", "text": "持有或计划取得工作签证的另一位家长" },
+            { "value": "undecided", "text": "尚未确定，需要继续核对" }
+          ],
+          "isRequired": true
+        },
+        {
+          "type": "html",
+          "visibleIf": "({family.linkedApplicationContext} = 'dependent_child' or ({family.linkedApplicationContext} = 'partner_and_child' and ({family.partnerVisaRoute} = 'partner_student_work' or {family.childApplicationArrangement} = 'separate_child_application'))) and {family.childSupportBasis} = 'student_parent'",
+          "html": "<section class='route-comparison'><h3>子女签证路线对比（以学生签证家长为支持方）</h3><p>以下仅比较当前 INZ 页面列出的主要差异，不是完整资格评估，也不替你选择路线。</p><table><thead><tr><th>核对项</th><th>Dependent Child Student Visa</th><th>Child of a Student Visitor Visa</th></tr></thead><tbody><tr><td>主要用途</td><td>让 dependent child 在新西兰的小学或中学学习</td><td>让 dependent child 以访客身份团聚</td></tr><tr><td>学校或学习</td><td>可在新西兰小学或中学学习；高等教育需核对其他学生签证</td><td>在当前 visitor route 下最多学习 3 个月</td></tr><tr><td>年龄与 dependency</td><td>核对 19 岁或以下及财务依赖等当前条件</td><td>核对 19 岁或以下、单身及对支持方的财务依赖等当前条件</td></tr><tr><td>支持方学习条件</td><td>持学生签证的家长能否直接支持子女学生签证，取决于当前 INZ 列出的特定学习或奖学金情形（例如新西兰大学博士课程 PhD、新西兰政府批准的官方交换项目或 Manaaki 新西兰奖学金等）</td><td>当前 INZ 总览说明，学习任何 qualification 的学生签证持有人均可支持该 visitor route</td></tr><tr><td>关系材料</td><td>核对亲子或适用法律关系证明</td><td>核对亲子关系证明</td></tr><tr><td>监护或带子女离境权</td><td>核对实际情况下的法律权利及适用证明</td><td>部分家庭情况下可能需要另行核对，不是本工具的默认推断</td></tr><tr><td>一般期限</td><td>通常与支持父母的学生签证期限相同</td><td>通常与支持父母的学生签证期限相同</td></tr></tbody></table><p><a href='https://www.immigration.govt.nz/process-to-apply/once-you-have-a-visa/bringing-family-to-new-zealand/bringing-family-on-a-student-visa/' target='_blank' rel='noreferrer'>INZ：Bringing family if you have a student visa</a></p></section>"
+        },
+        {
+          "type": "html",
+          "visibleIf": "({family.linkedApplicationContext} = 'dependent_child' or ({family.linkedApplicationContext} = 'partner_and_child' and ({family.partnerVisaRoute} = 'partner_student_work' or {family.childApplicationArrangement} = 'separate_child_application'))) and {family.childSupportBasis} = 'work_visa_parent'",
+          "html": "<section class='route-comparison'><h3>子女签证路线对比（以工签家长为支持方）</h3><p>以下仅比较当前 INZ 页面列出的主要差异，不是完整资格评估，也不替你选择路线。</p><table><thead><tr><th>核对项</th><th>Dependent Child Student Visa</th><th>Child of a Worker Visitor Visa</th></tr></thead><tbody><tr><td>主要用途</td><td>让 dependent child 在新西兰的小学或中学学习</td><td>让 dependent child 以访客身份在新西兰停留</td></tr><tr><td>学校或学习</td><td>可在新西兰小学或中学学习；高等教育需核对其他学生签证</td><td>在当前 visitor route 下通常最多学习 3 个月</td></tr><tr><td>年龄与 dependency</td><td>核对 19 岁或以下及财务依赖等当前条件</td><td>核对 19 岁或以下、单身及对支持方的财务依赖等当前条件</td></tr><tr><td>支持父母的工签条件</td><td>需核对支持家长实际持有的工作签证是否属于可支持该子女签证的适用工签；部分工作签证还可能有收入、职业或其他附加条件</td><td>需核对支持家长实际持有的工作签证是否属于适用工签，并符合当前 INZ 担保/支持条件</td></tr><tr><td>关系材料</td><td>核对亲子或适用法律关系证明</td><td>核对亲子关系证明</td></tr><tr><td>监护或带子女离境权</td><td>核对实际情况下的法律权利及适用证明</td><td>部分家庭情况下可能需要另行核对，不是本工具的默认推断</td></tr><tr><td>一般期限</td><td>通常与支持父母的工作签证期限相同</td><td>通常与支持父母的工作签证期限相同</td></tr></tbody></table><p><a href='https://www.immigration.govt.nz/visas/child-of-a-worker-visitor-visa/' target='_blank' rel='noreferrer'>INZ：Child of a Worker Visitor Visa</a></p></section>"
+        },
+        {
+          "type": "html",
+          "visibleIf": "({family.linkedApplicationContext} = 'dependent_child' or ({family.linkedApplicationContext} = 'partner_and_child' and ({family.partnerVisaRoute} = 'partner_student_work' or {family.childApplicationArrangement} = 'separate_child_application'))) and {family.childSupportBasis} = 'undecided'",
+          "html": "<section class='route-comparison'><h3>支持家长与子女签证路线核对提示</h3><p>支持家长所持有的签证类别会直接影响适用的子女签证路线：</p><ul><li>如果以<strong>学生签证家长</strong>为支持方，学习任何课程均可支持子女申请访客签证；直接支持子女申请学生签证则需符合 INZ 规定的特定情形（如博士 PhD、官方交换项目或 Manaaki 奖学金等）。</li><li>如果学生签证家长未能直接支持子女学签，在伴侣取得<strong>配偶工作签证</strong>后，可核对由持有工作签证的家长支持子女申请 Dependent Child Student Visa 或 Child of a Worker Visitor Visa。</li><li>需核对支持家长实际持有的工作签证是否属于可支持该子女签证的适用工签；部分工作签证还可能有收入、职业或其他附加条件。取得配偶工签并不保证子女签证必然获批。</li><li>配偶工签申请中<strong>不能直接包含子女</strong>，子女需根据支持方家长情况单独核对并递交申请。</li></ul><p>本工具不判断哪位家长更符合条件，也不替你选择路线。请对照 INZ 官方说明继续核对。</p><p><a href='https://www.immigration.govt.nz/process-to-apply/once-you-have-a-visa/bringing-family-to-new-zealand/bringing-family-on-a-student-visa/' target='_blank' rel='noreferrer'>INZ：Bringing family if you have a student visa</a></p></section>"
         },
         {
           "type": "radiogroup",
           "name": "family.childVisaRoute",
           "title": "你目前计划为子女申请哪一类签证？",
           "description": "请选择实际计划核对的签证类别。本工具不根据年龄、课程、伴侣路线或其他信息推断该选择。",
-          "visibleIf": "{family.linkedApplicationContext} = 'dependent_child' or {family.linkedApplicationContext} = 'partner_and_child'",
+          "visibleIf": "({family.linkedApplicationContext} = 'dependent_child' or ({family.linkedApplicationContext} = 'partner_and_child' and ({family.partnerVisaRoute} = 'partner_student_work' or {family.childApplicationArrangement} = 'separate_child_application'))) and ({family.childSupportBasis} = 'student_parent' or {family.childSupportBasis} = 'work_visa_parent')",
           "clearIfInvisible": "onHidden",
           "choices": [
-            { "value": "dependent_child_student", "text": "Dependent Child Student Visa" },
-            { "value": "child_student_visitor", "text": "Child of a Student Visitor Visa" },
-            { "value": "undecided", "text": "尚未选定，需要继续核对" }
+            {
+              "value": "dependent_child_student",
+              "text": "Dependent Child Student Visa",
+              "visibleIf": "{family.childSupportBasis} = 'student_parent' or {family.childSupportBasis} = 'work_visa_parent'"
+            },
+            {
+              "value": "child_student_visitor",
+              "text": "Child of a Student Visitor Visa",
+              "visibleIf": "{family.childSupportBasis} = 'student_parent'"
+            },
+            {
+              "value": "child_worker_visitor",
+              "text": "Child of a Worker Visitor Visa",
+              "visibleIf": "{family.childSupportBasis} = 'work_visa_parent'"
+            },
+            {
+              "value": "undecided",
+              "text": "尚未选定，需要继续核对"
+            }
           ],
           "isRequired": true
         },

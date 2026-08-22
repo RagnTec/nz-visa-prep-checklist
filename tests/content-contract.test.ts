@@ -60,7 +60,7 @@ describe('content contract', () => {
     expect(questionNames).not.toContain('employment.currentlyEmployed');
     expect(questionNames).not.toContain('employment.courseRelation');
     expect(questionNames).not.toContain('funding.source');
-    expect(questionNames).toHaveLength(24);
+    expect(questionNames).toHaveLength(27);
     expect(scopeElement?.html).toBe(
       '<p>本工具面向已经自行选择申请新西兰 Fee Paying Student Visa 的成年人，用于整理申请前的材料准备事项。它不会判断你是否适合或有资格申请该签证，也不会推荐签证类型。如果你尚未确定签证类型，请先查阅 INZ 官方信息或咨询持牌专业人士。</p>'
     );
@@ -131,14 +131,18 @@ describe('content contract', () => {
       ]);
     expect(sources.filter((source) => source.checkedAt === '2026-08-17').map((source) => source.id))
       .toEqual(['inz.partnership-proof']);
-    expect(sources.filter((source) => source.checkedAt === '2026-08-18').map((source) => source.id))
+    expect(sources.filter((source) => source.checkedAt === '2026-08-20').map((source) => source.id))
+      .toEqual(['inz.offering-place-student']);
+    expect(sources.filter((source) => source.checkedAt === '2026-08-21').map((source) => source.id))
       .toEqual([
         'inz.partner-student-work-visa',
         'inz.dependent-child-student-visa',
         'inz.bringing-family-student-visa',
         'inz.partner-student-visitor-visa',
         'inz.child-student-visitor-visa',
-        'inz.bringing-children'
+        'inz.child-worker-visitor-visa',
+        'inz.bringing-children',
+        'inz.bringing-family-work-visa'
       ]);
     expect(sources.every((source) => /^\d{4}-\d{2}-\d{2}$/.test(source.checkedAt))).toBe(true);
   });
@@ -191,6 +195,9 @@ describe('content contract', () => {
       'documents.originContext',
       'family.linkedApplicationContext',
       'family.partnerVisaRoute',
+      'family.childStudyPlan',
+      'family.childApplicationArrangement',
+      'family.childSupportBasis',
       'family.childVisaRoute',
       'documents.nonEnglishEvidenceStatus'
     ]);
@@ -222,6 +229,19 @@ describe('content contract', () => {
       ['mainland_china', 'other', 'mixed', 'unclear'],
       ['none', 'partner', 'dependent_child', 'partner_and_child', 'unclear']
     ]);
+    const childSupportBasis = materialQuestions.find((q) => q.name === 'family.childSupportBasis');
+    expect(childSupportBasis?.choices?.map((choice) => choice.value)).toEqual([
+      'student_parent',
+      'work_visa_parent',
+      'undecided'
+    ]);
+    const childVisaRoute = materialQuestions.find((q) => q.name === 'family.childVisaRoute');
+    expect(childVisaRoute?.choices?.map((choice) => choice.value)).toEqual([
+      'dependent_child_student',
+      'child_student_visitor',
+      'child_worker_visitor',
+      'undecided'
+    ]);
     expect(materialQuestions.at(-1)?.choices?.map((choice) => choice.value))
       .toEqual(['none_known', 'includes_non_english', 'unclear']);
     expect(elements.some((element) => element.name === 'identity.documentContext')).toBe(false);
@@ -248,7 +268,7 @@ describe('content contract', () => {
       'product_guidance'
     ]);
 
-    expect(items).toHaveLength(45);
+    expect(items).toHaveLength(46);
     expect(items.every((item) => approved.has(item.requirementType))).toBe(true);
     expect(items.every((item) => !retired.has(item.requirementType))).toBe(true);
     expect(items.every((item) => evidenceLayers.has(item.evidenceLayer))).toBe(true);
@@ -306,6 +326,7 @@ describe('content contract', () => {
       'family.partnerStudentVisitorRouteMaterials': 'answer_dependent',
       'family.dependentChildStudentRouteMaterials': 'answer_dependent',
       'family.childOfStudentVisitorRouteMaterials': 'answer_dependent',
+      'family.childOfWorkerVisitorRouteMaterials': 'answer_dependent',
       'submission.finalReview': 'product_organisation_guidance'
     });
   });
@@ -356,6 +377,7 @@ describe('content contract', () => {
       'family.partnerStudentVisitorRouteMaterials': 'inz_visa',
       'family.dependentChildStudentRouteMaterials': 'inz_visa',
       'family.childOfStudentVisitorRouteMaterials': 'inz_visa',
+      'family.childOfWorkerVisitorRouteMaterials': 'inz_visa',
       'submission.finalReview': 'product_guidance'
     });
   });
@@ -384,7 +406,8 @@ describe('content contract', () => {
       'family.partnerStudentWorkRouteMaterials',
       'family.partnerStudentVisitorRouteMaterials',
       'family.dependentChildStudentRouteMaterials',
-      'family.childOfStudentVisitorRouteMaterials'
+      'family.childOfStudentVisitorRouteMaterials',
+      'family.childOfWorkerVisitorRouteMaterials'
     ];
     const b2bText = b2bIds.map((id) => JSON.stringify(byId[id])).join(' ');
 
@@ -402,6 +425,7 @@ describe('content contract', () => {
     expect(byId['family.dependentChildStudentRouteMaterials'].sourceIds).toEqual([
       'inz.dependent-child-student-visa',
       'inz.bringing-family-student-visa',
+      'inz.bringing-family-work-visa',
       'inz.bringing-children'
     ]);
     expect(byId['family.childOfStudentVisitorRouteMaterials'].sourceIds).toEqual([
@@ -409,11 +433,24 @@ describe('content contract', () => {
       'inz.bringing-family-student-visa',
       'inz.bringing-children'
     ]);
+    expect(byId['family.childOfWorkerVisitorRouteMaterials'].sourceIds).toEqual([
+      'inz.child-worker-visitor-visa',
+      'inz.bringing-family-work-visa',
+      'inz.bringing-children'
+    ]);
     expect(b2bText).not.toMatch(/保证获批|批准概率|拒签概率|风险评分|材料充分|最适合|建议申请/);
+
+    const studentParentBlock = byId['family.dependentChildStudentRouteMaterials']
+      .conditionalGuidanceBlocks?.find((b) => b.id === 'family.dependentChildStudentRouteMaterials.studentParentBasis');
+    expect(JSON.stringify(studentParentBlock)).not.toMatch(/level 7|level 8|level 9|level 10|绿名单/i);
+    expect(JSON.stringify(studentParentBlock)).toMatch(/博士|PhD|交换项目|Manaaki/);
   });
 
   it('defines the V6 family route questions and B2a item boundaries', () => {
     const partner = elements.find((element) => element.name === 'family.partnerVisaRoute');
+    const childStudy = elements.find((element) => element.name === 'family.childStudyPlan');
+    const childArrangement = elements.find((element) => element.name === 'family.childApplicationArrangement');
+    const childSupport = elements.find((element) => element.name === 'family.childSupportBasis');
     const child = elements.find((element) => element.name === 'family.childVisaRoute');
     const byId = Object.fromEntries(items.map((item) => [item.id, item]));
 
@@ -427,16 +464,53 @@ describe('content contract', () => {
       ]
     }));
     expect(partner?.visibleIf).toContain("{family.linkedApplicationContext} = 'partner'");
+
+    expect(childStudy).toEqual(expect.objectContaining({
+      isRequired: true,
+      clearIfInvisible: 'onHidden',
+      choices: [
+        { value: 'no_long_term_study', text: '目前没有超过 3 个月的学习计划' },
+        { value: 'more_than_3_months', text: '计划学习超过 3 个月' },
+        { value: 'undecided', text: '尚未确定，需要继续核对' }
+      ]
+    }));
+    expect(childStudy?.visibleIf).toContain("{family.linkedApplicationContext} = 'dependent_child'");
+
+    expect(childArrangement).toEqual(expect.objectContaining({
+      isRequired: true,
+      clearIfInvisible: 'onHidden',
+      choices: [
+        { value: 'included_with_partner_student_visitor', text: '计划随伴侣的 Partner of a Student Visitor Visa 一并申请' },
+        { value: 'separate_child_application', text: '计划为子女单独申请签证' },
+        { value: 'undecided', text: '尚未确定，需要继续核对' }
+      ]
+    }));
+    expect(childArrangement?.visibleIf).toContain("{family.partnerVisaRoute} = 'partner_student_visitor'");
+
+    expect(childSupport).toEqual(expect.objectContaining({
+      isRequired: true,
+      clearIfInvisible: 'onHidden',
+      choices: [
+        { value: 'student_parent', text: '持学生签证的家长' },
+        { value: 'work_visa_parent', text: '持有或计划取得工作签证的另一位家长' },
+        { value: 'undecided', text: '尚未确定，需要继续核对' }
+      ]
+    }));
+    expect(childSupport?.visibleIf).toContain("{family.linkedApplicationContext} = 'dependent_child'");
+
     expect(child).toEqual(expect.objectContaining({
       isRequired: true,
       clearIfInvisible: 'onHidden',
       choices: [
-        { value: 'dependent_child_student', text: 'Dependent Child Student Visa' },
-        { value: 'child_student_visitor', text: 'Child of a Student Visitor Visa' },
-        { value: 'undecided', text: '尚未选定，需要继续核对' }
+        expect.objectContaining({ value: 'dependent_child_student', text: 'Dependent Child Student Visa' }),
+        expect.objectContaining({ value: 'child_student_visitor', text: 'Child of a Student Visitor Visa' }),
+        expect.objectContaining({ value: 'child_worker_visitor', text: 'Child of a Worker Visitor Visa' }),
+        expect.objectContaining({ value: 'undecided', text: '尚未选定，需要继续核对' })
       ]
     }));
-    expect(child?.visibleIf).toContain("{family.linkedApplicationContext} = 'dependent_child'");
+    expect(child?.visibleIf).toContain("{family.childSupportBasis} = 'student_parent'");
+    expect(child?.visibleIf).toContain("{family.childSupportBasis} = 'work_visa_parent'");
+
     expect(byId['family.partnerRelationship']).toEqual(expect.objectContaining({
       evidenceLayer: 'inz_visa',
       sourceIds: ['inz.partnership-proof']
@@ -453,7 +527,17 @@ describe('content contract', () => {
       evidenceLayer: 'inz_visa',
       sourceIds: ['inz.bringing-children']
     }));
-    expect(byId['family.childRouteReview'].evidenceLayer).toBe('product_guidance');
+    expect(byId['family.childRouteReview']).toEqual(expect.objectContaining({
+      evidenceLayer: 'product_guidance',
+      sourceIds: [
+        'inz.bringing-family-student-visa',
+        'inz.bringing-family-work-visa',
+        'inz.dependent-child-student-visa',
+        'inz.child-student-visitor-visa',
+        'inz.child-worker-visitor-visa',
+        'inz.bringing-children'
+      ]
+    }));
   });
 
   it('keeps mainland document naming boundaries and stable supporter ID', () => {

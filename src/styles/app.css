@@ -44,7 +44,12 @@ a { color: #12615f; }
 
 .detail-body { padding: 0 .75rem 1.25rem; color: #344b52; }
 .detail-body h3 { font-size: 1rem; margin-bottom: .35rem; }
-.status-chip { white-space: nowrap; font-size: .8rem; background: #f0f4f5; color: #52666d; padding: .25rem .55rem; border-radius: 999px; font-weight: 500; }
+.status-chip { white-space: nowrap; font-size: .8rem; padding: .25rem .55rem; border-radius: 999px; font-weight: 600; border: 1px solid transparent; }
+.status-chip.status-not-started { background: #f0f4f6; color: #475a61; border-color: #d0dbe0; }
+.status-chip.status-in-progress { background: #e3f2fd; color: #0d47a1; border-color: #90caf9; }
+.status-chip.status-needs-review { background: #fff4e5; color: #8a4b00; border-color: #ffcc80; }
+.status-chip.status-prepared { background: #e8f5e9; color: #1b5e20; border-color: #a5d6a7; }
+.status-chip.status-not-applicable { background: #f7f9fa; color: #52666d; border-color: #dbe3e6; }
 .item-labels { display: flex; flex-wrap: wrap; justify-content: flex-end; align-items: center; gap: .45rem; }
 
 /* Primary Requirement Label Chips */
@@ -86,5 +91,6 @@ footer { color: #61767c; font-size: .9rem; padding: 1rem; }
   .checklist-item > .detail-body { display: block !important; }
   .checklist-item summary { cursor: default; list-style: none; }
   .checklist-item summary::-webkit-details-marker { display: none; }
+  .status-chip { border: 1px solid #78909c !important; }
   .sources a { color: #1f2933; text-decoration: none; }
 }

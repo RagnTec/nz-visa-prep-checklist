@@ -3,6 +3,7 @@ import {
   applicationTimingWarningMessage,
   arrivalAfterCourseEndMessage,
   arrivalAfterCourseStartWarning,
+  childVisitorLongTermStudyWarning,
   courseDateInvalidMessage,
   courseDateOrderMessage,
   deferredPastCourseWarning,
@@ -10,6 +11,7 @@ import {
   futureCourseAlreadyStartedMessage,
   intendedArrivalInvalidMessage,
   intendedArrivalPastMessage,
+  isChildVisitorStudyConflict,
   pastCourseNotStartedMessage,
   removeHiddenFamilyRouteAnswers
 } from '../src/content/nz/student-fee-paying/questionEffects';
@@ -345,26 +347,43 @@ describe('material-background effects', () => {
   });
 
   it.each([
-    ['partner', undefined, undefined, true],
-    ['partner', 'partner_student_work', undefined, false],
-    ['partner', 'partner_student_visitor', undefined, false],
-    ['partner', 'undecided', undefined, false],
-    ['dependent_child', undefined, undefined, true],
-    ['dependent_child', undefined, 'dependent_child_student', false],
-    ['dependent_child', undefined, 'child_student_visitor', false],
-    ['dependent_child', undefined, 'undecided', false],
-    ['partner_and_child', undefined, undefined, true],
-    ['partner_and_child', 'partner_student_work', undefined, true],
-    ['partner_and_child', undefined, 'dependent_child_student', true],
-    ['partner_and_child', 'undecided', 'undecided', false],
-    ['none', undefined, undefined, false],
-    ['unclear', undefined, undefined, false]
+    ['partner', undefined, undefined, undefined, undefined, undefined, true],
+    ['partner', 'partner_student_work', undefined, undefined, undefined, undefined, false],
+    ['partner', 'partner_student_visitor', undefined, undefined, undefined, undefined, false],
+    ['partner', 'undecided', undefined, undefined, undefined, undefined, false],
+    ['dependent_child', undefined, undefined, undefined, undefined, undefined, true],
+    ['dependent_child', undefined, 'more_than_3_months', undefined, undefined, undefined, true],
+    ['dependent_child', undefined, 'more_than_3_months', undefined, 'student_parent', undefined, true],
+    ['dependent_child', undefined, 'more_than_3_months', undefined, 'student_parent', 'dependent_child_student', false],
+    ['dependent_child', undefined, 'no_long_term_study', undefined, 'student_parent', 'child_student_visitor', false],
+    ['dependent_child', undefined, 'more_than_3_months', undefined, 'work_visa_parent', 'dependent_child_student', false],
+    ['dependent_child', undefined, 'no_long_term_study', undefined, 'work_visa_parent', 'child_worker_visitor', false],
+    ['dependent_child', undefined, 'undecided', undefined, 'undecided', 'undecided', false],
+    ['partner_and_child', undefined, undefined, undefined, undefined, undefined, true],
+    ['partner_and_child', 'partner_student_visitor', 'no_long_term_study', 'included_with_partner_student_visitor', undefined, undefined, false],
+    ['partner_and_child', 'partner_student_visitor', 'more_than_3_months', 'included_with_partner_student_visitor', undefined, undefined, false],
+    ['partner_and_child', 'partner_student_visitor', 'more_than_3_months', 'undecided', undefined, undefined, false],
+    ['partner_and_child', 'partner_student_visitor', 'more_than_3_months', 'separate_child_application', undefined, undefined, true],
+    ['partner_and_child', 'partner_student_visitor', 'more_than_3_months', 'separate_child_application', 'student_parent', 'dependent_child_student', false],
+    ['partner_and_child', 'partner_student_work', 'more_than_3_months', undefined, undefined, undefined, true],
+    ['partner_and_child', 'partner_student_work', 'more_than_3_months', undefined, 'student_parent', 'dependent_child_student', false],
+    ['partner_and_child', 'partner_student_work', 'more_than_3_months', undefined, 'work_visa_parent', 'child_worker_visitor', false],
+    ['partner_and_child', 'undecided', 'undecided', undefined, undefined, undefined, false],
+    ['none', undefined, undefined, undefined, undefined, undefined, false],
+    ['unclear', undefined, undefined, undefined, undefined, undefined, false]
   ] as const)(
-    'applies the V6 completion contract for %s / %s / %s',
-    (linkedApplicationContext, partnerVisaRoute, childVisaRoute, expected) => {
+    'applies the V6 completion contract for %s / %s / %s / %s / %s / %s',
+    (linkedApplicationContext, partnerVisaRoute, childStudyPlan, childApplicationArrangement, childSupportBasis, childVisaRoute, expected) => {
       const result = effects({
         ...completeMaterialProfile,
-        family: { linkedApplicationContext, partnerVisaRoute, childVisaRoute }
+        family: {
+          linkedApplicationContext,
+          partnerVisaRoute,
+          childStudyPlan,
+          childApplicationArrangement,
+          childSupportBasis,
+          childVisaRoute
+        }
       });
 
       expect(derived(result).materialProfileIncomplete).toBe(expected);
@@ -523,6 +542,37 @@ describe('material-background effects', () => {
   });
 });
 
+describe('V6 family route material profile completeness', () => {
+  it.each([
+    ['student_parent', 'dependent_child_student', false],
+    ['student_parent', 'child_student_visitor', false],
+    ['student_parent', 'undecided', false],
+    ['student_parent', 'child_worker_visitor', true],
+    ['work_visa_parent', 'dependent_child_student', false],
+    ['work_visa_parent', 'child_worker_visitor', false],
+    ['work_visa_parent', 'undecided', false],
+    ['work_visa_parent', 'child_student_visitor', true],
+    ['undecided', 'undecided', false],
+    [undefined, 'dependent_child_student', true],
+    ['student_parent', undefined, true],
+    ['invalid', 'dependent_child_student', true]
+  ])(
+    'evaluates materialProfileIncomplete for childSupportBasis %s and childVisaRoute %s as %s',
+    (childSupportBasis, childVisaRoute, expectedIncomplete) => {
+      const result = effects({
+        ...completeMaterialProfile,
+        family: {
+          linkedApplicationContext: 'dependent_child',
+          childStudyPlan: 'more_than_3_months',
+          childSupportBasis,
+          childVisaRoute
+        }
+      });
+      expect(derived(result).materialProfileIncomplete).toBe(expectedIncomplete);
+    }
+  );
+});
+
 describe('V6 hidden family-route answer cleanup', () => {
   it.each([
     [
@@ -530,6 +580,9 @@ describe('V6 hidden family-route answer cleanup', () => {
       {
         linkedApplicationContext: 'partner',
         partnerVisaRoute: 'partner_student_work',
+        childStudyPlan: 'more_than_3_months',
+        childApplicationArrangement: 'separate_child_application',
+        childSupportBasis: 'student_parent',
         childVisaRoute: 'dependent_child_student'
       },
       {
@@ -544,8 +597,105 @@ describe('V6 hidden family-route answer cleanup', () => {
     ],
     [
       'dependent child to unclear',
-      { linkedApplicationContext: 'unclear', childVisaRoute: 'child_student_visitor' },
+      {
+        linkedApplicationContext: 'unclear',
+        childStudyPlan: 'no_long_term_study',
+        childSupportBasis: 'student_parent',
+        childVisaRoute: 'child_student_visitor'
+      },
       { linkedApplicationContext: 'unclear' }
+    ],
+    [
+      'switch partner visitor with included child to separate child',
+      {
+        linkedApplicationContext: 'partner_and_child',
+        partnerVisaRoute: 'partner_student_visitor',
+        childStudyPlan: 'more_than_3_months',
+        childApplicationArrangement: 'included_with_partner_student_visitor',
+        childSupportBasis: 'student_parent',
+        childVisaRoute: 'dependent_child_student'
+      },
+      {
+        linkedApplicationContext: 'partner_and_child',
+        partnerVisaRoute: 'partner_student_visitor',
+        childStudyPlan: 'more_than_3_months',
+        childApplicationArrangement: 'included_with_partner_student_visitor'
+      }
+    ],
+    [
+      'switch partner visitor to partner work visa clears childApplicationArrangement',
+      {
+        linkedApplicationContext: 'partner_and_child',
+        partnerVisaRoute: 'partner_student_work',
+        childStudyPlan: 'more_than_3_months',
+        childApplicationArrangement: 'separate_child_application',
+        childSupportBasis: 'work_visa_parent',
+        childVisaRoute: 'child_worker_visitor'
+      },
+      {
+        linkedApplicationContext: 'partner_and_child',
+        partnerVisaRoute: 'partner_student_work',
+        childStudyPlan: 'more_than_3_months',
+        childSupportBasis: 'work_visa_parent',
+        childVisaRoute: 'child_worker_visitor'
+      }
+    ],
+    [
+      'switch support basis to student_parent with worker-visitor route',
+      {
+        linkedApplicationContext: 'dependent_child',
+        childStudyPlan: 'no_long_term_study',
+        childSupportBasis: 'student_parent',
+        childVisaRoute: 'child_worker_visitor'
+      },
+      {
+        linkedApplicationContext: 'dependent_child',
+        childStudyPlan: 'no_long_term_study',
+        childSupportBasis: 'student_parent'
+      }
+    ],
+    [
+      'switch support basis to work_visa_parent with student-visitor route',
+      {
+        linkedApplicationContext: 'dependent_child',
+        childStudyPlan: 'no_long_term_study',
+        childSupportBasis: 'work_visa_parent',
+        childVisaRoute: 'child_student_visitor'
+      },
+      {
+        linkedApplicationContext: 'dependent_child',
+        childStudyPlan: 'no_long_term_study',
+        childSupportBasis: 'work_visa_parent'
+      }
+    ],
+    [
+      'switch partnerVisaRoute to undecided in partner_and_child clears child support and visa routes while preserving childStudyPlan',
+      {
+        linkedApplicationContext: 'partner_and_child',
+        partnerVisaRoute: 'undecided',
+        childStudyPlan: 'more_than_3_months',
+        childSupportBasis: 'work_visa_parent',
+        childVisaRoute: 'child_worker_visitor'
+      },
+      {
+        linkedApplicationContext: 'partner_and_child',
+        partnerVisaRoute: 'undecided',
+        childStudyPlan: 'more_than_3_months'
+      }
+    ],
+    [
+      'switch childSupportBasis to undecided clears childVisaRoute',
+      {
+        linkedApplicationContext: 'dependent_child',
+        childStudyPlan: 'more_than_3_months',
+        childSupportBasis: 'undecided',
+        childVisaRoute: 'dependent_child_student'
+      },
+      {
+        linkedApplicationContext: 'dependent_child',
+        childStudyPlan: 'more_than_3_months',
+        childSupportBasis: 'undecided'
+      }
     ]
   ])('clears stale routes for %s', (_label, family, expectedFamily) => {
     const answers = {
@@ -561,5 +711,155 @@ describe('V6 hidden family-route answer cleanup', () => {
       family: { ...expectedFamily, unknownNested: 'synthetic' },
       unknownSection: { preserved: true }
     });
+  });
+});
+
+describe('child long-term study with visitor arrangement warning and conflict detection', () => {
+  it('warns when dependent child is included in partner visitor application but has study plan > 3 months', () => {
+    const family = {
+      linkedApplicationContext: 'partner_and_child',
+      partnerVisaRoute: 'partner_student_visitor',
+      childStudyPlan: 'more_than_3_months',
+      childApplicationArrangement: 'included_with_partner_student_visitor'
+    };
+    const result = effects({
+      ...completeMaterialProfile,
+      family
+    });
+
+    expect(isChildVisitorStudyConflict(family)).toBe(true);
+    expect(result.warnings['family.childApplicationArrangement']).toBe(childVisitorLongTermStudyWarning);
+    expect(derived(result).childVisitorStudyConflict).toBe(true);
+    expect(derived(result).materialProfileIncomplete).toBe(false);
+  });
+
+  it('warns when separate Child of a Student Visitor has study plan > 3 months', () => {
+    const family = {
+      linkedApplicationContext: 'dependent_child',
+      childStudyPlan: 'more_than_3_months',
+      childSupportBasis: 'student_parent',
+      childVisaRoute: 'child_student_visitor'
+    };
+    const result = effects({
+      ...completeMaterialProfile,
+      family
+    });
+
+    expect(isChildVisitorStudyConflict(family)).toBe(true);
+    expect(result.warnings['family.childVisaRoute']).toBe(childVisitorLongTermStudyWarning);
+    expect(derived(result).childVisitorStudyConflict).toBe(true);
+    expect(derived(result).materialProfileIncomplete).toBe(false);
+  });
+
+  it('warns when separate Child of a Worker Visitor has study plan > 3 months', () => {
+    const family = {
+      linkedApplicationContext: 'dependent_child',
+      childStudyPlan: 'more_than_3_months',
+      childSupportBasis: 'work_visa_parent',
+      childVisaRoute: 'child_worker_visitor'
+    };
+    const result = effects({
+      ...completeMaterialProfile,
+      family
+    });
+
+    expect(isChildVisitorStudyConflict(family)).toBe(true);
+    expect(result.warnings['family.childVisaRoute']).toBe(childVisitorLongTermStudyWarning);
+    expect(derived(result).childVisitorStudyConflict).toBe(true);
+    expect(derived(result).materialProfileIncomplete).toBe(false);
+  });
+
+  it('does not warn when dependent child applies for Dependent Child Student Visa with study plan > 3 months', () => {
+    const family = {
+      linkedApplicationContext: 'dependent_child',
+      childStudyPlan: 'more_than_3_months',
+      childSupportBasis: 'student_parent',
+      childVisaRoute: 'dependent_child_student'
+    };
+    const result = effects({
+      ...completeMaterialProfile,
+      family
+    });
+
+    expect(isChildVisitorStudyConflict(family)).toBe(false);
+    expect(result.warnings['family.childVisaRoute']).toBeUndefined();
+    expect(derived(result).childVisitorStudyConflict).toBe(false);
+    expect(derived(result).materialProfileIncomplete).toBe(false);
+  });
+
+  it('does not warn for any of the 3 visitor arrangements when child study plan is no_long_term_study', () => {
+    const cases = [
+      {
+        linkedApplicationContext: 'partner_and_child',
+        partnerVisaRoute: 'partner_student_visitor',
+        childStudyPlan: 'no_long_term_study',
+        childApplicationArrangement: 'included_with_partner_student_visitor'
+      },
+      {
+        linkedApplicationContext: 'dependent_child',
+        childStudyPlan: 'no_long_term_study',
+        childSupportBasis: 'student_parent',
+        childVisaRoute: 'child_student_visitor'
+      },
+      {
+        linkedApplicationContext: 'dependent_child',
+        childStudyPlan: 'no_long_term_study',
+        childSupportBasis: 'work_visa_parent',
+        childVisaRoute: 'child_worker_visitor'
+      }
+    ];
+
+    for (const family of cases) {
+      const result = effects({ ...completeMaterialProfile, family });
+      expect(isChildVisitorStudyConflict(family)).toBe(false);
+      expect(result.warnings['family.childApplicationArrangement']).toBeUndefined();
+      expect(result.warnings['family.childVisaRoute']).toBeUndefined();
+      expect(derived(result).childVisitorStudyConflict).toBe(false);
+      expect(derived(result).materialProfileIncomplete).toBe(false);
+    }
+  });
+
+  it('clears the visitor study conflict deterministically when switching childVisaRoute from child_worker_visitor to dependent_child_student', () => {
+    const withConflict = effects({
+      ...completeMaterialProfile,
+      family: {
+        linkedApplicationContext: 'dependent_child',
+        childStudyPlan: 'more_than_3_months',
+        childSupportBasis: 'work_visa_parent',
+        childVisaRoute: 'child_worker_visitor'
+      }
+    });
+    expect(derived(withConflict).childVisitorStudyConflict).toBe(true);
+    expect(withConflict.warnings['family.childVisaRoute']).toBe(childVisitorLongTermStudyWarning);
+
+    const switched = effects({
+      ...completeMaterialProfile,
+      family: {
+        linkedApplicationContext: 'dependent_child',
+        childStudyPlan: 'more_than_3_months',
+        childSupportBasis: 'work_visa_parent',
+        childVisaRoute: 'dependent_child_student'
+      }
+    });
+    expect(derived(switched).childVisitorStudyConflict).toBe(false);
+    expect(switched.warnings['family.childVisaRoute']).toBeUndefined();
+  });
+
+  it('does not warn when child study plan is undecided and treats profile as complete review state without visitor conflict', () => {
+    const family = {
+      linkedApplicationContext: 'partner_and_child',
+      partnerVisaRoute: 'partner_student_visitor',
+      childStudyPlan: 'undecided',
+      childApplicationArrangement: 'included_with_partner_student_visitor'
+    };
+    const result = effects({
+      ...completeMaterialProfile,
+      family
+    });
+
+    expect(isChildVisitorStudyConflict(family)).toBe(false);
+    expect(result.warnings['family.childApplicationArrangement']).toBeUndefined();
+    expect(derived(result).childVisitorStudyConflict).toBe(false);
+    expect(derived(result).materialProfileIncomplete).toBe(false);
   });
 });
