@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import 'survey-core/survey-core.min.css';
 import './styles/app.css';
 import App from './App';
 

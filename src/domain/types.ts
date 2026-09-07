@@ -1,7 +1,7 @@
 export type ChecklistStatus = 'not_started' | 'in_progress' | 'prepared' | 'needs_review' | 'not_applicable';
 export type RuleEvaluation = true | false | 'unknown';
 
-export const CURRENT_SAVED_PROJECT_SCHEMA_VERSION = 6;
+export const CURRENT_SAVED_PROJECT_SCHEMA_VERSION = 7;
 
 export type RequirementType =
   | 'usually_required'
@@ -12,6 +12,7 @@ export type RequirementType =
 
 export type EvidenceLayer =
   | 'inz_visa'
+  | 'ircc_visa'
   | 'product_guidance';
 
 export interface OfficialSource {
@@ -77,11 +78,17 @@ export interface ChecklistRule {
   addChecklistItems: string[];
 }
 
+import type { ReusedFactStates } from './applicationFactMaterialization';
+
 export interface SavedProject {
   [key: string]: unknown;
   id: string;
+  routeId?: string;
   schemaVersion?: number;
+  surveyCompleted?: boolean;
   answers: Record<string, unknown>;
   statuses: Record<string, ChecklistStatus>;
   updatedAt: string;
+  reusedFactStates?: ReusedFactStates;
 }
+

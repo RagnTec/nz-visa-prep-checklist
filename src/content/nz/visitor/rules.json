@@ -1,0 +1,165 @@
+[
+  {
+    "id": "nz.visitor.rule.identity.passportValidityReview",
+    "when": {
+      "field": "identity.passportValidityConfirmed",
+      "operator": "equals",
+      "value": "no_or_unsure"
+    },
+    "addChecklistItems": [
+      "nz.visitor.identity.passportValidityReview"
+    ]
+  },
+  {
+    "id": "nz.visitor.rule.travel.outwardTicket",
+    "when": {
+      "field": "travel.outwardTravelBasis",
+      "operator": "equals",
+      "value": "already_booked"
+    },
+    "addChecklistItems": [
+      "nz.visitor.travel.outwardTicket"
+    ]
+  },
+  {
+    "id": "nz.visitor.rule.travel.outwardFundsGuidance",
+    "when": {
+      "field": "travel.outwardTravelBasis",
+      "operator": "equals",
+      "value": "own_funds"
+    },
+    "addChecklistItems": [
+      "nz.visitor.travel.outwardFundsGuidance"
+    ]
+  },
+  {
+    "id": "nz.visitor.rule.funding.selfBankStatements",
+    "when": {
+      "field": "funding.fundingSource",
+      "operator": "equals",
+      "value": "self_funded"
+    },
+    "addChecklistItems": [
+      "nz.visitor.funding.selfBankStatements"
+    ]
+  },
+  {
+    "id": "nz.visitor.rule.funding.prepaidAccommodation",
+    "when": {
+      "field": "funding.hasPrepaidAccommodation",
+      "operator": "equals",
+      "value": "yes"
+    },
+    "addChecklistItems": [
+      "nz.visitor.funding.prepaidAccommodation"
+    ]
+  },
+  {
+    "id": "nz.visitor.rule.funding.sponsorNotice",
+    "when": {
+      "field": "funding.fundingSource",
+      "operator": "equals",
+      "value": "sponsored"
+    },
+    "addChecklistItems": [
+      "nz.visitor.funding.sponsorNotice"
+    ]
+  },
+  {
+    "id": "nz.visitor.rule.health.chestXray",
+    "when": {
+      "all": [
+        {
+          "field": "travel.intendedStayDuration",
+          "operator": "equals",
+          "value": "more_than_6_months"
+        },
+        {
+          "field": "health.hasTbRiskHistory",
+          "operator": "equals",
+          "value": "yes"
+        }
+      ]
+    },
+    "addChecklistItems": [
+      "nz.visitor.health.chestXray"
+    ]
+  },
+  {
+    "id": "nz.visitor.rule.health.conditionDisclosureNotice",
+    "when": {
+      "field": "health.hasSignificantMedicalCondition",
+      "operator": "equals",
+      "value": "yes"
+    },
+    "addChecklistItems": [
+      "nz.visitor.health.conditionDisclosureNotice"
+    ]
+  },
+  {
+    "id": "nz.visitor.rule.character.policeCertificate",
+    "when": {
+      "field": "character.totalStayInNz24MonthsOrMore",
+      "operator": "equals",
+      "value": "yes"
+    },
+    "addChecklistItems": [
+      "nz.visitor.character.policeCertificate"
+    ]
+  },
+  {
+    "id": "nz.visitor.rule.character.criminalOrRemovalNotice",
+    "when": {
+      "field": "character.hasCriminalOrRemovalHistory",
+      "operator": "equals",
+      "value": "yes"
+    },
+    "addChecklistItems": [
+      "nz.visitor.character.criminalOrRemovalNotice"
+    ]
+  },
+  {
+    "id": "nz.visitor.rule.genuine.employmentEvidence",
+    "when": {
+      "field": "genuineVisitor.employmentOrStudyStatus",
+      "operator": "equals",
+      "value": "employed"
+    },
+    "addChecklistItems": [
+      "nz.visitor.genuine.employmentEvidence"
+    ]
+  },
+  {
+    "id": "nz.visitor.rule.genuine.businessEvidence",
+    "when": {
+      "field": "genuineVisitor.employmentOrStudyStatus",
+      "operator": "equals",
+      "value": "self_employed_or_business"
+    },
+    "addChecklistItems": [
+      "nz.visitor.genuine.businessEvidence"
+    ]
+  },
+  {
+    "id": "nz.visitor.rule.genuine.studentEvidence",
+    "when": {
+      "field": "genuineVisitor.employmentOrStudyStatus",
+      "operator": "equals",
+      "value": "student"
+    },
+    "addChecklistItems": [
+      "nz.visitor.genuine.studentEvidence"
+    ]
+  },
+  {
+    "id": "nz.visitor.rule.genuine.visaDeclineNotice",
+    "when": {
+      "field": "genuineVisitor.hasVisaDeclineHistory",
+      "operator": "equals",
+      "value": "yes"
+    },
+    "addChecklistItems": [
+      "nz.visitor.genuine.visaDeclineNotice"
+    ]
+  }
+]

@@ -1,0 +1,86 @@
+[
+  {
+    "id": "ca.study-permit.documents",
+    "title": "Study permit: Get the right documents",
+    "publisher": "Immigration, Refugees and Citizenship Canada",
+    "url": "https://www.canada.ca/en/immigration-refugees-citizenship/services/study-canada/study-permit/get-documents.html",
+    "checkedAt": "2026-08-24"
+  },
+  {
+    "id": "ca.study-permit.pal-tal",
+    "title": "Study permit: Provincial attestation letter (PAL) or territorial attestation letter (TAL)",
+    "publisher": "Immigration, Refugees and Citizenship Canada",
+    "url": "https://www.canada.ca/en/immigration-refugees-citizenship/services/study-canada/study-permit/get-documents/provincial-attestation-letter.html",
+    "checkedAt": "2026-08-24"
+  },
+  {
+    "id": "ca.study-permit.dli-list",
+    "title": "Designated learning institutions list",
+    "publisher": "Immigration, Refugees and Citizenship Canada",
+    "url": "https://www.canada.ca/en/immigration-refugees-citizenship/services/study-canada/study-permit/prepare/designated-learning-institutions-list.html",
+    "checkedAt": "2026-08-24"
+  },
+  {
+    "id": "ca.study-permit.loa-verification",
+    "title": "Letter of acceptance verification for designated learning institutions",
+    "publisher": "Immigration, Refugees and Citizenship Canada",
+    "url": "https://www.canada.ca/en/immigration-refugees-citizenship/services/study-canada/educational-institutions/loa-verification.html",
+    "checkedAt": "2026-08-24"
+  },
+  {
+    "id": "ca.study-permit.graduate-study",
+    "title": "Graduate students: How to apply for a study permit",
+    "publisher": "Immigration, Refugees and Citizenship Canada",
+    "url": "https://www.canada.ca/en/immigration-refugees-citizenship/services/study-canada/graduate-student/how-to-apply.html",
+    "checkedAt": "2026-08-24"
+  },
+  {
+    "id": "ca.study-permit.guide-5269",
+    "title": "Guide 5269 - Applying for a Study Permit outside Canada",
+    "publisher": "Immigration, Refugees and Citizenship Canada",
+    "url": "https://www.canada.ca/en/immigration-refugees-citizenship/services/application/application-forms-guides/guide-5269-applying-study-permit-outside-canada.html",
+    "checkedAt": "2026-08-24"
+  },
+  {
+    "id": "ca.study-permit.financial-support",
+    "title": "Study permit: Get the right documents — Proof of financial support",
+    "publisher": "Immigration, Refugees and Citizenship Canada",
+    "url": "https://www.canada.ca/en/immigration-refugees-citizenship/services/study-canada/study-permit/get-documents/financial-support.html",
+    "checkedAt": "2026-08-24"
+  },
+  {
+    "id": "ca.study-permit.annual-update",
+    "title": "International Student Program (Deputy Minister Transition Binder 2026)",
+    "publisher": "Immigration, Refugees and Citizenship Canada",
+    "url": "https://www.canada.ca/en/immigration-refugees-citizenship/corporate/transparency/transition-binders/deputy-minister-2026/international-student-program.html",
+    "checkedAt": "2026-08-24"
+  },
+  {
+    "id": "ca.study-permit.biometrics-who-needs",
+    "title": "Biometrics: Who needs to give their fingerprints and photo",
+    "publisher": "Immigration, Refugees and Citizenship Canada",
+    "url": "https://www.canada.ca/en/immigration-refugees-citizenship/services/biometrics/who-needs-to-give.html",
+    "checkedAt": "2026-08-24"
+  },
+  {
+    "id": "ca.study-permit.biometrics-temporary-residence",
+    "title": "Biometrics: When to give your fingerprints and photo for temporary residence",
+    "publisher": "Immigration, Refugees and Citizenship Canada",
+    "url": "https://www.canada.ca/en/immigration-refugees-citizenship/services/biometrics/when-to-give-temporary-residence.html",
+    "checkedAt": "2026-08-24"
+  },
+  {
+    "id": "ca.study-permit.biometrics-how-to-give",
+    "title": "Biometrics: How to give your fingerprints and photo",
+    "publisher": "Immigration, Refugees and Citizenship Canada",
+    "url": "https://www.canada.ca/en/immigration-refugees-citizenship/services/biometrics/how-to-give.html",
+    "checkedAt": "2026-08-24"
+  },
+  {
+    "id": "ca.study-permit.biometrics-where-to-give",
+    "title": "Biometrics: Where to give your fingerprints and photo",
+    "publisher": "Immigration, Refugees and Citizenship Canada",
+    "url": "https://www.canada.ca/en/immigration-refugees-citizenship/services/biometrics/where-to-give.html",
+    "checkedAt": "2026-08-24"
+  }
+]

@@ -1,0 +1,406 @@
+{
+  "title": "新西兰访问签证材料准备清单",
+  "showProgressBar": "off",
+  "progressBarType": "pages",
+  "pages": [
+    {
+      "name": "scope",
+      "title": "基本范围",
+      "elements": [
+        {
+          "type": "radiogroup",
+          "name": "scope.isAdultApplicant",
+          "title": "你是否为成年申请人？",
+          "description": "本清单针对年满 18 周岁的成年主申请人自行准备访问签证材料提供指引。",
+          "isRequired": true,
+          "choices": [
+            {
+              "value": "yes",
+              "text": "是，年满 18 周岁"
+            },
+            {
+              "value": "no",
+              "text": "否，未满 18 周岁"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "visit",
+      "title": "访问目的与计划",
+      "elements": [
+        {
+          "type": "radiogroup",
+          "name": "visit.primaryPurpose",
+          "title": "你本次前往新西兰的主要目的是什么？",
+          "description": "请选择最符合你主要行程意图的类型。用于调整相关准备提示。",
+          "isRequired": true,
+          "choices": [
+            {
+              "value": "tourism_holiday",
+              "text": "观光旅游或度假（Tourism / Holiday）"
+            },
+            {
+              "value": "visiting_family_friends",
+              "text": "探访亲友（Visiting Family or Friends）"
+            },
+            {
+              "value": "short_term_study",
+              "text": "不超过 3 个月的短期学习或培训（Short-term Study）"
+            },
+            {
+              "value": "other",
+              "text": "其他访问目的"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "travel",
+      "title": "行程与离境安排",
+      "elements": [
+        {
+          "type": "radiogroup",
+          "name": "travel.hasSpecificDates",
+          "title": "你是否已有具体的计划抵离新西兰日期？",
+          "description": "如已有明确日期，请填入预计到达和离开新西兰的日期；若尚未确定，可填报大致停留周期。",
+          "isRequired": true,
+          "choices": [
+            {
+              "value": "yes",
+              "text": "是，已有计划抵离日期"
+            },
+            {
+              "value": "no_approximate",
+              "text": "否，仅有大致停留时长计划"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "name": "travel.intendedArrivalDate",
+          "title": "预计到达新西兰日期",
+          "inputType": "date",
+          "visibleIf": "{travel.hasSpecificDates} = 'yes'",
+          "isRequired": true
+        },
+        {
+          "type": "text",
+          "name": "travel.intendedDepartureDate",
+          "title": "预计离开新西兰日期",
+          "inputType": "date",
+          "visibleIf": "{travel.hasSpecificDates} = 'yes'",
+          "isRequired": true
+        },
+        {
+          "type": "radiogroup",
+          "name": "travel.intendedStayDuration",
+          "title": "计划在新西兰停留的大致时长",
+          "description": "一般访问签证单次或累计停留通常不超过相应许可期限（如通常最长单次停留不超过 9 个月）。",
+          "isRequired": true,
+          "choices": [
+            {
+              "value": "up_to_1_month",
+              "text": "1 个月以内"
+            },
+            {
+              "value": "up_to_3_months",
+              "text": "1 至 3 个月"
+            },
+            {
+              "value": "up_to_6_months",
+              "text": "3 至 6 个月"
+            },
+            {
+              "value": "more_than_6_months",
+              "text": "6 个月以上"
+            }
+          ]
+        },
+        {
+          "type": "radiogroup",
+          "name": "travel.outwardTravelBasis",
+          "title": "关于离开新西兰的交通安排，你目前属于以下哪种情况？",
+          "description": "INZ 要求申请人在访问结束时具备离开新西兰的切实安排（如已订机票、自备足额购票资金或担保人支持）。",
+          "isRequired": true,
+          "choices": [
+            {
+              "value": "already_booked",
+              "text": "已购买或预订离境新西兰的机票或行程单"
+            },
+            {
+              "value": "own_funds",
+              "text": "持有足够资金在访问结束时购买离境机票"
+            },
+            {
+              "value": "sponsor_covered",
+              "text": "由新西兰担保人或邀请方提供/支付离境交通费用"
+            },
+            {
+              "value": "undecided_or_other",
+              "text": "尚未确定或其它安排"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "funding",
+      "title": "资金与住宿安排",
+      "elements": [
+        {
+          "type": "radiogroup",
+          "name": "funding.fundingSource",
+          "title": "你在新西兰期间的逗留与生活费用由谁承担？",
+          "description": "INZ 要求申请人在新西兰停留期间有足够的资金支持生活，或由符合资格的担保人提供担保。",
+          "isRequired": true,
+          "choices": [
+            {
+              "value": "self_funded",
+              "text": "由本人可用资金承担全部生活费用（自费）"
+            },
+            {
+              "value": "sponsored",
+              "text": "由符合 INZ 资格要求的新西兰担保人提供正式担保（Formal Sponsorship）"
+            },
+            {
+              "value": "other_or_mixed",
+              "text": "其他、混合或暂不确定的资金安排"
+            }
+          ]
+        },
+        {
+          "type": "radiogroup",
+          "name": "funding.hasPrepaidAccommodation",
+          "title": "你是否已全额预付在新西兰期间的住宿费用？",
+          "description": "若选择自费且已全额预付住宿，INZ 适用的生活资金标准为每月至少 400 纽币（NZD）；若未预付住宿，则为每月至少 1,000 纽币（NZD）。",
+          "visibleIf": "{funding.fundingSource} = 'self_funded'",
+          "isRequired": true,
+          "choices": [
+            {
+              "value": "yes",
+              "text": "是，已全额预付住宿（如已付清酒店/旅店订单）"
+            },
+            {
+              "value": "no",
+              "text": "否，未提前付清住宿或按日现付/免费借宿"
+            }
+          ]
+        },
+        {
+          "type": "checkbox",
+          "name": "funding.selfFundingEvidenceTypes",
+          "title": "你计划提供哪些类型的本人资金证明文件？",
+          "description": "资金文件需显示申请人姓名、开户银行及币种。",
+          "visibleIf": "{funding.fundingSource} = 'self_funded'",
+          "choices": [
+            {
+              "value": "bank_statements",
+              "text": "银行流水或账户对账单（Bank Statements）"
+            },
+            {
+              "value": "credit_card_statements",
+              "text": "信用卡对账单及可用额度证明（Credit Card Statements）"
+            },
+            {
+              "value": "bank_drafts",
+              "text": "银行汇票或旅行支票（Bank Drafts / Traveller's Cheques）"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "genuineVisitor",
+      "title": "归国约束力与真实访客意图",
+      "elements": [
+        {
+          "type": "radiogroup",
+          "name": "genuineVisitor.employmentOrStudyStatus",
+          "title": "你目前在常住国/原籍国的主要身份或职业状态是什么？",
+          "description": "INZ 审理时会综合考虑申请人个人背景与真实意图。提供原籍国的社会、职业或学业纽带材料有助于准备申请。",
+          "isRequired": true,
+          "choices": [
+            {
+              "value": "employed",
+              "text": "在职员工或受雇人士"
+            },
+            {
+              "value": "self_employed_or_business",
+              "text": "自雇、企业主或自由职业者"
+            },
+            {
+              "value": "student",
+              "text": "在读学生"
+            },
+            {
+              "value": "retired",
+              "text": "退休人士"
+            },
+            {
+              "value": "other_unemployed",
+              "text": "其他或待业状态"
+            }
+          ]
+        },
+        {
+          "type": "radiogroup",
+          "name": "genuineVisitor.hasVisaDeclineHistory",
+          "title": "你是否曾被新西兰或其他任何国家拒签过签证？",
+          "description": "INZ 在评估真实访客意图时会综合核查既往签证申请记录。如曾有拒签历史，应在申请表中如实申报。",
+          "isRequired": true,
+          "choices": [
+            {
+              "value": "yes",
+              "text": "是，曾有被拒签记录"
+            },
+            {
+              "value": "no",
+              "text": "否，未曾被拒签过"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "health",
+      "title": "健康状况与体检背景",
+      "elements": [
+        {
+          "type": "radiogroup",
+          "name": "health.hasTbRiskHistory",
+          "title": "你是否为结核病（TB）非低发病率国家的公民，或在过去 5 年中在相关国家累计逗留/停留超过 3 个月？",
+          "description": "INZ 规定：若计划在新西兰停留超过 6 个月，且来自非结核病低发国家/地区或过去 5 年内曾在相关国家累计停留超过 3 个月，通常需提供胸部 X 光（Chest X-ray）证明。",
+          "isRequired": true,
+          "choices": [
+            {
+              "value": "yes",
+              "text": "是（为相关国家公民或过去 5 年曾在非低发国家累计停留满 3 个月）"
+            },
+            {
+              "value": "no",
+              "text": "否（仅停留于结核病低发国家且非相关国家公民）"
+            }
+          ]
+        },
+        {
+          "type": "radiogroup",
+          "name": "health.hasSignificantMedicalCondition",
+          "title": "你是否患有需长期医疗、透析、住院或特殊照护的重大健康状况？",
+          "description": "在线申请时需如实填报健康申报问卷。INZ 可能会在审理过程中根据个人情况要求补充体检或医疗报告。",
+          "isRequired": true,
+          "choices": [
+            {
+              "value": "yes",
+              "text": "是，存在相关健康状况"
+            },
+            {
+              "value": "no",
+              "text": "否，无重大特殊健康状况"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "character",
+      "title": "品行与背景调查",
+      "elements": [
+        {
+          "type": "radiogroup",
+          "name": "character.totalStayInNz24MonthsOrMore",
+          "title": "本次访问加上以往持各类签证在新西兰的累计停留时间，是否会达到或超过 24 个月？",
+          "description": "INZ 规定：年满 17 周岁且在新西兰累计停留时间达 24 个月及以上的申请人，通常需提交警方无犯罪记录证明（Police Certificate）。",
+          "isRequired": true,
+          "choices": [
+            {
+              "value": "yes",
+              "text": "是，累计停留将达到 24 个月或以上"
+            },
+            {
+              "value": "no",
+              "text": "否，累计停留未达 24 个月"
+            }
+          ]
+        },
+        {
+          "type": "radiogroup",
+          "name": "character.hasCriminalOrRemovalHistory",
+          "title": "你是否曾有刑事犯罪指控、定罪记录，或被任何国家拒绝入境、驱逐出境（Removal/Deportation）等出入境执法记录？",
+          "description": "申请表中必须如实申报相关刑事与出入境执法历史。如存在相关情况，应提前准备官方记录文件或客观事实说明。",
+          "isRequired": true,
+          "choices": [
+            {
+              "value": "yes",
+              "text": "是，存在相关刑事或驱逐/遣返记录"
+            },
+            {
+              "value": "no",
+              "text": "否，无任何刑事犯罪或驱逐记录"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "identity",
+      "title": "身份与证件信息",
+      "elements": [
+        {
+          "type": "radiogroup",
+          "name": "identity.hasValidPassport",
+          "title": "你是否持有有效的护照或身份证明文件？",
+          "description": "申请新西兰访问签证需提供有效护照或受认可的身份证明文件（如 Certificate of Identity）。",
+          "isRequired": true,
+          "choices": [
+            {
+              "value": "yes",
+              "text": "是，持有有效护照或旅行证件"
+            },
+            {
+              "value": "no",
+              "text": "否，尚未办理或正在补换发"
+            }
+          ]
+        },
+        {
+          "type": "radiogroup",
+          "name": "identity.passportValidityConfirmed",
+          "title": "你的证件有效期是否满足计划离境后至少 3 个月的要求？",
+          "description": "INZ 通常要求护照或身份证明文件在计划离开新西兰之日起算仍至少有 3 个月有效期。",
+          "visibleIf": "{identity.hasValidPassport} = 'yes'",
+          "isRequired": true,
+          "choices": [
+            {
+              "value": "yes",
+              "text": "是，有效期充足（距计划离境日期 3 个月以上）"
+            },
+            {
+              "value": "no_or_unsure",
+              "text": "否或暂不确定（有效期可能不足 3 个月）"
+            }
+          ]
+        },
+        {
+          "type": "radiogroup",
+          "name": "identity.hasOtherNames",
+          "title": "你是否曾使用过其他姓名、别名或发生过姓名变更？",
+          "description": "如你曾使用过其他姓名、别名或曾用名，应在申请表中如实填写相关历史信息。",
+          "isRequired": true,
+          "choices": [
+            {
+              "value": "yes",
+              "text": "是，曾有曾用名或发生过改名"
+            },
+            {
+              "value": "no",
+              "text": "否，始终使用当前法定姓名"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

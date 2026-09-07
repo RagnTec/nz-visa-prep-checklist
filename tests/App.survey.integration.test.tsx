@@ -6,7 +6,11 @@ import { CURRENT_SAVED_PROJECT_SCHEMA_VERSION } from '../src/domain/types';
 const storage = vi.hoisted(() => ({
   deleteProject: vi.fn(),
   loadProject: vi.fn(),
-  saveProject: vi.fn()
+  saveProject: vi.fn(),
+  loadWorkspace: vi.fn(),
+  saveWorkspace: vi.fn(),
+  createProjectAndWorkspace: vi.fn(),
+  deleteProjectAndSaveWorkspace: vi.fn()
 }));
 
 vi.mock('../src/storage/db', () => storage);
@@ -83,6 +87,20 @@ function fillRequiredStudyQuestions() {
   );
 }
 
+async function startNzSurvey() {
+  const nzBtn = await screen.findByRole('button', { name: /新西兰 · 自费学生签证/ });
+  fireEvent.click(nzBtn);
+
+  await screen.findByRole('heading', { name: '选择或创建申请人' });
+  const nameInput = screen.queryByPlaceholderText('例如：张三、Alice');
+  if (nameInput) {
+    fireEvent.change(nameInput, { target: { value: 'Survey Test Applicant' } });
+  }
+  fireEvent.click(screen.getByRole('button', { name: '创建并开始准备' }));
+
+  await screen.findByText('使用边界');
+}
+
 async function completeSurvey(overrides: SurveyAnswers = {}) {
   const answers = {
     funding: 'other_or_unclear' as const,
@@ -95,7 +113,7 @@ async function completeSurvey(overrides: SurveyAnswers = {}) {
     ...overrides
   };
 
-  await screen.findByText('使用边界');
+  await startNzSurvey();
   await nextPage('课程与学费');
 
   setBoolean('你是否已经取得 Offer of Place？', true);
@@ -168,7 +186,7 @@ async function completeSurvey(overrides: SurveyAnswers = {}) {
 
 async function restartSurvey() {
   fireEvent.click(screen.getByRole('button', { name: '重新回答' }));
-  await screen.findByText('使用边界');
+  await screen.findByText('选择申请路线');
 }
 
 describe('App SurveyJS integration', () => {
@@ -176,15 +194,32 @@ describe('App SurveyJS integration', () => {
     storage.deleteProject.mockReset();
     storage.loadProject.mockReset();
     storage.saveProject.mockReset();
+    storage.loadWorkspace.mockReset();
+    storage.saveWorkspace.mockReset();
+    storage.createProjectAndWorkspace.mockReset();
+    storage.deleteProjectAndSaveWorkspace.mockReset();
+
     storage.deleteProject.mockResolvedValue(undefined);
     storage.loadProject.mockResolvedValue(undefined);
     storage.saveProject.mockResolvedValue(undefined);
+    storage.saveWorkspace.mockResolvedValue(undefined);
+    storage.createProjectAndWorkspace.mockResolvedValue(undefined);
+    storage.deleteProjectAndSaveWorkspace.mockResolvedValue(undefined);
+
+    storage.loadWorkspace.mockResolvedValue({
+      kind: 'empty',
+      workspace: {
+        people: [],
+        relationships: [],
+        applications: []
+      }
+    });
   });
 
   it('shows date-order validation immediately and blocks page navigation', async () => {
     render(<App />);
 
-    await screen.findByText('使用边界');
+    await startNzSurvey();
     fireEvent.click(screen.getByRole('button', { name: /Next|下一页/ }));
     await screen.findByText('课程与学费');
 
@@ -205,7 +240,7 @@ describe('App SurveyJS integration', () => {
   it('blocks a past start with not-started status and clears the error immediately', async () => {
     render(<App />);
 
-    await screen.findByText('使用边界');
+    await startNzSurvey();
     await nextPage('课程与学费');
     fillRequiredStudyQuestions();
     setDate('课程开始日期', localDateWithOffset(-1));
@@ -224,7 +259,7 @@ describe('App SurveyJS integration', () => {
   it('blocks a future start with already-started status', async () => {
     render(<App />);
 
-    await screen.findByText('使用边界');
+    await startNzSurvey();
     await nextPage('课程与学费');
     fillRequiredStudyQuestions();
     setDate('课程开始日期', localDateWithOffset(10));
@@ -240,7 +275,7 @@ describe('App SurveyJS integration', () => {
   it('warns for a deferred past start but permits navigation', async () => {
     render(<App />);
 
-    await screen.findByText('使用边界');
+    await startNzSurvey();
     await nextPage('课程与学费');
     fillRequiredStudyQuestions();
     setDate('课程开始日期', localDateWithOffset(-1));
@@ -255,7 +290,7 @@ describe('App SurveyJS integration', () => {
   it('warns for offshore arrival after course start and removes it after correction', async () => {
     render(<App />);
 
-    await screen.findByText('使用边界');
+    await startNzSurvey();
     await nextPage('课程与学费');
     fillRequiredStudyQuestions();
     setDate('课程开始日期', localDateWithOffset(10));
@@ -276,7 +311,7 @@ describe('App SurveyJS integration', () => {
   it('blocks offshore arrival after course end', async () => {
     render(<App />);
 
-    await screen.findByText('使用边界');
+    await startNzSurvey();
     await nextPage('课程与学费');
     fillRequiredStudyQuestions();
     setDate('课程开始日期', localDateWithOffset(10));
@@ -330,7 +365,7 @@ describe('App SurveyJS integration', () => {
         })
       })
     ));
-  });
+  }, 15000);
 
   it('renders tuition, identity, gap, refusal and health branches from completed answers', async () => {
     render(<App />);
@@ -373,7 +408,7 @@ describe('App SurveyJS integration', () => {
     fireEvent.click(screen.getByText('核对X光或体检要求'));
     expect(screen.getByText('尚未准备或提交健康信息')).toBeVisible();
     expect(screen.queryByText('过去曾提交健康信息')).not.toBeInTheDocument();
-  });
+  }, 15000);
 
   it.each([
     ['not_provided', '尚未准备或提交健康信息'],

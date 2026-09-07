@@ -31,7 +31,7 @@ function v1Project(overrides: Partial<SavedProject> = {}): SavedProject {
   };
 }
 
-describe('saved project migration through V6', () => {
+describe('saved project migration through V7', () => {
   it('migrates employed applicant answers and preserves legacy and unknown data', () => {
     const project = v1Project();
     const migrated = migrateSavedProject(project);
@@ -168,13 +168,14 @@ describe('saved project migration through V6', () => {
   });
 
   it('leaves future schema versions unchanged', () => {
-    const project = v1Project({ schemaVersion: 7 });
+    const futureVersion = CURRENT_SAVED_PROJECT_SCHEMA_VERSION + 1;
+    const project = v1Project({ schemaVersion: futureVersion });
 
     expect(migrateSavedProject(project)).toBe(project);
     expect(prepareSavedProjectForRead(project)).toEqual({
       kind: 'future',
       project,
-      schemaVersion: 7
+      schemaVersion: futureVersion
     });
   });
 
@@ -333,7 +334,7 @@ describe('saved project migration through V6', () => {
     });
   });
 
-  it('migrates V4 through V5 to V6 without inferring material or family-route fields', () => {
+  it('migrates V4 through V5 and V6 to current schema without inferring material or family-route fields', () => {
     const project = v1Project({
       schemaVersion: 4,
       answers: {
@@ -354,7 +355,7 @@ describe('saved project migration through V6', () => {
     const migrated = migrateSavedProject(project);
 
     expect(project).toEqual(original);
-    expect(migrated).toEqual({ ...project, schemaVersion: 6 });
+    expect(migrated).toEqual({ ...project, schemaVersion: CURRENT_SAVED_PROJECT_SCHEMA_VERSION });
     expect(migrated.answers).not.toHaveProperty('education.recordContexts');
     expect(migrated.answers).not.toHaveProperty('education');
     expect(migrated.answers).not.toHaveProperty('english');
@@ -362,7 +363,7 @@ describe('saved project migration through V6', () => {
     expect(migrated.answers).not.toHaveProperty('family');
   });
 
-  it('migrates V5 to V6 without inferring routes and preserves unknown data', () => {
+  it('migrates V5 to current schema without inferring routes and preserves unknown data', () => {
     const project: SavedProject & { syntheticTopLevel: unknown } = {
       ...v1Project(),
       schemaVersion: 5,
@@ -386,7 +387,7 @@ describe('saved project migration through V6', () => {
     const migrated = migrateSavedProject(project);
 
     expect(project).toEqual(original);
-    expect(migrated).toEqual({ ...project, schemaVersion: 6 });
+    expect(migrated).toEqual({ ...project, schemaVersion: CURRENT_SAVED_PROJECT_SCHEMA_VERSION });
     expect(migrateSavedProject(migrated)).toBe(migrated);
   });
 
@@ -398,13 +399,36 @@ describe('saved project migration through V6', () => {
       }
     }));
 
-    expect(migrated.schemaVersion).toBe(6);
+    expect(migrated.schemaVersion).toBe(CURRENT_SAVED_PROJECT_SCHEMA_VERSION);
     expect(migrated.answers.family).toEqual({
       linkedApplicationContext: 'partner_and_child'
     });
   });
 
-  it('leaves a native V6 project unchanged', () => {
+  it('migrates V6 to V7 and preserves answers, statuses, and existing data without inventing reusable-fact metadata', () => {
+    const v6Project: SavedProject = {
+      ...v1Project(),
+      schemaVersion: 6,
+      answers: {
+        background: { applicantType: 'employed_or_previously_employed' },
+        study: { hasOffer: true }
+      },
+      statuses: {
+        'funds.ownFunds': 'prepared'
+      },
+      updatedAt: '2026-08-15T00:00:00.000Z'
+    };
+    const original = structuredClone(v6Project);
+    const migrated = migrateSavedProject(v6Project);
+
+    expect(v6Project).toEqual(original);
+    expect(migrated.schemaVersion).toBe(CURRENT_SAVED_PROJECT_SCHEMA_VERSION);
+    expect(migrated.answers).toEqual(v6Project.answers);
+    expect(migrated.statuses).toEqual(v6Project.statuses);
+    expect(migrated.reusedFactStates).toBeUndefined();
+  });
+
+  it('leaves a native current-version project data unchanged and normalizes legacy missing routeId to NZ', () => {
     const project = v1Project({
       schemaVersion: CURRENT_SAVED_PROJECT_SCHEMA_VERSION,
       answers: {
@@ -416,7 +440,98 @@ describe('saved project migration through V6', () => {
     expect(migrateSavedProject(project)).toBe(project);
     expect(prepareSavedProjectForRead(project)).toEqual({
       kind: 'current',
-      project
+      project: {
+        ...project,
+        routeId: 'nz-student-fee-paying'
+      }
+    });
+  });
+
+  describe('route identity and legacy fallback in prepareSavedProjectForRead', () => {
+    it('normalizes legacy projects without routeId (V1 through V6) to default NZ route without mutation', () => {
+      const legacyProject = v1Project({
+        schemaVersion: 6,
+        answers: { study: { hasOffer: true } }
+      });
+      delete legacyProject.routeId;
+      const original = structuredClone(legacyProject);
+
+      const result = prepareSavedProjectForRead(legacyProject);
+      expect(legacyProject).toEqual(original);
+      expect(result).toEqual({
+        kind: 'current',
+        project: expect.objectContaining({
+          schemaVersion: CURRENT_SAVED_PROJECT_SCHEMA_VERSION,
+          routeId: 'nz-student-fee-paying'
+        })
+      });
+    });
+
+    it('accepts explicit known NZ routeId', () => {
+      const project = v1Project({
+        schemaVersion: 6,
+        routeId: 'nz-student-fee-paying'
+      });
+
+      const result = prepareSavedProjectForRead(project);
+      expect(result).toEqual({
+        kind: 'current',
+        project: expect.objectContaining({
+          schemaVersion: CURRENT_SAVED_PROJECT_SCHEMA_VERSION,
+          routeId: 'nz-student-fee-paying'
+        })
+      });
+    });
+
+    it('accepts explicit known CA routeId', () => {
+      const caProject = v1Project({
+        schemaVersion: 6,
+        routeId: 'ca-study-permit'
+      });
+
+      const result = prepareSavedProjectForRead(caProject);
+      expect(result).toEqual({
+        kind: 'current',
+        project: expect.objectContaining({
+          schemaVersion: CURRENT_SAVED_PROJECT_SCHEMA_VERSION,
+          routeId: 'ca-study-permit'
+        })
+      });
+    });
+
+    it('fails closed with unknown_route when project contains explicit unregistered routeId', () => {
+      const unknownProject = v1Project({
+        schemaVersion: 6,
+        routeId: 'unregistered-route-xyz'
+      });
+
+      const result = prepareSavedProjectForRead(unknownProject);
+      expect(result).toEqual({
+        kind: 'unknown_route',
+        project: unknownProject,
+        routeId: 'unregistered-route-xyz'
+      });
+    });
+
+    it.each([
+      ['empty string', ''],
+      ['whitespace only', '   '],
+      ['null', null as unknown as string],
+      ['number', 123 as unknown as string],
+      ['object', {} as unknown as string]
+    ])('fails closed with invalid when routeId is malformed (%s)', (_label, invalidRouteId) => {
+      const malformedProject = v1Project({
+        schemaVersion: 6,
+        routeId: invalidRouteId
+      });
+
+      const result = prepareSavedProjectForRead(malformedProject);
+      expect(result).toEqual({
+        kind: 'invalid',
+        project: malformedProject,
+        schemaVersion: 6,
+        routeId: invalidRouteId
+      });
     });
   });
 });

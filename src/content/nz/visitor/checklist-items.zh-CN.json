@@ -1,0 +1,274 @@
+[
+  {
+    "id": "nz.visitor.identity.passport",
+    "category": "身份与证件",
+    "title": "有效护照或身份证明文件",
+    "requirementType": "usually_required",
+    "evidenceLayer": "inz_visa",
+    "why": "申请新西兰访问签证必须提供有效护照或受认可的身份证明文件（Certificate of Identity / 旅行证件）。",
+    "steps": [
+      "准备有效护照或身份证明文件的个人信息页（含照片、姓名、出生日期、证件号码、签发及有效期等信息）的清晰副本。",
+      "确保证件在计划离开新西兰之日起算仍有至少 3 个月的有效期。"
+    ],
+    "sourceIds": [
+      "inz.visitor-visa"
+    ],
+    "defaultIncluded": true
+  },
+  {
+    "id": "nz.visitor.identity.photo",
+    "category": "身份与证件",
+    "title": "符合要求的签证照片",
+    "requirementType": "usually_required",
+    "evidenceLayer": "inz_visa",
+    "why": "申请新西兰访问签证需提供符合 INZ 官方规格标准的近期照片。",
+    "steps": [
+      "准备符合 INZ 官方标准的近期照片（按在线上传或纸质申请要求提供相应数量及格式）。",
+      "确保照片清晰对焦、背景符合要求、面部无遮挡且表情自然。"
+    ],
+    "sourceIds": [
+      "inz.visitor-visa"
+    ],
+    "defaultIncluded": true
+  },
+  {
+    "id": "nz.visitor.identity.passportValidityReview",
+    "category": "身份与证件",
+    "title": "核对旅行证件有效期",
+    "requirementType": "answer_dependent",
+    "evidenceLayer": "inz_visa",
+    "why": "你的护照或身份证明文件有效期可能不足以覆盖计划离开新西兰后至少 3 个月的要求。若证件临近过期，可能会导致审理延误或影响出行。",
+    "steps": [
+      "核对证件到期日与计划离开新西兰的日期，确认是否满足至少 3 个月有效期的要求。",
+      "若有效期不足，建议在递交申请前先办理换发或延期。"
+    ],
+    "sourceIds": [
+      "inz.visitor-visa"
+    ],
+    "defaultIncluded": false
+  },
+  {
+    "id": "nz.visitor.travel.itinerary",
+    "category": "行程与目的",
+    "title": "访问行程与活动安排梳理",
+    "requirementType": "product_organisation_guidance",
+    "evidenceLayer": "product_guidance",
+    "why": "梳理清晰的访新目的及大致行程安排，有助于在填写申请表时准确申报计划抵离时间及活动。这属于材料准备与信息核对指引，不代表必须提交单独的正式行程单文件。",
+    "steps": [
+      "准备在留在新西兰期间的旅行或访问计划概要（如计划前往的城市、大致活动安排或计划访问的对象）。",
+      "确保申请表中填写的访问目的、停留时间与行程计划保持逻辑一致。"
+    ],
+    "sourceIds": [
+      "inz.visitor-visa"
+    ],
+    "defaultIncluded": true
+  },
+  {
+    "id": "nz.visitor.travel.outwardTicket",
+    "category": "离境安排",
+    "title": "已预订的离境机票或行程单",
+    "requirementType": "answer_dependent",
+    "evidenceLayer": "inz_visa",
+    "why": "如你已预订离境交通，可在申请中作为具备明确离境安排的证明材料。",
+    "steps": [
+      "准备显示你姓名、航班号及离境日期的机票行程单或预订确认凭证。",
+      "核对离境日期与申请表填报的停留时间保持一致。"
+    ],
+    "sourceIds": [
+      "inz.visitor-visa"
+    ],
+    "defaultIncluded": false
+  },
+  {
+    "id": "nz.visitor.travel.outwardFundsGuidance",
+    "category": "离境安排",
+    "title": "离境交通费用预留提醒",
+    "requirementType": "product_organisation_guidance",
+    "evidenceLayer": "product_guidance",
+    "why": "INZ 要求申请人在访问结束时具备离开新西兰的切实安排。若未提前购票，入境及在留期间需预留足够的资金用于购买离境机票。此项为自备购票资金情况下的准备提醒，不是单独的官方强制文件。",
+    "steps": [
+      "在规划个人逗留资金之外，确保预留足够支付回程或前往下一个目的地机票的资金额度。"
+    ],
+    "sourceIds": [
+      "inz.visitor-visa"
+    ],
+    "defaultIncluded": false
+  },
+  {
+    "id": "nz.visitor.funding.selfBankStatements",
+    "category": "资金证明",
+    "title": "本人可用资金证明",
+    "requirementType": "usually_required",
+    "evidenceLayer": "inz_visa",
+    "why": "自费申请人需提供本人名下的资金证明（如银行流水、账户对账单或信用卡对账单），材料需清晰显示账户所有人姓名、金融机构名称及币种，且金额需符合 INZ 对应自费生活资金标准（未预付住宿每月至少 1,000 NZD；已预付住宿每月至少 400 NZD，离境机票资金另计）。",
+    "steps": [
+      "准备本人名下的近期银行流水、存款对账单、信用卡额度对账单或银行汇票。",
+      "确保资金材料清晰显示账户持有人姓名（与申请人一致）、金融机构名称及币种。",
+      "核对可用资金总额满足计划停留月数对应的最低标准及离境交通安排。"
+    ],
+    "sourceIds": [
+      "inz.visitor-visa"
+    ],
+    "defaultIncluded": false
+  },
+  {
+    "id": "nz.visitor.funding.prepaidAccommodation",
+    "category": "资金证明",
+    "title": "住宿已预付凭证（适用 400 NZD/月标准）",
+    "requirementType": "answer_dependent",
+    "evidenceLayer": "inz_visa",
+    "why": "若自费申请人适用每月 400 纽币的生活资金标准，需提供在新西兰停留期间的住宿已全额预付凭证（如酒店预付确认单或付款收据）。",
+    "steps": [
+      "准备已付清全部住宿费用的酒店预订单、收据或住宿凭证。",
+      "确保预订日期能够完整覆盖在新西兰的计划停留时间。"
+    ],
+    "sourceIds": [
+      "inz.visitor-visa"
+    ],
+    "defaultIncluded": false
+  },
+  {
+    "id": "nz.visitor.funding.sponsorNotice",
+    "category": "资金证明",
+    "title": "新西兰正式担保人支持提醒",
+    "requirementType": "answer_dependent",
+    "evidenceLayer": "product_guidance",
+    "why": "你选择了由符合 INZ 资格要求的新西兰担保人提供正式担保（Formal Sponsorship）。按 INZ 规定，担保人需完整填写担保表（Sponsorship Form）并提供符合要求的担保财务支持材料。",
+    "steps": [
+      "与新西兰担保人确认其知晓 INZ 正式担保责任并符合担保资格要求。",
+      "准备由担保人填写的 Sponsorship Form 及担保人相关财务与身份支持文件。"
+    ],
+    "sourceIds": [
+      "inz.visitor-visa"
+    ],
+    "defaultIncluded": false
+  },
+  {
+    "id": "nz.visitor.health.chestXray",
+    "category": "健康要求",
+    "title": "胸部 X 光体检证明（Chest X-ray）",
+    "requirementType": "answer_dependent",
+    "evidenceLayer": "inz_visa",
+    "why": "若计划在新西兰停留超过 6 个月，且为结核病（TB）非低发国家公民或近 5 年内累计在相关国家逗留/停留满 3 个月，INZ 通常要求提供指定机构开具的胸部 X 光检查证明。",
+    "steps": [
+      "确认计划停留时间超过 6 个月。",
+      "在 INZ 指定的 Panel Physician 诊所完成胸部 X 光体检（诊所通常会通过 eMedical 在线系统直传报告）。",
+      "确保证明递交时通常在 3 个月有效期内。"
+    ],
+    "sourceIds": [
+      "inz.visitor-visa"
+    ],
+    "defaultIncluded": false
+  },
+  {
+    "id": "nz.visitor.health.conditionDisclosureNotice",
+    "category": "健康要求",
+    "title": "特殊健康状况申报准备提醒",
+    "requirementType": "product_organisation_guidance",
+    "evidenceLayer": "product_guidance",
+    "why": "在线申请中需如实完成健康状况申报。如存在需长期治疗或特殊医疗需求的既往病史，INZ 审理中可能会要求补充提供进一步的医疗报告或专科体检。",
+    "steps": [
+      "如实填写在线申请中的健康调查问卷。",
+      "如有重大既往病历，可备好近期诊断摘要或治疗情况说明以备审理问询。"
+    ],
+    "sourceIds": [
+      "inz.visitor-visa"
+    ],
+    "defaultIncluded": false
+  },
+  {
+    "id": "nz.visitor.character.policeCertificate",
+    "category": "品行要求",
+    "title": "核对并准备警方无犯罪记录证明（Police Certificate）",
+    "requirementType": "answer_dependent",
+    "evidenceLayer": "inz_visa",
+    "why": "年满 17 周岁且在新西兰累计停留时间达 24 个月及以上的申请人，按 INZ 规定需核对无犯罪证明要求。若以往签证申请中已向 INZ 提交过且签发日期在过去 24 个月以内，通常无需再次提供；否则，递交申请时所需的无犯罪证明开具时间应少于 6 个月。",
+    "steps": [
+      "核对以往是否已向 INZ 提交过警方无犯罪记录证明，且该证明签发日期是否在过去 24 个月以内。",
+      "如需重新开具，向国籍国及满 17 岁后居住满 5 年的国家官方机构申请无犯罪记录证明，确保递交申请时开具时间少于 6 个月。",
+      "若原件非英文，准备符合要求的合规翻译件。"
+    ],
+    "sourceIds": [
+      "inz.visitor-visa"
+    ],
+    "defaultIncluded": false
+  },
+  {
+    "id": "nz.visitor.character.criminalOrRemovalNotice",
+    "category": "品行要求",
+    "title": "刑事与出入境执法历史如实申报提醒",
+    "requirementType": "product_organisation_guidance",
+    "evidenceLayer": "product_guidance",
+    "why": "INZ 要求申请人在申请表中如实申报全部刑事指控、定罪及被任何国家驱逐出境等出入境执法历史。如实申报是品行审理的基本要求。",
+    "steps": [
+      "核对并在申请表中如实填报相关刑事或出入境执法记录事实。",
+      "准备能够客观说明既往事实的官方文件或判决/执法记录备查。"
+    ],
+    "sourceIds": [
+      "inz.visitor-visa"
+    ],
+    "defaultIncluded": false
+  },
+  {
+    "id": "nz.visitor.genuine.employmentEvidence",
+    "category": "归国约束力",
+    "title": "在职证明及准假信",
+    "requirementType": "answer_dependent",
+    "evidenceLayer": "product_guidance",
+    "why": "在职申请人可提供雇主出具的在职证明与准假信，用于佐证国内的稳定工作纽带及按期回国复职的计划。",
+    "steps": [
+      "准备由现雇主出具的在职及准假信（注明职位、工作年限、获批假期起止日期及保留职位承诺）。",
+      "信函建议使用公司抬头纸，附负责人签名及有效联系方式。"
+    ],
+    "sourceIds": [
+      "inz.genuine-intentions"
+    ],
+    "defaultIncluded": false
+  },
+  {
+    "id": "nz.visitor.genuine.businessEvidence",
+    "category": "归国约束力",
+    "title": "企业经营与自雇证明材料",
+    "requirementType": "answer_dependent",
+    "evidenceLayer": "product_guidance",
+    "why": "企业主或自雇人士可提供经营资质或业务材料，用于佐证原籍国的商业纽带与继续经营需求。",
+    "steps": [
+      "准备营业执照副本、企业注册证明或近期经营纳税材料。"
+    ],
+    "sourceIds": [
+      "inz.genuine-intentions"
+    ],
+    "defaultIncluded": false
+  },
+  {
+    "id": "nz.visitor.genuine.studentEvidence",
+    "category": "归国约束力",
+    "title": "在读证明及准假证明",
+    "requirementType": "answer_dependent",
+    "evidenceLayer": "product_guidance",
+    "why": "在读学生可提供学校出具的在读证明或放假准假证明，用于佐证国内学业纽带及按期返校继续学业的计划。",
+    "steps": [
+      "准备由就读学校出具的在读证明或学生证（注明所在年级、专业及假期安排）。"
+    ],
+    "sourceIds": [
+      "inz.genuine-intentions"
+    ],
+    "defaultIncluded": false
+  },
+  {
+    "id": "nz.visitor.genuine.visaDeclineNotice",
+    "category": "真实访客意图",
+    "title": "既往拒签历史如实申报与说明准备",
+    "requirementType": "product_organisation_guidance",
+    "evidenceLayer": "product_guidance",
+    "why": "INZ 在审理真实访客意图时会核对申请人过往的国际签证记录。曾被拒签并不等同于品行不端，但在申请中应如实披露并客观说明当时情况及当前申请背景的变化。",
+    "steps": [
+      "在申请表中如实申报所有国家以往的拒签历史（包括申请时间、签证类别及拒签原因）。",
+      "可备齐当时的拒签信函或客观情况说明，以备 INZ 审理需要时参考。"
+    ],
+    "sourceIds": [
+      "inz.genuine-intentions"
+    ],
+    "defaultIncluded": false
+  }
+]

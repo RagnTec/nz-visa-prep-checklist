@@ -1,6 +1,6 @@
 {
   "title": "生成你的新西兰学签准备清单",
-  "showProgressBar": "top",
+  "showProgressBar": "off",
   "progressBarType": "pages",
   "showQuestionNumbers": "off",
   "completeText": "生成清单",

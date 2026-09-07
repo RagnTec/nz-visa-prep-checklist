@@ -1,0 +1,309 @@
+[
+  {
+    "id": "ca.admission.loa",
+    "category": "录取与院校",
+    "title": "录取通知书（Letter of Acceptance / LOA）",
+    "requirementType": "usually_required",
+    "evidenceLayer": "ircc_visa",
+    "why": "用于证明你已被加拿大指定学习机构（DLI）录取。根据 IRCC Guide 5269 指南，录取通知书（LOA）须由指定学习机构使用官方信头纸签发，并明确注明准确学费金额、预计开学日期、预计结业日期以及最晚注册报到日期。提交申请后，IRCC 会要求 DLI 在线核验该录取文件，该核验由移民局与院校直接对接。",
+    "steps": [
+      "准备由指定学习机构（DLI）官方信头纸签发的正式录取通知书（LOA）",
+      "确认录取信注明准确学费金额、预计开学日期、预计结业日期以及最晚注册报到日期"
+    ],
+    "sourceIds": [
+      "ca.study-permit.documents",
+      "ca.study-permit.guide-5269",
+      "ca.study-permit.loa-verification"
+    ]
+  },
+  {
+    "id": "ca.admission.dliStatusReview",
+    "category": "录取与院校",
+    "title": "核对院校指定学习机构（DLI）资格与编号",
+    "requirementType": "product_organisation_guidance",
+    "evidenceLayer": "product_guidance",
+    "why": "申请学习许可要求就读于官方认可的指定学习机构（DLI）。若尚未确认 DLI 资格，请在递交前核查。",
+    "steps": [
+      "访问加拿大移民局官方 DLI 名单查询页面",
+      "通过省份与学校名称核对该机构的有效 DLI 编号",
+      "确认该校区及就读项目具备接收国际学生的有效资质"
+    ],
+    "sourceIds": [
+      "ca.study-permit.dli-list"
+    ]
+  },
+  {
+    "id": "ca.admission.palTal",
+    "category": "省/地区证明信",
+    "title": "省/地区证明信（Provincial / Territorial Attestation Letter, PAL/TAL）",
+    "requirementType": "usually_required",
+    "evidenceLayer": "ircc_visa",
+    "why": "根据 IRCC 规定，除官方明确列出的豁免情形外，境外大专及以上学习许可申请人须在递交时一并附上由就读省份或地区政府签发的证明信（PAL/TAL）。",
+    "steps": [
+      "联系录取院校确认省/地区证明信（PAL/TAL）的申请与发放流程",
+      "获取由对应省/地区政府签发的正式 PAL/TAL 电子文件",
+      "在递交学习许可申请时作为必需文件一并上传"
+    ],
+    "sourceIds": [
+      "ca.study-permit.pal-tal"
+    ]
+  },
+  {
+    "id": "ca.admission.palTalExemptionEvidence",
+    "category": "省/地区证明信",
+    "title": "公立院校研究生学位类 PAL/TAL 豁免证明材料",
+    "requirementType": "answer_dependent",
+    "evidenceLayer": "ircc_visa",
+    "why": "当前填报的事实符合 IRCC 列出的公立 DLI 研究生学位类豁免情形（适用于 2026 年 1 月 1 日及之后提交的申请）。若主张该豁免，须在申请中提供证明院校公立性质及项目学位授予属性的官方材料，最终是否符合该豁免情形由 IRCC 在审理时确认。",
+    "steps": [
+      "核对录取材料中注明攻读的是 Master's 或 Doctoral 学位课程",
+      "准备能够证明拟就读院校为公立指定学习机构（Public DLI）的官方材料",
+      "随申请提交上述支持文件作为主张该豁免情形的依据"
+    ],
+    "sourceIds": [
+      "ca.study-permit.pal-tal",
+      "ca.study-permit.graduate-study"
+    ]
+  },
+  {
+    "id": "ca.admission.palTalOtherExemptionReview",
+    "category": "省/地区证明信",
+    "title": "其他 PAL/TAL 豁免核验与证明材料",
+    "requirementType": "product_organisation_guidance",
+    "evidenceLayer": "product_guidance",
+    "why": "若你认为自身可能符合 IRCC 列出的其他 PAL/TAL 豁免情形（如特定公派资助、双边学术交换等），请在递交前查阅官方豁免清单全文并准备对应证明文件。最终是否符合该豁免情形由 IRCC 在审理时确认。",
+    "steps": [
+      "查阅 IRCC 官方豁免清单，确认所主张的具体豁免定义与要求",
+      "准备证明自身符合该特定豁免情形的官方资助文件或协议证明",
+      "随申请提交证明文件并留意审理期间的进一步补件要求"
+    ],
+    "sourceIds": [
+      "ca.study-permit.pal-tal"
+    ]
+  },
+  {
+    "id": "ca.admission.palTalRequirementReview",
+    "category": "省/地区证明信",
+    "title": "核实就读项目是否需要提供 PAL/TAL",
+    "requirementType": "product_organisation_guidance",
+    "evidenceLayer": "product_guidance",
+    "why": "当前填写的院校性质、项目层级、学位授予属性、DLI 资格或计划递交时间信息尚不明确。请在递交前对照官方 PAL/TAL 规定或向院校确认所录项目是否需要提供省/地区证明信。",
+    "steps": [
+      "查阅 IRCC 官方 PAL/TAL 指南了解当前适用范围与豁免清单",
+      "联系院校招生与国际学生办公室确认所录项目是否受配额限制或享有豁免",
+      "如确认不符合豁免，及时向院校申请 PAL/TAL 文件"
+    ],
+    "sourceIds": [
+      "ca.study-permit.pal-tal"
+    ]
+  },
+  {
+    "id": "ca.application.scopeReview",
+    "category": "申请适用范围",
+    "title": "核实学习许可申请适用场景与特别范围",
+    "requirementType": "product_organisation_guidance",
+    "evidenceLayer": "product_guidance",
+    "why": "本清单当前切片针对加拿大境外递交、非魁北克省（Quebec）大专及以上且就读于 DLI 院校的常规学习许可。境内递交、魁省就读（需申请 CAQ）或非 DLI 院校需遵从对应专门政策或先行确认资质。",
+    "steps": [
+      "若计划前往魁北克省学习，请先向魁省移民厅申请 CAQ 接收证书",
+      "若在加拿大境内递交，请核实自身是否符合境内直接递交的官方适用条件",
+      "若院校尚未确认为 DLI，请先行核对官方名单以确认其接收国际学生资质"
+    ],
+    "sourceIds": [
+      "ca.study-permit.documents"
+    ]
+  },
+  {
+    "id": "ca.funding.requiredPeriodProof",
+    "category": "资金与学费支持",
+    "title": "学习期间资金能力证明（学费、生活费与交通费）",
+    "requirementType": "usually_required",
+    "evidenceLayer": "ircc_visa",
+    "why": "加拿大移民局（IRCC）要求申请人准备资金支持证明，用以说明在无需在加拿大工作的情况下负担就读期间学费、生活费（含随行家属）及往返交通费用。课程少于 1 年须覆盖全部就读时长，1 年或以上须至少覆盖第一年开支。",
+    "steps": [
+      "根据录取通知书（LOA）核对学费金额并准备相应资金支付证明",
+      "准备满足 IRCC 官方最低生活费基准的存款或资产支持证明",
+      "准备覆盖本人及随行家庭成员往返加拿大的交通费用证明"
+    ],
+    "sourceIds": [
+      "ca.study-permit.financial-support",
+      "ca.study-permit.guide-5269"
+    ]
+  },
+  {
+    "id": "ca.funding.livingExpenseReference",
+    "category": "资金与学费支持",
+    "title": "年度最低生活费参考基准（Living Expenses Reference）",
+    "requirementType": "answer_dependent",
+    "evidenceLayer": "ircc_visa",
+    "why": "IRCC 设定了魁北克省以外地区学习许可申请人的官方年度生活费参考基准。该金额仅代表生活费最低标准，不包含第一年学费及往返交通费。",
+    "steps": [
+      "对照填报的同行家庭总人数确认适用的官方生活费最低参考金额",
+      "确保用于证明生活费的资金来源清晰合法、可自由支取"
+    ],
+    "sourceIds": [
+      "ca.study-permit.financial-support"
+    ]
+  },
+  {
+    "id": "ca.funding.longerProgramPlan",
+    "category": "资金与学费支持",
+    "title": "多年期课程后续学年资金规划说明",
+    "requirementType": "answer_dependent",
+    "evidenceLayer": "ircc_visa",
+    "why": "对于学制超过 1 年的课程，IRCC 虽然主要审核第一年的实际资金证明，但要求申请人说明并证明其有能力持续负担后续学年的学费与生活开支。",
+    "steps": [
+      "准备关于后续学年学费与生活费持续资金来源的合理解释与规划说明",
+      "提供体现长期资金稳定性或资助人持续收入能力的支持文件（如稳定工作收入证明、长期资产积累等）"
+    ],
+    "sourceIds": [
+      "ca.study-permit.financial-support",
+      "ca.study-permit.guide-5269"
+    ]
+  },
+  {
+    "id": "ca.funding.evidenceOptionsReview",
+    "category": "资金与学费支持",
+    "title": "资金证明常见形式与材料准备参考",
+    "requirementType": "product_organisation_guidance",
+    "evidenceLayer": "product_guidance",
+    "why": "IRCC 官方列举了多种可用于证明资金支持的常见材料形式。申请人无需提供清单中的所有文件，但应根据自身资金构成选择最合适的组合。",
+    "steps": [
+      "常见证明形式包括：过去 4 个月的银行对账单/流水、已支付第一年学费或住宿费的官方收据、加拿大本地账户存款证明、参与计划的加拿大金融机构开具的担保投资证明（GIC）、正规银行发放的留学贷款证明、银行汇票、出资人资助声明信及其资金能力证明、奖学金/官方资助证明等",
+      "根据自身实际情况准备 1 种或多种最能清晰证明资金能力的材料组合（GIC 仅为可选证明形式之一，非强制要求）"
+    ],
+    "sourceIds": [
+      "ca.study-permit.financial-support",
+      "ca.study-permit.guide-5269"
+    ]
+  },
+  {
+    "id": "ca.funding.annualUpdateReview",
+    "category": "资金与学费支持",
+    "title": "核对计划递交日期的最新年度生活费标准",
+    "requirementType": "product_organisation_guidance",
+    "evidenceLayer": "product_guidance",
+    "why": "IRCC 惯例于每年 9 月 1 日根据统计局低收入标准对生活费基准进行年度调整。你计划递交申请的日期在 2026 年 9 月 1 日或之后，届时官方可能发布新的生活费数额。",
+    "steps": [
+      "在 2026 年 9 月 1 日之后正式递交申请前，访问 IRCC 官方资金指南页面核对是否有新标准发布",
+      "若官方发布了新年度生活费标准，请按递交时生效的最新金额准备资金"
+    ],
+    "sourceIds": [
+      "ca.study-permit.financial-support",
+      "ca.study-permit.annual-update"
+    ]
+  },
+  {
+    "id": "ca.funding.requirementReview",
+    "category": "资金与学费支持",
+    "title": "核实资金准备基准与同行人数要求",
+    "requirementType": "product_organisation_guidance",
+    "evidenceLayer": "product_guidance",
+    "why": "当前填写的计划递交日期、同行总人数或学制时长信息尚不明确，系统无法精确匹配官方生活费基准。请在递交前核实相关信息并查阅官方指南。",
+    "steps": [
+      "确认计划随行前往加拿大的家庭成员人数以确定适用的生活费阶梯标准",
+      "查阅 IRCC 官方资金要求页面核对完整资金准备指南"
+    ],
+    "sourceIds": [
+      "ca.study-permit.financial-support"
+    ]
+  },
+  {
+    "id": "ca.biometrics.collectionPreparation",
+    "category": "生物识别",
+    "title": "生物识别（录指纹与拍照）准备与费用缴纳",
+    "requirementType": "answer_dependent",
+    "evidenceLayer": "ircc_visa",
+    "why": "根据 IRCC 规定，初次申请加拿大学习许可的申请人在通常情况下须提供生物识别信息（指纹与照片）。申请人须在递交申请时缴纳单人生物识别费用（当前为 CAD 85），并在递交后等待 IRCC 签发针对本次申请的生物识别指引信（BIL）。",
+    "steps": [
+      "在递交学习许可申请时一并缴纳单人生物识别费用（当前标准为 CAD 85）",
+      "递交申请后留意 IRCC 账户通知，等待签发针对本次申请的正式生物识别指引信（BIL）",
+      "切勿使用过往申请签发的旧 BIL 信函，须凭本次申请的专属新信前往官方指定采集点"
+    ],
+    "sourceIds": [
+      "ca.study-permit.biometrics-who-needs",
+      "ca.study-permit.biometrics-how-to-give",
+      "ca.study-permit.biometrics-where-to-give"
+    ]
+  },
+  {
+    "id": "ca.biometrics.validityCheck",
+    "category": "生物识别",
+    "title": "核查既往生物识别信息有效期限状态",
+    "requirementType": "answer_dependent",
+    "evidenceLayer": "ircc_visa",
+    "why": "IRCC 临时居留类别生物识别通常具备 10 年有效期。因尚未通过官方渠道核实既往记录状态，请在递交前使用 IRCC 官方 Check status 工具确认此前生物识别是否仍有效。",
+    "steps": [
+      "访问 IRCC 官方生物识别状态查询工具（Check status tool）",
+      "输入个人身份信息核对既往生物识别的官方有效状态及到期时间",
+      "若官方显示已过期或无效，须在本次申请中重新缴纳费用并准备采集"
+    ],
+    "sourceIds": [
+      "ca.study-permit.biometrics-temporary-residence"
+    ]
+  },
+  {
+    "id": "ca.biometrics.validReuseInfo",
+    "category": "生物识别",
+    "title": "既往有效生物识别信息自动关联与复用说明",
+    "requirementType": "answer_dependent",
+    "evidenceLayer": "ircc_visa",
+    "why": "根据当前 IRCC 临时居留类别指引，若此前采集的生物识别信息经官方状态确认为仍在 10 年有效期内，系统通常会自动关联复用，本次申请一般无需重复采集或重新缴费。",
+    "steps": [
+      "确认此前生物识别信息在递交时经官方查询仍在有效期限内",
+      "递交申请后留意移民局审理通知；若 IRCC 系统成功复用，审理期间通常不会签发新的 BIL"
+    ],
+    "sourceIds": [
+      "ca.study-permit.biometrics-temporary-residence"
+    ]
+  },
+  {
+    "id": "ca.biometrics.ageRuleInfo",
+    "category": "生物识别",
+    "title": "核对 80 岁及以上申请人的生物识别年龄规则",
+    "requirementType": "answer_dependent",
+    "evidenceLayer": "ircc_visa",
+    "why": "根据当前 IRCC 一般年龄规则，在申请递交当天年满 80 岁及以上的申请人通常无需提供生物识别信息（指纹与拍照）。",
+    "steps": [
+      "核对在正式递交申请当天护照出生日期是否符合 80 岁及以上标准",
+      "若递交后 IRCC 因个案特殊情况签发了 BIL 指引信，须以移民局具体个案指令为准"
+    ],
+    "sourceIds": [
+      "ca.study-permit.biometrics-who-needs"
+    ]
+  },
+  {
+    "id": "ca.biometrics.bilAction",
+    "category": "生物识别",
+    "title": "凭本次申请 BIL 预约并完成生物识别采集",
+    "requirementType": "answer_dependent",
+    "evidenceLayer": "ircc_visa",
+    "why": "你已收到 IRCC 针对本次申请签发的生物识别指引信（BIL）。该信函属于移民局在个案审理中发出的正式官方指令，须在规定时限内前往官方授权采集点完成录指纹与拍照。",
+    "steps": [
+      "确认持有的 BIL 是 IRCC 针对本次学习许可申请签发的专属有效信函",
+      "收到本次申请的 BIL 后，应尽快预约官方生物识别采集点，并按照 BIL 要求在规定的 30 天期限内完成生物识别信息采集",
+      "前往官方生物识别采集点时，携带本次申请对应的 BIL（按信函及采集点要求准备打印件）以及有效护照",
+      "如无法在 BIL 规定的期限内完成采集，应按照 IRCC 当前官方说明，通过其 web form 说明情况并按官方指引处理"
+    ],
+    "sourceIds": [
+      "ca.study-permit.biometrics-how-to-give",
+      "ca.study-permit.biometrics-where-to-give"
+    ]
+  },
+  {
+    "id": "ca.biometrics.requirementReview",
+    "category": "生物识别",
+    "title": "核实生物识别适用要求与官方个案指令",
+    "requirementType": "product_organisation_guidance",
+    "evidenceLayer": "product_guidance",
+    "why": "当前填写的年龄段、既往记录有效性或 BIL 状态尚不明确，或填报的一般规则与收到的个案 BIL 指令存在冲突。请以 IRCC 官方指南及个案通知为准进行核实。",
+    "steps": [
+      "查阅 IRCC 官方生物识别指南，确认自身年龄与历史记录对应的适用要求",
+      "若已收到移民局正式签发的个案 BIL 信函，个案官方指令优先于一般指引，须按信函要求执行"
+    ],
+    "sourceIds": [
+      "ca.study-permit.biometrics-who-needs",
+      "ca.study-permit.biometrics-temporary-residence"
+    ]
+  }
+]

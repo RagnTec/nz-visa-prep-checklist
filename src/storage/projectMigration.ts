@@ -3,6 +3,8 @@ import {
   type ChecklistStatus,
   type SavedProject
 } from '../domain/types';
+import { validateReusedFactStates } from '../domain/applicationFactMaterialization';
+import { DEFAULT_ROUTE_ID, isRegisteredRouteId } from '../content/registry';
 
 const LEGACY_STUDY_CONNECTION_ID = 'employment.courseConnection';
 const STUDY_CONNECTION_ID = 'background.studyConnection';
@@ -10,6 +12,7 @@ const V2_SCHEMA_VERSION = 2;
 const V3_SCHEMA_VERSION = 3;
 const V4_SCHEMA_VERSION = 4;
 const V5_SCHEMA_VERSION = 5;
+const V6_SCHEMA_VERSION = 6;
 const validHealthEvidenceStatuses = new Set([
   'not_provided',
   'previously_submitted',
@@ -63,25 +66,58 @@ export function migrateSavedProject(project: SavedProject): SavedProject {
   const v5Project = v4Project.schemaVersion === V4_SCHEMA_VERSION
     ? migrateV4ToV5(v4Project)
     : v4Project;
-  return v5Project.schemaVersion === V5_SCHEMA_VERSION
+  const v6Project = v5Project.schemaVersion === V5_SCHEMA_VERSION
     ? migrateV5ToV6(v5Project)
     : v5Project;
+  return v6Project.schemaVersion === V6_SCHEMA_VERSION
+    ? migrateV6ToV7(v6Project)
+    : v6Project;
 }
 
 export type SavedProjectReadResult =
-  | { kind: 'current'; project: SavedProject }
+  | { kind: 'current'; project: SavedProject & { routeId: string } }
   | { kind: 'future'; project: SavedProject; schemaVersion: number }
-  | { kind: 'invalid'; project: SavedProject; schemaVersion: unknown };
+  | { kind: 'unknown_route'; project: SavedProject; routeId: string }
+  | { kind: 'invalid'; project: SavedProject; schemaVersion: unknown; routeId?: unknown };
 
 export function prepareSavedProjectForRead(project: SavedProject): SavedProjectReadResult {
   const version = project.schemaVersion === undefined ? 1 : project.schemaVersion;
   if (!Number.isInteger(version) || typeof version !== 'number' || version < 1) {
-    return { kind: 'invalid', project, schemaVersion: project.schemaVersion };
+    return { kind: 'invalid', project, schemaVersion: project.schemaVersion, routeId: project.routeId };
   }
   if (version > CURRENT_SAVED_PROJECT_SCHEMA_VERSION) {
     return { kind: 'future', project, schemaVersion: version };
   }
-  return { kind: 'current', project: migrateSavedProject(project) };
+
+  const rawRouteId = project.routeId;
+  let normalizedRouteId: string;
+
+  if (rawRouteId === undefined) {
+    normalizedRouteId = DEFAULT_ROUTE_ID;
+  } else if (typeof rawRouteId === 'string' && rawRouteId.trim() !== '') {
+    if (!isRegisteredRouteId(rawRouteId)) {
+      return { kind: 'unknown_route', project, routeId: rawRouteId };
+    }
+    normalizedRouteId = rawRouteId;
+  } else {
+    return { kind: 'invalid', project, schemaVersion: project.schemaVersion, routeId: rawRouteId };
+  }
+
+  if (project.reusedFactStates !== undefined) {
+    const validation = validateReusedFactStates(project.reusedFactStates);
+    if (!validation.valid) {
+      return { kind: 'invalid', project, schemaVersion: project.schemaVersion, routeId: project.routeId };
+    }
+  }
+
+  const migrated = migrateSavedProject(project);
+  return {
+    kind: 'current',
+    project: {
+      ...migrated,
+      routeId: normalizedRouteId
+    }
+  };
 }
 
 function migrateV1ToV2(project: SavedProject): SavedProject {
@@ -186,8 +222,19 @@ function migrateV4ToV5(project: SavedProject): SavedProject {
 function migrateV5ToV6(project: SavedProject): SavedProject {
   return {
     ...project,
-    schemaVersion: CURRENT_SAVED_PROJECT_SCHEMA_VERSION,
+    schemaVersion: V6_SCHEMA_VERSION,
     answers: { ...project.answers },
     statuses: { ...project.statuses }
   };
 }
+
+function migrateV6ToV7(project: SavedProject): SavedProject {
+  return {
+    ...project,
+    schemaVersion: CURRENT_SAVED_PROJECT_SCHEMA_VERSION,
+    answers: { ...project.answers },
+    statuses: { ...project.statuses },
+    ...(project.reusedFactStates ? { reusedFactStates: project.reusedFactStates } : {})
+  };
+}
+

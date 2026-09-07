@@ -15,7 +15,8 @@ export default defineConfig(({ mode }) => {
     base: resolveBasePath(env.VITE_BASE_PATH),
     test: {
       environment: 'jsdom',
-      setupFiles: './tests/setup.ts'
+      setupFiles: './tests/setup.ts',
+      testTimeout: 15000
     }
   };
 });

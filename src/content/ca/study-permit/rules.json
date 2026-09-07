@@ -1,0 +1,211 @@
+[
+  {
+    "id": "ca.rule.scopeReview",
+    "when": {
+      "field": "_effects.scopeReviewNeeded",
+      "operator": "equals",
+      "value": true
+    },
+    "addChecklistItems": [
+      "ca.application.scopeReview"
+    ]
+  },
+  {
+    "id": "ca.rule.loa",
+    "when": {
+      "field": "_effects.isLoaRequired",
+      "operator": "equals",
+      "value": true
+    },
+    "addChecklistItems": [
+      "ca.admission.loa"
+    ]
+  },
+  {
+    "id": "ca.rule.dliStatusReview",
+    "when": {
+      "field": "_effects.dliReviewNeeded",
+      "operator": "equals",
+      "value": true
+    },
+    "addChecklistItems": [
+      "ca.admission.dliStatusReview"
+    ]
+  },
+  {
+    "id": "ca.rule.palTal.publicGraduateExemptionEvidence",
+    "when": {
+      "field": "_effects.hasPublicGraduateExceptionContext",
+      "operator": "equals",
+      "value": true
+    },
+    "addChecklistItems": [
+      "ca.admission.palTalExemptionEvidence"
+    ]
+  },
+  {
+    "id": "ca.rule.palTal.otherExemptionReview",
+    "when": {
+      "field": "_effects.hasPossibleOtherPalException",
+      "operator": "equals",
+      "value": true
+    },
+    "addChecklistItems": [
+      "ca.admission.palTalOtherExemptionReview"
+    ]
+  },
+  {
+    "id": "ca.rule.palTal.reviewNeeded",
+    "when": {
+      "field": "_effects.palTalReviewNeeded",
+      "operator": "equals",
+      "value": true
+    },
+    "addChecklistItems": [
+      "ca.admission.palTalRequirementReview"
+    ]
+  },
+  {
+    "id": "ca.rule.palTal.standard",
+    "when": {
+      "field": "_effects.isStandardPalTalRequired",
+      "operator": "equals",
+      "value": true
+    },
+    "addChecklistItems": [
+      "ca.admission.palTal"
+    ]
+  },
+  {
+    "id": "ca.rule.funding.requiredPeriodProof",
+    "when": {
+      "field": "_effects.isFundingRequiredPeriodProofNeeded",
+      "operator": "equals",
+      "value": true
+    },
+    "addChecklistItems": [
+      "ca.funding.requiredPeriodProof"
+    ]
+  },
+  {
+    "id": "ca.rule.funding.livingExpenseReference",
+    "when": {
+      "field": "_effects.isFundingLivingExpenseReferenceNeeded",
+      "operator": "equals",
+      "value": true
+    },
+    "addChecklistItems": [
+      "ca.funding.livingExpenseReference"
+    ]
+  },
+  {
+    "id": "ca.rule.funding.longerProgramPlan",
+    "when": {
+      "field": "_effects.isFundingLongerProgramPlanNeeded",
+      "operator": "equals",
+      "value": true
+    },
+    "addChecklistItems": [
+      "ca.funding.longerProgramPlan"
+    ]
+  },
+  {
+    "id": "ca.rule.funding.evidenceOptionsReview",
+    "when": {
+      "field": "_effects.isFundingEvidenceOptionsReviewNeeded",
+      "operator": "equals",
+      "value": true
+    },
+    "addChecklistItems": [
+      "ca.funding.evidenceOptionsReview"
+    ]
+  },
+  {
+    "id": "ca.rule.funding.annualUpdateReview",
+    "when": {
+      "field": "_effects.isFundingAnnualUpdateReviewNeeded",
+      "operator": "equals",
+      "value": true
+    },
+    "addChecklistItems": [
+      "ca.funding.annualUpdateReview"
+    ]
+  },
+  {
+    "id": "ca.rule.funding.requirementReview",
+    "when": {
+      "field": "_effects.isFundingRequirementReviewNeeded",
+      "operator": "equals",
+      "value": true
+    },
+    "addChecklistItems": [
+      "ca.funding.requirementReview"
+    ]
+  },
+  {
+    "id": "ca.rule.biometrics.collectionPreparation",
+    "when": {
+      "field": "_effects.isBiometricsCollectionPreparationNeeded",
+      "operator": "equals",
+      "value": true
+    },
+    "addChecklistItems": [
+      "ca.biometrics.collectionPreparation"
+    ]
+  },
+  {
+    "id": "ca.rule.biometrics.validityCheck",
+    "when": {
+      "field": "_effects.isBiometricsValidityCheckNeeded",
+      "operator": "equals",
+      "value": true
+    },
+    "addChecklistItems": [
+      "ca.biometrics.validityCheck"
+    ]
+  },
+  {
+    "id": "ca.rule.biometrics.validReuseInfo",
+    "when": {
+      "field": "_effects.isBiometricsValidReuseInfoNeeded",
+      "operator": "equals",
+      "value": true
+    },
+    "addChecklistItems": [
+      "ca.biometrics.validReuseInfo"
+    ]
+  },
+  {
+    "id": "ca.rule.biometrics.ageRuleInfo",
+    "when": {
+      "field": "_effects.isBiometricsAgeRuleInfoNeeded",
+      "operator": "equals",
+      "value": true
+    },
+    "addChecklistItems": [
+      "ca.biometrics.ageRuleInfo"
+    ]
+  },
+  {
+    "id": "ca.rule.biometrics.bilAction",
+    "when": {
+      "field": "_effects.isBiometricsBilActionNeeded",
+      "operator": "equals",
+      "value": true
+    },
+    "addChecklistItems": [
+      "ca.biometrics.bilAction"
+    ]
+  },
+  {
+    "id": "ca.rule.biometrics.requirementReview",
+    "when": {
+      "field": "_effects.isBiometricsRequirementReviewNeeded",
+      "operator": "equals",
+      "value": true
+    },
+    "addChecklistItems": [
+      "ca.biometrics.requirementReview"
+    ]
+  }
+]

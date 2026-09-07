@@ -51,10 +51,10 @@ describe('ChecklistView guidance rendering', () => {
       '参考官方信息：Synthetic publisher · Synthetic official source（核验于 2026-07-29）'
     )).toBeInTheDocument();
     expect(screen.getByText(
-      '本工具不评估签证资格或申请风险，不预测申请结果，不判断哪些信息应披露或省略，也不会替你生成说明信。请以当前 INZ 官方指引和在线申请要求为准；如需结合个人情况获得移民建议，请咨询新西兰持牌移民顾问或依法可提供相关建议的人士。'
+      '本工具不评估签证资格或申请风险，不预测申请结果，不判断哪些信息应披露或省略，也不会替你生成说明信。请以当前官方指引和在线申请要求为准；如需结合个人情况获得移民建议，请咨询持牌移民顾问或依法可提供相关建议的人士。'
     )).toBeInTheDocument();
     expect(screen.getByLabelText('测试预览说明')).toHaveTextContent(
-      '测试预览版：本工具仅协助整理材料，不是 Immigration New Zealand（INZ）官方产品'
+      '测试预览版：本工具仅协助整理签证或许可申请材料，不是政府官方申请产品'
     );
   });
 
@@ -158,7 +158,7 @@ describe('ChecklistView guidance rendering', () => {
     expect(screen.getByText('需要复查', { selector: '.status-chip' })).toBeInTheDocument();
     expect(screen.getByText('需要复查', { selector: '.status-chip' })).toHaveClass('status-needs-review');
     expect(screen.getByRole('button', { name: '打印或保存PDF' })).toHaveClass('secondary');
-    expect(screen.getByRole('button', { name: '打印或保存PDF' }).parentElement)
+    expect(screen.getByRole('button', { name: '打印或保存PDF' }).closest('.checklist-actions'))
       .toHaveClass('no-print');
     expect(screen.getByText('当前状态').closest('label')).toHaveClass('no-print');
   });

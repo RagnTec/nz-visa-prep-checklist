@@ -27,6 +27,7 @@ export const requirementLabels: Record<RequirementType, string> = {
 
 export const evidenceLayerLabels: Record<EvidenceLayer, string> = {
   inz_visa: 'INZ 官方要求或指引',
+  ircc_visa: 'IRCC 官方要求或指引',
   product_guidance: '整理与核对建议'
 };
 
@@ -92,6 +93,12 @@ interface Props {
   onExport: () => void;
   isNewGeneration?: boolean;
   projectId?: string;
+  eyebrow?: string;
+  authorityName?: string;
+  disclaimerFooter?: string;
+  applicantDisplayName?: string;
+  onViewProfile?: () => void;
+  onViewHub?: () => void;
 }
 
 export function ChecklistView({
@@ -102,7 +109,13 @@ export function ChecklistView({
   onRestart,
   onExport,
   isNewGeneration = false,
-  projectId = 'default'
+  projectId = 'default',
+  eyebrow = '签证材料准备',
+  authorityName = '相关官方机构',
+  disclaimerFooter = '本工具不评估签证资格或申请风险，不预测申请结果，不判断哪些信息应披露或省略，也不会替你生成说明信。请以当前官方指引和在线申请要求为准；如需结合个人情况获得移民建议，请咨询持牌移民顾问或依法可提供相关建议的人士。',
+  applicantDisplayName,
+  onViewProfile,
+  onViewHub
 }: Props) {
   const rootRef = useRef<HTMLElement>(null);
   const printStateRef = useRef<Array<{ element: HTMLDetailsElement; open: boolean }> | null>(null);
@@ -240,24 +253,38 @@ export function ChecklistView({
     <main ref={rootRef} className="app-shell">
       <TrialDisclosure />
       <section className="hero compact">
-        <p className="eyebrow">Fee Paying Student Visa</p>
+        <p className="eyebrow">{eyebrow}</p>
         <h1>你的材料准备清单</h1>
         <p>
-          已完成 {complete}/{items.length} 项。这里记录准备进度，不代表材料已被 INZ 认定为充分。
+          已完成 {complete}/{items.length} 项。这里记录准备进度，不代表材料已被 {authorityName} 认定为充分。
         </p>
         <div className="progress">
           <span style={{ width: `${items.length ? (complete / items.length) * 100 : 0}%` }} />
         </div>
-        <div className="actions no-print">
-          <button type="button" onClick={onExport}>
-            导出项目JSON
-          </button>
-          <button type="button" className="secondary" onClick={() => window.print()}>
-            打印或保存PDF
-          </button>
-          <button type="button" className="secondary" onClick={onRestart}>
-            重新回答
-          </button>
+        <div className="checklist-actions no-print">
+          <div className="checklist-routine-actions">
+            <button type="button" className="checklist-action-btn secondary" onClick={onExport}>
+              导出项目JSON
+            </button>
+            <button type="button" className="checklist-action-btn secondary" onClick={() => window.print()}>
+              打印或保存PDF
+            </button>
+            {onViewHub ? (
+              <button type="button" className="checklist-action-btn secondary" onClick={onViewHub}>
+                申请中心
+              </button>
+            ) : null}
+            {onViewProfile && applicantDisplayName ? (
+              <button type="button" className="checklist-action-btn secondary" onClick={onViewProfile}>
+                申请人档案 ({applicantDisplayName})
+              </button>
+            ) : null}
+          </div>
+          <div className="checklist-danger-actions">
+            <button type="button" className="destructive-action-btn secondary" onClick={onRestart}>
+              重新回答
+            </button>
+          </div>
         </div>
       </section>
 
@@ -340,7 +367,7 @@ export function ChecklistView({
                   </summary>
                   <div className="detail-body">
                     <p className="item-nature">
-                      <strong>{item.evidenceLayer === 'inz_visa' ? '要求性质：' : '信息性质：'}</strong>
+                      <strong>{item.evidenceLayer === 'product_guidance' ? '信息性质：' : '要求性质：'}</strong>
                       {evidenceLayerLabels[item.evidenceLayer]}
                     </p>
                     <p>
@@ -438,7 +465,7 @@ export function ChecklistView({
         ))
       )}
       <footer>
-        本工具不评估签证资格或申请风险，不预测申请结果，不判断哪些信息应披露或省略，也不会替你生成说明信。请以当前 INZ 官方指引和在线申请要求为准；如需结合个人情况获得移民建议，请咨询新西兰持牌移民顾问或依法可提供相关建议的人士。
+        {disclaimerFooter}
       </footer>
     </main>
   );

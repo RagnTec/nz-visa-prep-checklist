@@ -1,0 +1,376 @@
+{
+  "title": "加拿大学习许可（Study Permit）材料准备问卷",
+  "description": "请根据你当前的就读院校录取与申请规划回答以下问题，以生成针对性的材料准备清单与要求提示。",
+  "pages": [
+    {
+      "name": "scope",
+      "title": "申请基本范围",
+      "elements": [
+        {
+          "type": "radiogroup",
+          "name": "scope.applicationLocation",
+          "title": "你计划从何处递交学习许可（Study Permit）申请？",
+          "isRequired": true,
+          "choices": [
+            {
+              "value": "outside_canada",
+              "text": "在加拿大境外递交（常规境外申请）"
+            },
+            {
+              "value": "inside_canada",
+              "text": "在加拿大境内递交（需符合境内特有申请条件）"
+            },
+            {
+              "value": "unclear",
+              "text": "尚不确定 / 待定"
+            }
+          ]
+        },
+        {
+          "type": "radiogroup",
+          "name": "scope.destinationProvince",
+          "title": "你计划前往加拿大的哪一省份或地区就读？",
+          "isRequired": true,
+          "choices": [
+            {
+              "value": "outside_quebec",
+              "text": "魁北克省以外的省份或地区（如安省、BC省、阿省等）"
+            },
+            {
+              "value": "quebec",
+              "text": "魁北克省（Quebec，需先申请 CAQ 魁省接收证书）"
+            },
+            {
+              "value": "unclear",
+              "text": "尚不确定 / 待定"
+            }
+          ]
+        },
+        {
+          "type": "radiogroup",
+          "name": "scope.studyType",
+          "title": "就读课程的学习层级类型是什么？",
+          "isRequired": true,
+          "choices": [
+            {
+              "value": "post_secondary",
+              "text": "高等教育 / 大专及以上（Post-secondary：大学、学院、职业专科等）"
+            },
+            {
+              "value": "other_or_unclear",
+              "text": "中小学（Primary/Secondary）、学前教育或尚不确定"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "submission",
+      "title": "计划申请时间",
+      "elements": [
+        {
+          "type": "radiogroup",
+          "name": "submission.hasPlannedDate",
+          "title": "你是否已有计划的申请递交日期？",
+          "isRequired": true,
+          "choices": [
+            {
+              "value": "yes",
+              "text": "已有明确的计划递交日期"
+            },
+            {
+              "value": "not_yet_scheduled",
+              "text": "尚未确定具体递交时间"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "name": "submission.plannedSubmissionDate",
+          "title": "计划递交申请日期",
+          "inputType": "date",
+          "visibleIf": "{submission.hasPlannedDate} = 'yes'",
+          "isRequired": true
+        }
+      ]
+    },
+    {
+      "name": "admission",
+      "title": "录取与院校信息",
+      "elements": [
+        {
+          "type": "radiogroup",
+          "name": "admission.dliStatus",
+          "title": "拟就读院校是否为加拿大指定学习机构（DLI）？",
+          "isRequired": true,
+          "choices": [
+            {
+              "value": "confirmed_dli",
+              "text": "已核实拟就读院校为加拿大指定学习机构（DLI）"
+            },
+            {
+              "value": "not_verified",
+              "text": "尚未对照官方名单核实院校是否为 DLI"
+            },
+            {
+              "value": "confirmed_not_dli",
+              "text": "已确认该院校非指定学习机构（DLI）"
+            },
+            {
+              "value": "unclear",
+              "text": "尚不清楚院校是否具备 DLI 资格"
+            }
+          ]
+        },
+        {
+          "type": "radiogroup",
+          "name": "admission.institutionType",
+          "title": "拟就读院校的机构性质是什么？",
+          "visibleIf": "{admission.dliStatus} != 'confirmed_not_dli'",
+          "isRequired": true,
+          "choices": [
+            {
+              "value": "public",
+              "text": "公立院校（Public DLI）"
+            },
+            {
+              "value": "private",
+              "text": "私立院校（Private DLI）"
+            },
+            {
+              "value": "unclear",
+              "text": "尚不确定院校公立/私立性质"
+            }
+          ]
+        },
+        {
+          "type": "radiogroup",
+          "name": "admission.programLevel",
+          "title": "拟就读项目属于哪个层级？",
+          "visibleIf": "{admission.dliStatus} != 'confirmed_not_dli'",
+          "isRequired": true,
+          "choices": [
+            {
+              "value": "masters_degree",
+              "text": "硕士研究生（Master's degree program）"
+            },
+            {
+              "value": "doctoral_degree",
+              "text": "博士研究生（Doctoral / PhD program）"
+            },
+            {
+              "value": "undergraduate_degree",
+              "text": "本科学士学位（Bachelor's degree program）"
+            },
+            {
+              "value": "college_diploma_certificate",
+              "text": "学院文凭 / 证书（College diploma / certificate）"
+            },
+            {
+              "value": "other_post_secondary",
+              "text": "其他大专及以上项目（如非学位研究生文凭等）"
+            },
+            {
+              "value": "unclear",
+              "text": "尚不确定项目层级"
+            }
+          ]
+        },
+        {
+          "type": "radiogroup",
+          "name": "admission.degreeGranting",
+          "title": "该硕士或博士项目是否属于学位授予性质（Degree-granting）？",
+          "visibleIf": "{admission.dliStatus} != 'confirmed_not_dli' and ({admission.programLevel} = 'masters_degree' or {admission.programLevel} = 'doctoral_degree')",
+          "isRequired": true,
+          "choices": [
+            {
+              "value": "degree_granting",
+              "text": "属于正式学位授予性质（授予 Master / PhD 学位）"
+            },
+            {
+              "value": "non_degree",
+              "text": "非学位授予性质（如联合证书、非学位进修等）"
+            },
+            {
+              "value": "unclear",
+              "text": "尚不确定是否属于学位授予性质"
+            }
+          ]
+        },
+        {
+          "type": "radiogroup",
+          "name": "admission.otherPalException",
+          "title": "除公立硕博学位豁免外，你是否可能符合 IRCC 列出的其他 PAL/TAL 豁免情形？",
+          "visibleIf": "{admission.dliStatus} != 'confirmed_not_dli'",
+          "isRequired": true,
+          "choices": [
+            {
+              "value": "none_known",
+              "text": "不符合或未主张其他豁免情形（常规提供 PAL/TAL）"
+            },
+            {
+              "value": "possible_other_official_exception",
+              "text": "可能符合 IRCC 列出的其他豁免情形（如特定公派资助、双边交换等）"
+            },
+            {
+              "value": "unclear",
+              "text": "尚不确定是否适用其他豁免情形"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "funding",
+      "title": "资金与学制规划",
+      "elements": [
+        {
+          "type": "radiogroup",
+          "name": "funding.peopleComingToCanadaStatus",
+          "title": "计划随本次学习安排来到加拿大的总人数（包括你本人）是否明确？",
+          "isRequired": true,
+          "choices": [
+            {
+              "value": "known",
+              "text": "已明确同行总人数（包含本人）"
+            },
+            {
+              "value": "unclear",
+              "text": "尚不确定具体人数"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "name": "funding.peopleComingToCanadaCount",
+          "title": "包括你本人，共有多少人计划随本次学习安排来到加拿大？",
+          "description": "此人数仅用于匹配加拿大移民局（IRCC）学习许可法定生活费资金标准表，不决定随行家属的具体签证或许可申请类别。",
+          "inputType": "number",
+          "min": 1,
+          "max": 20,
+          "visibleIf": "{funding.peopleComingToCanadaStatus} = 'known'",
+          "isRequired": true
+        },
+        {
+          "type": "radiogroup",
+          "name": "funding.programDuration",
+          "title": "拟就读课程的计划学制时长是多长？",
+          "isRequired": true,
+          "choices": [
+            {
+              "value": "less_than_one_year",
+              "text": "少于 1 年（如短期证书或半年期课程）"
+            },
+            {
+              "value": "one_year",
+              "text": "刚好 1 年（如 1 年制硕士或文凭）"
+            },
+            {
+              "value": "more_than_one_year",
+              "text": "超过 1 年（如 2-4 年制本科、大专或多年期硕博）"
+            },
+            {
+              "value": "unclear",
+              "text": "尚不确定具体学制时长"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "biometrics",
+      "title": "生物识别准备",
+      "elements": [
+        {
+          "type": "radiogroup",
+          "name": "biometrics.ageAtSubmissionBand",
+          "title": "在计划递交学习许可申请时，你的年龄处于哪个区间？",
+          "description": "IRCC 以申请递交当天的实际年龄判定生物识别要求。一般规则下，80 岁及以上申请人属于年龄豁免范围。",
+          "isRequired": true,
+          "choices": [
+            {
+              "value": "age_18_to_79",
+              "text": "18 岁至 79 岁之间（常规成年申请人年龄段）"
+            },
+            {
+              "value": "age_80_or_over",
+              "text": "80 岁及以上"
+            },
+            {
+              "value": "unclear",
+              "text": "尚不确定或暂不明确"
+            }
+          ]
+        },
+        {
+          "type": "radiogroup",
+          "name": "biometrics.previousBiometricsStatus",
+          "title": "你此前是否曾向加拿大移民局（IRCC）提供过生物识别信息（指纹与照片）？",
+          "visibleIf": "{biometrics.ageAtSubmissionBand} != 'age_80_or_over'",
+          "isRequired": true,
+          "choices": [
+            {
+              "value": "never_provided",
+              "text": "此前从未向 IRCC 提供过生物识别信息"
+            },
+            {
+              "value": "provided_before",
+              "text": "此前曾向 IRCC 提供过生物识别信息（如申请加拿大访客签证、学签或工签时）"
+            },
+            {
+              "value": "unclear",
+              "text": "不确定或记不清此前是否提供过"
+            }
+          ]
+        },
+        {
+          "type": "radiogroup",
+          "name": "biometrics.validityCheckStatus",
+          "title": "你此前提供的生物识别信息当前是否仍在有效期限内？",
+          "description": "IRCC 临时居留类别生物识别通常具备 10 年有效期。请通过 IRCC 官方 Check status 查询工具核对有效状态。",
+          "visibleIf": "{biometrics.ageAtSubmissionBand} != 'age_80_or_over' and {biometrics.previousBiometricsStatus} = 'provided_before'",
+          "isRequired": true,
+          "choices": [
+            {
+              "value": "confirmed_valid_by_ircc",
+              "text": "已通过 IRCC 官方状态工具核实确认当前仍在有效期限内"
+            },
+            {
+              "value": "confirmed_not_valid",
+              "text": "已确认此前生物识别信息已过期或无效"
+            },
+            {
+              "value": "not_checked",
+              "text": "尚未通过 IRCC 官方工具核查有效状态"
+            },
+            {
+              "value": "unclear",
+              "text": "尚不确定或查询结果不明确"
+            }
+          ]
+        },
+        {
+          "type": "radiogroup",
+          "name": "biometrics.bilStatus",
+          "title": "针对本次学习许可申请，你是否已经收到 IRCC 发出的生物识别指引信（BIL）？",
+          "description": "生物识别指引信（Biometric Instruction Letter, BIL）是 IRCC 在收到申请后正式签发的录指纹通知文件。",
+          "isRequired": true,
+          "choices": [
+            {
+              "value": "not_received",
+              "text": "尚未收到本次申请的 BIL（通常适用于递交前准备阶段）"
+            },
+            {
+              "value": "received",
+              "text": "已收到 IRCC 针对本次申请签发的有效 BIL"
+            },
+            {
+              "value": "unclear",
+              "text": "尚不确定是否收到或文件性质不明确"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
