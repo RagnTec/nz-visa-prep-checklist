@@ -1,71 +1,88 @@
-# 新西兰学生签证材料准备清单
+# Visa Prep Checklist
 
-面向已独立决定申请新西兰**自费学生签证（Fee Paying Student Visa）**的成年申请人，提供本地优先、无服务器、确定性的签证材料准备与整理清单。
+A local-first workspace for preparing visa applications.
 
-在线试用地址：[https://ragntec.github.io/nz-visa-prep-checklist/](https://ragntec.github.io/nz-visa-prep-checklist/)
+It turns route-specific questions into a structured preparation workflow, helping applicants organize application context, track multiple applications, and generate personalized document checklists without sending personal application data to a project backend.
 
-> **试用版本说明**
-> 本项目目前处于公开试用（Early Public Trial）阶段。所有规则和提示均基于新西兰移民局（INZ）公开要求整理，仅供个人准备材料时参考。
+Live Demo:
+[https://ragntec.github.io/nz-visa-prep-checklist/](https://ragntec.github.io/nz-visa-prep-checklist/)
 
----
-
-## 核心功能
-
-- **问答式情况梳理**：通过清晰的问答收集课程、学费、资金来源、个人背景及家庭同行等基础事实；
-- **确定性清单生成**：基于纯前端规则引擎，根据答题情况动态生成专属材料准备清单；
-- **三层要求分类**：清晰区分「核心要求」（官方硬性材料）、「按情况要求」（视个人情形而定）及「建议核对」（整理与核对建议）；
-- **家庭路线对比**：提供配偶工签/访客签、子女学签/访客签的横向对比与专属准备清单；
-- **多维度筛选与管理**：支持按材料必要性、准备状态（未开始/准备中/需要复查/已准备/不适用）快速筛选与批量展开/折叠；
-- **跨会话阅读定位**：自动在本地记录清单阅读位置，刷新或重新打开时恢复阅读进度；
-- **本地备份与导出**：支持一键导出项目 JSON 备份，以及适合打印和生成 PDF 的整洁排版；
-- **官方信源可追溯**：每个清单项均附带新西兰移民局官方链接与最近核对日期（`checkedAt`）。
+> **Disclaimer**
+> This is an independent preparation tool, not an official immigration service and not legal or immigration advice.
 
 ---
 
-## 严正声明与使用边界
+## What it does
 
-本工具仅为个人准备签证材料的**事实整理与辅助工具**，**不是**移民顾问机构，亦**不提供**任何法律或移民建议：
+- **Guided route-specific questionnaires**: Collects factual background questions tailored to specific visa routes.
+- **Personalized checklists**: Generates deterministic, circumstance-dependent preparation checklists using pure rule evaluation.
+- **Multiple applicants & multiple applications**: Supports managing multiple applicants and separate applications within a single local workspace.
+- **Application Hub**: Provides an overview of all applicants, their associated visa applications, and active preparation progress.
+- **Per-application survey resume continuity**: Automatically preserves questionnaire progression per application so you can pick up where you left off.
+- **Browser-local storage**: Keeps all user responses and progress strictly inside the browser without requiring an account.
 
-1. **不评估签证资格**：不评估您是否符合签证条件，亦不推荐签证类别；
-2. **不预测申请结果**：不预测签证批准率、拒签风险或审理周期；
-3. **不判定材料充分性**：不判定所准备的材料是否充分或能否确保获签；
-4. **不提供个性化策略**：不提供个案申报、披露策略或解释方案；
-5. **不代写陈述或声明**：不生成个性化个人陈述（SOP）、解释信或声明文件；
-6. **不代理递交申请**：不提供代填表或向移民局在线系统代递交服务；
-7. **不代表新西兰移民局**：本工具与新西兰移民局（INZ）无官方隶属关系。
+## Current application routes
 
-如遇复杂情况或需要个性化法律建议，请务必参考 [新西兰移民局官网](https://www.immigration.govt.nz/) 或咨询持牌移民顾问（LIA）。
+The public workspace currently includes support for:
 
----
+- **New Zealand Fee Paying Student Visa** (international fee-paying tertiary students)
+- **New Zealand Visitor Visa** (tourism, family visits, and short-term study)
+- **Canada Study Permit**
 
-## 隐私与数据安全（本地优先）
+Each route owns its own questionnaire, checklist logic, rules, and official sources. Additional routes can be integrated through the route configuration architecture.
 
-- **数据不出浏览器**：所有问卷回答与材料勾选进度仅保存在您当前浏览器的本地数据库（IndexedDB: `nzVisaPrepChecklist`）及本地缓存（localStorage）中；
-- **无后端、无云端同步**：没有后端服务器，没有数据库收集，没有任何云端数据同步；
-- **无统计与追踪**：不包含用户行为分析或追踪脚本，不使用任何远程 AI 接口，无错误上报收集脚本；
-- **本地数据管理**：你可以自行查看、导出或清除当前工具保存的项目内容。需要重新开始时，可使用“重新回答”；也可以随时导出 JSON 文件作为本地备份。
+## How it works
 
-详见 [`docs/privacy.md`](docs/privacy.md)。
+1. **Create or select an applicant**: Start by identifying who is applying.
+2. **Choose an application route**: Select a supported visa route for that applicant.
+3. **Complete the guided questionnaire**: Answer factual questions regarding study, travel dates, funding, and background.
+4. **Review and manage the generated preparation checklist**: Track tasks, review official requirements, filter items, and export or print your checklist.
 
----
+Multiple applications remain separate and distinct even when they belong to the same applicant.
 
-## 本地运行与开发
+## Privacy by design
 
-### 环境要求
+- **Local-first storage**: Questionnaire answers and checklist progress are saved exclusively in your browser via IndexedDB (`nzVisaPrepChecklist`) and localStorage.
+- **No account or backend**: There are no servers, user accounts, databases, or cloud sync services attached to this project.
+- **Zero background tracking**: No analytics, telemetry, or error-reporting beacons are loaded.
+- **Data retention**: Because storage is local, clearing your browser or site data will remove your saved progress. You can export a JSON backup at any time.
+- **Sanitized public release**: The public repository excludes internal development history, private test fixtures, and administrative tooling.
 
-- Node.js 20+（推荐 Node.js 22）
+For details, see [`docs/privacy.md`](docs/privacy.md).
+
+## Current limitations
+
+- **Selected routes only**: Only specific visa routes are currently implemented.
+- **Policy changes**: Immigration policies and requirements are subject to change by government authorities. Always verify requirements against live official publications.
+- **Not exhaustive for every situation**: While rules cover common and complex scenarios, individual circumstances may require additional evidence or professional guidance.
+- **Device-specific**: Progress does not synchronize across devices or browsers unless exported and imported manually.
+- **No official submission**: This tool organizes preparation materials but does not submit applications to immigration departments.
+- **Not immigration advice**: It does not assess eligibility, recommend routes, predict outcomes, or replace licensed immigration advisers or lawyers.
+
+## Sources and methodology
+
+- [`docs/content_sources.md`](docs/content_sources.md): How official requirements are sourced, verified, and mapped.
+- [`docs/product_scope.md`](docs/product_scope.md): Product scope, supported features, and regulatory non-goals.
+
+All route content is derived from documented public first-party government publications (such as Immigration New Zealand and Immigration, Refugees and Citizenship Canada) and implemented as explicit, unit-tested rules.
+
+## Run locally
+
+### Prerequisites
+
+- Node.js 20+ (Node.js 22 recommended)
 - npm 10+
 
-### 启动项目
+### Setup and Development
 
 ```bash
 npm install
 npm run dev
 ```
 
-在浏览器中打开 `http://localhost:5173/`。
+Open `http://localhost:5173/` in your browser.
 
-### 代码检查与测试
+### Build and Verification
 
 ```bash
 npm run typecheck
@@ -73,16 +90,17 @@ npm test
 npm run build
 ```
 
----
+## Public release provenance
 
-## 文档指引
+This public demo repository is generated from a sanitized canonical source snapshot.
 
-- [`docs/product_scope.md`](docs/product_scope.md)：产品范围、支持路线与非目标说明
-- [`docs/privacy.md`](docs/privacy.md)：详细的本地数据存储与零网络隐私架构
-- [`docs/content_sources.md`](docs/content_sources.md)：新西兰移民局第一方信源与核对规范
+- Machine-readable release provenance is tracked in [`PUBLIC_RELEASE.json`](PUBLIC_RELEASE.json).
+- Maintainer-facing cross-repository compatibility notes are documented in [`DEMO_PROJECT_HANDOFF.md`](DEMO_PROJECT_HANDOFF.md).
 
----
+## Disclaimer
 
-## 开源许可证
+This tool is an independent, non-governmental preparation aid. It does not provide legal or immigration advice, does not assess visa eligibility, does not guarantee visa outcomes, and is not affiliated with or endorsed by Immigration New Zealand, Immigration, Refugees and Citizenship Canada, or any government agency. For official guidance, refer to government immigration portals or consult a licensed professional.
 
-本项目基于 [MIT 许可证](LICENSE) 开源。第三方开源组件及其许可参见 [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md)。
+## License
+
+This project is licensed under the [MIT License](LICENSE). Third-party dependencies and notices are detailed in [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
