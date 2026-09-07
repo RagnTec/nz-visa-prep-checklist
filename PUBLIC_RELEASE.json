@@ -1,7 +1,7 @@
 {
   "exportSchemaVersion": "1.0.0",
   "sourceRepository": "nz-student-visa-checklist",
-  "sourceCommit": "00a7a1c7ee916d61f46f621dd203f40c788fbd25",
+  "sourceCommit": "8937b7f3d1c4847fcdd088b87bf2c3a0cc2a70ba",
   "packageVersion": "0.1.0",
   "capabilities": [
     "application-hub",

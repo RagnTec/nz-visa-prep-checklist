@@ -11,7 +11,7 @@ The application is built on a strict **local-first** architecture. All user data
 - **Applications & Checklist Statuses**: Persisted locally in the user's browser using **IndexedDB** (`nzVisaPrepChecklist` database).
 - **UI State & Preferences**: Ephemeral UI preferences (active application ID, active workspace view, per-application questionnaire page, and checklist scroll position) are stored in `localStorage` under the namespace `nzVisaPrepChecklist.ui.*`.
 - **No Cloud Storage**: The application has no backend servers, databases, or cloud synchronisation services.
-- **Data Retention & Clearing**: Because data is stored locally, clearing your browser history, cache, or site data will permanently remove locally stored projects. You can export a JSON backup at any time.
+- **Data Retention & Clearing**: Because data is stored locally, clearing this site's browser data or local storage may remove locally stored projects. You can export a JSON backup at any time.
 
 ## Network & External Communications
 
