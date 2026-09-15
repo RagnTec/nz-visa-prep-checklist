@@ -7,13 +7,13 @@ describe('ApplicationContextBar component', () => {
     render(
       <ApplicationContextBar
         applicantDisplayName="Alice Smith"
-        routeLabel="新西兰 · 自费学生签证"
+        routeLabel="新西兰 · 学生签证"
         onViewHub={vi.fn()}
       />
     );
 
     expect(screen.getByText('Alice Smith')).toBeInTheDocument();
-    expect(screen.getByText('新西兰 · 自费学生签证')).toBeInTheDocument();
+    expect(screen.getByText('新西兰 · 学生签证')).toBeInTheDocument();
   });
 
   it('renders "‹ 申请中心" button and invokes onViewHub when clicked', () => {
@@ -21,7 +21,7 @@ describe('ApplicationContextBar component', () => {
     render(
       <ApplicationContextBar
         applicantDisplayName="Bob Jones"
-        routeLabel="新西兰 · 访问签证"
+        routeLabel="新西兰 · 旅游/访问签证"
         onViewHub={onViewHub}
       />
     );
@@ -38,7 +38,7 @@ describe('ApplicationContextBar component', () => {
     render(
       <ApplicationContextBar
         applicantDisplayName="Charlie Brown"
-        routeLabel="新西兰 · 自费学生签证"
+        routeLabel="新西兰 · 学生签证"
         onViewHub={vi.fn()}
         onViewProfile={onViewProfile}
       />
@@ -55,7 +55,7 @@ describe('ApplicationContextBar component', () => {
     render(
       <ApplicationContextBar
         applicantDisplayName="Alice Smith"
-        routeLabel="新西兰 · 自费学生签证"
+        routeLabel="新西兰 · 学生签证"
         onViewHub={vi.fn()}
       />
     );
@@ -67,7 +67,7 @@ describe('ApplicationContextBar component', () => {
     render(
       <ApplicationContextBar
         applicantDisplayName="Alice Smith"
-        routeLabel="新西兰 · 自费学生签证"
+        routeLabel="新西兰 · 学生签证"
         onViewHub={vi.fn()}
         progressSummary="情况问卷 · 3 / 7"
       />
@@ -80,7 +80,7 @@ describe('ApplicationContextBar component', () => {
     render(
       <ApplicationContextBar
         applicantDisplayName="Alice Smith"
-        routeLabel="新西兰 · 自费学生签证"
+        routeLabel="新西兰 · 学生签证"
         onViewHub={vi.fn()}
         progressSummary="材料清单 · 8 / 23 已处理"
       />
@@ -93,7 +93,7 @@ describe('ApplicationContextBar component', () => {
     const { container } = render(
       <ApplicationContextBar
         applicantDisplayName="Alice Smith"
-        routeLabel="新西兰 · 自费学生签证"
+        routeLabel="新西兰 · 学生签证"
         onViewHub={vi.fn()}
         progressSummary="情况问卷 · 4 / 7"
         surveyStepProgress={{
@@ -133,7 +133,7 @@ describe('ApplicationContextBar component', () => {
     render(
       <ApplicationContextBar
         applicantDisplayName="Alice Smith"
-        routeLabel="新西兰 · 自费学生签证"
+        routeLabel="新西兰 · 学生签证"
         onViewHub={vi.fn()}
         onViewProfile={vi.fn()}
         progressSummary="情况问卷 · 1 / 5"

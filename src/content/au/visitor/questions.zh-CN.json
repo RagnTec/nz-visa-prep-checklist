@@ -1,0 +1,104 @@
+{
+  "title": "澳大利亚访问签证材料准备清单",
+  "showProgressBar": "off",
+  "progressBarType": "pages",
+  "pages": [
+    {
+      "name": "scope",
+      "title": "适用范围与官方路径",
+      "elements": [
+        {
+          "type": "radiogroup",
+          "name": "scope.confirmedTouristPurpose",
+          "title": "你本次申请澳大利亚签证的主要目的是否为个人旅游或度假？",
+          "description": "当前清单覆盖个人观光旅游、短期度假等旅行事由的材料准备。探亲访友、担保家庭、商务访客或团组旅游等场景不在当前支持范围。",
+          "isRequired": true,
+          "choices": [
+            {
+              "value": "yes",
+              "text": "是，个人观光旅游或短期度假"
+            },
+            {
+              "value": "other",
+              "text": "其他访问目的（如探亲访友、商务访问、团组旅游等）"
+            }
+          ]
+        },
+        {
+          "type": "radiogroup",
+          "name": "scope.confirmedVisaPathway",
+          "title": "你是否已通过官方途径确认需要申请 Visitor visa (subclass 600) Tourist stream？",
+          "description": "部分符合条件的旅客根据国籍、护照或入境方式可能适用电子旅行许可（ETA 601）或 eVisitor (651) 途径。本工具不判定签证申请途径，请先通过澳大利亚官方渠道核对。",
+          "isRequired": true,
+          "choices": [
+            {
+              "value": "yes",
+              "text": "已确认申请 Visitor visa (subclass 600) 境外旅游分支"
+            },
+            {
+              "value": "need_check",
+              "text": "尚未核对，知晓需前往澳大利亚官方自查确认"
+            }
+          ]
+        },
+        {
+          "type": "radiogroup",
+          "name": "scope.confirmedOffshoreApplication",
+          "title": "你是否确认在澳大利亚境外递交申请，且在出具签证决定时仍位于境外？",
+          "description": "subclass 600 境外旅游分支（apply outside Australia）要求递交申请时及签证决定出具时申请人均须在澳大利亚境外。",
+          "isRequired": true,
+          "choices": [
+            {
+              "value": "yes",
+              "text": "是，将在境外递交并在境外等待审批结果"
+            },
+            {
+              "value": "no",
+              "text": "否，当前在澳大利亚境内或计划在境内递交"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "situation",
+      "title": "当前情况与材料语言",
+      "elements": [
+        {
+          "type": "radiogroup",
+          "name": "applicant.isEmployed",
+          "title": "你当前是否有受雇工作？",
+          "description": "若当前受雇在职，清单将增加雇主在职证明与返回工作岗位支持材料，作为说明工作背景与归国纽带的推荐支持证据。",
+          "isRequired": true,
+          "choices": [
+            {
+              "value": "yes",
+              "text": "是，当前受雇在职"
+            },
+            {
+              "value": "no",
+              "text": "否，目前未受雇或处于其他状态"
+            }
+          ]
+        },
+        {
+          "type": "radiogroup",
+          "name": "documents.hasNonEnglishDocuments",
+          "title": "你的申请材料中是否包含非英文文件？",
+          "description": "澳大利亚官方要求所有非英文证明文件均需附带完整的英文翻译件。",
+          "isRequired": true,
+          "choices": [
+            {
+              "value": "yes",
+              "text": "是，包含中文等非英文文件"
+            },
+            {
+              "value": "no",
+              "text": "否，所有准备文件均为全英文"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

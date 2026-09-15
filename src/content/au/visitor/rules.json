@@ -1,0 +1,24 @@
+[
+  {
+    "id": "au.visitor.rule.ties.employmentLetter",
+    "when": {
+      "field": "applicant.isEmployed",
+      "operator": "equals",
+      "value": "yes"
+    },
+    "addChecklistItems": [
+      "au.visitor.ties.employmentLetter"
+    ]
+  },
+  {
+    "id": "au.visitor.rule.documents.translations",
+    "when": {
+      "field": "documents.hasNonEnglishDocuments",
+      "operator": "equals",
+      "value": "yes"
+    },
+    "addChecklistItems": [
+      "au.visitor.documents.translations"
+    ]
+  }
+]

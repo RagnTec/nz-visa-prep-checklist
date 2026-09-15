@@ -5,6 +5,7 @@ import type { SavedWorkspaceReadResult } from '../domain/workspacePersistence';
 interface ApplicantSelectionViewProps {
   readonly routeLabel: string;
   readonly routeDescription?: string;
+  readonly officialName?: string;
   readonly workspaceReadResult: SavedWorkspaceReadResult | null;
   readonly onConfirmApplicant: (applicant: ApplicantSelection) => Promise<void>;
   readonly onBack: () => void;
@@ -21,6 +22,7 @@ function generatePersonId(): string {
 export function ApplicantSelectionView({
   routeLabel,
   routeDescription,
+  officialName,
   workspaceReadResult,
   onConfirmApplicant,
   onBack,
@@ -47,7 +49,7 @@ export function ApplicantSelectionView({
     return (
       <section className="applicant-card">
         <h2>选择或创建申请人</h2>
-        <div className="route-badge">申请路线：{routeLabel}</div>
+        <div className="route-badge">申请路线：{routeLabel}{officialName ? `（${officialName}）` : ''}</div>
         <p className="warning" role="alert">
           无法读取本地工作区数据（格式或引用无效）。为避免损坏数据，暂无法在此工作区创建新申请。
         </p>
@@ -64,7 +66,7 @@ export function ApplicantSelectionView({
     return (
       <section className="applicant-card">
         <h2>选择或创建申请人</h2>
-        <div className="route-badge">申请路线：{routeLabel}</div>
+        <div className="route-badge">申请路线：{routeLabel}{officialName ? `（${officialName}）` : ''}</div>
         <p className="warning" role="alert">
           此本地工作区由较新版本创建（版本 {workspaceReadResult.schemaVersion}），当前版本无法在此工作区创建新申请。
         </p>
@@ -115,7 +117,7 @@ export function ApplicantSelectionView({
   return (
     <section className="applicant-card">
       <h2>选择或创建申请人</h2>
-      <div className="route-badge">申请路线：{routeLabel}</div>
+      <div className="route-badge">申请路线：{routeLabel}{officialName ? `（${officialName}）` : ''}</div>
       {routeDescription ? <p className="route-option-desc">{routeDescription}</p> : null}
 
       {errorMessage ? (

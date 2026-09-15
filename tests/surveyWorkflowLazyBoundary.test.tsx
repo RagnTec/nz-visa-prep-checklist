@@ -3,8 +3,12 @@ import { fireEvent, render, screen } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
 import { RetryableSurveyView } from '../src/components/RetryableSurveyView';
 import { SurveyErrorBoundary } from '../src/components/SurveyErrorBoundary';
-import type { SurveyProgress, SurveyWorkflowViewProps } from '../src/components/SurveyWorkflowView';
+import SurveyWorkflowView, {
+  type SurveyProgress,
+  type SurveyWorkflowViewProps
+} from '../src/components/SurveyWorkflowView';
 import { ApplicationContextBar } from '../src/components/ApplicationContextBar';
+import type { RoutePack } from '../src/domain/route';
 
 describe('SurveyErrorBoundary', () => {
   it('renders children when no error is thrown', () => {
@@ -239,5 +243,66 @@ describe('SurveyWorkflowView lazy boundary integration', () => {
     expect(screen.queryByRole('alert')).not.toBeInTheDocument();
 
     consoleErrorSpy.mockRestore();
+  });
+
+  it('reports initial survey progress on mount and survives remounting without losing progress', () => {
+    const multiPageRoutePack = {
+      id: 'test-multi-page',
+      title: 'Multi Page Route',
+      questions: {
+        pages: [
+          { name: 'page1', elements: [{ type: 'text', name: 'q1', title: 'Question 1' }] },
+          { name: 'page2', elements: [{ type: 'text', name: 'q2', title: 'Question 2' }] },
+          { name: 'page3', elements: [{ type: 'text', name: 'q3', title: 'Question 3' }] }
+        ]
+      },
+      evaluateEffects: vi.fn(() => ({ validationErrors: {}, warnings: {}, answersForChecklist: {} })),
+      cleanStaleAnswers: vi.fn((a) => a),
+      immediateEffectFields: []
+    } as unknown as RoutePack;
+
+    const onProgressChange = vi.fn();
+
+    const { unmount } = render(
+      <SurveyWorkflowView
+        activeRoutePack={multiPageRoutePack}
+        activeProjectId="test-app-progress"
+        answers={null}
+        surveyCompleted={false}
+        onAnswersChange={vi.fn()}
+        onSurveyComplete={vi.fn()}
+        onProgressChange={onProgressChange}
+      />
+    );
+
+    // Initial progress is dispatched immediately on first render of page 1
+    expect(onProgressChange).toHaveBeenCalledWith({
+      currentStep: 1,
+      totalSteps: 3,
+      summary: '情况问卷 · 1 / 3'
+    });
+
+    // Unmounting cleans up progress to null
+    unmount();
+    expect(onProgressChange).toHaveBeenLastCalledWith(null);
+
+    // Remounting (simulating StrictMode or re-entry) immediately re-synchronizes progress
+    render(
+      <SurveyWorkflowView
+        activeRoutePack={multiPageRoutePack}
+        activeProjectId="test-app-progress"
+        answers={null}
+        surveyCompleted={false}
+        onAnswersChange={vi.fn()}
+        onSurveyComplete={vi.fn()}
+        onProgressChange={onProgressChange}
+      />
+    );
+
+    expect(onProgressChange).toHaveBeenLastCalledWith({
+      currentStep: 1,
+      totalSteps: 3,
+      summary: '情况问卷 · 1 / 3'
+    });
   });
 });

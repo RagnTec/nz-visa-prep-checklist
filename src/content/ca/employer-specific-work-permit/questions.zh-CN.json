@@ -1,0 +1,105 @@
+{
+  "title": "加拿大雇主特定工签材料准备清单（境外申请）",
+  "showProgressBar": "off",
+  "progressBarType": "pages",
+  "pages": [
+    {
+      "name": "scope",
+      "title": "申请路线与工作地点确认",
+      "elements": [
+        {
+          "type": "radiogroup",
+          "name": "scope.confirmedEmployerSpecificPermit",
+          "title": "你是否已确定申请加拿大雇主特定工签（Employer-Specific Work Permit）？",
+          "description": "雇主特定工签适用于已获得加拿大特定雇主工作聘约（Job Offer）的境外申请人。若申请开放式工签（Open Work Permit）或尚不确定工签类别，请先核对 IRCC 官方指引。",
+          "isRequired": true,
+          "choices": [
+            {
+              "value": "yes",
+              "text": "是，我已确定申请雇主特定工签"
+            },
+            {
+              "value": "need_check",
+              "text": "尚不确定，需要核对其他工签类别"
+            }
+          ]
+        },
+        {
+          "type": "radiogroup",
+          "name": "scope.workLocationScope",
+          "title": "你的意向工作地点是否在魁北克省（Quebec）以外？",
+          "description": "本清单仅面向工作地点在魁省以外的常规境外雇主特定工签申请。魁北克省工作通常须经过魁省移民部门（MIFI）的额外许可程序（如 CAQ），不属于本清单适用范围。",
+          "isRequired": true,
+          "choices": [
+            {
+              "value": "outside_quebec",
+              "text": "是，工作地点在魁北克省以外"
+            },
+            {
+              "value": "quebec",
+              "text": "否，工作地点在魁北克省"
+            },
+            {
+              "value": "need_check",
+              "text": "尚不确定，需要核对具体工作地点"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "employment",
+      "title": "雇主聘约与 LMIA 途径",
+      "elements": [
+        {
+          "type": "radiogroup",
+          "name": "employment.lmiaPathway",
+          "title": "雇主录用你的职位属于哪种劳工市场影响评估（LMIA）途径？",
+          "description": "加拿大雇主特定工签通常分为 LMIA-required（雇主须申请 LMIA 批文）与 LMIA-exempt（该岗位免办 LMIA，适用雇主通过 Employer Portal 完成录用申报的流程）。若属于其他非标准豁免情形，请先核对官方说明。",
+          "isRequired": true,
+          "choices": [
+            {
+              "value": "lmia_required",
+              "text": "LMIA-required（雇主已申请或已获得 LMIA 批文）"
+            },
+            {
+              "value": "lmia_exempt_employer_portal",
+              "text": "LMIA-exempt（该岗位免办 LMIA，并适用标准 Employer Portal Offer of Employment 流程）"
+            },
+            {
+              "value": "lmia_exempt_other_or_exception",
+              "text": "其他 LMIA 豁免或非标准例外情形"
+            },
+            {
+              "value": "need_check",
+              "text": "尚不确定，需要向雇主确认或核对官方政策"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "documents",
+      "title": "材料语言与格式",
+      "elements": [
+        {
+          "type": "radiogroup",
+          "name": "document.hasNonEnglishDocuments",
+          "title": "你准备递交的支持材料中是否含有非英文或法文文件？",
+          "description": "若含有非英文或非法文材料，须按 IRCC 当前翻译要求准备并核对非英文或法文材料及相应译文/证明要求。",
+          "isRequired": true,
+          "choices": [
+            {
+              "value": "yes",
+              "text": "是，含有非英文或法文材料"
+            },
+            {
+              "value": "no",
+              "text": "否，全部材料均为英文或法文原件"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

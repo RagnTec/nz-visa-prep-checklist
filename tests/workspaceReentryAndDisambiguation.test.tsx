@@ -238,7 +238,7 @@ describe('Slice U1.2 — Workspace Re-entry and Application Disambiguation', () 
     await waitFor(() => {
       expect(screen.getByRole('banner', { name: '当前申请上下文' })).toBeInTheDocument();
       expect(screen.getByText('Alice Smith')).toBeInTheDocument();
-      expect(screen.getByText('新西兰 · 自费学生签证')).toBeInTheDocument();
+      expect(screen.getByText('新西兰 · 学生签证')).toBeInTheDocument();
       expect(screen.getByText('情况问卷 · 4 / 5')).toBeInTheDocument();
     });
 
@@ -260,7 +260,7 @@ describe('Slice U1.2 — Workspace Re-entry and Application Disambiguation', () 
     await waitFor(() => {
       expect(screen.getByRole('banner', { name: '当前申请上下文' })).toBeInTheDocument();
       expect(screen.getByText('Alice Smith')).toBeInTheDocument();
-      expect(screen.getByText('新西兰 · 自费学生签证')).toBeInTheDocument();
+      expect(screen.getByText('新西兰 · 学生签证')).toBeInTheDocument();
       expect(screen.getByText(/材料清单 ·/)).toBeInTheDocument();
     });
 
@@ -327,7 +327,7 @@ describe('Slice U1.2 — Workspace Re-entry and Application Disambiguation', () 
 
     await waitFor(() => {
       // Both applications should be present under Alice
-      const cards = within(aliceSection).getAllByText('新西兰 · 自费学生签证');
+      const cards = within(aliceSection).getAllByText('新西兰 · 学生签证');
       expect(cards).toHaveLength(2);
 
       // Verify progress metadata exists on the cards

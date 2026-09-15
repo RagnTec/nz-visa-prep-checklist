@@ -211,7 +211,7 @@ describe('Slice U1.1 — Survey Resume Continuity and Context Bar Progress', () 
     await waitFor(() => {
       expect(screen.getByRole('banner', { name: '当前申请上下文' })).toBeInTheDocument();
       expect(screen.getByText('Alice Smith')).toBeInTheDocument();
-      expect(screen.getByText('新西兰 · 自费学生签证')).toBeInTheDocument();
+      expect(screen.getByText('新西兰 · 学生签证')).toBeInTheDocument();
       expect(screen.getByText('情况问卷 · 4 / 5')).toBeInTheDocument();
     });
 
@@ -285,7 +285,7 @@ describe('Slice U1.1 — Survey Resume Continuity and Context Bar Progress', () 
     const aliceSection = screen.getByText('Alice Smith').closest('.hub-person-section');
     expect(aliceSection).toBeInstanceOf(HTMLElement);
     if (!(aliceSection instanceof HTMLElement)) throw new Error('Expected HTMLElement');
-    const aliceStudentCard = within(aliceSection).getByText('新西兰 · 自费学生签证').closest('.hub-application-card');
+    const aliceStudentCard = within(aliceSection).getByText('新西兰 · 学生签证').closest('.hub-application-card');
     expect(aliceStudentCard).toBeInstanceOf(HTMLElement);
     if (!(aliceStudentCard instanceof HTMLElement)) throw new Error('Expected HTMLElement');
 

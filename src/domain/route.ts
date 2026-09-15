@@ -17,9 +17,12 @@ export type EvaluateQuestionEffects = (
   options?: QuestionEffectOptions
 ) => QuestionEffects;
 
+export type RouteCategory = 'study' | 'visit' | 'work';
+
 export interface RoutePack {
   readonly id: string;
   readonly jurisdiction: string;
+  readonly routeCategory: RouteCategory;
   readonly title: string;
   readonly description?: string;
   readonly authorityName?: string;

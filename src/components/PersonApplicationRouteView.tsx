@@ -1,4 +1,10 @@
-import { SUPPORTED_ROUTE_OPTIONS, type RouteOption } from '../content/registry';
+import React, { useMemo } from 'react';
+import {
+  groupRouteOptionsByJurisdiction,
+  SUPPORTED_ROUTE_OPTIONS,
+  type RouteOption
+} from '../content/registry';
+import { RouteSelectionGroups } from './RouteSelectionGroups';
 import type { Person } from '../domain/workspace';
 
 export interface PersonApplicationRouteViewProps {
@@ -18,9 +24,14 @@ export function PersonApplicationRouteView({
   errorMessage,
   routeOptions = SUPPORTED_ROUTE_OPTIONS
 }: PersonApplicationRouteViewProps) {
+  const groupedRoutes = useMemo(
+    () => groupRouteOptionsByJurisdiction(routeOptions),
+    [routeOptions]
+  );
+
   return (
     <section className="route-choice-card">
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: '1rem', marginBottom: '1.25rem' }}>
+      <div className="route-choice-sticky-header">
         <div>
           <h2 style={{ margin: 0, marginBottom: '.35rem' }}>选择申请路线</h2>
           <p style={{ margin: 0, color: '#4b6269', fontSize: '0.95rem' }}>
@@ -38,20 +49,11 @@ export function PersonApplicationRouteView({
         </div>
       ) : null}
 
-      <div className="route-options">
-        {routeOptions.map((option) => (
-          <button
-            key={option.routeId}
-            type="button"
-            className="route-option-btn"
-            disabled={isCreating}
-            onClick={() => onSelectRoute(option.routeId)}
-          >
-            <span className="route-option-title">{option.label}</span>
-            <span className="route-option-desc">{option.description}</span>
-          </button>
-        ))}
-      </div>
+      <RouteSelectionGroups
+        groups={groupedRoutes}
+        onSelectRoute={onSelectRoute}
+        disabled={isCreating}
+      />
     </section>
   );
 }

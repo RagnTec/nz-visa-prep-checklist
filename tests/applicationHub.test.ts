@@ -41,7 +41,8 @@ describe('Application Hub Read Model Foundation', () => {
       applicationId: 'app-alice-1',
       applicantPersonId: 'person-alice',
       routeId: 'nz-student-fee-paying',
-      routeLabel: '新西兰 · 自费学生签证',
+      routeLabel: '新西兰 · 学生签证',
+      officialName: 'Fee Paying Student Visa',
       isRouteAvailable: true,
       isActive: true
     });
@@ -250,7 +251,7 @@ describe('Application Hub Read Model Foundation', () => {
     expect(app.isRouteAvailable).toBe(false);
     expect(app.routeLabel).toBe('暂不可用的申请路线');
     expect(app.routeLabel).not.toMatch(/custom-future-visa-route/);
-    expect(app.routeLabel).not.toBe('新西兰 · 自费学生签证');
+    expect(app.routeLabel).not.toBe('新西兰 · 学生签证');
   });
 
   it('resolves registered routes to readable human-friendly labels', () => {
@@ -268,9 +269,9 @@ describe('Application Hub Read Model Foundation', () => {
 
     const labels = model.people[0].applications.map((a) => a.routeLabel);
     expect(labels).toEqual([
-      '新西兰 · 自费学生签证',
-      '新西兰 · 访问签证',
-      '加拿大 · 学习许可'
+      '新西兰 · 学生签证',
+      '新西兰 · 旅游/访问签证',
+      '加拿大 · 学生签证'
     ]);
   });
 
@@ -292,7 +293,8 @@ describe('Application Hub Read Model Foundation', () => {
     expect(findApplicationHubPerson(model, 'person-alice')?.displayName).toBe('Alice');
     expect(findApplicationHubPerson(model, 'person-nonexistent')).toBeUndefined();
 
-    expect(findApplicationSummary(model, 'app-b1')?.routeLabel).toBe('加拿大 · 学习许可');
+    expect(findApplicationSummary(model, 'app-b1')?.routeLabel).toBe('加拿大 · 学生签证');
+    expect(findApplicationSummary(model, 'app-b1')?.officialName).toBe('Study Permit');
     expect(findApplicationSummary(model, 'app-nonexistent')).toBeUndefined();
 
     expect(getApplicationsForPerson(model, 'person-alice')).toHaveLength(1);
@@ -573,6 +575,7 @@ describe('deriveApplicationProgress', () => {
     const syntheticConditionalRoutePack: RoutePack = {
       id: 'synthetic-conditional-route',
       jurisdiction: 'nz',
+      routeCategory: 'study',
       title: 'Synthetic Conditional Route',
       defaultExportFileName: 'synthetic',
       questions: {

@@ -1,0 +1,228 @@
+[
+  {
+    "id": "nz.cwh.identity.passport",
+    "category": "身份与表格",
+    "title": "中华人民共和国有效护照",
+    "requirementType": "usually_required",
+    "evidenceLayer": "inz_visa",
+    "why": "新西兰移民局要求申请人持有有效中华人民共和国护照，作为法定身份与国籍的证明文件。",
+    "steps": [
+      "确保护照个人信息页清晰完整，扫描或拍照保存为高分辨率电子文件",
+      "核对护照有效期：护照有效期必须在预计离开新西兰的日期之后至少还有 3 个月有效",
+      "检查护照无破损且有足够空白签证页，并在递签前核对护照号码与网申填写内容完全一致"
+    ],
+    "sourceIds": [
+      "inz.china-working-holiday"
+    ],
+    "defaultIncluded": true
+  },
+  {
+    "id": "nz.cwh.application.inz1027",
+    "category": "身份与表格",
+    "title": "中国公民补充申请表（INZ 1027）",
+    "requirementType": "usually_required",
+    "evidenceLayer": "inz_visa",
+    "why": "新西兰移民局规定中国大陆居民在申请新西兰临时类签证时，通常须填写并提交中国公民专用补充表（INZ 1027）。",
+    "steps": [
+      "下载并完整填写新西兰移民局针对中国公民的专用补充表格（Supplementary Form for Chinese Citizens - INZ 1027）",
+      "如实填写个人及直系亲属家庭背景、教育历史、所有工作经历及兵役/政府公职等背景问题",
+      "核对表中所填历史经历与时间线，确保与网申系统及其他材料保持严格一致"
+    ],
+    "sourceIds": [
+      "inz.china-working-holiday",
+      "inz.inz1027"
+    ],
+    "defaultIncluded": true
+  },
+  {
+    "id": "nz.cwh.residence.evidence",
+    "category": "协定特定材料",
+    "title": "常住中国本土及境内递交证明凭据",
+    "requirementType": "usually_required",
+    "evidenceLayer": "inz_visa",
+    "why": "中国打工度假协定要求申请人通常居住在中华人民共和国境内，且在正式递交签证申请时必须身处中国大陆本土。",
+    "steps": [
+      "梳理并准备表明你通常居住在中国的证明凭据（如近期的日常公用事业账单、银行账单、租房合同或在职/在读证明等）",
+      "确认在递交网申当刻身处中国境内，留存能证明递签时身处本土的辅助凭据（如境内的出入境记录、工作/学习出勤凭证等）以备核查",
+      "确保相关佐证材料中的姓名、地址或单位信息真实有效"
+    ],
+    "sourceIds": [
+      "inz.china-working-holiday"
+    ],
+    "defaultIncluded": true
+  },
+  {
+    "id": "nz.cwh.education.highSchool",
+    "category": "协定特定材料",
+    "title": "高中或以上学历证书及指定机构官方认证报告",
+    "requirementType": "usually_required",
+    "evidenceLayer": "inz_visa",
+    "why": "中国打工度假协定要求申请人至少具备全日制高中（或更高）学历，且必须提供由新西兰移民局当前指定的中国教育部学历认证机构出具的官方认证报告。",
+    "steps": [
+      "准备全日制普通高中毕业证书（或大专、本科等更高学历证书）原件及清晰扫描件",
+      "通过新西兰移民局当前认可的中国教育部下属官方学历认证机构（如全国高等学校学生信息咨询与就业指导中心/学信网体系）申请官方学历认证报告",
+      "确保所出具的认证报告为英文或官方附带英文翻译，并核对认证报告上的个人信息与文凭信息完全相符"
+    ],
+    "sourceIds": [
+      "inz.china-working-holiday",
+      "inz.cwh.education-verification"
+    ],
+    "defaultIncluded": true
+  },
+  {
+    "id": "nz.cwh.english.test",
+    "category": "协定特定材料",
+    "title": "合格的英语语言能力考试成绩单",
+    "requirementType": "usually_required",
+    "evidenceLayer": "inz_visa",
+    "why": "新西兰移民局要求中国打工度假申请人提供递交前 2 年内取得的有效英语成绩，达到双边协定规定的最低语言门槛。",
+    "steps": [
+      "提供在递交申请之日前 2 年内取得的官方英语考试成绩单（如雅思 IELTS 学术类或培训类总分不低于 5.5，或 PTE Academic 等移民局认可的等效考试成绩）",
+      "核对考试成绩单上的姓名拼音、出生日期与护照保持一致",
+      "确保成绩单在正式递交申请之日仍处于 2 年有效期内，并留存成绩单电子版备查"
+    ],
+    "sourceIds": [
+      "inz.china-working-holiday",
+      "inz.cwh.english"
+    ],
+    "defaultIncluded": true
+  },
+  {
+    "id": "nz.cwh.funds.maintenance",
+    "category": "协定特定材料",
+    "title": "基本生活资金证明（至少 4,200 新西兰元）",
+    "requirementType": "usually_required",
+    "evidenceLayer": "inz_visa",
+    "why": "申请人必须证明在新西兰生活期间拥有足够的生活资金，官方最低要求为至少 4,200 新西兰元或等值可自由兑换外币。",
+    "steps": [
+      "开具申请人本人名下的银行存款证明或近期银行流水账单，显示可用活期或定期余额折合约 4,200 新西兰元以上",
+      "确保资金证明文件开具日期临近预计递签时间，文件由正规金融机构出具并载有申请人姓名",
+      "若资金证明原件仅有中文，建议附带正规英文翻译或由银行出具双语版"
+    ],
+    "sourceIds": [
+      "inz.china-working-holiday"
+    ],
+    "defaultIncluded": true
+  },
+  {
+    "id": "nz.cwh.travel.onward",
+    "category": "协定特定材料",
+    "title": "离境机票或足以购买离境机票的资金证明",
+    "requirementType": "usually_required",
+    "evidenceLayer": "inz_visa",
+    "why": "申请人必须持有离开新西兰的有效交通凭证，或证明自身拥有足以购买离境机票的额外资金。",
+    "steps": [
+      "若已预订离境行程，准备离开新西兰的有效机票确认单（如返程或飞往第三国机票）",
+      "若尚未购买离境机票，须在上述 4,200 新西兰元基本生活费之外，在银行存款或资金证明中额外体现足以购买国际返程机票的富余资金",
+      "确保证明文件能够清晰说明离境交通安排的资金保障"
+    ],
+    "sourceIds": [
+      "inz.china-working-holiday"
+    ],
+    "defaultIncluded": true
+  },
+  {
+    "id": "nz.cwh.insurance.medical",
+    "category": "协定特定材料",
+    "title": "覆盖计划在新西兰停留全程的医疗保险凭证",
+    "requirementType": "usually_required",
+    "evidenceLayer": "inz_visa",
+    "why": "申请人须按 INZ 当前要求持有覆盖计划在新西兰停留全程的全面医疗保险。",
+    "steps": [
+      "根据计划在新西兰停留的时间准备覆盖整个停留期的医疗保险",
+      "核对保险期限与计划停留时间是否一致，并按 INZ 当前要求检查保险保障范围",
+      "保存保险保单或保险凭证，核对被保险人身份信息是否与申请材料一致"
+    ],
+    "sourceIds": [
+      "inz.china-working-holiday"
+    ],
+    "defaultIncluded": true
+  },
+  {
+    "id": "nz.cwh.health.medicalReview",
+    "category": "健康与品行审查",
+    "title": "健康申报与体检核查准备",
+    "requirementType": "may_be_requested",
+    "evidenceLayer": "inz_visa",
+    "why": "根据网申健康申报内容、既往病史或在特定地区的居住史，移民局可能会要求完成胸部 X 光（INZ 1096）、全身体检或两者皆需。",
+    "steps": [
+      "在在线填报时如实、准确地完成个人健康状况与既往旅居史申报",
+      "注意移民局官方说明：并非所有申请人必须提前主动体检；应以在线系统指引或移民局发出的体检通知（Medical Request）为准",
+      "若收到体检要求，须通过新西兰移民局官方指定的 Panel Physician 诊所通过 eMedical 电子医疗网络完成体检项目"
+    ],
+    "sourceIds": [
+      "inz.china-working-holiday",
+      "inz.health-xray-medical"
+    ],
+    "defaultIncluded": true
+  },
+  {
+    "id": "nz.cwh.character.police",
+    "category": "健康与品行审查",
+    "title": "良好品行与无犯罪记录证明（若移民局调取）",
+    "requirementType": "may_be_requested",
+    "evidenceLayer": "inz_visa",
+    "why": "新西兰签证申请人须满足良好品行要求。递交阶段先完成在线品行问卷申报；若移民局要求提供证明文件，需提供公证的无犯罪记录凭据。",
+    "steps": [
+      "在在线申请表中如实填写品行与违法记录申报问卷",
+      "了解官方规定：打工度假签证在初次递交时通常不强制要求上传无犯罪记录证明，但在个案审查中移民局有权调取",
+      "如移民局发出补充材料信（PPI/Request）或你存在特定需说明的情形，及时向户籍地公证处申请办理中英文无犯罪记录公证书"
+    ],
+    "sourceIds": [
+      "inz.china-working-holiday",
+      "inz.police-certificates"
+    ],
+    "defaultIncluded": true
+  },
+  {
+    "id": "nz.cwh.process.quotaAndOpening",
+    "category": "申请流程准备",
+    "title": "官方年度配额开放时间与状态核对",
+    "requirementType": "usually_required",
+    "evidenceLayer": "inz_visa",
+    "why": "新西兰中国打工度假协定每年设有固定配额（1,000 个名额），需在移民局官方指定的时间窗口内在线抢占名额并提交申请。",
+    "steps": [
+      "查阅新西兰移民局官方网站中国打工度假专属页面，确认当年度 1,000 个配额的公布与开放日期",
+      "在官方开放日前提前备齐所需核心材料与个人信息，确保在系统开放时可以高效填报",
+      "注意：本工具仅提供离线材料准备核对，不提供实时配额监控、预约或代抢服务，一切以移民局官网即时开放状态为准"
+    ],
+    "sourceIds": [
+      "inz.china-working-holiday"
+    ],
+    "defaultIncluded": true
+  },
+  {
+    "id": "nz.cwh.process.onlineApplication",
+    "category": "申请流程准备",
+    "title": "新西兰移民局官方网申账户与填报准备",
+    "requirementType": "usually_required",
+    "evidenceLayer": "inz_visa",
+    "why": "中国打工度假签证必须通过新西兰移民局官方在线申请平台（Online Services）在线填报并提交。",
+    "steps": [
+      "在新西兰移民局官方网站提前注册或验证个人的 RealMe / Immigration Online 账户",
+      "准备支持国际在线支付的信用卡（如 Visa、Mastercard 或银联）以便在递交时支付签证申请费用",
+      "在开放窗口期内准确完成表格填写、材料上传并完成费用扣缴"
+    ],
+    "sourceIds": [
+      "inz.china-working-holiday"
+    ],
+    "defaultIncluded": true
+  },
+  {
+    "id": "nz.cwh.review.consistency",
+    "category": "一致性核对",
+    "title": "递交前材料与个人信息一致性最终核对",
+    "requirementType": "product_organisation_guidance",
+    "evidenceLayer": "product_guidance",
+    "why": "跨文件信息的一致性核对有助于申请人在正式上传前排除姓名拼写错误、证件号冲突或时间线不一致等疏漏。",
+    "steps": [
+      "核对护照、INZ 1027 补充表、学历认证报告、语言考试成绩单、银行资金证明及保险保单上的姓名拼音与出生日期是否完全一致",
+      "比对 INZ 1027 中填写的教育与工作历史时间段，确保与学历证书及个人简历等材料不存在日期矛盾或不明空白期",
+      "检查所有上传文件的命名规范、格式与清晰度，确认文件未加密且扫描边缘完整"
+    ],
+    "sourceIds": [
+      "inz.china-working-holiday"
+    ],
+    "defaultIncluded": true
+  }
+]

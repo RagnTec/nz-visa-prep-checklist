@@ -9,12 +9,14 @@ import { normalizeSurveyAnswers } from './answers';
 import { generateChecklist } from './checklist';
 import { getSavedSurveyPage } from '../storage/uiSurveyPage';
 import type { RoutePack } from './route';
+import { getMessages, formatRoutePrimaryLabel, type ApplicationProgressFormatters } from '../i18n';
 
 export interface HubApplicationSummary {
   readonly applicationId: string;
   readonly applicantPersonId: string;
   readonly routeId: string;
   readonly routeLabel: string;
+  readonly officialName?: string;
   readonly isRouteAvailable: boolean;
   readonly isActive: boolean;
   readonly progressSummary?: string;
@@ -46,6 +48,7 @@ export interface ApplicationHubReadModel {
 export interface RouteResolution {
   readonly label: string;
   readonly isAvailable: boolean;
+  readonly officialName?: string;
 }
 
 export interface ApplicationProjectData {
@@ -78,10 +81,29 @@ export function formatApplicationTimestamp(isoString?: string | null): string | 
   }
 }
 
-export function deriveApplicationProgress(
+export type ApplicationProgressState =
+  | { readonly kind: 'checklist'; readonly completeCount: number; readonly totalCount: number }
+  | { readonly kind: 'survey_in_progress' }
+  | { readonly kind: 'survey_step'; readonly currentStep: number; readonly totalSteps: number };
+
+export function formatApplicationProgress(
+  state: ApplicationProgressState,
+  formatters: ApplicationProgressFormatters = getMessages().applicationProgress
+): string {
+  switch (state.kind) {
+    case 'checklist':
+      return formatters.checklistComplete(state.completeCount, state.totalCount);
+    case 'survey_in_progress':
+      return formatters.surveyInProgress;
+    case 'survey_step':
+      return formatters.surveyStep(state.currentStep, state.totalSteps);
+  }
+}
+
+export function deriveApplicationProgressState(
   project: SavedProject,
   resolveRoutePack: (routeId: string) => RoutePack = getRoutePack
-): string | undefined {
+): ApplicationProgressState | undefined {
   if (!project || typeof project !== 'object') return undefined;
 
   const routeId = project.routeId;
@@ -119,7 +141,11 @@ export function deriveApplicationProgress(
       const completeCount = items.filter((item) =>
         ['prepared', 'not_applicable'].includes(statuses[item.id] ?? 'not_started')
       ).length;
-      return `材料清单 · ${completeCount} / ${items.length} 已处理`;
+      return {
+        kind: 'checklist',
+        completeCount,
+        totalCount: items.length
+      };
     } catch {
       return undefined;
     }
@@ -148,11 +174,11 @@ export function deriveApplicationProgress(
   });
 
   if (hasConditionalPage) {
-    return '情况问卷进行中';
+    return { kind: 'survey_in_progress' };
   }
 
   const totalPages = pages.length;
-  const hasAnswers = Boolean(project.answers && Object.keys(project.answers).length > 0);
+  const hasAnswers = Object.keys(project.answers ?? {}).length > 0;
   const savedPageName = getSavedSurveyPage(project.id);
 
   if (savedPageName) {
@@ -160,25 +186,47 @@ export function deriveApplicationProgress(
       (p) => p && typeof p === 'object' && (p as Record<string, unknown>).name === savedPageName
     );
     if (pageIndex >= 0) {
-      return `情况问卷 · ${pageIndex + 1} / ${totalPages}`;
+      return {
+        kind: 'survey_step',
+        currentStep: pageIndex + 1,
+        totalSteps: totalPages
+      };
     }
     // Invalid saved page
-    return hasAnswers ? '情况问卷进行中' : `情况问卷 · 1 / ${totalPages}`;
+    return hasAnswers
+      ? { kind: 'survey_in_progress' }
+      : { kind: 'survey_step', currentStep: 1, totalSteps: totalPages };
   }
 
   // No saved page
-  return hasAnswers ? '情况问卷进行中' : `情况问卷 · 1 / ${totalPages}`;
+  return hasAnswers
+    ? { kind: 'survey_in_progress' }
+    : { kind: 'survey_step', currentStep: 1, totalSteps: totalPages };
+}
+
+export function deriveApplicationProgress(
+  project: SavedProject,
+  resolveRoutePack: (routeId: string) => RoutePack = getRoutePack,
+  formatters?: ApplicationProgressFormatters
+): string | undefined {
+  const state = deriveApplicationProgressState(project, resolveRoutePack);
+  if (!state) return undefined;
+  return formatApplicationProgress(state, formatters);
 }
 
 export function defaultRouteResolver(routeId: string): RouteResolution {
   const option = SUPPORTED_ROUTE_OPTIONS.find((o) => o.routeId === routeId);
   if (option) {
-    return { label: option.label, isAvailable: true };
+    return { label: option.label, isAvailable: true, officialName: option.eyebrow };
   }
   if (isRegisteredRouteId(routeId)) {
     try {
       const pack = getRoutePack(routeId);
-      return { label: pack.title, isAvailable: true };
+      return {
+        label: formatRoutePrimaryLabel(pack.jurisdiction, pack.routeCategory),
+        isAvailable: true,
+        officialName: pack.eyebrow
+      };
     } catch {
       // ignore
     }
@@ -277,7 +325,7 @@ export function buildApplicationHubReadModel(
       continue;
     }
 
-    const { label, isAvailable } = resolver(trimmedRouteId);
+    const { label, isAvailable, officialName } = resolver(trimmedRouteId);
     const isActive = trimmedActiveId !== null && trimmedAppId === trimmedActiveId;
     if (isActive) {
       foundActiveAppId = trimmedAppId;
@@ -315,6 +363,7 @@ export function buildApplicationHubReadModel(
       applicantPersonId: trimmedPersonId,
       routeId: trimmedRouteId,
       routeLabel: label,
+      officialName,
       isRouteAvailable: isAvailable,
       isActive,
       progressSummary,

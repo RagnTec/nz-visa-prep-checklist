@@ -1,0 +1,44 @@
+[
+  {
+    "id": "inz.china-working-holiday",
+    "title": "China Working Holiday Visa",
+    "publisher": "Immigration New Zealand",
+    "url": "https://www.immigration.govt.nz/visas/china-working-holiday-visa/",
+    "checkedAt": "2026-09-09"
+  },
+  {
+    "id": "inz.inz1027",
+    "title": "Supplementary Form for Chinese Citizens (INZ 1027)",
+    "publisher": "Immigration New Zealand",
+    "url": "https://www.immigration.govt.nz/forms-and-guides/forms/supplementary-form-for-chinese-citizens-inz-1027/",
+    "checkedAt": "2026-09-09"
+  },
+  {
+    "id": "inz.cwh.education-verification",
+    "title": "Qualification recognition and verification for China Working Holiday Scheme",
+    "publisher": "Immigration New Zealand",
+    "url": "https://www.immigration.govt.nz/visas/china-working-holiday-visa/education-requirements/",
+    "checkedAt": "2026-09-09"
+  },
+  {
+    "id": "inz.cwh.english",
+    "title": "English language requirements for China Working Holiday Visa",
+    "publisher": "Immigration New Zealand",
+    "url": "https://www.immigration.govt.nz/visas/china-working-holiday-visa/english-language-requirements/",
+    "checkedAt": "2026-09-09"
+  },
+  {
+    "id": "inz.health-xray-medical",
+    "title": "Who needs an X-ray or medical examination",
+    "publisher": "Immigration New Zealand",
+    "url": "https://www.immigration.govt.nz/process-to-apply/applying-for-a-visa/providing-evidence-and-documents-to-support-your-visa-application/health-requirements/who-needs-an-x-ray-or-medical-examination/",
+    "checkedAt": "2026-09-09"
+  },
+  {
+    "id": "inz.police-certificates",
+    "title": "Police certificates",
+    "publisher": "Immigration New Zealand",
+    "url": "https://www.immigration.govt.nz/process-to-apply/applying-for-a-visa/providing-evidence-and-documents-to-support-your-visa-application/good-character-requirements-and-police-certificates/police-certificates/",
+    "checkedAt": "2026-09-09"
+  }
+]

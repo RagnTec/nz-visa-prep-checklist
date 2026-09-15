@@ -78,6 +78,8 @@ describe('ChecklistView guidance rendering', () => {
 
   it.each([
     ['inz_visa', 'INZ 官方要求或指引'],
+    ['ircc_visa', 'IRCC 官方要求或指引'],
+    ['au_home_affairs_visa', '澳大利亚内政事务部（Home Affairs）官方要求或指引'],
     ['product_guidance', '整理与核对建议']
   ] as const)('renders the %s evidence-layer label in detail-body', (evidenceLayer, label) => {
     render(
@@ -102,7 +104,8 @@ describe('ChecklistView guidance rendering', () => {
     [{ ...item, id: 'health.review', requirementType: 'may_be_requested' as const, evidenceLayer: 'inz_visa' as const }, '按情况要求'],
     [{ ...item, id: 'education.transcripts', requirementType: 'product_organisation_guidance' as const, evidenceLayer: 'product_guidance' as const }, '建议核对'],
     [{ ...item, id: 'english.providerEvidence', requirementType: 'answer_dependent' as const, evidenceLayer: 'product_guidance' as const }, '建议核对'],
-    [{ ...item, id: 'english.pendingCondition', requirementType: 'answer_dependent' as const, evidenceLayer: 'product_guidance' as const }, '建议核对']
+    [{ ...item, id: 'english.pendingCondition', requirementType: 'answer_dependent' as const, evidenceLayer: 'product_guidance' as const }, '建议核对'],
+    [{ ...item, id: 'travel.itinerary', requirementType: 'recommended_supporting' as const, evidenceLayer: 'ircc_visa' as const }, '建议准备']
   ])('maps item $id to primary requirement label $expected', (targetItem, expectedLabel) => {
     render(
       <ChecklistView
@@ -188,6 +191,7 @@ describe('ChecklistView guidance rendering', () => {
       expect(statusChip).toHaveClass('status-chip');
       expect(statusChip).not.toHaveClass('chip-core');
       expect(statusChip).not.toHaveClass('chip-conditional');
+      expect(statusChip).not.toHaveClass('chip-recommended');
       expect(statusChip).not.toHaveClass('chip-guidance');
 
       const primaryChip = screen.getByText('建议核对', { selector: '.primary-label-chip' });

@@ -1,0 +1,23 @@
+[
+  {
+    "id": "ca.visitor.apply",
+    "title": "Visitor visa: About the document",
+    "publisher": "Immigration, Refugees and Citizenship Canada",
+    "url": "https://www.canada.ca/en/immigration-refugees-citizenship/services/visit-canada/about-visitor-visa.html",
+    "checkedAt": "2026-09-08"
+  },
+  {
+    "id": "ca.visitor.supporting-documents",
+    "title": "Visitor visa: Supporting documents",
+    "publisher": "Immigration, Refugees and Citizenship Canada",
+    "url": "https://www.canada.ca/en/immigration-refugees-citizenship/services/visit-canada/supporting-documents.html",
+    "checkedAt": "2026-09-08"
+  },
+  {
+    "id": "ca.visitor.biometrics",
+    "title": "Facts about biometrics",
+    "publisher": "Immigration, Refugees and Citizenship Canada",
+    "url": "https://www.canada.ca/en/immigration-refugees-citizenship/campaigns/biometrics.html",
+    "checkedAt": "2026-09-08"
+  }
+]

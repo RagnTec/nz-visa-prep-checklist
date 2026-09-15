@@ -3,11 +3,13 @@ import {
   DEFAULT_ROUTE_ID,
   SUPPORTED_ROUTE_OPTIONS,
   getRoutePack,
+  groupRouteOptionsByJurisdiction,
   isRegisteredRouteId
 } from './content/registry';
 import { generateChecklist } from './domain/checklist';
 import { normalizeSurveyAnswers } from './domain/answers';
 import type { RoutePack } from './domain/route';
+import { formatRouteCategoryLabel, formatRoutePrimaryLabel } from './i18n';
 import {
   CURRENT_SAVED_PROJECT_SCHEMA_VERSION,
   type ChecklistItem,
@@ -48,6 +50,7 @@ import { ApplicationHubView } from './components/ApplicationHubView';
 import { ChecklistView } from './components/ChecklistView';
 import { PersonApplicationRouteView } from './components/PersonApplicationRouteView';
 import { PersonProfileView } from './components/PersonProfileView';
+import { RouteSelectionGroups } from './components/RouteSelectionGroups';
 import { RetryableSurveyView } from './components/RetryableSurveyView';
 import { SurveyErrorBoundary } from './components/SurveyErrorBoundary';
 import type { SurveyProgress } from './components/SurveyWorkflowView';
@@ -162,6 +165,11 @@ export default function App() {
     if (!selectedRouteId) return null;
     return getRoutePack(selectedRouteId);
   }, [selectedRouteId]);
+
+  const groupedRouteOptions = useMemo(
+    () => groupRouteOptionsByJurisdiction(SUPPORTED_ROUTE_OPTIONS),
+    []
+  );
 
   const handleAnswersDraftChange = useCallback(
     (draftAnswers: Record<string, unknown>) => {
@@ -1134,6 +1142,7 @@ export default function App() {
           <ApplicantSelectionView
             routeLabel={routeOption?.label ?? pendingRouteId}
             routeDescription={routeOption?.description}
+            officialName={routeOption?.eyebrow}
             workspaceReadResult={workspaceReadResult}
             onConfirmApplicant={handleConfirmApplicant}
             onBack={() => {
@@ -1161,7 +1170,7 @@ export default function App() {
           <p>请选择你计划准备的签证或许可类型。回答少量关键问题，生成针对你个人情况的材料准备任务。你的答案只保存在当前浏览器。</p>
         </section>
         <section className="route-choice-card">
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.25rem', flexWrap: 'wrap', gap: '.5rem' }}>
+          <div className="route-choice-sticky-header">
             <h2 style={{ margin: 0 }}>选择申请路线</h2>
             {hasExistingWorkspaceData ? (
               <button
@@ -1177,19 +1186,10 @@ export default function App() {
             ) : null}
           </div>
           {storageMessage ? <p role="alert">{storageMessage}</p> : null}
-          <div className="route-options">
-            {SUPPORTED_ROUTE_OPTIONS.map((option) => (
-              <button
-                key={option.routeId}
-                type="button"
-                className="route-option-btn"
-                onClick={() => selectRoute(option.routeId)}
-              >
-                <span className="route-option-title">{option.label}</span>
-                <span className="route-option-desc">{option.description}</span>
-              </button>
-            ))}
-          </div>
+          <RouteSelectionGroups
+            groups={groupedRouteOptions}
+            onSelectRoute={selectRoute}
+          />
         </section>
         <footer>{defaultFooterDisclaimer}</footer>
       </main>
@@ -1197,7 +1197,11 @@ export default function App() {
   }
 
   const activeRouteOption = SUPPORTED_ROUTE_OPTIONS.find((o) => o.routeId === selectedRouteId);
-  const currentRouteLabel = activeRouteOption?.label ?? activeRoutePack.title ?? selectedRouteId ?? '';
+  const currentRouteLabel =
+    activeRouteOption?.label ??
+    (activeRoutePack
+      ? formatRoutePrimaryLabel(activeRoutePack.jurisdiction, activeRoutePack.routeCategory)
+      : (selectedRouteId ?? ''));
 
   if (checklistAvailable) {
     const checklistCompleteCount = items.filter((item) =>

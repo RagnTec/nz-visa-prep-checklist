@@ -8,11 +8,13 @@ The format follows Keep a Changelog principles. The project is currently in deve
 
 ### Added
 
-- **Multi-applicant & application management**: Application Hub to create, switch between, and track preparation progress across multiple applicants and separate applications.
-- **Expanded route support**: Added route packs for New Zealand Visitor Visa and Canada Study Permit alongside New Zealand Fee Paying Student Visa.
+- **Multi-applicant & application management**: Application Center to create, switch between, and track preparation progress across multiple applicants and separate applications.
+- **Expanded route coverage**: Support for 11 visa routes across New Zealand, Canada, Australia, and the United States, covering Study, Visit, and Work categories.
+- **Hierarchical route selection**: Progressive disclosure workflow navigating smoothly by jurisdiction, route category, and specific visa route.
 - **Per-application survey continuity**: Automatic saving and restoration of questionnaire progression per application across browser sessions.
+- **Deterministic checklist generation**: Configuration-driven, pure-rule checklist engines tailored to factual circumstances for each supported route.
+- **Material necessity & layer presentation**: Clear presentation distinguishing official-source requirements and guidance, conditional or potentially requested evidence, and VisaHelper product-organisation guidance.
 - **Lazy-loaded survey boundary**: Code-split SurveyJS runtime and styling for rapid initial application shell loading.
-- **Three-label necessity architecture**: Tasks classified into `核心要求` (core requirements), `按情况要求` (circumstance-dependent requirements), and `建议核对` (organization and review suggestions).
 
 ### Known non-blocking limitations
 

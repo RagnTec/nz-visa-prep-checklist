@@ -1,0 +1,198 @@
+[
+  {
+    "id": "us.f1.identity.passport",
+    "category": "identity",
+    "title": "有效护照",
+    "requirementType": "usually_required",
+    "evidenceLayer": "us_dos_visa",
+    "why": "前往美国需持有用于旅行的有效护照。根据美国规定，护照有效期通常须超出在美预计停留期至少 6 个月（特定国家/地区免除协定除外）。",
+    "steps": [
+      "检查护照个人信息页清晰完整且在有效期内",
+      "确认护照有效期满足美国国务院针对你所在国籍护照的有效期规定（通常为预期停留期后至少 6 个月）"
+    ],
+    "sourceIds": [
+      "us.dos.student-visa"
+    ],
+    "defaultIncluded": true
+  },
+  {
+    "id": "us.f1.application.ds160Confirmation",
+    "category": "application",
+    "title": "非移民签证电子申请表（DS-160）确认页",
+    "requirementType": "usually_required",
+    "evidenceLayer": "us_dos_visa",
+    "why": "F-1 非移民学生签证申请使用 Form DS-160。完成并提交后，应保存带条形码的确认页，并按当前使领馆申请指引使用。",
+    "steps": [
+      "在 CEAC 官方系统完整填写真实准确的 DS-160 申请表",
+      "确认 DS-160 表格上填写的 SEVIS ID 及就读院校与 Form I-20 保持完全一致",
+      "在线提交表格后，妥善打印并保存带有清晰条形码编号（Barcode Number）的确认页",
+      "如当前预约系统要求录入 DS-160 确认号，请核对其与实际提交的确认页一致"
+    ],
+    "sourceIds": [
+      "us.dos.student-visa",
+      "us.dos.ds160-faq"
+    ],
+    "defaultIncluded": true
+  },
+  {
+    "id": "us.f1.application.photo",
+    "category": "application",
+    "title": "符合要求的签证照片",
+    "requirementType": "usually_required",
+    "evidenceLayer": "us_dos_visa",
+    "why": "在填写 DS-160 在线申请表时需要上传符合官方标准格式的照片。如在线上传失败或使领馆要求，面谈时须携带符合规格的纸质印制照片。",
+    "steps": [
+      "确保护照照片拍摄于近 6 个月内，为白色或近白色背景的彩色签证照片，头部比例与光线符合美国国务院照片规格",
+      "避免佩戴眼镜（除因医疗原因提供医师说明外）、帽子或任何遮挡面部的物品",
+      "在填写 DS-160 表格时按系统要求上传合格的数字照片，并可另备符合规格的印制照片以备面签时查验"
+    ],
+    "sourceIds": [
+      "us.dos.student-visa",
+      "us.dos.photo-requirements"
+    ],
+    "defaultIncluded": true
+  },
+  {
+    "id": "us.f1.student.i20",
+    "category": "study",
+    "title": "SEVP 认证学校签发的 Form I-20",
+    "requirementType": "usually_required",
+    "evidenceLayer": "us_dos_visa",
+    "why": "Form I-20（Certificate of Eligibility for Nonimmigrant Student Status）是由获 SEVP 认证的美国院校签发的官方凭据，证明申请人已获符合 F-1 类别的学术或语言学习项目录取并已注册 SEVIS。",
+    "steps": [
+      "核对 Form I-20 上的姓名、出生日期、国籍及出生地是否与护照完全一致",
+      "确认课程名称、项目起止日期、学费及资金支持数额等信息准确无误",
+      "检查指定校方代表（DSO）已在表格相应位置签名并注明日期",
+      "学生本人须在学生签名栏清晰签署姓名与日期（如未成年由监护人代签）",
+      "按当前官方要求打印并完成相应签署的 Form I-20，并按使领馆要求准备携带"
+    ],
+    "sourceIds": [
+      "us.dos.student-visa",
+      "us.ice.sevp-students"
+    ],
+    "defaultIncluded": true
+  },
+  {
+    "id": "us.f1.student.sevisI901",
+    "category": "study",
+    "title": "SEVIS I-901 缴费与记录核对",
+    "requirementType": "usually_required",
+    "evidenceLayer": "us_ice_sevp",
+    "why": "根据美国法规，F-1 学生签证初次申请人在申请签证及面谈前须向 SEVP 缴纳学生及交流访问学者信息系统（SEVIS）I-901 费用，并保留官方缴费确认记录以备核对。",
+    "steps": [
+      "凭有效 Form I-20 上的 SEVIS ID、姓名和学校代码登录官方系统完成 SEVIS I-901 费用缴纳流程",
+      "缴费完成后，妥善下载并保存带有确认编号的官方缴费收据或支付确认记录（如 I-901 Payment Confirmation）",
+      "核对缴费记录中的个人信息与 Form I-20 保持一致，并按所属使领馆指引备齐记录供面签或审查核验"
+    ],
+    "sourceIds": [
+      "us.ice.sevp-students",
+      "us.dhs.sevis-i901-fee"
+    ],
+    "defaultIncluded": true
+  },
+  {
+    "id": "us.f1.process.visaFee",
+    "category": "process",
+    "title": "签证申请费与缴费要求核对",
+    "requirementType": "usually_required",
+    "evidenceLayer": "us_dos_visa",
+    "why": "申请美国非移民签证须按照拟申请使领馆的官方规定缴纳签证申请费（MRV 费用）。缴费金额、支持的支付方式、缴费时机以及是否需要在面谈或递件时出示特定缴费收据凭证，取决于所在国家或地区的具体申请安排。",
+    "steps": [
+      "查阅拟递交申请的美国使领馆或指定签证服务渠道官方指引，核对当前适用的签证申请费金额",
+      "确认所在申请地点规定的缴费时机与支持的缴费途径（如在线支付、指定银行渠道或特定转账方式）",
+      "核对所属申请地点在预约面谈或材料核验时对缴费证明的具体要求（例如是否需要输入收据编号、打印收据确认单或携带特定纸质回执）",
+      "妥善保存缴费交易记录、收据编号或官方支付凭据以备预约及申请流程中核验"
+    ],
+    "sourceIds": [
+      "us.dos.student-visa"
+    ],
+    "defaultIncluded": true
+  },
+  {
+    "id": "us.f1.process.interviewInstructions",
+    "category": "process",
+    "title": "当前使领馆申请与面谈要求核对",
+    "requirementType": "product_organisation_guidance",
+    "evidenceLayer": "product_guidance",
+    "why": "不同国家和地区的美国使领馆在非移民签证申请安排、面谈要求、材料递交方式及入馆安保规定上存在属地特定要求。申请人应在申请前核对其具体地点的最新操作指引。",
+    "steps": [
+      "查阅拟递交申请的美国驻外使领馆官方网站或指定签证服务渠道，确认当前申请与面谈流程的最新说明",
+      "核实针对你所属情形的预约与面谈要求（包括预约流程、面谈安排或当地适用的免面谈材料递交指引）",
+      "如需参加现场面谈，核对并备齐该使领馆要求携带的确认信件或入场凭证，并遵守使领馆关于电子设备及随身物品的安全管理规定",
+      "核对该使领馆辖区是否有特定的材料整理、照片规格确认或递件特别说明"
+    ],
+    "sourceIds": [
+      "us.dos.student-visa"
+    ],
+    "defaultIncluded": true
+  },
+  {
+    "id": "us.f1.support.academicPreparation",
+    "category": "study",
+    "title": "学术背景与学业准备材料",
+    "requirementType": "may_be_requested",
+    "evidenceLayer": "us_dos_visa",
+    "why": "领事官员可能会要求提供过往的学业经历证明材料，以评估申请人的学术准备情况与求学背景。",
+    "steps": [
+      "准备过往就读院校出具的官方成绩单（Transcripts）",
+      "准备毕业证书、学位证书或相应的学历证明文件（Diplomas / Degrees）",
+      "如赴美就读的院校或项目有要求，准备相应的标准化考试成绩单（如 TOEFL、IELTS、GRE、GMAT 等官方或打印成绩）"
+    ],
+    "sourceIds": [
+      "us.dos.student-visa"
+    ],
+    "defaultIncluded": true
+  },
+  {
+    "id": "us.f1.support.intentToDepart",
+    "category": "support",
+    "title": "完成学业后离美意向支持材料",
+    "requirementType": "may_be_requested",
+    "evidenceLayer": "us_dos_visa",
+    "why": "根据美国非移民签证相关法规，申请 F-1 学生签证时领事官员可能会要求申请人说明或提供材料，以支持其在完成学业后离开美国的意向。",
+    "steps": [
+      "能够清晰、真实地说明完成在美学业后的个人规划与未来安排",
+      "如选择借助具体个人情况进行说明，可按自身实际情形梳理能够支持该说明的相关背景或信息",
+      "确保对学业结束后的规划说明与 DS-160 申请表及其他材料保持真实一致"
+    ],
+    "sourceIds": [
+      "us.dos.student-visa"
+    ],
+    "defaultIncluded": true
+  },
+  {
+    "id": "us.f1.support.financialCapacity",
+    "category": "funds",
+    "title": "资金能力与学费生活费支付支持材料",
+    "requirementType": "may_be_requested",
+    "evidenceLayer": "us_dos_visa",
+    "why": "领事官员可能会要求说明申请人将如何承担在美期间的教育、生活及旅行费用，并准备能够支持该说明的相关材料。",
+    "steps": [
+      "参考 Form I-20 上列明的预估学费与生活费用等信息，评估所需资金准备参考额度",
+      "根据自身实际资金来源，准备相应的支持凭据（例如个人或家庭资金证明、亲属出资说明及相关资金文件，如适用）",
+      "如有奖学金、助研助教金（RA/TA）或校方资助，可准备录取院校出具的正式资助证明函件（如适用）",
+      "如通过合规金融机构申请教育贷款或获得第三方正规资助，可准备贷款批准文件或资助出资凭证（如适用）"
+    ],
+    "sourceIds": [
+      "us.dos.student-visa"
+    ],
+    "defaultIncluded": true
+  },
+  {
+    "id": "us.f1.review.consistency",
+    "category": "review",
+    "title": "材料与问答一致性全面核查",
+    "requirementType": "product_organisation_guidance",
+    "evidenceLayer": "product_guidance",
+    "why": "在面谈前全面比对护照、DS-160、Form I-20、SEVIS 缴费凭证及口头陈述的信息一致性，有助于避免因信息冲突或笔误造成审理延误。",
+    "steps": [
+      "交叉比对护照姓名（含拼音）、出生日期、出生地在 DS-160、I-20 及 SEVIS 缴费单上完全一致",
+      "核实 DS-160 中填写的院校名称、学校代码、SEVIS 号码与 Form I-20 保持一致",
+      "熟练掌握个人学习计划、选校理由、资金出资人情况及毕业后打算，确保面谈回答与书面材料真实一致"
+    ],
+    "sourceIds": [
+      "us.dos.student-visa"
+    ],
+    "defaultIncluded": true
+  }
+]

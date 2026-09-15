@@ -1,0 +1,132 @@
+[
+  {
+    "id": "ca.visitor.identity.passport",
+    "category": "身份与证件",
+    "title": "有效护照或旅行证件",
+    "requirementType": "usually_required",
+    "evidenceLayer": "ircc_visa",
+    "why": "用于证明你的身份与国籍。根据 IRCC 官方要求，申请访问签证须提供有效的护照或受认可的旅行证件复印件（包括个人信息页及任何带有印章、签证或标记的页面）。",
+    "steps": [
+      "准备有效护照个人信息页（含照片、姓名、出生日期、证件号码、签发及有效期等信息）的清晰扫描件或复印件",
+      "准备护照中所有包含有效/过期签证、出入境盖章或标记页面的清晰扫描件"
+    ],
+    "sourceIds": [
+      "ca.visitor.apply",
+      "ca.visitor.supporting-documents"
+    ],
+    "defaultIncluded": true
+  },
+  {
+    "id": "ca.visitor.travel.itinerary",
+    "category": "旅行计划",
+    "title": "访问计划与行程安排",
+    "requirementType": "recommended_supporting",
+    "evidenceLayer": "ircc_visa",
+    "why": "根据 IRCC 官方指引，行程安排可作为支持访问目的材料，协助说明在加拿大期间的计划停留与活动安排（例如行程单、住宿安排或相关活动细节）。",
+    "steps": [
+      "整理在加拿大期间的行程规划或日程安排细节",
+      "准备酒店预订凭证或住宿安排说明（如适用）"
+    ],
+    "sourceIds": [
+      "ca.visitor.supporting-documents"
+    ],
+    "defaultIncluded": true
+  },
+  {
+    "id": "ca.visitor.funds.bankStatements",
+    "category": "资金支持",
+    "title": "个人银行账单与资金证明",
+    "requirementType": "recommended_supporting",
+    "evidenceLayer": "ircc_visa",
+    "why": "根据 IRCC 官方指引，银行账单可作为证明你有足够资金支持在加停留及离境的支持性材料。官方指引建议提供包含账户及金融机构信息、账户持有人姓名及至少 6 个月账户流水记录的账单。官方未设定固定最低存款数额，所需资金取决于停留时间及住宿安排等实际情况。",
+    "steps": [
+      "准备开户金融机构出具的个人银行账单（建议包含至少 6 个月的交易明细与余额）",
+      "确认账单清晰显示账户持有人姓名、账号及金融机构标识"
+    ],
+    "sourceIds": [
+      "ca.visitor.supporting-documents"
+    ],
+    "defaultIncluded": true
+  },
+  {
+    "id": "ca.visitor.ties.employmentLetter",
+    "category": "归国约束力",
+    "title": "雇主在职证明信",
+    "requirementType": "recommended_supporting",
+    "evidenceLayer": "ircc_visa",
+    "why": "对于在职申请人，根据 IRCC 官方指引，雇主证明信可用于支持你的工作现状及与居住国的联系。官方支持的信函内容包括确认在职状态、入职日期、职务描述、薪资以及雇主联系信息。",
+    "steps": [
+      "向当前雇主索取正式在职证明信",
+      "确认信中载明在职确认、入职起始日期、职位描述、薪资水平以及雇主联系方式（电话、地址等）"
+    ],
+    "sourceIds": [
+      "ca.visitor.supporting-documents"
+    ],
+    "defaultIncluded": false
+  },
+  {
+    "id": "ca.visitor.travel.history",
+    "category": "旅行历史",
+    "title": "既往国际旅行历史材料",
+    "requirementType": "recommended_supporting",
+    "evidenceLayer": "ircc_visa",
+    "why": "根据 IRCC 官方指引，既往旅行记录（例如旧护照、以往签证、出入境盖章或境外学习/工作许可）可作为证明你有合规出入境历史的支持性材料。",
+    "steps": [
+      "整理包含以往出入境盖章或有效/过期签证的旧护照或旅行证件",
+      "准备相关签证、盖章页或出入境记录清晰扫描件"
+    ],
+    "sourceIds": [
+      "ca.visitor.supporting-documents"
+    ],
+    "defaultIncluded": true
+  },
+  {
+    "id": "ca.visitor.procedures.additionalRequests",
+    "category": "审理与调阅",
+    "title": "体检、无犯罪证明、面谈或补充材料可能要求提示",
+    "requirementType": "may_be_requested",
+    "evidenceLayer": "ircc_visa",
+    "why": "根据 IRCC 官方规定，签证审理过程中，移民官员可能视具体情况要求申请人完成体检（Medical exam）、提供无犯罪证明（Police certificate）、参见面谈（Interview）或提交其他补充信息。通常无需在递交时主动预先体检或开具证明，除非收到官方进一步通知。",
+    "steps": [
+      "了解 IRCC 审理期间可能视情况要求体检、无犯罪证明、面谈或补充信息",
+      "递交申请后定期查收移民局在线账户及邮件通知，如有调阅指令按官方时限配合办理"
+    ],
+    "sourceIds": [
+      "ca.visitor.apply"
+    ],
+    "defaultIncluded": true
+  },
+  {
+    "id": "ca.visitor.procedures.biometricsNotice",
+    "category": "后续办理",
+    "title": "生物识别后续办理须知",
+    "requirementType": "product_organisation_guidance",
+    "evidenceLayer": "product_guidance",
+    "why": "根据 IRCC 官方指引，访问签证申请人是否需要采集生物识别（指纹与照片）取决于个人情况与豁免情形。适格申请人在在线递交申请并支付生物识别费用后，按 IRCC 发送的后续指示信办理采集。本工具不判定生物识别豁免资格。",
+    "steps": [
+      "提交后根据 IRCC 的后续指示确认是否需要完成生物识别",
+      "若收到生物识别指示信，按要求前往指定网点预约办理指纹与照片采集"
+    ],
+    "sourceIds": [
+      "ca.visitor.biometrics"
+    ],
+    "defaultIncluded": true
+  },
+  {
+    "id": "ca.visitor.submission.portalChecklistMatch",
+    "category": "提交与核对",
+    "title": "核对 IRCC 官方在线系统个性化材料清单",
+    "requirementType": "product_organisation_guidance",
+    "evidenceLayer": "product_guidance",
+    "why": "IRCC 官方在线申请系统在完成建档与问卷后，会为申请人生成专属的个性化材料清单（Personalized document checklist）。VisaHelper 的准备清单协助你在正式填报前梳理常见材料，不能替代官方在线生成的个性化材料清单。",
+    "steps": [
+      "在正式登录 IRCC 官方系统完成申请问卷后，获取系统生成的个性化材料清单",
+      "逐项比对准备的材料与官方清单要求的代码及文件槽位，确认完整后上传递交"
+    ],
+    "sourceIds": [
+      "ca.visitor.apply",
+      "ca.visitor.supporting-documents"
+    ],
+    "defaultIncluded": true
+  }
+]

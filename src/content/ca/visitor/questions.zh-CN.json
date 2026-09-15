@@ -1,0 +1,70 @@
+{
+  "title": "加拿大访问签证材料准备清单",
+  "showProgressBar": "off",
+  "progressBarType": "pages",
+  "pages": [
+    {
+      "name": "scope",
+      "title": "适用范围与官方路径",
+      "elements": [
+        {
+          "type": "radiogroup",
+          "name": "scope.confirmedTouristPurpose",
+          "title": "你本次申请加拿大的主要目的是否为个人旅游或度假？",
+          "description": "当前清单覆盖个人观光旅游、短期度假等个人旅行事由的准备。商务、探亲邀请或超级签证等场景不在当前覆盖范围。",
+          "isRequired": true,
+          "choices": [
+            {
+              "value": "yes",
+              "text": "是，个人观光旅游或短期度假"
+            },
+            {
+              "value": "other",
+              "text": "其他访问目的（如商务活动、探亲邀请等）"
+            }
+          ]
+        },
+        {
+          "type": "radiogroup",
+          "name": "scope.confirmedVisaPathway",
+          "title": "你是否已通过 IRCC 官方途径确认需要申请 Visitor Visa（访问签证）？",
+          "description": "部分旅客根据国籍、旅行证件或入境方式可能适用 eTA（电子旅行许可）或免签准入。本工具不判定签证或 eTA 资格，请在准备前通过 IRCC 官方 'Find out if you need a visa' 工具核对申请途径。",
+          "isRequired": true,
+          "choices": [
+            {
+              "value": "yes",
+              "text": "已确认需要申请 Visitor Visa（临时居民签证 TRV）"
+            },
+            {
+              "value": "need_check",
+              "text": "尚未核对，知晓需前往 IRCC 官方自查确认"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "situation",
+      "title": "当前情况",
+      "elements": [
+        {
+          "type": "radiogroup",
+          "name": "applicant.isEmployed",
+          "title": "你当前是否有受雇工作？",
+          "description": "若当前受雇在职，清单将增加雇主在职证明信作为说明工作背景与居住国联系的推荐支持材料。",
+          "isRequired": true,
+          "choices": [
+            {
+              "value": "yes",
+              "text": "是，当前受雇在职"
+            },
+            {
+              "value": "no",
+              "text": "否，目前未受雇或处于其他状态"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

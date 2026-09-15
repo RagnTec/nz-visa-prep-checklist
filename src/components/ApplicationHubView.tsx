@@ -181,6 +181,9 @@ export function ApplicationHubView({
                     <div className="hub-application-card-main">
                       <div style={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap', gap: '.4rem' }}>
                         <span className="hub-application-title">{app.routeLabel}</span>
+                        {app.officialName ? (
+                          <span className="hub-application-official">{app.officialName}</span>
+                        ) : null}
                         {app.isActive ? (
                           <span className="hub-active-chip">当前申请</span>
                         ) : null}

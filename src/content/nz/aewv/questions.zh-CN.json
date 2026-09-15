@@ -1,0 +1,194 @@
+{
+  "title": "新西兰认可雇主工作签证材料准备清单",
+  "showProgressBar": "off",
+  "progressBarType": "pages",
+  "pages": [
+    {
+      "name": "scope",
+      "title": "申请路线确认",
+      "elements": [
+        {
+          "type": "radiogroup",
+          "name": "scope.confirmedAewvPathway",
+          "title": "你是否已确定申请新西兰认可雇主工作签证（AEWV）？",
+          "description": "AEWV 适用于获得新西兰认可雇主全职工作录用的申请人。若你不确定应申请哪种工作签证，可在递交前先核对 INZ 官方说明。",
+          "isRequired": true,
+          "choices": [
+            {
+              "value": "yes",
+              "text": "是，我已确定申请认可雇主工签（AEWV）"
+            },
+            {
+              "value": "need_check",
+              "text": "尚不确定，需要核对其他工作签证路线"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "skills",
+      "title": "技能、资历与执业注册",
+      "elements": [
+        {
+          "type": "radiogroup",
+          "name": "skills.minimumSkillEvidenceStatus",
+          "title": "根据 INZ 对该职位的最低技能要求，你自查后需要提供哪种证明？",
+          "description": "AEWV 通常要求申请人满足最低技能要求；部分情形可无需再次提供额外最低技能证明。请根据当前 INZ 指引自主确认本次申请需要准备的证明类型。",
+          "isRequired": true,
+          "choices": [
+            {
+              "value": "work_experience",
+              "text": "需要提供相关工作经历证明"
+            },
+            {
+              "value": "qualification",
+              "text": "需要提供匹配的高等或专业学历证明"
+            },
+            {
+              "value": "both",
+              "text": "需要同时提供工作经历与学历证明"
+            },
+            {
+              "value": "no_additional_evidence",
+              "text": "经自查，无需提供额外的最低技能证明"
+            },
+            {
+              "value": "need_check",
+              "text": "尚不确定，需要对照 INZ 说明进一步核对"
+            }
+          ]
+        },
+        {
+          "type": "radiogroup",
+          "name": "skills.registrationStatus",
+          "title": "你所受聘的职位在新西兰是否属于法定执业注册（Occupational Registration）的职业？",
+          "description": "部分受规管行业（如医疗、教师、部分工程电工等）在新西兰从事执业必须依法持有注册资格。若不属于受规管职业请选“否”。",
+          "isRequired": true,
+          "choices": [
+            {
+              "value": "required",
+              "text": "是，该职位依法必须持有新西兰执业注册"
+            },
+            {
+              "value": "not_required",
+              "text": "否，该职位不需要新西兰执业注册"
+            },
+            {
+              "value": "need_check",
+              "text": "尚不确定，需要核对官方职业注册列表"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "english",
+      "title": "英语能力要求",
+      "elements": [
+        {
+          "type": "radiogroup",
+          "name": "english.requirementStatus",
+          "title": "根据当前 INZ 政策与职位技能要求，你是否需要提供英语能力证明？",
+          "description": "INZ 对部分 AEWV 职位的申请人有英语能力要求。英语能力可通过受认可的语言测试成绩、或符合条件的国籍/工作/学习经历证明。请对照 INZ 规定自主确认。",
+          "isRequired": true,
+          "choices": [
+            {
+              "value": "required",
+              "text": "是，需要提供符合条件的英语能力证明"
+            },
+            {
+              "value": "not_required",
+              "text": "否，根据当前规定豁免或不要求英语证明"
+            },
+            {
+              "value": "need_check",
+              "text": "尚不确定，需要对照 INZ 规定进一步核对"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "health",
+      "title": "健康与停留背景",
+      "elements": [
+        {
+          "type": "radiogroup",
+          "name": "health.intendedStayOver6Months",
+          "title": "本次预计在新西兰停留是否超过 6 个月？",
+          "description": "INZ 规定：若预计在新西兰停留超过 6 个月（more than 6 months），且具有特定结核病风险背景，通常需要提供胸部 X 光（Chest X-ray）。",
+          "isRequired": true,
+          "choices": [
+            {
+              "value": "yes",
+              "text": "是，预计停留超过 6 个月"
+            },
+            {
+              "value": "no",
+              "text": "否，预计停留不超过 6 个月"
+            }
+          ]
+        },
+        {
+          "type": "radiogroup",
+          "name": "health.hasTbRiskHistory",
+          "title": "你是否为结核病（TB）非低发病率国家的公民，或过去 5 年曾在相关国家累计停留超过 3 个月？",
+          "description": "请对照 INZ 官方关于结核病低发病率国家/地区的清单自主核对。若非低发国公民或过去 5 年曾在相关国家累计停留超过 3 个月，请选择“是”。",
+          "visibleIf": "{health.intendedStayOver6Months} = 'yes'",
+          "isRequired": true,
+          "choices": [
+            {
+              "value": "yes",
+              "text": "是，符合上述结核病背景核对条件"
+            },
+            {
+              "value": "no",
+              "text": "否，仅停留于结核病低发国家且非相关国公民"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "character_and_docs",
+      "title": "品行与材料格式",
+      "elements": [
+        {
+          "type": "radiogroup",
+          "name": "character.totalStayInNz24MonthsOrMore",
+          "title": "包括过去停留和本次预计停留在内，你在新西兰的总停留时间是否将达到 24 个月或更长？",
+          "description": "年满 17 周岁且在新西兰总停留时间达到 24 个月及以上的申请人，通常须提供国籍国及 17 岁后累计居住超 5 年国家的警方无犯罪记录证明。",
+          "isRequired": true,
+          "choices": [
+            {
+              "value": "yes",
+              "text": "是，总停留时间将达到 24 个月或更长"
+            },
+            {
+              "value": "no",
+              "text": "否，总停留时间未达 24 个月"
+            }
+          ]
+        },
+        {
+          "type": "radiogroup",
+          "name": "document.hasNonEnglishDocuments",
+          "title": "你准备递交的支持材料中是否含有非英文文件？",
+          "description": "INZ 对非英文材料有明确的翻译规范要求。若含有非英文字件，请根据官方指引准备对应英文翻译件。",
+          "isRequired": true,
+          "choices": [
+            {
+              "value": "yes",
+              "text": "是，含有非英文材料"
+            },
+            {
+              "value": "no",
+              "text": "否，全部材料均为英文原件"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

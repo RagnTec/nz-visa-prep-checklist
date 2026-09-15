@@ -11,7 +11,7 @@ This document describes how regulatory information and official requirements are
 
 Every item in the preparation checklist includes verified source metadata defined in each route's `sources.json` (e.g., `src/content/<jurisdiction>/<route>/sources.json`). Each source entry contains:
 
-- `id`: A unique, stable identifier for the source (e.g., `inz.fee-paying-student` or `ircc.study-permit`);
+- `id`: A unique, stable identifier for the source (e.g., `inz.fee-paying-student`, `ircc.study-permit`, or `ca.visitor.apply`);
 - `title`: The official title of the published page;
 - `publisher`: The official government publisher (e.g., `Immigration New Zealand` or `Immigration, Refugees and Citizenship Canada`);
 - `url`: The canonical HTTPS URL on the official government portal;
@@ -23,7 +23,8 @@ The checklist clearly distinguishes different categories of information:
 
 1. **核心要求 (Core Requirements)**: Central, baseline requirements for the visa subclass (e.g., valid passport, acceptance letter / Offer of Place, tuition receipt).
 2. **按情况要求 (Circumstance-Dependent Requirements)**: Official requirements triggered by the applicant's specific situation (e.g., financial supporter evidence, police certificates, medical examinations, accompanying family materials).
-3. **建议核对 (Organization & Review Guidance)**: Structured checklist suggestions to assist with document collation, condition review, and chronological organization. These are clearly distinguished from statutory government document mandates.
+3. **建议准备 (Recommended Supporting Evidence)**: Officially recommended supporting materials to corroborate purpose of visit, ties, or financial capacity.
+4. **建议核对 (Organization & Review Guidance)**: Structured checklist suggestions to assist with document collation, condition review, and chronological organization. These are clearly distinguished from statutory government document mandates.
 
 ## Currency of Information
 

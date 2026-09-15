@@ -15,6 +15,7 @@ export const CA_STUDY_PERMIT_ROUTE_ID = 'ca-study-permit';
 export const caStudyPermitRoutePack: RoutePack = {
   id: CA_STUDY_PERMIT_ROUTE_ID,
   jurisdiction: 'ca',
+  routeCategory: 'study',
   title: '加拿大学习许可（Study Permit）材料准备清单',
   eyebrow: 'Study Permit',
   description: '回答少量关键问题，生成与你情况相关的Study Permit准备任务。你的答案只保存在当前浏览器。',

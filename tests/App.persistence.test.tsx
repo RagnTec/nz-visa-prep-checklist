@@ -223,6 +223,24 @@ describe('App persistence hardening', () => {
     storage.deleteProjectAndSaveWorkspace.mockResolvedValue(undefined);
   });
 
+  async function selectNzStudentRoute() {
+    fireEvent.click(await screen.findByRole('button', { name: /新西兰/ }));
+    fireEvent.click(await screen.findByRole('button', { name: /学习/ }));
+    fireEvent.click(await screen.findByRole('button', { name: /新西兰 · 学习 · 自费学生签证/ }));
+  }
+
+  async function selectCaStudyRoute() {
+    fireEvent.click(await screen.findByRole('button', { name: /加拿大/ }));
+    fireEvent.click(await screen.findByRole('button', { name: /学习/ }));
+    fireEvent.click(await screen.findByRole('button', { name: /加拿大 · 学习 · 学习许可/ }));
+  }
+
+  async function selectNzVisitorRoute() {
+    fireEvent.click(await screen.findByRole('button', { name: /新西兰/ }));
+    fireEvent.click(await screen.findByRole('button', { name: /旅游 \/ 访问/ }));
+    fireEvent.click(await screen.findByRole('button', { name: /新西兰 · 旅游 \/ 访问 · 访客签证/ }));
+  }
+
   it('shows the persistent trial disclosure in the survey flow', async () => {
     render(<App />);
 
@@ -230,7 +248,7 @@ describe('App persistence hardening', () => {
     expect(screen.getByLabelText('测试预览说明')).toHaveTextContent(
       '测试预览版：本工具仅协助整理签证或许可申请材料，不是政府官方申请产品'
     );
-    fireEvent.click(screen.getByRole('button', { name: /新西兰 · 自费学生签证/ }));
+    await selectNzStudentRoute();
     await confirmNewApplicantAndEnterSurvey();
   });
 
@@ -252,7 +270,7 @@ describe('App persistence hardening', () => {
   it('connects blocking cross-field date validation to the survey model', async () => {
     render(<App />);
 
-    fireEvent.click(await screen.findByRole('button', { name: /新西兰 · 自费学生签证/ }));
+    await selectNzStudentRoute();
     await confirmNewApplicantAndEnterSurvey();
     expect(surveyEvents.validateQuestion).toHaveLength(1);
 
@@ -281,7 +299,7 @@ describe('App persistence hardening', () => {
 
     expect(await screen.findByText('选择申请路线')).toBeInTheDocument();
     expect(screen.getByRole('alert')).toHaveTextContent('无法使用浏览器本地存储');
-    fireEvent.click(screen.getByRole('button', { name: /新西兰 · 自费学生签证/ }));
+    await selectNzStudentRoute();
     await confirmNewApplicantAndEnterSurvey();
   });
 
@@ -612,8 +630,10 @@ describe('App persistence hardening', () => {
       render(<App />);
 
       expect(await screen.findByText('选择申请路线')).toBeInTheDocument();
-      expect(screen.getByRole('button', { name: /新西兰 · 自费学生签证/ })).toBeInTheDocument();
-      expect(screen.getByRole('button', { name: /加拿大 · 学习许可/ })).toBeInTheDocument();
+      expect(screen.getByRole('button', { name: /新西兰/ })).toBeInTheDocument();
+      expect(screen.getByRole('button', { name: /加拿大/ })).toBeInTheDocument();
+      expect(screen.queryByRole('button', { name: /自费学生签证/ })).not.toBeInTheDocument();
+      expect(screen.queryByRole('button', { name: /学习许可/ })).not.toBeInTheDocument();
 
       // Ensure internal route IDs are NOT rendered to applicant
       expect(screen.queryByText('nz-student-fee-paying')).not.toBeInTheDocument();
@@ -623,7 +643,7 @@ describe('App persistence hardening', () => {
     it('selecting Canada creates a project with routeId: ca-study-permit and resolves Canada RoutePack', async () => {
       render(<App />);
 
-      fireEvent.click(await screen.findByRole('button', { name: /加拿大 · 学习许可/ }));
+      await selectCaStudyRoute();
       await confirmNewApplicantAndEnterSurvey('Canada Applicant');
       expect(screen.getByText('加拿大学习许可（Study Permit）材料准备清单')).toBeInTheDocument();
 
@@ -704,7 +724,7 @@ describe('App persistence hardening', () => {
     it('selecting Canada creates an initial application with routeId: ca-study-permit and empty answers/statuses', async () => {
       render(<App />);
 
-      fireEvent.click(await screen.findByRole('button', { name: /加拿大 · 学习许可/ }));
+      await selectCaStudyRoute();
       await confirmNewApplicantAndEnterSurvey('Canada Applicant');
 
       await waitFor(() => expect(storage.createProjectAndWorkspace).toHaveBeenCalledWith(
@@ -722,7 +742,7 @@ describe('App persistence hardening', () => {
     it('selecting NZ creates an initial application with routeId: nz-student-fee-paying and empty answers/statuses', async () => {
       render(<App />);
 
-      fireEvent.click(await screen.findByRole('button', { name: /新西兰 · 自费学生签证/ }));
+      await selectNzStudentRoute();
       await confirmNewApplicantAndEnterSurvey('NZ Student Applicant');
 
       await waitFor(() => expect(storage.createProjectAndWorkspace).toHaveBeenCalledWith(
@@ -812,7 +832,7 @@ describe('App persistence hardening', () => {
     it('selecting CA creates an initial project with surveyCompleted: false', async () => {
       render(<App />);
 
-      fireEvent.click(await screen.findByRole('button', { name: /加拿大 · 学习许可/ }));
+      await selectCaStudyRoute();
       await confirmNewApplicantAndEnterSurvey();
 
       await waitFor(() => expect(storage.createProjectAndWorkspace).toHaveBeenCalledWith(
@@ -828,7 +848,7 @@ describe('App persistence hardening', () => {
     it('selecting NZ creates an initial project with surveyCompleted: false', async () => {
       render(<App />);
 
-      fireEvent.click(await screen.findByRole('button', { name: /新西兰 · 自费学生签证/ }));
+      await selectNzStudentRoute();
       await confirmNewApplicantAndEnterSurvey();
 
       await waitFor(() => expect(storage.createProjectAndWorkspace).toHaveBeenCalledWith(
@@ -844,7 +864,7 @@ describe('App persistence hardening', () => {
     it('entering partial CA survey answers persists real draft answers with surveyCompleted: false', async () => {
       render(<App />);
 
-      fireEvent.click(await screen.findByRole('button', { name: /加拿大 · 学习许可/ }));
+      await selectCaStudyRoute();
       await confirmNewApplicantAndEnterSurvey();
       expect(surveyEvents.valueChanged).toHaveLength(1);
 
@@ -873,7 +893,7 @@ describe('App persistence hardening', () => {
     it('entering partial NZ survey answers persists real draft answers with surveyCompleted: false', async () => {
       render(<App />);
 
-      fireEvent.click(await screen.findByRole('button', { name: /新西兰 · 自费学生签证/ }));
+      await selectNzStudentRoute();
       await confirmNewApplicantAndEnterSurvey();
       expect(surveyEvents.valueChanged).toHaveLength(1);
 
@@ -956,7 +976,7 @@ describe('App persistence hardening', () => {
     it('completing survey marks surveyCompleted: true and persists merged answers preserving pre-existing draft answers', async () => {
       render(<App />);
 
-      fireEvent.click(await screen.findByRole('button', { name: /加拿大 · 学习许可/ }));
+      await selectCaStudyRoute();
       await confirmNewApplicantAndEnterSurvey();
       expect(surveyEvents.valueChanged).toHaveLength(1);
       expect(surveyEvents.complete).toHaveLength(1);
@@ -1048,7 +1068,7 @@ describe('App persistence hardening', () => {
     it('selecting NZ Visitor opens NZ Visitor survey, persists routeId nz-visitor, and does not resolve NZ Student content', async () => {
       render(<App />);
 
-      fireEvent.click(await screen.findByRole('button', { name: /新西兰 · 访问签证/ }));
+      await selectNzVisitorRoute();
       await confirmNewApplicantAndEnterSurvey('NZ Visitor Applicant');
 
       expect(screen.getByText('新西兰访问签证材料准备清单')).toBeInTheDocument();
@@ -1101,7 +1121,7 @@ describe('App persistence hardening', () => {
     it('1. route selection alone does not persist an application or workspace', async () => {
       render(<App />);
 
-      fireEvent.click(await screen.findByRole('button', { name: /新西兰 · 自费学生签证/ }));
+      await selectNzStudentRoute();
 
       expect(await screen.findByText('选择或创建申请人')).toBeInTheDocument();
       expect(storage.saveProject).not.toHaveBeenCalled();
@@ -1112,7 +1132,7 @@ describe('App persistence hardening', () => {
     it('2. empty Workspace: route -> applicant page -> new Person -> create -> enters Survey', async () => {
       render(<App />);
 
-      fireEvent.click(await screen.findByRole('button', { name: /加拿大 · 学习许可/ }));
+      await selectCaStudyRoute();
 
       expect(await screen.findByText('选择或创建申请人')).toBeInTheDocument();
       expect(screen.getByText(/工作区中尚无人员记录/)).toBeInTheDocument();
@@ -1168,7 +1188,7 @@ describe('App persistence hardening', () => {
 
       render(<App />);
 
-      fireEvent.click(await screen.findByRole('button', { name: /新西兰 · 访问签证/ }));
+      await selectNzVisitorRoute();
 
       expect(await screen.findByText('选择或创建申请人')).toBeInTheDocument();
       expect(screen.getByText('Alice Existing')).toBeInTheDocument();
@@ -1194,7 +1214,7 @@ describe('App persistence hardening', () => {
     it('4. back from applicant selection returns to route selection without creating any records', async () => {
       render(<App />);
 
-      fireEvent.click(await screen.findByRole('button', { name: /加拿大 · 学习许可/ }));
+      await selectCaStudyRoute();
       expect(await screen.findByText('选择或创建申请人')).toBeInTheDocument();
 
       fireEvent.click(screen.getByRole('button', { name: '返回选择路线' }));
@@ -1222,7 +1242,7 @@ describe('App persistence hardening', () => {
 
       render(<App />);
 
-      fireEvent.click(await screen.findByRole('button', { name: /新西兰 · 自费学生签证/ }));
+      await selectNzStudentRoute();
       expect(await screen.findByText('选择或创建申请人')).toBeInTheDocument();
       expect(screen.getByText(/无法读取本地工作区数据/)).toBeInTheDocument();
       expect(screen.queryByRole('button', { name: '创建并开始准备' })).not.toBeInTheDocument();
@@ -1238,7 +1258,7 @@ describe('App persistence hardening', () => {
 
       render(<App />);
 
-      fireEvent.click(await screen.findByRole('button', { name: /新西兰 · 自费学生签证/ }));
+      await selectNzStudentRoute();
       expect(await screen.findByText('选择或创建申请人')).toBeInTheDocument();
       expect(screen.getByText(/此本地工作区由较新版本创建（版本 42）/)).toBeInTheDocument();
       expect(screen.queryByRole('button', { name: '创建并开始准备' })).not.toBeInTheDocument();
@@ -1302,7 +1322,7 @@ describe('App persistence hardening', () => {
       expect(screen.queryByText('Checklist view')).not.toBeInTheDocument();
 
       // Alice is still available in the workspace when picking a route again
-      fireEvent.click(screen.getByRole('button', { name: /加拿大 · 学习许可/ }));
+      await selectCaStudyRoute();
       expect(await screen.findByText('选择或创建申请人')).toBeInTheDocument();
       expect(screen.getByText('Alice')).toBeInTheDocument();
     });

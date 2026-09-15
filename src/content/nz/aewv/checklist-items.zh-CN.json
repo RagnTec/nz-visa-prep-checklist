@@ -1,0 +1,227 @@
+[
+  {
+    "id": "nz.aewv.identity.passport",
+    "category": "身份与照片",
+    "title": "护照或身份证明文件",
+    "requirementType": "usually_required",
+    "evidenceLayer": "inz_visa",
+    "why": "INZ 要求所有签证申请人提供有效护照或其他被认可的身份证明文件，用于核对个人法定身份与国籍。",
+    "steps": [
+      "准备有效护照个人信息页的清晰彩色扫描件或照片",
+      "确保护照在预计离开新西兰之日后至少仍有 3 个月有效（或按入境规定保持足够有效期）",
+      "核对护照上的姓名、出生日期、国籍等信息与工作聘书及在线申请填写内容保持严格一致"
+    ],
+    "sourceIds": ["inz.aewv"],
+    "defaultIncluded": true
+  },
+  {
+    "id": "nz.aewv.identity.photo",
+    "category": "身份与照片",
+    "title": "符合规格的签证证件照片",
+    "requirementType": "usually_required",
+    "evidenceLayer": "inz_visa",
+    "why": "在线递交 AEWV 申请时，须上传符合 INZ 规格要求的近期护照照片。",
+    "steps": [
+      "准备 6 个月内拍摄的近期免冠证件照片电子版",
+      "核对照片规格符合 INZ 官方标准（浅色纯色背景、面部清晰且无阴影遮挡、中性表情、面部占比适中）",
+      "保存为符合在线申报系统格式要求的图像文件（如 JPG/JPEG）"
+    ],
+    "sourceIds": ["inz.aewv", "inz.visa-photo"],
+    "defaultIncluded": true
+  },
+  {
+    "id": "nz.aewv.employment.jobOffer",
+    "category": "工作与雇佣证明",
+    "title": "经签署的工作聘书（Job Offer）",
+    "requirementType": "usually_required",
+    "evidenceLayer": "inz_visa",
+    "why": "AEWV 申请必须基于新西兰认可雇主提供的真实有效的全职工作聘约。",
+    "steps": [
+      "准备由认可雇主出具并由雇佣双方完整签署的工作聘书副本",
+      "核对聘书载明的雇主名称与当前持有有效 AEWV 认证资质的雇主一致",
+      "确认聘书中列明的职位与雇主已获批准的 Job Check 对应岗位一致"
+    ],
+    "sourceIds": ["inz.aewv"],
+    "defaultIncluded": true
+  },
+  {
+    "id": "nz.aewv.employment.employmentAgreement",
+    "category": "工作与雇佣证明",
+    "title": "经双方签署的雇佣协议（Employment Agreement）",
+    "requirementType": "usually_required",
+    "evidenceLayer": "inz_visa",
+    "why": "INZ 要求提交经双方签署的正式雇佣协议（Employment Agreement）副本，以核实拟聘工作的各项基本聘用条件与工作条款。",
+    "steps": [
+      "准备经认可雇主与申请人双方完整签署的正式雇佣协议（Employment Agreement）副本",
+      "核对协议中是否包含当前 INZ 针对 AEWV 所列明的信息，包括职位名称、工作地点、岗位职责、任职资质或经验要求、执业注册情况、每周工作时长（至少 30 小时）、聘期、薪酬标准及工作条件",
+      "对照当前 INZ 官方说明核对协议中不得包含的条款清单（如扣除特定费用或不合规限制等）"
+    ],
+    "sourceIds": ["inz.aewv"],
+    "defaultIncluded": true
+  },
+  {
+    "id": "nz.aewv.employment.jobDescription",
+    "category": "工作与雇佣证明",
+    "title": "岗位职责说明书（Job Description）",
+    "requirementType": "usually_required",
+    "evidenceLayer": "inz_visa",
+    "why": "岗位说明书用于详细说明该职位的日常主要职责、报告关系与所需技能要求，供签证官核对与 Job Check 及申请人资历的一致性。",
+    "steps": [
+      "向雇主索取与获批 Job Check 岗位完全对应的 Job Description 完整文件",
+      "核对文件列示的主要工作任务、职责范围及任职要求",
+      "对照此职责内容准备后续的个人工作资历、培训经历或学历支撑材料"
+    ],
+    "sourceIds": ["inz.aewv"],
+    "defaultIncluded": true
+  },
+  {
+    "id": "nz.aewv.skills.workExperience",
+    "category": "技能与资历",
+    "title": "相关工作经历证明文件",
+    "requirementType": "answer_dependent",
+    "evidenceLayer": "inz_visa",
+    "why": "根据你在问卷中的确认，你需提供过往工作经历证明以满足 INZ 对该职位的最低技能要求。",
+    "steps": [
+      "准备工作证明信（如由雇主开具的工作证明信，注明工作起止日期、每周工时、职位及主要职责）",
+      "整理具有客观可验证性的支持凭证，如工资单（Payslips）、完税凭证（Tax certificates）或由前雇主出具且具有客观可核验证据支撑的推荐信",
+      "注意：仅凭个人履历或简历（CV/Resume）本身通常不足以作为完整证明；本工具不判断特定材料是否已被 INZ 视为充分"
+    ],
+    "sourceIds": ["inz.aewv"],
+    "defaultIncluded": false
+  },
+  {
+    "id": "nz.aewv.skills.qualification",
+    "category": "技能与资历",
+    "title": "匹配的高等或专业学历学位证明",
+    "requirementType": "answer_dependent",
+    "evidenceLayer": "inz_visa",
+    "why": "根据你在问卷中的确认，你需提供匹配的高等或专业学历资质以满足 INZ 对该职位的最低技能要求。",
+    "steps": [
+      "准备与聘用岗位相关的毕业证书、学位证书或资质证明清晰副本",
+      "对照当前 INZ 官方 AEWV 指引核对是否需要向新西兰学历认证局（NZQA）申请海外学历评估（IQA）",
+      "如需办理 IQA，提前完成评估并取得评估报告副本；本工具不判断特定学历是否需要或免于办理 IQA"
+    ],
+    "sourceIds": ["inz.aewv"],
+    "defaultIncluded": false
+  },
+  {
+    "id": "nz.aewv.skills.registration",
+    "category": "技能与资历",
+    "title": "新西兰法定执业注册或执照证明",
+    "requirementType": "answer_dependent",
+    "evidenceLayer": "inz_visa",
+    "why": "若岗位需要新西兰职业注册，应按当前 INZ 及相关注册机构要求准备对应的注册或资格确认材料。",
+    "steps": [
+      "核对自己拟受聘职位在新西兰对应行业注册管理机构的职业注册要求",
+      "根据当前 INZ 接受的凭据类型准备适用材料，如新西兰正式执业注册（Full registration）、临时/预备执业注册（Provisional registration），或由相应专业注册机构出具的该职位符合注册资格的官方确认函",
+      "确保注册文件中的个人信息、拟聘职业及注册类别与申请岗位信息保持一致"
+    ],
+    "sourceIds": ["inz.aewv"],
+    "defaultIncluded": false
+  },
+  {
+    "id": "nz.aewv.skills.english",
+    "category": "语言能力",
+    "title": "英语能力证明",
+    "requirementType": "answer_dependent",
+    "evidenceLayer": "inz_visa",
+    "why": "根据当前 INZ 规定，针对部分技能等级的 AEWV 岗位，申请人须证明自身达到政策规定的最低英语语言能力标准。",
+    "steps": [
+      "核对自己适用哪种 INZ 认可的证明路径（例如受认可的英语语言考试成绩、符合条件的以英语授课的学历背景或特定国家国籍/工作经历）",
+      "如使用语言考试成绩，准备符合 INZ 最低分数要求的考试成绩报告（如 IELTS, PTE Academic, TOEFL iBT, B2 First, OET 等），并注意成绩单通常须在递交前 2 年以内取得",
+      "如主张通过教育或国籍豁免，整理对应的完整证明文件以备在线提交"
+    ],
+    "sourceIds": ["inz.aewv", "inz.aewv.english"],
+    "defaultIncluded": false
+  },
+  {
+    "id": "nz.aewv.health.chestXray",
+    "category": "健康要求",
+    "title": "胸部 X 光体检证明（Chest X-ray Certificate）",
+    "requirementType": "answer_dependent",
+    "evidenceLayer": "inz_visa",
+    "why": "计划在新西兰停留超过 6 个月且具有结核病非低发背景或旅居史的申请人，通常须提交胸部 X 光筛查证明。",
+    "steps": [
+      "预约经新西兰移民局认可的指定体检医师或诊所（Panel Physician）完成胸部 X 光检查（通常通过 eMedical 系统直接电子化提交给 INZ）",
+      "注意时效与复用指引：如需提供胸透或体检证明，INZ 收到相关证明时通常应少于 3 个月；若过去曾提交过证明，但在随后的时间里在结核病非低发国家或地区连续停留 6 个月且本次预计在新西兰停留超过 6 个月，通常仍需重新安排胸透检查",
+      "妥善保存体检机构提供的 eMedical 信息回执单（Information Sheet），记录对应的新西兰健康标识号（NZHR）"
+    ],
+    "sourceIds": ["inz.aewv"],
+    "defaultIncluded": false
+  },
+  {
+    "id": "nz.aewv.character.policeCertificate",
+    "category": "品行要求",
+    "title": "警方无犯罪记录证明（Police Certificates）",
+    "requirementType": "answer_dependent",
+    "evidenceLayer": "inz_visa",
+    "why": "年满 17 周岁且在新西兰累计或预计总停留时间达 24 个月及以上的申请人，须证明符合品行要求。",
+    "steps": [
+      "确认需办理的国家范围：包括国籍国，以及年满 17 周岁后累计居住超过 5 年的所有国家（自查过去停留，无需在本工具中记录具体历史）",
+      "联系相关国家官方发证机关开具无犯罪记录证明，确保递交申请时开具日期不满 6 个月",
+      "如过去曾向 INZ 提交过相关国家的无犯罪记录证明，可对照 INZ 现行复用豁免指引核对是否可免于重新办理"
+    ],
+    "sourceIds": ["inz.aewv", "inz.police-certificates"],
+    "defaultIncluded": false
+  },
+  {
+    "id": "nz.aewv.docs.translationReview",
+    "category": "材料格式规范",
+    "title": "非英文材料翻译规范核对",
+    "requirementType": "answer_dependent",
+    "evidenceLayer": "inz_visa",
+    "why": "递交非英文支持材料时，应遵守 INZ 官方关于英文翻译的规定，以确保材料符合审理要求。",
+    "steps": [
+      "按 INZ 官方规定，若需提交非英文的警方无犯罪记录证明或体检相关材料，必须附有符合资质要求的正式认证英文翻译件（Certified English translation）",
+      "对于其他非英文支持性证据，根据当前 INZ 指引准备相应英文译文，并留意 INZ 是否进一步要求认证翻译",
+      "将原始语言材料与对应英文翻译按顺序成对归档，供在线申报时一并上传"
+    ],
+    "sourceIds": ["inz.english-translations"],
+    "defaultIncluded": false
+  },
+  {
+    "id": "nz.aewv.health.medicalExam",
+    "category": "健康要求",
+    "title": "全面体检医疗证明（如被要求）",
+    "requirementType": "may_be_requested",
+    "evidenceLayer": "inz_visa",
+    "why": "在线递交 AEWV 申请时需回答健康申报问卷。INZ 会结合个人申报与审理情况评估，可能在审理过程中通知申请人补充全面体检或专科医疗报告。",
+    "steps": [
+      "在线填写签证申请时，按实际情况如实完成官方健康问题申报",
+      "在申请审理期间留意 INZ 邮件与在线系统通知",
+      "若收到移民官发出的体检指令，按官方要求前往指定的认可体检机构（Panel Physician）完成相应体格检查"
+    ],
+    "sourceIds": ["inz.aewv"],
+    "defaultIncluded": true
+  },
+  {
+    "id": "nz.aewv.review.jobRequirements",
+    "category": "准备复核",
+    "title": "雇主特定聘用要求核对",
+    "requirementType": "product_organisation_guidance",
+    "evidenceLayer": "product_guidance",
+    "why": "除 INZ 的 AEWV 最低技能要求外，雇主在聘书或岗位职责说明中可能约定了针对该职位的特定学历、技能、执照或行业工作经验要求。本项用于提示申请人自查准备一致性。",
+    "steps": [
+      "仔细对照工作聘书与岗位职责说明书（Job Description）中列明的各项任职条件",
+      "确认自己准备的履历证明、资质证书或培训经历能够覆盖雇主在聘用文件中明确约定的核心任职条件",
+      "注意：即使申请人依自身情况无需向 INZ 提供额外最低技能证明，仍应自查是否满足雇佣合同中约定的岗位任职要求"
+    ],
+    "sourceIds": ["inz.aewv"],
+    "defaultIncluded": true
+  },
+  {
+    "id": "nz.aewv.review.consistency",
+    "category": "准备复核",
+    "title": "申请材料一致性自查",
+    "requirementType": "product_organisation_guidance",
+    "evidenceLayer": "product_guidance",
+    "why": "用于在正式递交前集中核对各材料与官方申请中关键事实的一致性。",
+    "steps": [
+      "核对护照、工作聘书、雇佣协议与在线申请表中填写的姓名、出生日期、国籍等法定身份信息完全一致",
+      "交叉核对工作聘书、雇佣协议、岗位职责说明书与申请人官方在线申请中填报的信息，确保职位名称、工作地点、每周工作时长（每周至少 30 小时）及薪酬待遇等基本事实保持一致",
+      "核对个人履历及各项证明文件中记录的时间线前后连贯、相互印证"
+    ],
+    "sourceIds": ["inz.aewv"],
+    "defaultIncluded": true
+  }
+]

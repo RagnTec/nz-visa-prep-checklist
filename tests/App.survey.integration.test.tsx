@@ -88,7 +88,9 @@ function fillRequiredStudyQuestions() {
 }
 
 async function startNzSurvey() {
-  const nzBtn = await screen.findByRole('button', { name: /新西兰 · 自费学生签证/ });
+  fireEvent.click(await screen.findByRole('button', { name: /新西兰/ }));
+  fireEvent.click(await screen.findByRole('button', { name: /学习/ }));
+  const nzBtn = await screen.findByRole('button', { name: /新西兰 · 学习 · 自费学生签证/ });
   fireEvent.click(nzBtn);
 
   await screen.findByRole('heading', { name: '选择或创建申请人' });

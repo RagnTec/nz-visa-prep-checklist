@@ -15,7 +15,8 @@ describe('ApplicationHubView Component', () => {
               applicationId: 'app-alice-1',
               applicantPersonId: 'person-alice',
               routeId: 'nz-student-fee-paying',
-              routeLabel: '新西兰 · 自费学生签证',
+              routeLabel: '新西兰 · 学生签证',
+              officialName: 'Fee Paying Student Visa',
               isRouteAvailable: true,
               isActive: true
             }
@@ -36,7 +37,8 @@ describe('ApplicationHubView Component', () => {
     );
 
     expect(screen.getByText('Alice Smith')).toBeInTheDocument();
-    expect(screen.getByText('新西兰 · 自费学生签证')).toBeInTheDocument();
+    expect(screen.getByText('新西兰 · 学生签证')).toBeInTheDocument();
+    expect(screen.getByText('Fee Paying Student Visa')).toBeInTheDocument();
     expect(screen.getByText('当前申请')).toBeInTheDocument();
     expect(screen.getByRole('button', { name: '返回此申请' })).toBeInTheDocument();
   });
@@ -52,7 +54,7 @@ describe('ApplicationHubView Component', () => {
               applicationId: 'app-1',
               applicantPersonId: 'person-alice',
               routeId: 'nz-student-fee-paying',
-              routeLabel: '新西兰 · 自费学生签证',
+              routeLabel: '新西兰 · 学生签证',
               isRouteAvailable: true,
               isActive: true
             },
@@ -60,7 +62,7 @@ describe('ApplicationHubView Component', () => {
               applicationId: 'app-2',
               applicantPersonId: 'person-alice',
               routeId: 'nz-visitor',
-              routeLabel: '新西兰 · 访问签证',
+              routeLabel: '新西兰 · 旅游/访问签证',
               isRouteAvailable: true,
               isActive: false
             }
@@ -80,8 +82,8 @@ describe('ApplicationHubView Component', () => {
       />
     );
 
-    expect(screen.getByText('新西兰 · 自费学生签证')).toBeInTheDocument();
-    expect(screen.getByText('新西兰 · 访问签证')).toBeInTheDocument();
+    expect(screen.getByText('新西兰 · 学生签证')).toBeInTheDocument();
+    expect(screen.getByText('新西兰 · 旅游/访问签证')).toBeInTheDocument();
     expect(screen.getAllByText('当前申请')).toHaveLength(1);
   });
 
@@ -96,7 +98,7 @@ describe('ApplicationHubView Component', () => {
               applicationId: 'app-1',
               applicantPersonId: 'person-alice',
               routeId: 'nz-student-fee-paying',
-              routeLabel: '新西兰 · 自费学生签证',
+              routeLabel: '新西兰 · 学生签证',
               isRouteAvailable: true,
               isActive: false
             }
@@ -110,7 +112,7 @@ describe('ApplicationHubView Component', () => {
               applicationId: 'app-2',
               applicantPersonId: 'person-bob',
               routeId: 'ca-study-permit',
-              routeLabel: '加拿大 · 学习许可',
+              routeLabel: '加拿大 · 学生签证',
               isRouteAvailable: true,
               isActive: false
             }
@@ -131,8 +133,8 @@ describe('ApplicationHubView Component', () => {
 
     expect(screen.getByText('Alice Smith')).toBeInTheDocument();
     expect(screen.getByText('Bob Jones')).toBeInTheDocument();
-    expect(screen.getByText('新西兰 · 自费学生签证')).toBeInTheDocument();
-    expect(screen.getByText('加拿大 · 学习许可')).toBeInTheDocument();
+    expect(screen.getByText('新西兰 · 学生签证')).toBeInTheDocument();
+    expect(screen.getByText('加拿大 · 学生签证')).toBeInTheDocument();
   });
 
   it('preserves Person with zero Applications and shows neutral empty state', () => {
@@ -171,7 +173,7 @@ describe('ApplicationHubView Component', () => {
               applicationId: 'app-1',
               applicantPersonId: 'person-alice',
               routeId: 'nz-student-fee-paying',
-              routeLabel: '新西兰 · 自费学生签证',
+              routeLabel: '新西兰 · 学生签证',
               isRouteAvailable: true,
               isActive: true
             },
@@ -179,7 +181,7 @@ describe('ApplicationHubView Component', () => {
               applicationId: 'app-2',
               applicantPersonId: 'person-alice',
               routeId: 'nz-visitor',
-              routeLabel: '新西兰 · 访问签证',
+              routeLabel: '新西兰 · 旅游/访问签证',
               isRouteAvailable: true,
               isActive: false
             }
@@ -330,7 +332,7 @@ describe('ApplicationHubView Component', () => {
               applicationId: 'app-secret-token-1234',
               applicantPersonId: 'person-internal-id-9988',
               routeId: 'nz-student-fee-paying',
-              routeLabel: '新西兰 · 自费学生签证',
+              routeLabel: '新西兰 · 学生签证',
               isRouteAvailable: true,
               isActive: false
             }
@@ -365,7 +367,7 @@ describe('ApplicationHubView Component', () => {
               applicationId: 'app-active-1',
               applicantPersonId: 'person-1',
               routeId: 'nz-student-fee-paying',
-              routeLabel: '新西兰 · 自费学生签证',
+              routeLabel: '新西兰 · 学生签证',
               isRouteAvailable: true,
               isActive: true
             }
@@ -400,7 +402,7 @@ describe('ApplicationHubView Component', () => {
               applicationId: 'app-active',
               applicantPersonId: 'person-alice',
               routeId: 'nz-student-fee-paying',
-              routeLabel: '新西兰 · 自费学生签证',
+              routeLabel: '新西兰 · 学生签证',
               isRouteAvailable: true,
               isActive: true
             }
@@ -436,7 +438,7 @@ describe('ApplicationHubView Component', () => {
               applicationId: 'app-target-999',
               applicantPersonId: 'person-alice',
               routeId: 'nz-visitor',
-              routeLabel: '新西兰 · 访问签证',
+              routeLabel: '新西兰 · 旅游/访问签证',
               isRouteAvailable: true,
               isActive: false
             }
@@ -476,7 +478,7 @@ describe('ApplicationHubView Component', () => {
               applicationId: 'app-active',
               applicantPersonId: 'person-alice',
               routeId: 'nz-student-fee-paying',
-              routeLabel: '新西兰 · 自费学生签证',
+              routeLabel: '新西兰 · 学生签证',
               isRouteAvailable: true,
               isActive: true
             }
@@ -512,7 +514,7 @@ describe('ApplicationHubView Component', () => {
               applicationId: 'app-opening',
               applicantPersonId: 'person-alice',
               routeId: 'nz-visitor',
-              routeLabel: '新西兰 · 访问签证',
+              routeLabel: '新西兰 · 旅游/访问签证',
               isRouteAvailable: true,
               isActive: false
             },
@@ -520,7 +522,7 @@ describe('ApplicationHubView Component', () => {
               applicationId: 'app-other',
               applicantPersonId: 'person-alice',
               routeId: 'ca-study-permit',
-              routeLabel: '加拿大 · 学习许可',
+              routeLabel: '加拿大 · 学生签证',
               isRouteAvailable: true,
               isActive: false
             }
@@ -612,7 +614,7 @@ describe('ApplicationHubView Component', () => {
               applicationId: 'app-active',
               applicantPersonId: 'person-1',
               routeId: 'nz-student-fee-paying',
-              routeLabel: '新西兰 · 自费学生签证',
+              routeLabel: '新西兰 · 学生签证',
               isRouteAvailable: true,
               isActive: true
             },
@@ -620,7 +622,7 @@ describe('ApplicationHubView Component', () => {
               applicationId: 'app-inactive',
               applicantPersonId: 'person-1',
               routeId: 'nz-visitor',
-              routeLabel: '新西兰 · 访问签证',
+              routeLabel: '新西兰 · 旅游/访问签证',
               isRouteAvailable: true,
               isActive: false
             }
@@ -656,7 +658,7 @@ describe('ApplicationHubView Component', () => {
               applicationId: 'app-active-xyz',
               applicantPersonId: 'person-1',
               routeId: 'nz-student-fee-paying',
-              routeLabel: '新西兰 · 自费学生签证',
+              routeLabel: '新西兰 · 学生签证',
               isRouteAvailable: true,
               isActive: true
             }
@@ -698,7 +700,7 @@ describe('ApplicationHubView Component', () => {
               applicationId: 'app-1',
               applicantPersonId: 'person-1',
               routeId: 'nz-visitor',
-              routeLabel: '新西兰 · 访问签证',
+              routeLabel: '新西兰 · 旅游/访问签证',
               isRouteAvailable: true,
               isActive: false
             }
@@ -775,7 +777,7 @@ describe('ApplicationHubView Component', () => {
               applicationId: 'app-target-secret-id',
               applicantPersonId: 'person-1',
               routeId: 'nz-visitor',
-              routeLabel: '新西兰 · 访问签证',
+              routeLabel: '新西兰 · 旅游/访问签证',
               isRouteAvailable: true,
               isActive: false
             }
@@ -826,7 +828,7 @@ describe('ApplicationHubView Component', () => {
               applicationId: 'app-deleting-1',
               applicantPersonId: 'person-1',
               routeId: 'nz-visitor',
-              routeLabel: '新西兰 · 访问签证',
+              routeLabel: '新西兰 · 旅游/访问签证',
               isRouteAvailable: true,
               isActive: false
             }
@@ -863,7 +865,7 @@ describe('ApplicationHubView Component', () => {
               applicationId: 'app-student-1',
               applicantPersonId: 'person-alice',
               routeId: 'nz-student-fee-paying',
-              routeLabel: '新西兰 · 自费学生签证',
+              routeLabel: '新西兰 · 学生签证',
               isRouteAvailable: true,
               isActive: true,
               progressSummary: '情况问卷 · 3 / 7',
@@ -874,7 +876,7 @@ describe('ApplicationHubView Component', () => {
               applicationId: 'app-student-2',
               applicantPersonId: 'person-alice',
               routeId: 'nz-student-fee-paying',
-              routeLabel: '新西兰 · 自费学生签证',
+              routeLabel: '新西兰 · 学生签证',
               isRouteAvailable: true,
               isActive: false,
               progressSummary: '材料清单 · 5 / 20 已处理',

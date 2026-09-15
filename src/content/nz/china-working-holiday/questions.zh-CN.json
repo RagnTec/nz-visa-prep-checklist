@@ -1,0 +1,114 @@
+{
+  "title": "新西兰中国打工度假签证材料准备清单",
+  "showProgressBar": "off",
+  "progressBarType": "pages",
+  "pages": [
+    {
+      "name": "scope",
+      "title": "申请适用范围自查",
+      "elements": [
+        {
+          "type": "radiogroup",
+          "name": "scope.confirmedChinaWorkingHoliday",
+          "title": "你是否已确定申请新西兰中国打工度假签证（China Working Holiday Visa）？",
+          "description": "新西兰与中国签署了双边打工度假协定。若你不确定应申请哪种签证，可在递交前先核对 INZ 官方说明。",
+          "isRequired": true,
+          "choices": [
+            {
+              "value": "yes",
+              "text": "是，我已确定申请中国打工度假签证"
+            },
+            {
+              "value": "need_check",
+              "text": "尚不确定，需要核对其他签证路线"
+            }
+          ]
+        },
+        {
+          "type": "radiogroup",
+          "name": "scope.citizenshipStatus",
+          "title": "你的国籍身份是否为中华人民共和国公民？",
+          "description": "该打工度假协定仅对持有效中华人民共和国护照的中国公民开放。请自查确认你的国籍身份（护照有效性等材料准备将在清单中核对）。",
+          "isRequired": true,
+          "choices": [
+            {
+              "value": "china",
+              "text": "是，我是中华人民共和国公民"
+            },
+            {
+              "value": "other",
+              "text": "否，持有其他国家或地区国籍"
+            },
+            {
+              "value": "need_check",
+              "text": "尚不确定或需核实国籍身份"
+            }
+          ]
+        },
+        {
+          "type": "radiogroup",
+          "name": "scope.ageBand",
+          "title": "在预计递交申请时，你的年龄是否在 18 至 30 周岁之间？",
+          "description": "中国打工度假协定要求申请人在递交申请时年满 18 周岁且不超过 30 周岁（即未满 31 周岁）。本题仅用于自主确认适用范围，不通过出生日期进行自动资格判断。",
+          "isRequired": true,
+          "choices": [
+            {
+              "value": "18_30",
+              "text": "是，递交申请时年龄在 18 至 30 周岁之间"
+            },
+            {
+              "value": "outside_18_30",
+              "text": "否，未满 18 周岁或已年满 31 周岁"
+            },
+            {
+              "value": "need_check",
+              "text": "尚不确定，需根据出生日期与预计递签日核对"
+            }
+          ]
+        },
+        {
+          "type": "radiogroup",
+          "name": "scope.applicationResidence",
+          "title": "你是否符合通常居住于中国大陆，且在递交申请时实际居住于中国境内的要求？",
+          "description": "新西兰移民局要求中国打工度假申请人不仅通常居住在中华人民共和国境内，且在正式递交申请时也必须实际身处中国大陆境内。",
+          "isRequired": true,
+          "choices": [
+            {
+              "value": "meets_china_residence",
+              "text": "是，我通常居住在中国大陆，且递交申请时身处中国境内"
+            },
+            {
+              "value": "outside_scope",
+              "text": "否，我通常不在中国大陆居住，或递交时身处中国境外"
+            },
+            {
+              "value": "need_check",
+              "text": "尚不确定，需进一步核对居住状态与递签地要求"
+            }
+          ]
+        },
+        {
+          "type": "radiogroup",
+          "name": "scope.previousNzWorkingHolidayVisa",
+          "title": "新西兰移民局此前是否曾为你签发过打工度假签证？",
+          "description": "依据双边协定与移民局政策，新西兰打工度假签证一生通常仅限获批一次。",
+          "isRequired": true,
+          "choices": [
+            {
+              "value": "no",
+              "text": "否，此前从未获批过新西兰打工度假签证"
+            },
+            {
+              "value": "yes",
+              "text": "是，此前曾获批过新西兰打工度假签证"
+            },
+            {
+              "value": "need_check",
+              "text": "尚不确定历史获签类别，需核对以往签证记录"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

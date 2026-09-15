@@ -1,0 +1,37 @@
+[
+  {
+    "id": "us.dos.student-visa",
+    "title": "Student Visa (F and M)",
+    "publisher": "U.S. Department of State - Bureau of Consular Affairs",
+    "url": "https://travel.state.gov/content/travel/en/us-visas/study/student-visa.html",
+    "checkedAt": "2026-09-14"
+  },
+  {
+    "id": "us.dos.ds160-faq",
+    "title": "DS-160: Frequently Asked Questions",
+    "publisher": "U.S. Department of State - Bureau of Consular Affairs",
+    "url": "https://travel.state.gov/content/travel/en/us-visas/visa-information-resources/forms/ds-160-online-nonimmigrant-visa-application/ds-160-faqs.html",
+    "checkedAt": "2026-09-14"
+  },
+  {
+    "id": "us.dos.photo-requirements",
+    "title": "Photograph Requirements",
+    "publisher": "U.S. Department of State - Bureau of Consular Affairs",
+    "url": "https://travel.state.gov/content/travel/en/us-visas/visa-information-resources/photos.html",
+    "checkedAt": "2026-09-14"
+  },
+  {
+    "id": "us.ice.sevp-students",
+    "title": "Students and the Form I-20",
+    "publisher": "U.S. Immigration and Customs Enforcement (ICE)",
+    "url": "https://www.ice.gov/sevis/students",
+    "checkedAt": "2026-09-14"
+  },
+  {
+    "id": "us.dhs.sevis-i901-fee",
+    "title": "Paying the I-901 SEVIS Fee",
+    "publisher": "U.S. Department of Homeland Security - Study in the States",
+    "url": "https://studyinthestates.dhs.gov/students/paying-the-sevis-i-901-fee",
+    "checkedAt": "2026-09-14"
+  }
+]

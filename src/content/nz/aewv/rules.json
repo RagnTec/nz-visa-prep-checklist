@@ -1,0 +1,88 @@
+[
+  {
+    "id": "nz.aewv.rule.skills.workExperience",
+    "when": {
+      "field": "skills.minimumSkillEvidenceStatus",
+      "operator": "in",
+      "value": ["work_experience", "both"]
+    },
+    "addChecklistItems": [
+      "nz.aewv.skills.workExperience"
+    ]
+  },
+  {
+    "id": "nz.aewv.rule.skills.qualification",
+    "when": {
+      "field": "skills.minimumSkillEvidenceStatus",
+      "operator": "in",
+      "value": ["qualification", "both"]
+    },
+    "addChecklistItems": [
+      "nz.aewv.skills.qualification"
+    ]
+  },
+  {
+    "id": "nz.aewv.rule.skills.registration",
+    "when": {
+      "field": "skills.registrationStatus",
+      "operator": "equals",
+      "value": "required"
+    },
+    "addChecklistItems": [
+      "nz.aewv.skills.registration"
+    ]
+  },
+  {
+    "id": "nz.aewv.rule.skills.english",
+    "when": {
+      "field": "english.requirementStatus",
+      "operator": "equals",
+      "value": "required"
+    },
+    "addChecklistItems": [
+      "nz.aewv.skills.english"
+    ]
+  },
+  {
+    "id": "nz.aewv.rule.health.chestXray",
+    "when": {
+      "all": [
+        {
+          "field": "health.intendedStayOver6Months",
+          "operator": "equals",
+          "value": "yes"
+        },
+        {
+          "field": "health.hasTbRiskHistory",
+          "operator": "equals",
+          "value": "yes"
+        }
+      ]
+    },
+    "addChecklistItems": [
+      "nz.aewv.health.chestXray"
+    ]
+  },
+  {
+    "id": "nz.aewv.rule.character.policeCertificate",
+    "when": {
+      "field": "character.totalStayInNz24MonthsOrMore",
+      "operator": "equals",
+      "value": "yes"
+    },
+    "addChecklistItems": [
+      "nz.aewv.character.policeCertificate"
+    ]
+  },
+  {
+    "id": "nz.aewv.rule.docs.translationReview",
+    "when": {
+      "field": "document.hasNonEnglishDocuments",
+      "operator": "equals",
+      "value": "yes"
+    },
+    "addChecklistItems": [
+      "nz.aewv.docs.translationReview"
+    ]
+  }
+]

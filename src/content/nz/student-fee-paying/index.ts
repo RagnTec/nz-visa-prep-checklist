@@ -22,6 +22,7 @@ export function cleanNzStaleAnswers(
 export const nzStudentFeePayingRoutePack: RoutePack = {
   id: NZ_STUDENT_FEE_PAYING_ROUTE_ID,
   jurisdiction: 'nz',
+  routeCategory: 'study',
   title: '新西兰自费学生签证材料准备清单',
   eyebrow: 'Fee Paying Student Visa',
   description: '回答少量关键问题，生成与你情况相关的Fee Paying Student Visa准备任务。你的答案只保存在当前浏览器。',

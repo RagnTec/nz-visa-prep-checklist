@@ -1,0 +1,118 @@
+{
+  "title": "新西兰毕业后工作签证材料准备清单",
+  "showProgressBar": "off",
+  "progressBarType": "pages",
+  "pages": [
+    {
+      "name": "scope",
+      "title": "申请适用范围与资格路径自查",
+      "elements": [
+        {
+          "type": "radiogroup",
+          "name": "scope.confirmedPostStudyWork",
+          "title": "你是否已确定申请新西兰毕业后工作签证（Post-Study Work Visa）？",
+          "description": "新西兰毕业后工作签证适用于近期在新西兰完成符合要求的受认可课程的毕业生。若你不确定应申请哪种签证，可在递交前先核对 INZ 官方说明。",
+          "isRequired": true,
+          "choices": [
+            {
+              "value": "yes",
+              "text": "是，我已确定申请新西兰毕业后工作签证（PSWV）"
+            },
+            {
+              "value": "need_check",
+              "text": "尚不确定，需要核对其他签证路线"
+            }
+          ]
+        },
+        {
+          "type": "radiogroup",
+          "name": "study.qualificationPathway",
+          "title": "你所完成的新西兰就读学历属于以下哪种资格路径？",
+          "description": "新西兰移民局针对不同等级的资格设置了不同的材料要求与后续工作权限。注：7 级毕业生文凭（Graduate Diploma）通道政策正式生效实施日期为 2026 年 11 月 16 日。",
+          "isRequired": true,
+          "choices": [
+            {
+              "value": "degree_level_7_or_higher",
+              "text": "NZQCF 7 级或以上学位课程（学士、荣誉学士、硕士或博士学位）"
+            },
+            {
+              "value": "eligible_non_degree_level_4_7",
+              "text": "NZQCF 4 至 7 级非学位资格（且符合 INZ 当前合格资格清单）"
+            },
+            {
+              "value": "level_7_graduate_diploma",
+              "text": "NZQCF 7 级毕业生文凭（Graduate Diploma，新政自 2026 年 11 月 16 日起实施）"
+            },
+            {
+              "value": "need_check",
+              "text": "尚不确定所修读课程对应的具体资格类别"
+            }
+          ]
+        },
+        {
+          "type": "radiogroup",
+          "name": "timing.applicationWindowStatus",
+          "title": "你的申请时点是否处于适用于自身情况的申请截止期限内？",
+          "description": "毕业后工签要求申请人在适用于自身就读与签证情况的法定截止时限内递交。本项用于申请时限自查，不自动推算具体日期，请核对适用于自身学业情况的 INZ 最新政策规定。",
+          "isRequired": true,
+          "choices": [
+            {
+              "value": "within_applicable_window",
+              "text": "已核对并确认：当前仍处于适用于自身情况的申请截止期限内"
+            },
+            {
+              "value": "outside_applicable_window",
+              "text": "已核对并认为：当前已超出适用于自身情况的申请截止期限"
+            },
+            {
+              "value": "need_check",
+              "text": "尚不确定：仍需进一步核查适用于自身情况的具体申请截止期限"
+            }
+          ]
+        },
+        {
+          "type": "radiogroup",
+          "name": "history.previousPostStudyWorkVisa",
+          "title": "新西兰移民局此前是否曾为你签发过毕业后工作签证？",
+          "description": "依据新西兰移民局现行政策，新西兰毕业后工作签证一生仅限获批一次。",
+          "isRequired": true,
+          "choices": [
+            {
+              "value": "no",
+              "text": "否，此前从未获批过新西兰毕业后工作签证"
+            },
+            {
+              "value": "yes",
+              "text": "是，此前曾获批过新西兰毕业后工作签证"
+            },
+            {
+              "value": "need_check",
+              "text": "尚不确定历史签证类别，需核对以往签证记录"
+            }
+          ]
+        },
+        {
+          "type": "radiogroup",
+          "name": "documents.hasNonEnglishDocuments",
+          "title": "你的申请材料中是否包含非英文原件？",
+          "description": "若材料原件非英文，新西兰移民局要求提供由正规官方认可机构出具的英文翻译认证件。",
+          "isRequired": true,
+          "choices": [
+            {
+              "value": "yes",
+              "text": "是，包含非英文的证明材料（需提供正规翻译认证件）"
+            },
+            {
+              "value": "no",
+              "text": "否，所有证明文件原件均为英文"
+            },
+            {
+              "value": "need_check",
+              "text": "尚不确定是否有非英文文件，需对照材料清单核对"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

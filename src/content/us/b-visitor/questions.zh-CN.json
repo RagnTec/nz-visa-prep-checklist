@@ -1,0 +1,55 @@
+{
+  "title": "美国旅游/访问签证材料准备清单",
+  "showProgressBar": "off",
+  "progressBarType": "pages",
+  "pages": [
+    {
+      "name": "scope",
+      "title": "适用范围与访问目的",
+      "elements": [
+        {
+          "type": "radiogroup",
+          "name": "scope.confirmedBVisitorVisa",
+          "title": "你是否已确认拟申请美国 B 类旅游/访问签证？",
+          "description": "本清单面向在美国境外准备美国旅游/访问签证（B-2 / B1/B2，用于旅游、度假、探亲访友或就医等临时访问目的）的成年申请人。部分符合条件的旅行者可能通过免签证计划（Visa Waiver Program / ESTA）等其他合法途径前往美国，建议在准备材料前先确认适用的签证或旅行许可途径。",
+          "isRequired": true,
+          "choices": [
+            {
+              "value": "yes",
+              "text": "是，已确认拟申请 B 类旅游/访问签证"
+            },
+            {
+              "value": "need_check",
+              "text": "尚未确定，需要先核实适用的签证或旅行途径"
+            }
+          ]
+        },
+        {
+          "type": "radiogroup",
+          "name": "scope.visitPurpose",
+          "title": "你本次赴美的主要目的属于哪种情形？",
+          "description": "B 类访问签证主要涵盖暂时性的休闲旅游、探亲访友及赴美就医等活动。如拟赴美从事全日制学术学习、受雇工作或长期居留，通常须适用其他专属签证或移民类别。",
+          "isRequired": true,
+          "choices": [
+            {
+              "value": "tourism_or_vacation",
+              "text": "个人观光旅游、度假或休闲访问"
+            },
+            {
+              "value": "visit_friends_or_relatives",
+              "text": "探访亲属、朋友或家庭成员"
+            },
+            {
+              "value": "medical_treatment",
+              "text": "赴美接受医疗诊疗或健康治疗"
+            },
+            {
+              "value": "other_or_need_check",
+              "text": "其他访问目的或尚需核对是否符合 B 类范围"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

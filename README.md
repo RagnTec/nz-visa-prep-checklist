@@ -23,24 +23,34 @@ Live Demo:
 - **Guided route-specific questionnaires**: Collects factual background questions tailored to specific visa routes.
 - **Personalized checklists**: Generates deterministic, circumstance-dependent preparation checklists using pure rule evaluation.
 - **Multiple applicants & multiple applications**: Supports managing multiple applicants and separate applications within a single local workspace.
-- **Application Hub**: Provides an overview of all applicants, their associated visa applications, and active preparation progress.
+- **Application Center**: Provides an overview of all applicants, their associated visa applications, and active preparation progress.
 - **Per-application survey resume continuity**: Automatically preserves questionnaire progression per application so you can pick up where you left off.
 - **Browser-local storage**: Keeps all user responses and progress strictly inside the browser without requiring an account.
 
 ### Current application routes
 
-The public workspace currently includes support for:
+The public workspace currently includes support for 11 visa routes across 4 jurisdictions:
 
-- **New Zealand Fee Paying Student Visa**
-- **New Zealand Visitor Visa** (tourism, family visits, and short-term study)
-- **Canada Study Permit**
+- **New Zealand**
+  - Study: Fee Paying Student Visa
+  - Visit: Visitor Visa
+  - Work: Accredited Employer Work Visa (AEWV), China Working Holiday Visa, Post Study Work Visa
+- **Canada**
+  - Study: Study Permit
+  - Visit: Visitor Visa
+  - Work: Employer-specific Work Permit
+- **Australia**
+  - Visit: Visitor visa (subclass 600)
+- **United States**
+  - Study: F-1 Student Visa
+  - Visit: Visitor Visa (B-2 / B1/B2)
 
-Each route owns its own questionnaire, checklist logic, rules, and official sources. Additional routes can be integrated through the route configuration architecture.
+Each route owns its own questionnaire, checklist logic, rules, and official sources.
 
 ### How it works
 
 1. **Create or select an applicant**: Start by identifying who is applying.
-2. **Choose an application route**: Select a supported visa route for that applicant.
+2. **Choose a preparation route**: Select a jurisdiction, route category, and supported visa route.
 3. **Complete the guided questionnaire**: Answer factual questions regarding study, travel dates, funding, and background.
 4. **Review and manage the generated preparation checklist**: Track tasks, review official requirements, filter items, and export or print your checklist.
 
@@ -70,7 +80,7 @@ For details, see [`docs/privacy.md`](docs/privacy.md).
 - [`docs/content_sources.md`](docs/content_sources.md): How official requirements are sourced, verified, and mapped.
 - [`docs/product_scope.md`](docs/product_scope.md): Product scope, supported features, and regulatory non-goals.
 
-All route content is derived from documented public first-party government publications (such as Immigration New Zealand and Immigration, Refugees and Citizenship Canada) and implemented as explicit, unit-tested rules.
+All route content is derived from documented public first-party government publications (including Immigration New Zealand, Immigration, Refugees and Citizenship Canada, the Australian Department of Home Affairs, the U.S. Department of State, and U.S. Immigration and Customs Enforcement / SEVP) and implemented as explicit, unit-tested rules. The product maintains an intentional semantic distinction between official-source requirements and guidance, conditional or potentially requested evidence, and VisaHelper product-organisation guidance.
 
 ### Run locally
 
@@ -105,7 +115,7 @@ This public demo repository is generated from a sanitized canonical source snaps
 
 ### Disclaimer
 
-This tool is an independent, non-governmental preparation aid. It does not provide legal or immigration advice, does not assess visa eligibility, does not guarantee visa outcomes, and is not affiliated with or endorsed by Immigration New Zealand, Immigration, Refugees and Citizenship Canada, or any government agency. For official guidance, refer to government immigration portals or consult a licensed professional.
+This tool is an independent, non-governmental preparation aid. It does not provide legal or immigration advice, does not assess visa eligibility, does not guarantee visa outcomes, and is not affiliated with, endorsed by, or representative of any government agency, immigration authority, or consular body. For official guidance, refer to government immigration portals or consult a licensed professional.
 
 ### License
 
@@ -138,18 +148,28 @@ This project is licensed under the [MIT License](LICENSE). Third-party dependenc
 
 ### 当前支持路线
 
-公开工作区目前支持以下申请路线：
+公开工作区目前支持 4 个国家/地区的 11 条申请路线：
 
-- **新西兰自费学生签证（Fee Paying Student Visa）**
-- **新西兰访问签证（Visitor Visa）**（旅游、探亲与短期进修）
-- **加拿大 Study Permit**
+- **新西兰**
+  - 学习：自费学生签证（Fee Paying Student Visa）
+  - 旅游 / 访问：访客签证（Visitor Visa）
+  - 工作：认可雇主工作签证（AEWV）、中国打工度假签证、毕业后工作签证
+- **加拿大**
+  - 学习：学习许可（Study Permit）
+  - 旅游 / 访问：访客签证（Visitor Visa）
+  - 工作：雇主特定工作许可（Employer-specific Work Permit）
+- **澳大利亚**
+  - 旅游 / 访问：访客签证（600类）
+- **美国**
+  - 学习：F-1 学生签证
+  - 旅游 / 访问：美国旅游/访问签证（B-2 / B1/B2）
 
-每条路线拥有独立的问卷配置、清单逻辑、判定规则与官方信息源。系统架构支持通过路线配置持续扩展新路线。
+每条路线拥有独立的问卷配置、清单逻辑、判定规则与官方信息源。
 
 ### 使用流程
 
 1. **创建或选择申请人**：确定申请主体身份。
-2. **选择申请路线**：为该申请人指定适用的签证路线。
+2. **选择申请路线**：依次选择国家/地区、申请类别和具体支持的签证路线。
 3. **完成引导式问卷**：根据实际情况如实填写学习、旅行日期、资金来源等背景信息。
 4. **管理与对照材料清单**：逐项核对官方要求、筛选任务、标记状态，并支持导出或打印材料清单。
 
@@ -179,7 +199,7 @@ This project is licensed under the [MIT License](LICENSE). Third-party dependenc
 - [`docs/content_sources.md`](docs/content_sources.md)：官方要求的引用、核实与映射机制说明。
 - [`docs/product_scope.md`](docs/product_scope.md)：产品边界、支持能力与合规非目标。
 
-各路线内容均基于主管政府部门的第一方公开资料整理，并通过显式规则实现。
+各路线内容均基于主管政府部门的第一方公开资料整理（包括新西兰移民局、加拿大移民、难民及公民部、澳大利亚内政事务部、美国国务院及美国移民和海关执法局/SEVP 等），并通过显式规则实现。在材料呈现上严格区分官方来源的要求与指引、按情况适用或可能被要求的材料，以及 VisaHelper 自身的整理与核对建议。
 
 ### 本地运行
 
@@ -214,7 +234,7 @@ npm run build
 
 ### 免责声明
 
-本工具为独立的非官方材料准备辅助工具，不提供法律或移民建议，不评估申请人资格，不担保签证结果，亦与新西兰移民局、加拿大移民、难民及公民部或任何政府机构无隶属或背书关系。如需权威信息，请访问政府移民官网或咨询持牌专业人士。
+本工具为独立的非官方材料准备辅助工具，不提供法律或移民建议，不评估申请人资格，不担保签证结果，亦与任何国家/地区的政府机构、移民部门或领事使领馆无隶属、背书或代表关系。如需权威信息，请访问政府移民官网或咨询持牌专业人士。
 
 ### 开源许可
 

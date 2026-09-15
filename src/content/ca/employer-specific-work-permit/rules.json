@@ -1,0 +1,36 @@
+[
+  {
+    "id": "ca.eswp.rule.pathway.lmiaRequired",
+    "when": {
+      "field": "employment.lmiaPathway",
+      "operator": "equals",
+      "value": "lmia_required"
+    },
+    "addChecklistItems": [
+      "ca.eswp.pathway.lmiaCopy",
+      "ca.eswp.pathway.jobOfferLetter"
+    ]
+  },
+  {
+    "id": "ca.eswp.rule.pathway.lmiaExempt",
+    "when": {
+      "field": "employment.lmiaPathway",
+      "operator": "equals",
+      "value": "lmia_exempt_employer_portal"
+    },
+    "addChecklistItems": [
+      "ca.eswp.pathway.offerOfEmploymentNumber"
+    ]
+  },
+  {
+    "id": "ca.eswp.rule.docs.translation",
+    "when": {
+      "field": "document.hasNonEnglishDocuments",
+      "operator": "equals",
+      "value": "yes"
+    },
+    "addChecklistItems": [
+      "ca.eswp.docs.translation"
+    ]
+  }
+]

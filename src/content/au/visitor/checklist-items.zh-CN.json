@@ -1,0 +1,150 @@
+[
+  {
+    "id": "au.visitor.identity.passport",
+    "category": "身份与证件",
+    "title": "护照个人信息页",
+    "requirementType": "usually_required",
+    "evidenceLayer": "au_home_affairs_visa",
+    "why": "用于证明你的身份与国籍。根据澳大利亚官方要求，申请访问签证须提供当前有效护照的个人信息页扫描件（含照片、姓名、出生日期、证件号码、签发及有效期等信息）。",
+    "steps": [
+      "准备当前有效护照个人信息页的清晰彩色扫描件",
+      "确认护照有效期覆盖计划在澳大利亚的停留时间"
+    ],
+    "sourceIds": [
+      "au.visitor.subclass600.tourist-stream",
+      "au.visitor.subclass600.step-by-step"
+    ],
+    "defaultIncluded": true
+  },
+  {
+    "id": "au.visitor.funds.financialSupport",
+    "category": "资金支持",
+    "title": "停留期间资金支持材料",
+    "requirementType": "recommended_supporting",
+    "evidenceLayer": "au_home_affairs_visa",
+    "why": "根据澳大利亚内政事务部指引，你须证明有充足的资金支持在澳大利亚停留期间的花销及后续离境（例如个人银行账单、存款证明或可用额度等）。官方未硬性规定固定月数的银行对账单，所需资金量取决于你的预计停留时间与旅行安排。",
+    "steps": [
+      "准备开户金融机构出具的个人银行对账单或资金证明文件",
+      "确认文件清晰载明账户持有人姓名、账号及金融机构标识"
+    ],
+    "sourceIds": [
+      "au.visitor.subclass600.step-by-step"
+    ],
+    "defaultIncluded": true
+  },
+  {
+    "id": "au.visitor.travel.plans",
+    "category": "旅行计划",
+    "title": "澳大利亚停留期间的旅行计划",
+    "requirementType": "recommended_supporting",
+    "evidenceLayer": "au_home_affairs_visa",
+    "why": "根据澳大利亚官方指引，可提供在澳大利亚期间的旅行安排或日程规划，协助说明停留期间的行程计划与真实访客目的。",
+    "steps": [
+      "整理在澳大利亚期间的大致行程路线、游览计划或日常活动规划",
+      "准备酒店住宿预订单或行程预订单（如适用）"
+    ],
+    "sourceIds": [
+      "au.visitor.subclass600.step-by-step"
+    ],
+    "defaultIncluded": true
+  },
+  {
+    "id": "au.visitor.ties.reasonsToReturn",
+    "category": "归国约束力",
+    "title": "支持按计划离开澳大利亚的相关材料",
+    "requirementType": "recommended_supporting",
+    "evidenceLayer": "au_home_affairs_visa",
+    "why": "根据官方要求，申请人须展示其作为真实临时访客且有意图在访问结束后按计划离开澳大利亚。支持性材料可用于佐证你在原居住国的社会或经济联系。官方不硬性要求必须拥有特定种类的纽带或资产。",
+    "steps": [
+      "根据个人客观背景整理说明在访问结束后须按期返回原住国的客观因素或家庭/社会纽带支持材料",
+      "确保材料真实客观、与个人背景相符"
+    ],
+    "sourceIds": [
+      "au.visitor.subclass600.step-by-step"
+    ],
+    "defaultIncluded": true
+  },
+  {
+    "id": "au.visitor.ties.employmentLetter",
+    "category": "归国约束力",
+    "title": "雇主证明及返回工作岗位的支持材料",
+    "requirementType": "recommended_supporting",
+    "evidenceLayer": "au_home_affairs_visa",
+    "why": "对于在职申请人，根据澳大利亚官方指引，雇主信函是证明原居住国工作纽带与返岗安排的推荐支持证据。可说明你的在职身份及休假结束后返回岗位的计划。官方未将固定合同格式或特定薪资证明列为绝对强制条件。",
+    "steps": [
+      "向当前雇主索取正式在职说明或准假证明",
+      "确认信函包含在职确认、工作岗位以及计划在访问结束后返回工作的说明"
+    ],
+    "sourceIds": [
+      "au.visitor.subclass600.step-by-step"
+    ],
+    "defaultIncluded": false
+  },
+  {
+    "id": "au.visitor.documents.translations",
+    "category": "文件规范",
+    "title": "非英文文件的英文翻译件",
+    "requirementType": "answer_dependent",
+    "evidenceLayer": "au_home_affairs_visa",
+    "why": "根据澳大利亚内政事务部官方规定，所有非英文证明文件递交时必须附带英文翻译件。",
+    "steps": [
+      "梳理申请材料中属于中文或其他非英文的所有证明文件",
+      "为相关非英文文件准备对应的完整英文翻译件",
+      "提交时将原始文件与对应的英文翻译件一并附上"
+    ],
+    "sourceIds": [
+      "au.visitor.subclass600.step-by-step"
+    ],
+    "defaultIncluded": false
+  },
+  {
+    "id": "au.visitor.procedures.healthExaminations",
+    "category": "审理与调阅",
+    "title": "健康检查后续可能要求提示",
+    "requirementType": "may_be_requested",
+    "evidenceLayer": "au_home_affairs_visa",
+    "why": "根据官方规定，并非所有访客均须进行体检。澳大利亚内政事务部将在递交申请后视停留时长、旅行历史及个人情况决定是否要求体检。通常无需在递交前盲目预先体检，如需体检官方将在 ImmiAccount 发出体检通知（HAP ID）及办理指引。",
+    "steps": [
+      "了解访客签证体检视官方具体调阅指令而定，递交前通常无需预先办理",
+      "递交后关注 ImmiAccount 消息通知，若收到体检信按官方指示前往指定诊所办理"
+    ],
+    "sourceIds": [
+      "au.visitor.subclass600.step-by-step"
+    ],
+    "defaultIncluded": true
+  },
+  {
+    "id": "au.visitor.procedures.biometricsNotice",
+    "category": "审理与调阅",
+    "title": "生物识别采集后续可能要求提示",
+    "requirementType": "may_be_requested",
+    "evidenceLayer": "au_home_affairs_visa",
+    "why": "根据官方规定，生物识别（指纹与照片）仅在特定国家/地区递交或内政事务部明确要求时采集。并非所有申请人都会被要求采集。若需采集，官方将在递交后发出生物识别要求通知函。",
+    "steps": [
+      "了解生物识别采集由内政事务部视递交地点及指令决定",
+      "递交后关注官方通知，若收到采集通知信，按规定时限前往澳大利亚签证申请中心（AVAC/ABCC）预约采集"
+    ],
+    "sourceIds": [
+      "au.visitor.subclass600.step-by-step"
+    ],
+    "defaultIncluded": true
+  },
+  {
+    "id": "au.visitor.submission.immiAccountCheck",
+    "category": "提交与核对",
+    "title": "核对 ImmiAccount 中的材料清单与后续通知",
+    "requirementType": "product_organisation_guidance",
+    "evidenceLayer": "product_guidance",
+    "why": "澳大利亚签证通过内政事务部 ImmiAccount 在线系统递交。VisaHelper 协助你在正式递交前整理准备材料，不能替代 ImmiAccount 在线填报流程与系统生成的专属附加材料槽位。",
+    "steps": [
+      "在 ImmiAccount 完成在线申请表逐项填写",
+      "核对系统各材料槽位，将已准备的证明材料与对应英文翻译件逐一上传",
+      "递交后定期登录 ImmiAccount 查看审理动态及可能出具的调阅通知（Request for Information）"
+    ],
+    "sourceIds": [
+      "au.visitor.immiaccount",
+      "au.visitor.subclass600.step-by-step"
+    ],
+    "defaultIncluded": true
+  }
+]

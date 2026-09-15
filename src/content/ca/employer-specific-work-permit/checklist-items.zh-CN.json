@@ -1,0 +1,242 @@
+[
+  {
+    "id": "ca.eswp.form.imm1295",
+    "category": "表格与身份",
+    "title": "境外工作许可申请表（IMM 1295）",
+    "requirementType": "usually_required",
+    "evidenceLayer": "ircc_visa",
+    "why": "IRCC 境外工签申请的核心法定表格为 IMM 1295（Application for Work Permit Made Outside Canada），用于向移民局完整申报个人基本信息、拟受聘雇主与职位详情、在加工作安排以及背景历史。",
+    "steps": [
+      "从 IRCC 官方网站下载最新版 IMM 1295 申请表格并在支持的 PDF 阅读器中完整填写",
+      "准确填写拟聘雇主名称、工作地点、职位名称，以及对应的 LMIA 批文号或 Offer of Employment 编号",
+      "完整核对所有个人信息与背景问题，点击 Validate 生成条形码（Barcode）页面并妥善保存"
+    ],
+    "sourceIds": ["ircc.work-permit.outside-documents"],
+    "defaultIncluded": true
+  },
+  {
+    "id": "ca.eswp.identity.passport",
+    "category": "表格与身份",
+    "title": "有效护照或旅行证件",
+    "requirementType": "usually_required",
+    "evidenceLayer": "ircc_visa",
+    "why": "IRCC 要求境外工签申请人提供有效护照或旅行证件，用于核实法定身份与国籍，且工签有效期通常不会超过护照有效期。",
+    "steps": [
+      "准备有效护照个人信息页及所有出入境盖章页的清晰彩色扫描件",
+      "确保护照在计划在加拿大工作期间保持足够有效",
+      "核对护照信息与工作录用文件上的姓名、出生日期等完全一致"
+    ],
+    "sourceIds": ["ircc.work-permit.outside-documents"],
+    "defaultIncluded": true
+  },
+  {
+    "id": "ca.eswp.identity.photo",
+    "category": "表格与身份",
+    "title": "符合规格的签证照片",
+    "requirementType": "usually_required",
+    "evidenceLayer": "ircc_visa",
+    "why": "在线递交申请时须提供符合 IRCC 官方尺寸与画质规格的近期证件照电子版。",
+    "steps": [
+      "准备 6 个月内拍摄的近期白底免冠证件照片",
+      "核对照片尺寸及面部比例符合 IRCC 官方规格要求",
+      "确保证件照文件格式与大小满足在线申请门户要求"
+    ],
+    "sourceIds": ["ircc.work-permit.outside-documents"],
+    "defaultIncluded": true
+  },
+  {
+    "id": "ca.eswp.employment.contract",
+    "category": "雇佣与工作证明",
+    "title": "雇佣合同或正式协议",
+    "requirementType": "usually_required",
+    "evidenceLayer": "ircc_visa",
+    "why": "IRCC 境外工签材料清单要求提供由雇主与申请人双方签署的正式雇佣合同或协议副本，以核查职位职责、工作地点、聘期与薪酬待遇。",
+    "steps": [
+      "准备经雇主与申请人双方签字确认的完整雇佣合同（Employment Contract）",
+      "核对合同中的职位名称、职责描述、工作地点、薪资待遇与雇主在 LMIA 或豁免申报中的信息一致",
+      "确认合同条款清晰完整且双方签署页完备"
+    ],
+    "sourceIds": ["ircc.work-permit.outside-documents"],
+    "defaultIncluded": true
+  },
+  {
+    "id": "ca.eswp.skills.resume",
+    "category": "技能与资历",
+    "title": "个人英文或法文简历（CV / Resume）",
+    "requirementType": "usually_required",
+    "evidenceLayer": "ircc_visa",
+    "why": "提供详尽的最新个人英文或法文简历，全面列明教育背景、工作经历、专业技能及过往任职详情。",
+    "steps": [
+      "准备最新版本的英文或法文个人简历",
+      "按时间倒序详细列明过往学习、任职单位、职位、起止时间与主要工作职责",
+      "确保简历中工作时间线与申请表中填写的经历无矛盾或不明空档"
+    ],
+    "sourceIds": ["ircc.work-permit.outside-documents"],
+    "defaultIncluded": true
+  },
+  {
+    "id": "ca.eswp.skills.currentEmployment",
+    "category": "技能与资历",
+    "title": "当前在职或从业状态证明",
+    "requirementType": "usually_required",
+    "evidenceLayer": "ircc_visa",
+    "why": "IRCC 境外工签要求申请人说明并提供当前雇佣或执业状态的证明材料，作为个人职业背景与从业连续性的支持证据。",
+    "steps": [
+      "准备当前雇主出具的在职证明信，注明入职时间、现任职位、薪资待遇及工作职责",
+      "如为自雇或自由职业者，提供相应的营业登记、执业许可或业务经营证明",
+      "核对证明信由授权负责人签字并包含单位有效联络信息"
+    ],
+    "sourceIds": ["ircc.work-permit.outside-documents"],
+    "defaultIncluded": true
+  },
+  {
+    "id": "ca.eswp.skills.pastReferences",
+    "category": "技能与资历",
+    "title": "过往雇主推荐信与工作经历证明",
+    "requirementType": "usually_required",
+    "evidenceLayer": "ircc_visa",
+    "why": "提供过往雇主出具的正式工作推荐信或推荐信函，用于证明申请人具备胜任拟聘职位的实际从业经历与工作经验。",
+    "steps": [
+      "准备以往主要相关雇主出具的正式工作推荐信（Reference Letters）",
+      "确认信中载明任职起止日期、具体职务、每周工时、主要日常工作职责及前雇主联络方式",
+      "可附带相应时期的工资单、税单或社保证明作为辅助支持材料"
+    ],
+    "sourceIds": ["ircc.work-permit.outside-documents"],
+    "defaultIncluded": true
+  },
+  {
+    "id": "ca.eswp.skills.jobQualifications",
+    "category": "技能与资历",
+    "title": "拟聘职位任职资格、学历与专业资质证明",
+    "requirementType": "usually_required",
+    "evidenceLayer": "ircc_visa",
+    "why": "申请人须证明自身满足拟聘职位的任职要求，包括与职位匹配的学历学位证书、专业执业执照或行业技术资格认证。",
+    "steps": [
+      "对照拟聘职位的任职条件，准备最高学历及相关专业毕业证书、学位证书扫描件",
+      "如从事受规管行业或特定执业职位，准备相应的专业资质执照、注册证书或准入证明",
+      "确认所有学历与资格证明文件清晰可辨，并按官方要求附带相应译文"
+    ],
+    "sourceIds": ["ircc.work-permit.outside-documents"],
+    "defaultIncluded": true
+  },
+  {
+    "id": "ca.eswp.pathway.lmiaCopy",
+    "category": "雇佣与工作证明",
+    "title": "劳工市场影响评估（LMIA）批文副本",
+    "requirementType": "answer_dependent",
+    "evidenceLayer": "ircc_visa",
+    "why": "在 LMIA-required 途径下，雇主须已向加拿大就业及社会发展部（ESDC）申请并获得正面/积极的 LMIA 批文，申请人须提供该批文副本。",
+    "steps": [
+      "向加拿大雇主索取由 ESDC 签发的有效 LMIA 批准函（Confirmation Letter）完整副本",
+      "核对 LMIA 批文中的系统编号、有效期限、职位名称与工作地点",
+      "确保在 LMIA 规定有效期内提交工签申请"
+    ],
+    "sourceIds": ["ircc.work-permit.employer-specific"],
+    "defaultIncluded": false
+  },
+  {
+    "id": "ca.eswp.pathway.jobOfferLetter",
+    "category": "雇佣与工作证明",
+    "title": "雇主正式录用函（Job Offer Letter / 匹配 LMIA）",
+    "requirementType": "answer_dependent",
+    "evidenceLayer": "ircc_visa",
+    "why": "在 LMIA-required 途径下，除合同外还须提供雇主出具的正式 Job Offer Letter，载明匹配 LMIA 批准条件的具体雇佣细节。",
+    "steps": [
+      "准备由雇主官方出具并签字的正式工作录用信（Job Offer Letter）",
+      "核对录用信中的薪酬、周工时、主要职责与 LMIA 批文完全一致",
+      "确认录用信注明雇佣起止时间及雇主联络信息"
+    ],
+    "sourceIds": ["ircc.work-permit.employer-specific"],
+    "defaultIncluded": false
+  },
+  {
+    "id": "ca.eswp.pathway.offerOfEmploymentNumber",
+    "category": "雇佣与工作证明",
+    "title": "雇主合规申报录用编号（Offer of Employment Number）",
+    "requirementType": "answer_dependent",
+    "evidenceLayer": "ircc_visa",
+    "why": "在 LMIA-exempt 途径下，雇主通常须在 IRCC Employer Portal 完成合规申报并缴纳合规费，生成以字母 A 开头的 7 位 Offer of Employment 编号供申请人在工签表格中填写。",
+    "steps": [
+      "向雇主索取在 Employer Portal 成功提交后生成的 7 位 Offer of Employment 编号（以 'A' 开头）",
+      "在工签申请表（如 IMM 1295）的对应栏位准确填入该编号",
+      "向雇主索取 Employer Portal 提交凭证或录用摘要副本以备核对职位信息"
+    ],
+    "sourceIds": ["ircc.work-permit.employer-specific"],
+    "defaultIncluded": false
+  },
+  {
+    "id": "ca.eswp.docs.translation",
+    "category": "递交与材料核对",
+    "title": "非英文/法文材料的合规官方翻译与证明要求",
+    "requirementType": "answer_dependent",
+    "evidenceLayer": "ircc_visa",
+    "why": "按 IRCC 当前翻译要求准备并核对非英文或法文材料及相应译文/证明要求。官方指引通常要求由合格翻译人员提供准确翻译件，并随附相应的译员资质证明或宣誓说明。",
+    "steps": [
+      "对照 IRCC 当前官方指引，确认拟提交的非英文或法文材料是否需要附带翻译件",
+      "按官方要求由合格翻译人员完成准确翻译，并准备译员资质证明或宣誓说明（如适用）",
+      "将原始语言材料清晰扫描件与对应译文整理妥当，以备在线递交时按要求上传"
+    ],
+    "sourceIds": ["ircc.work-permit.outside-documents"],
+    "defaultIncluded": false
+  },
+  {
+    "id": "ca.eswp.health.medicalExam",
+    "category": "体检与官方调阅",
+    "title": "移民体检（IME / 按需准备或提前体检）",
+    "requirementType": "may_be_requested",
+    "evidenceLayer": "ircc_visa",
+    "why": "若拟在加拿大工作超过 6 个月且曾在特定国家/地区居住，或拟从事医疗、护理、中小学教育等公共卫生敏感职位，IRCC 要求完成由指定医师（Panel Physician）进行的体检。",
+    "steps": [
+      "核对拟从事职位或旅居史是否属于 IRCC 规定的强制体检范畴",
+      "如选择或被要求进行体检，在 IRCC 指定医师处预约体检（eMedical）",
+      "保留体检信息回执页（Information Sheet），用于在线递交时上传或备查"
+    ],
+    "sourceIds": ["ircc.work-permit.outside-documents"],
+    "defaultIncluded": true
+  },
+  {
+    "id": "ca.eswp.character.policeCertificate",
+    "category": "体检与官方调阅",
+    "title": "警方无犯罪记录证明（按需准备/如要求）",
+    "requirementType": "may_be_requested",
+    "evidenceLayer": "ircc_visa",
+    "why": "IRCC 境外工签审核过程中可能要求申请人提供国籍国及年满 18 周岁后累计居住满 6 个月的任何国家/地区的无犯罪记录证明。",
+    "steps": [
+      "查阅 IRCC 针对具体国家/地区的警方证明开具指引与有效期限要求",
+      "根据常住地或原籍国官方程序开具正式无犯罪记录证明",
+      "若证明非英文或法文，按要求完成官方认可的翻译及公证"
+    ],
+    "sourceIds": ["ircc.work-permit.outside-documents"],
+    "defaultIncluded": true
+  },
+  {
+    "id": "ca.eswp.visaOffice.instructionsReview",
+    "category": "递交与材料核对",
+    "title": "当地签证处特殊指导要求核对（Visa Office Instructions）",
+    "requirementType": "may_be_requested",
+    "evidenceLayer": "ircc_visa",
+    "why": "IRCC 各地区签证处（Visa Office）可能针对特定申请国家或常住地区发布额外的本地材料清单或特殊指引要求（Visa Office Instructions）。申请人在递交前须核对常住地签证处的补充规定。",
+    "steps": [
+      "在 IRCC 官方网站查阅负责审理你所在国家或地区的加拿大签证处（Visa Office）指引",
+      "核对该签证处是否有特定的申请表格附表、公证认证要求或补充证明规范",
+      "如有当地专属补充文件要求，提前予以准备并在正式递交时一并附上"
+    ],
+    "sourceIds": ["ircc.work-permit.outside-documents"],
+    "defaultIncluded": true
+  },
+  {
+    "id": "ca.eswp.review.consistency",
+    "category": "递交与材料核对",
+    "title": "材料前后一致性自查与合规准备提示",
+    "requirementType": "product_guidance",
+    "evidenceLayer": "product_guidance",
+    "why": "产品整理提示：确保申请表格（IMM 1295）、雇佣合同、简历、雇主录用函或豁免申报及证明材料中的职位信息、时间线与个人背景信息高度一致。",
+    "steps": [
+      "核对申请表 IMM 1295 中的雇主名称、工作地点、职位代码与雇主提供的 LMIA 批文或录用信信息一致",
+      "自查所有教育与工作经历的时间线起止月份，确保无矛盾或未经解释的空白期",
+      "确认所有上传文件符合 IRCC 在线系统的格式、大小与命名规范"
+    ],
+    "sourceIds": ["ircc.work-permit.outside-documents"],
+    "defaultIncluded": true
+  }
+]

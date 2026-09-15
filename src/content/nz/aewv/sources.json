@@ -1,0 +1,37 @@
+[
+  {
+    "id": "inz.aewv",
+    "title": "Accredited Employer Work Visa",
+    "publisher": "Immigration New Zealand",
+    "url": "https://www.immigration.govt.nz/visas/accredited-employer-work-visa/",
+    "checkedAt": "2026-09-09"
+  },
+  {
+    "id": "inz.aewv.english",
+    "title": "English language requirements for an Accredited Employer Work Visa",
+    "publisher": "Immigration New Zealand",
+    "url": "https://www.immigration.govt.nz/process-to-apply/applying-for-a-visa/providing-evidence-and-documents-to-support-your-visa-application/english-language-requirements/english-language-requirements-for-an-accredited-employer-work-visa/",
+    "checkedAt": "2026-09-09"
+  },
+  {
+    "id": "inz.police-certificates",
+    "title": "Police certificates",
+    "publisher": "Immigration New Zealand",
+    "url": "https://www.immigration.govt.nz/process-to-apply/applying-for-a-visa/providing-evidence-and-documents-to-support-your-visa-application/good-character-requirements-and-police-certificates/police-certificates/",
+    "checkedAt": "2026-09-09"
+  },
+  {
+    "id": "inz.english-translations",
+    "title": "Providing English translations of supporting documents",
+    "publisher": "Immigration New Zealand",
+    "url": "https://www.immigration.govt.nz/process-to-apply/applying-for-a-visa/providing-evidence-and-documents-to-support-your-visa-application/providing-english-translations-of-supporting-documents/",
+    "checkedAt": "2026-09-09"
+  },
+  {
+    "id": "inz.visa-photo",
+    "title": "Acceptable photos for a visa or NZeTA",
+    "publisher": "Immigration New Zealand",
+    "url": "https://www.immigration.govt.nz/process-to-apply/applying-for-a-visa/applying-online/uploading-documents-and-photos/visa-and-nzeta-photos/",
+    "checkedAt": "2026-09-09"
+  }
+]

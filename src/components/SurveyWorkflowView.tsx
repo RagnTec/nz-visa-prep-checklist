@@ -67,7 +67,6 @@ export default function SurveyWorkflowView({
   onSurveyComplete,
   onProgressChange
 }: SurveyWorkflowViewProps) {
-  const initializedSurveyRef = useRef<Model | null>(null);
   const answersRef = useRef<Record<string, unknown> | null>(answers);
   answersRef.current = answers;
 
@@ -91,6 +90,18 @@ export default function SurveyWorkflowView({
 
     if (answersRef.current) {
       model.data = flattenSurveyAnswers(answersRef.current);
+    }
+
+    if (model.onCurrentPageChanged && typeof model.onCurrentPageChanged.add === 'function') {
+      model.onCurrentPageChanged.add((sender) => {
+        const currentPage = sender.currentPage;
+        const currentProjectId = activeProjectIdRef.current;
+        if (currentPage && currentProjectId) {
+          setSavedSurveyPage(currentPage.name, currentProjectId);
+        }
+        const stepProgress = calculateSurveyStepProgress(sender);
+        onProgressChangeRef.current(stepProgress);
+      });
     }
 
     if (!surveyCompleted) {
@@ -118,6 +129,13 @@ export default function SurveyWorkflowView({
         }
       } else {
         model.currentPageNo = 0;
+      }
+    }
+
+    if (materialProfileIncomplete && surveyCompleted) {
+      const pageIndex = model.pages.findIndex((page) => page.name === 'material-background');
+      if (pageIndex >= 0) {
+        model.currentPageNo = pageIndex;
       }
     }
 
@@ -157,18 +175,6 @@ export default function SurveyWorkflowView({
       onProgressChangeRef.current(stepProgress);
     });
 
-    if (model.onCurrentPageChanged && typeof model.onCurrentPageChanged.add === 'function') {
-      model.onCurrentPageChanged.add((sender) => {
-        const currentPage = sender.currentPage;
-        const currentProjectId = activeProjectIdRef.current;
-        if (currentPage && currentProjectId) {
-          setSavedSurveyPage(currentPage.name, currentProjectId);
-        }
-        const stepProgress = calculateSurveyStepProgress(sender);
-        onProgressChangeRef.current(stepProgress);
-      });
-    }
-
     model.onComplete.add((sender) => {
       const completedAnswers = cleanAnswers(
         normalizeSurveyAnswers(sender.data as Record<string, unknown>)
@@ -177,62 +183,18 @@ export default function SurveyWorkflowView({
     });
 
     return model;
-  }, [activeRoutePack, activeProjectId, surveyCompleted]);
+  }, [activeRoutePack, activeProjectId, surveyCompleted, materialProfileIncomplete]);
 
   useEffect(() => {
-    if (survey && initializedSurveyRef.current !== survey) {
-      initializedSurveyRef.current = survey;
-      if (answers) {
-        survey.data = flattenSurveyAnswers(answers);
-      }
+    if (!survey) return;
 
-      if (!surveyCompleted) {
-        const savedPageName = activeProjectIdRef.current
-          ? getSavedSurveyPage(activeProjectIdRef.current)
-          : null;
-        const visiblePages = survey.visiblePages ?? [];
+    const initialProgress = calculateSurveyStepProgress(survey);
+    onProgressChangeRef.current(initialProgress);
 
-        const targetPage = savedPageName && typeof survey.getPageByName === 'function'
-          ? survey.getPageByName(savedPageName)
-          : null;
-        if (targetPage && visiblePages.includes(targetPage)) {
-          survey.currentPage = targetPage;
-        } else if (answers && Object.keys(answers).length > 0) {
-          const incompletePage = visiblePages.find((page) => {
-            return (page.questions ?? []).some((q) => {
-              if (!q.isVisible || !q.isRequired) return false;
-              return typeof q.isEmpty === 'function' ? q.isEmpty() : false;
-            });
-          });
-          if (incompletePage) {
-            survey.currentPage = incompletePage;
-          } else {
-            survey.currentPageNo = 0;
-          }
-        } else {
-          survey.currentPageNo = 0;
-        }
-      }
-
-      const initialProgress = calculateSurveyStepProgress(survey);
-      onProgressChangeRef.current(initialProgress);
-
-      if (activeRoutePack && answers && Object.keys(answers).length > 0 && surveyCompleted) {
-        const effects = activeRoutePack.evaluateEffects(answers);
-        const derived = isRecord(effects.answersForChecklist._effects)
-          ? (effects.answersForChecklist._effects as Record<string, unknown>)
-          : null;
-        if (derived?.materialProfileIncomplete === true) {
-          const pageIndex = survey.pages.findIndex((page) => page.name === 'material-background');
-          if (pageIndex >= 0) {
-            survey.currentPageNo = pageIndex;
-            const updatedProgress = calculateSurveyStepProgress(survey);
-            onProgressChangeRef.current(updatedProgress);
-          }
-        }
-      }
-    }
-  }, [survey, answers, activeRoutePack, surveyCompleted]);
+    return () => {
+      onProgressChangeRef.current(null);
+    };
+  }, [survey]);
 
   useEffect(() => {
     if (materialProfileIncomplete && surveyCompleted && survey) {
@@ -244,12 +206,6 @@ export default function SurveyWorkflowView({
       }
     }
   }, [materialProfileIncomplete, surveyCompleted, survey]);
-
-  useEffect(() => {
-    return () => {
-      onProgressChangeRef.current(null);
-    };
-  }, []);
 
   return <Survey model={survey} />;
 }

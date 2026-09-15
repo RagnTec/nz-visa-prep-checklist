@@ -1,0 +1,36 @@
+[
+  {
+    "id": "nz.psw.rule.pathway.nonDegreeList",
+    "when": {
+      "field": "study.qualificationPathway",
+      "operator": "equals",
+      "value": "eligible_non_degree_level_4_7"
+    },
+    "addChecklistItems": [
+      "nz.psw.pathway.nonDegreeList"
+    ]
+  },
+  {
+    "id": "nz.psw.rule.pathway.gradDiploma",
+    "when": {
+      "field": "study.qualificationPathway",
+      "operator": "equals",
+      "value": "level_7_graduate_diploma"
+    },
+    "addChecklistItems": [
+      "nz.psw.pathway.bachelorDegree",
+      "nz.psw.pathway.gradDipTranscript"
+    ]
+  },
+  {
+    "id": "nz.psw.rule.document.translation",
+    "when": {
+      "field": "documents.hasNonEnglishDocuments",
+      "operator": "in",
+      "value": ["yes", "need_check"]
+    },
+    "addChecklistItems": [
+      "nz.psw.document.translation"
+    ]
+  }
+]

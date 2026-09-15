@@ -15,6 +15,7 @@ export const NZ_VISITOR_ROUTE_ID = 'nz-visitor';
 export const nzVisitorRoutePack: RoutePack = {
   id: NZ_VISITOR_ROUTE_ID,
   jurisdiction: 'nz',
+  routeCategory: 'visit',
   title: '新西兰访问签证材料准备清单',
   eyebrow: 'Visitor Visa',
   description: '回答少量关键问题，生成与你情况相关的Visitor Visa准备任务。你的答案只保存在当前浏览器。',

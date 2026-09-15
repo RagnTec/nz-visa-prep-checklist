@@ -1,0 +1,174 @@
+[
+  {
+    "id": "us.bvisitor.identity.passport",
+    "category": "identity",
+    "title": "有效护照",
+    "requirementType": "usually_required",
+    "evidenceLayer": "us_dos_visa",
+    "why": "前往美国需持有用于旅行的有效护照。根据美国规定，护照有效期通常须超出在美预计停留期至少 6 个月（特定国家/地区免除协定除外）。",
+    "steps": [
+      "检查护照个人信息页清晰完整且在有效期内",
+      "确认护照有效期满足美国国务院针对你所在国籍护照的有效期规定（通常为预期停留期后至少 6 个月）"
+    ],
+    "sourceIds": [
+      "us.dos.visitor-visa"
+    ],
+    "defaultIncluded": true
+  },
+  {
+    "id": "us.bvisitor.application.ds160Confirmation",
+    "category": "application",
+    "title": "非移民签证电子申请表（DS-160）确认页",
+    "requirementType": "usually_required",
+    "evidenceLayer": "us_dos_visa",
+    "why": "B 类非移民访问签证申请使用 Form DS-160。完成并在线提交后，应保存带有条形码编号的确认页，并按当前所属使领馆指引使用。",
+    "steps": [
+      "在 CEAC 官方系统完整填写真实准确的 DS-160 申请表",
+      "核对表格中所填写的个人身份、联系方式及主要行程等基础信息无误",
+      "在线提交表格后，妥善打印并保存带有清晰条形码编号（Barcode Number）的确认页",
+      "如当前预约系统要求录入 DS-160 确认号，请核对其与实际提交的确认页一致"
+    ],
+    "sourceIds": [
+      "us.dos.visitor-visa",
+      "us.dos.ds160-faq"
+    ],
+    "defaultIncluded": true
+  },
+  {
+    "id": "us.bvisitor.application.photo",
+    "category": "application",
+    "title": "符合要求的签证照片",
+    "requirementType": "usually_required",
+    "evidenceLayer": "us_dos_visa",
+    "why": "在填写 DS-160 在线申请表时需要上传符合官方标准格式的照片。如在线上传失败或使领馆要求，面谈时须携带符合规格的纸质印制照片。",
+    "steps": [
+      "确保护照照片拍摄于近 6 个月内，为白色或近白色背景的彩色签证照片，头部比例与光线符合美国国务院照片规格",
+      "避免佩戴眼镜（除因医疗原因提供医师说明外）、帽子或任何遮挡面部的物品",
+      "在填写 DS-160 表格时按系统要求上传合格的数字照片，并可另备符合规格的印制照片以备面签时查验"
+    ],
+    "sourceIds": [
+      "us.dos.visitor-visa",
+      "us.dos.photo-requirements"
+    ],
+    "defaultIncluded": true
+  },
+  {
+    "id": "us.bvisitor.process.visaFee",
+    "category": "process",
+    "title": "签证申请费与缴费要求核对",
+    "requirementType": "usually_required",
+    "evidenceLayer": "us_dos_visa",
+    "why": "申请美国非移民签证须按照拟申请使领馆的官方规定缴纳签证申请费（MRV 费用）。缴费金额、支持的支付方式、缴费时机以及是否需要在面谈或递件时出示特定缴费收据凭证，取决于所在国家或地区的具体申请安排。",
+    "steps": [
+      "通过官方指引核对拟递交申请的使领馆当前公布的非移民签证申请费标准与支付渠道",
+      "按官方指引选择适用的支付方式完成缴费，并完整保存支付凭单、收据编号或缴费确认单据",
+      "确认缴费收据在有效期内，并按照预约系统要求正确关联缴费信息"
+    ],
+    "sourceIds": [
+      "us.dos.visitor-visa"
+    ],
+    "defaultIncluded": true
+  },
+  {
+    "id": "us.bvisitor.process.interviewInstructions",
+    "category": "process",
+    "title": "当前使领馆申请与面谈要求核对",
+    "requirementType": "product_organisation_guidance",
+    "evidenceLayer": "product_guidance",
+    "why": "美国各驻外使领馆对于非移民签证的面谈预约、材料递交方式、安全检查要求及出入馆规定可能存在本地化操作差异。在前往面签或寄送材料前，核对所属使领馆的最新要求有助于顺畅办理。",
+    "steps": [
+      "确认拟前往或归属的美国使领馆官方网站公布的具体预约流程、面签时间与证件携带须知",
+      "核对使领馆针对安全检查的具体禁带物品规定（如电子设备、背包等）并提前规划寄存",
+      "准备并按顺序规整官方要求的各项基础材料与支持凭据，以便在面签或窗口调阅时清晰出示"
+    ],
+    "sourceIds": [
+      "us.dos.visitor-visa"
+    ],
+    "defaultIncluded": true
+  },
+  {
+    "id": "us.bvisitor.support.tripPurpose",
+    "category": "support",
+    "title": "访问目的支持材料",
+    "requirementType": "may_be_requested",
+    "evidenceLayer": "us_dos_visa",
+    "why": "领事官员可能会要求你提供材料以阐明并支持赴美的暂时访问目的。对于旅游度假，可备合理的行程概要或规划信息；对于探访亲友，邀请信并非通用法定必需文件，亦非签发与否的决定性因素，但可作为说明访问情境的参考材料。",
+    "steps": [
+      "如属旅游或度假，可准备合理的旅行日程简述、拟游览城市规划或相关安排概要备查",
+      "如属探访亲友，可如实了解在美亲友的居留状态与基本联系信息；官方并未要求普遍提供邀请信或经济担保书，无需视其为硬性前提",
+      "确保针对访问目的的口头陈述及任何补充材料与 DS-160 中所填写的在美停留计划真实一致"
+    ],
+    "sourceIds": [
+      "us.dos.visitor-visa"
+    ],
+    "defaultIncluded": true
+  },
+  {
+    "id": "us.bvisitor.support.intentToDepart",
+    "category": "support",
+    "title": "访问结束后离美意向支持材料",
+    "requirementType": "may_be_requested",
+    "evidenceLayer": "us_dos_visa",
+    "why": "领事官员可能会要求你说明在暂时访问结束后按期离开美国的意向与客观计划。法律并不要求申请人提供固定的全套资产、房产或亲属公证，申请人可根据自身实际情况整理有助于说明在美停留属暂时性质的相关依据。",
+    "steps": [
+      "结合个人实际工作、学业、经营或日常生活等情境，清晰梳理访问结束后按期离境并继续原有生活工作的合理安排",
+      "可按需备存有助于辅助说明当前稳定状态的客观信息（如在职证明、请假批复或经营日常记录等，视个人实际情况而定，非通用硬性套件）",
+      "确保对回国计划与离美意向的说明真实、自然，并与个人整体背景情况保持一致"
+    ],
+    "sourceIds": [
+      "us.dos.visitor-visa"
+    ],
+    "defaultIncluded": true
+  },
+  {
+    "id": "us.bvisitor.support.financialCapacity",
+    "category": "support",
+    "title": "旅行费用承担能力支持材料",
+    "requirementType": "may_be_requested",
+    "evidenceLayer": "us_dos_visa",
+    "why": "领事官员可能会要求你说明有能力承担在美期间的所有旅行开销。费用可由申请人本人自行承担，亦可由他人协助支付部分或全部费用。官方并不设立最低存款额度或固定的流水周期，亦未将经济担保书设为法定强制要求。",
+    "steps": [
+      "根据预期的在美停留时长与旅行方式，合理估算交通、住宿及日常开销",
+      "如由本人承担，可按需备存能体现日常资金周转或充足支付能力的常规金融凭据（如银行流水或对账单等）备查",
+      "如部分或全部费用由他人（如直系亲属等）支持，可明确出资来源与支付安排；无需硬性提供公证担保或通用经济担保表格（如 I-134 等，除非个案另有特定要求）"
+    ],
+    "sourceIds": [
+      "us.dos.visitor-visa"
+    ],
+    "defaultIncluded": true
+  },
+  {
+    "id": "us.bvisitor.support.medicalTreatment",
+    "category": "support",
+    "title": "赴美就医支持材料",
+    "requirementType": "may_be_requested",
+    "evidenceLayer": "us_dos_visa",
+    "why": "如赴美主要目的是接受医疗诊断或治疗，领事官员可能会要求提供关于医疗必要性、美国医疗机构接收意向以及全部就医生活费用支付能力的补充支持材料。",
+    "steps": [
+      "准备本地执业医师出具的诊断书或医疗说明，阐述病情性质以及赴美接受诊疗的合理原因",
+      "准备来自拟前往的美国医师或医疗机构的书面信函，确认愿意接收并提供治疗，并载明预计治疗周期与预估医疗费用",
+      "准备证明有能力全额承担在美期间交通、就医及生活开销的资金支持凭据（官方明确要求就医者须能自费或由资助方支付，不得依赖公共医疗救助）"
+    ],
+    "sourceIds": [
+      "us.dos.visitor-visa"
+    ],
+    "defaultIncluded": false
+  },
+  {
+    "id": "us.bvisitor.review.consistency",
+    "category": "review",
+    "title": "申请信息一致性核对",
+    "requirementType": "product_organisation_guidance",
+    "evidenceLayer": "product_guidance",
+    "why": "在前往面谈或最终递交前，系统比对护照、DS-160 表格陈述、旅行目的及随身支持材料的核心信息，有助于避免因前后矛盾或口头与书面不符导致不必要的审理疑问。",
+    "steps": [
+      "核对护照个人信息页与 DS-160 确认页上的姓名（含拼音）、出生日期及护照号码完全一致",
+      "复核 DS-160 中填报的在美拟停留时间、拟访问地点及联系人信息，与准备的行程概况保持一致",
+      "对旅行目的、费用支付来源及在美安排做到心中有数，确保面谈陈述与书面材料真实一致"
+    ],
+    "sourceIds": [
+      "us.dos.visitor-visa"
+    ],
+    "defaultIncluded": true
+  }
+]

@@ -1,0 +1,13 @@
+[
+  {
+    "id": "us.bvisitor.rule.support.medicalTreatment",
+    "when": {
+      "field": "scope.visitPurpose",
+      "operator": "equals",
+      "value": "medical_treatment"
+    },
+    "addChecklistItems": [
+      "us.bvisitor.support.medicalTreatment"
+    ]
+  }
+]

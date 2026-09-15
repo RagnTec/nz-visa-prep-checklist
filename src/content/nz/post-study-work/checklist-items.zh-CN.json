@@ -1,0 +1,227 @@
+[
+  {
+    "id": "nz.psw.identity.passport",
+    "category": "身份证明",
+    "title": "有效护照个人信息页",
+    "requirementType": "usually_required",
+    "evidenceLayer": "inz_visa",
+    "why": "新西兰移民局要求申请人提供有效护照，用于核实法定身份与国籍信息。",
+    "steps": [
+      "准备有效护照个人信息页及签字页的清晰扫描件或照片",
+      "核对护照有效期，确保护照有效期能够覆盖在新西兰的预期工作停留期",
+      "确保护照信息完整无破损，且证件号码与申请系统填报内容完全一致"
+    ],
+    "sourceIds": ["inz.post-study-work"],
+    "defaultIncluded": true
+  },
+  {
+    "id": "nz.psw.identity.photo",
+    "category": "身份证明",
+    "title": "符合规格的签证证件照片",
+    "requirementType": "usually_required",
+    "evidenceLayer": "inz_visa",
+    "why": "申请签证时须提供符合新西兰移民局官方规格标准的近期电子证件照片。",
+    "steps": [
+      "准备 6 个月内拍摄的免冠证件照片电子文件",
+      "核对照片规格符合 INZ 官方要求（浅色单色背景、面部清晰居中、表情中性无遮挡）",
+      "保存为符合递交系统格式要求的电子图像文件"
+    ],
+    "sourceIds": ["inz.post-study-work"],
+    "defaultIncluded": true
+  },
+  {
+    "id": "nz.psw.qualification.completionEvidence",
+    "category": "学业完成证明",
+    "title": "新西兰就读学历完成证明材料",
+    "requirementType": "usually_required",
+    "evidenceLayer": "inz_visa",
+    "why": "申请人必须提供官方证据证明已正式完成受认可的新西兰课程，并已达到授予该文凭的全部要求。",
+    "steps": [
+      "准备由新西兰就读院校出具的毕业证书、学位证书，或正式的学业完成确认信（Completion Letter）",
+      "确保文件清晰载明资格名称、NZQCF 等级、就读专业以及官方确认的正式结课或授予日期",
+      "如文凭尚未正式颁发，确保院校出具的确认信明确说明你已满足毕业全部学术要求且文凭将被正式授予"
+    ],
+    "sourceIds": ["inz.post-study-work"],
+    "defaultIncluded": true
+  },
+  {
+    "id": "nz.psw.study.requirementReview",
+    "category": "学业完成证明",
+    "title": "新西兰在学时长与就读资格条件自查核对",
+    "requirementType": "usually_required",
+    "evidenceLayer": "inz_visa",
+    "why": "毕业后工签对在新西兰境内的全日制就读及实际在学时长有着法定要求，申请人须对照 INZ 现行指引自主核查是否符合所选资格路径对应的学业条件。",
+    "steps": [
+      "对照 INZ 官方当前指引，自主核实所选资格路径对应的新西兰境内全日制就读与在学时长要求（如通常需在纽全日制修读满规定周数）",
+      "若通过 7 级毕业生文凭（Graduate Diploma）新政路径申请，单独核查该路径适用的学分限制：确认不存在因跨校学分互认（Cross-crediting）、免修或以往学习经验认可（RPL）而导致不符合全程在学要求的情形",
+      "核对持有的学生签证记录与实际在纽就读起止时间线，自主确认在学期间就读状态合规；本系统不进行自动判定或合规计算"
+    ],
+    "sourceIds": ["inz.post-study-work"],
+    "defaultIncluded": true
+  },
+  {
+    "id": "nz.psw.pathway.nonDegreeList",
+    "category": "资格路径特定材料",
+    "title": "非学位资格合格清单核对证明",
+    "requirementType": "answer_dependent",
+    "evidenceLayer": "inz_visa",
+    "why": "对于修读 NZQCF 4 至 7 级非学位课程的申请人，所修读的资格必须列在移民局现行生效的毕业后工签合格资格清单上。",
+    "steps": [
+      "查阅新西兰移民局官方最新发布的 Qualifications Eligible for a Post-study Work Visa 清单",
+      "逐字核对所获文凭的完整英文全称是否准确收录于清单中",
+      "了解持签条件：此路径获批的签证通常附带工作限制，工作必须与所读文凭的专业领域直接相关"
+    ],
+    "sourceIds": ["inz.post-study-work", "inz.post-study-work.eligible-qualifications"],
+    "defaultIncluded": false
+  },
+  {
+    "id": "nz.psw.pathway.bachelorDegree",
+    "category": "资格路径特定材料",
+    "title": "前置学士学位证书（7 级毕业生文凭通道）",
+    "requirementType": "answer_dependent",
+    "evidenceLayer": "inz_visa",
+    "why": "依据 2026 年 11 月 16 日起实施的 7 级毕业生文凭（Graduate Diploma）新政要求，申请人须同时持有已完成的学士学位。",
+    "steps": [
+      "准备新西兰本土或海外大学授予的正式学士学位证书及官方成绩单",
+      "注意官方政策说明：针对本通道要求的前置海外学士学位，移民局明确无需单独申请 NZQA 国际学历评估（IQA）",
+      "注意生效日期：该通道自 2026 年 11 月 16 日起正式开放受理，请确保在政策正式生效后递交申请"
+    ],
+    "sourceIds": ["inz.post-study-work", "inz.post-study-work.policy-change"],
+    "defaultIncluded": false
+  },
+  {
+    "id": "nz.psw.pathway.gradDipTranscript",
+    "category": "资格路径特定材料",
+    "title": "7 级毕业生文凭官方学业成绩单",
+    "requirementType": "answer_dependent",
+    "evidenceLayer": "inz_visa",
+    "why": "新西兰移民局要求申请 7 级毕业生文凭通道的申请人提供官方学业成绩单，用于核实该课程的修读科目与学术考核记录。",
+    "steps": [
+      "准备由新西兰就读院校正式出具的 Graduate Diploma 完整官方学术成绩单（Academic Transcript）",
+      "核对成绩单载明全部修读科目名称、课程代码、学术考核成绩及结课或学分授予记录",
+      "确保成绩单由就读院校官方出具，包含院校印章、官方签名或官方防伪核验标识"
+    ],
+    "sourceIds": ["inz.post-study-work", "inz.post-study-work.policy-change"],
+    "defaultIncluded": false
+  },
+  {
+    "id": "nz.psw.timing.windowCheck",
+    "category": "时限与资金",
+    "title": "毕业后工签法定申请窗口与截止时限核对",
+    "requirementType": "usually_required",
+    "evidenceLayer": "inz_visa",
+    "why": "申请人必须在法律规定的截止期限内递交 PSWV 申请，逾期递交可能导致失去申请资格或产生非法居留风险。",
+    "steps": [
+      "对照 INZ 当前规定，核查适用于自身就读学历与签证历史的具体申请截止时限",
+      "核对当前有效签证状态与院校出具的官方学业完成确认，核实适用于自身情况的最终递签期限",
+      "提前规划材料准备进度，确保在适用截止期限前通过正规适用渠道完成递交"
+    ],
+    "sourceIds": ["inz.post-study-work"],
+    "defaultIncluded": true
+  },
+  {
+    "id": "nz.psw.funds.maintenance",
+    "category": "时限与资金",
+    "title": "基本生活资金证明（至少 5,000 新西兰元）",
+    "requirementType": "usually_required",
+    "evidenceLayer": "inz_visa",
+    "why": "新西兰移民局要求毕业后工作签证申请人提供充足的生活资金证明，法定最低标准为至少 5,000 新西兰元。",
+    "steps": [
+      "准备申请人本人名下的银行账户存款证明或近期的活期对账单",
+      "确保可用资金折合不低于 5,000 新西兰元（或等值可自由兑换外币）",
+      "资金证明出具日期应临近预计递交时间，账单清晰显示账户持有人姓名"
+    ],
+    "sourceIds": ["inz.post-study-work"],
+    "defaultIncluded": true
+  },
+  {
+    "id": "nz.psw.health.medicalReview",
+    "category": "健康与品行核查",
+    "title": "健康状况审查与体检要求核对",
+    "requirementType": "may_be_requested",
+    "evidenceLayer": "inz_visa",
+    "why": "移民局根据申请人在线申报的健康历史、在纽逗留时间及适用的当前政策核定是否需要补充体检材料。",
+    "steps": [
+      "在申请流程中如实填报健康状况与既往就医旅居史",
+      "查阅 INZ 当前适用的健康体检指南，核实所持历史体检是否仍处于有效期或是否触发新的检查项目",
+      "如收到移民局体检通知，按指引前往官方指定的 Panel Physician 诊所完成 eMedical 体检"
+    ],
+    "sourceIds": ["inz.post-study-work", "inz.health-xray-medical"],
+    "defaultIncluded": true
+  },
+  {
+    "id": "nz.psw.character.police",
+    "category": "健康与品行核查",
+    "title": "良好品行与无犯罪记录证明核查",
+    "requirementType": "may_be_requested",
+    "evidenceLayer": "inz_visa",
+    "why": "签证申请人须符合良好品行标准。移民局将根据当前适用的规定与个案申报审核是否需要提供最新的无犯罪公证书。",
+    "steps": [
+      "在申请过程中如实申报过往品行与违法违规记录",
+      "对照 INZ 当前品行指引核查以往递交的无犯罪记录公证书是否仍在认可时限内",
+      "若个案被移民局要求补充或存在特定需说明情形，及时办理官方认可的中英文无犯罪记录证明"
+    ],
+    "sourceIds": ["inz.post-study-work", "inz.police-certificates"],
+    "defaultIncluded": true
+  },
+  {
+    "id": "nz.psw.document.translation",
+    "category": "材料正规翻译",
+    "title": "非英文证明材料正规翻译认证件",
+    "requirementType": "answer_dependent",
+    "evidenceLayer": "inz_visa",
+    "why": "新西兰移民局规定，所有非英文原件材料必须附带由正规专业翻译机构出具的官方翻译认证件。",
+    "steps": [
+      "梳理所有非英文证明文件原件（如海外学历证书、海外官方成绩单、非英文证明信件等）",
+      "委托正规且受认可的翻译机构或官方公证处出具完整的英文翻译件",
+      "确保翻译件加盖正规翻译公章或附带具备法定资质的翻译声明"
+    ],
+    "sourceIds": ["inz.post-study-work", "inz.english-translations"],
+    "defaultIncluded": false
+  },
+  {
+    "id": "nz.psw.process.applicationPreparation",
+    "category": "申请流程准备",
+    "title": "适用官方申请渠道与递交准备",
+    "requirementType": "usually_required",
+    "evidenceLayer": "inz_visa",
+    "why": "申请人须通过新西兰移民局当前适用的官方申请渠道完成申请准备与材料递交。",
+    "steps": [
+      "查阅并确认新西兰移民局当前适用于自身情况的官方申请渠道与递交流程要求",
+      "核对申请各环节填报的个人身份、院校学历、资格路径及联系信息准确一致",
+      "准备符合适用渠道要求的申请费支付方式，并在确认全部材料齐备后通过适用官方渠道递交申请"
+    ],
+    "sourceIds": ["inz.post-study-work"],
+    "defaultIncluded": true
+  },
+  {
+    "id": "nz.psw.guidance.workRights",
+    "category": "工作权限说明",
+    "title": "毕业后工签后续工作权限范围说明",
+    "requirementType": "product_organisation_guidance",
+    "evidenceLayer": "product_guidance",
+    "why": "PSWV 获批后的工作权限依完成学历的等级有所不同，提前了解有助于持签期间合规就业。",
+    "steps": [
+      "NZQCF 7 级或以上学位持有人：获签后通常享有全开放工作权利，可为任意雇主从事任意职位",
+      "NZQCF 4 至 7 级非学位资格持有人：工作权利通常受限，必须从事与所学专业领域直接相关的工作",
+      "7 级 Graduate Diploma 新政通道持有人：签证有效时长通常对应在纽全日制就读时长（最长可达 1 年）"
+    ],
+    "sourceIds": ["inz.post-study-work", "inz.post-study-work.policy-change"],
+    "defaultIncluded": true
+  },
+  {
+    "id": "nz.psw.review.consistency",
+    "category": "一致性核对",
+    "title": "学业材料、身份信息与申请填报一致性最终核对",
+    "requirementType": "product_organisation_guidance",
+    "evidenceLayer": "product_guidance",
+    "why": "在递交前系统核对各项文件，有助于避免因姓名拼写、日期冲突或材料遗漏导致审理延误。",
+    "steps": [
+      "核对护照、毕业证/完成信、成绩单、资金证明等文件上的姓名拼音与出生日期保持完全一致",
+      "核对毕业文凭全称与就读起止日期，确保与申请填报中所填写的教育经历信息严密对应",
+      "检查所有准备提交文件的清晰度与完整性，确认文件格式符合官方受理要求"
+    ],
+    "sourceIds": ["inz.post-study-work"],
+    "defaultIncluded": true
+  }
+]

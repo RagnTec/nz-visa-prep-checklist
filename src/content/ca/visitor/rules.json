@@ -1,0 +1,13 @@
+[
+  {
+    "id": "ca.visitor.rule.ties.employmentLetter",
+    "when": {
+      "field": "applicant.isEmployed",
+      "operator": "equals",
+      "value": "yes"
+    },
+    "addChecklistItems": [
+      "ca.visitor.ties.employmentLetter"
+    ]
+  }
+]

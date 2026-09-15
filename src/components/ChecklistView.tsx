@@ -9,33 +9,22 @@ import type {
 import { getSavedScrollPosition, setSavedScrollPosition } from '../storage/uiScroll';
 import { TrialDisclosure } from './TrialDisclosure';
 
-export const statusLabels: Record<ChecklistStatus, string> = {
-  not_started: '未开始',
-  in_progress: '准备中',
-  prepared: '已准备',
-  needs_review: '需要复查',
-  not_applicable: '不适用'
-};
+import {
+  statusLabels,
+  requirementLabels,
+  evidenceLayerLabels
+} from '../i18n';
 
-export const requirementLabels: Record<RequirementType, string> = {
-  usually_required: '通常需要',
-  answer_dependent: '根据回答需要',
-  may_be_requested: '可能被要求',
-  genuine_intentions_support: '用于支持真实学习意图',
-  product_organisation_guidance: '产品整理建议'
-};
+export { statusLabels, requirementLabels, evidenceLayerLabels };
 
-export const evidenceLayerLabels: Record<EvidenceLayer, string> = {
-  inz_visa: 'INZ 官方要求或指引',
-  ircc_visa: 'IRCC 官方要求或指引',
-  product_guidance: '整理与核对建议'
-};
-
-export type PrimaryRequirementLabel = '核心要求' | '按情况要求' | '建议核对';
+export type PrimaryRequirementLabel = '核心要求' | '按情况要求' | '建议核对' | '建议准备';
 
 export function getPrimaryRequirementLabel(item: ChecklistItem): PrimaryRequirementLabel {
   if (item.evidenceLayer === 'product_guidance') {
     return '建议核对';
+  }
+  if (item.requirementType === 'recommended_supporting') {
+    return requirementLabels.recommended_supporting as PrimaryRequirementLabel;
   }
   if (
     item.requirementType === 'usually_required' ||
@@ -55,6 +44,8 @@ function getCardVisualClass(primaryLabel: PrimaryRequirementLabel): string {
       return 'card-conditional';
     case '建议核对':
       return 'card-guidance';
+    case '建议准备':
+      return 'card-recommended';
   }
 }
 
@@ -66,6 +57,8 @@ function getChipVisualClass(primaryLabel: PrimaryRequirementLabel): string {
       return 'chip-conditional';
     case '建议核对':
       return 'chip-guidance';
+    case '建议准备':
+      return 'chip-recommended';
   }
 }
 
@@ -301,6 +294,7 @@ export function ChecklistView({
               <option value="all">全部性质</option>
               <option value="核心要求">核心要求</option>
               <option value="按情况要求">按情况要求</option>
+              <option value={requirementLabels.recommended_supporting}>{requirementLabels.recommended_supporting}</option>
               <option value="建议核对">建议核对</option>
             </select>
           </label>

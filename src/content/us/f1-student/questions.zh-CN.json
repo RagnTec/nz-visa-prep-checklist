@@ -1,0 +1,86 @@
+{
+  "title": "美国 F-1 学生签证材料准备清单",
+  "showProgressBar": "off",
+  "progressBarType": "pages",
+  "pages": [
+    {
+      "name": "scope",
+      "title": "适用范围与申请情形",
+      "elements": [
+        {
+          "type": "radiogroup",
+          "name": "scope.confirmedF1StudentVisa",
+          "title": "你是否已确认拟申请美国 F-1 学生签证？",
+          "description": "本工具面向已确定或正准备申请美国 F-1 学生签证（涵盖学术或语言学习项目）的成年申请人。职业类或非学术培训（如 M-1 签证）、交流访问（J-1 签证）不在本清单范围。",
+          "isRequired": true,
+          "choices": [
+            {
+              "value": "yes",
+              "text": "是，已确认拟申请 F-1 学生签证"
+            },
+            {
+              "value": "need_check",
+              "text": "尚未确定，需要先核实适用的签证类型"
+            }
+          ]
+        },
+        {
+          "type": "radiogroup",
+          "name": "scope.applicationContext",
+          "title": "你本次申请签证的具体情形是什么？",
+          "description": "本清单针对在境外（美国境外）首次申请 F-1 签证的标准材料准备流程。境内身份调整、在读返校或复杂续签可能涉及不同程序。",
+          "isRequired": true,
+          "choices": [
+            {
+              "value": "initial_outside_us",
+              "text": "在境外首次申请赴美开始学术或语言学习项目"
+            },
+            {
+              "value": "continuing_or_returning",
+              "text": "在读生/返校生重新申请或办理续签"
+            },
+            {
+              "value": "change_of_status_or_other",
+              "text": "在美国境内调整身份、SEVIS 转移或其他复杂情形"
+            },
+            {
+              "value": "need_check",
+              "text": "暂不确定具体申请情形"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "admission",
+      "title": "院校录取与 I-20 状态",
+      "elements": [
+        {
+          "type": "radiogroup",
+          "name": "admission.i20Status",
+          "title": "你目前是否已取得 SEVP 认证学校签发的 Form I-20？",
+          "description": "Form I-20 包含 SEVIS ID、院校及学习项目信息，是标准 F-1 签证准备中的核心文件。取得后请先核对信息，再依据当前官方指引完成 DS-160、适用费用及使领馆申请安排。",
+          "isRequired": true,
+          "choices": [
+            {
+              "value": "have_i20",
+              "text": "已获得 Form I-20，并已核对个人及项目信息"
+            },
+            {
+              "value": "admitted_waiting_i20",
+              "text": "已获得学校录取，正在等待签发 Form I-20"
+            },
+            {
+              "value": "not_admitted",
+              "text": "尚未获得录取或尚未申请院校"
+            },
+            {
+              "value": "need_check",
+              "text": "暂不确定 I-20 状态或需要与学校核对"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

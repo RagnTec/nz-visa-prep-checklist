@@ -6,6 +6,7 @@ export const CURRENT_SAVED_PROJECT_SCHEMA_VERSION = 7;
 export type RequirementType =
   | 'usually_required'
   | 'answer_dependent'
+  | 'recommended_supporting'
   | 'may_be_requested'
   | 'genuine_intentions_support'
   | 'product_organisation_guidance';
@@ -13,6 +14,9 @@ export type RequirementType =
 export type EvidenceLayer =
   | 'inz_visa'
   | 'ircc_visa'
+  | 'au_home_affairs_visa'
+  | 'us_dos_visa'
+  | 'us_ice_sevp'
   | 'product_guidance';
 
 export interface OfficialSource {
